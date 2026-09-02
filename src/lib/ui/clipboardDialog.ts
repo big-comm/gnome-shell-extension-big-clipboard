@@ -416,6 +416,8 @@ export class ClipboardDialog extends St.Widget {
 		(Main.inputMethod as Clutter.InputMethod).disconnectObject(this);
 		this._ibusManager.disconnectObject(this);
 		this.ext.settings.disconnectObject(this);
+		this._clipboardItemMenu.disconnectObject(this);
+		this._clipboardItemMenu.destroy();
 
 		if (this._grab) {
 			this._dialog.remove_all_transitions();

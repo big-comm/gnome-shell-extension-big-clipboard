@@ -9,6 +9,7 @@ import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import type CopyousExtension from '../../../extension.js';
 import { ItemType, Tags } from '../../common/constants.js';
 import { registerClass } from '../../common/gjs.js';
+import type { CopyousSettings } from '../../common/settings.js';
 import { ClipboardEntry } from '../../database/database.js';
 import { Shortcut } from '../../misc/shortcuts.js';
 import { ActionPopupMenuSection, ActionPopupMenuSectionSignals } from './actionMenu.js';
@@ -23,13 +24,11 @@ function canEdit(entry: ClipboardEntry): boolean {
 @registerClass()
 class PopupMenuShortcutItem extends PopupMenu.PopupBaseMenuItem {
 	private readonly _shortcutLabel: ShortcutLabel;
+	private readonly _settings: CopyousSettings;
 
-	constructor(
-		private ext: CopyousExtension,
-		text: string,
-		shortcut: Shortcut,
-	) {
+	constructor(ext: CopyousExtension, text: string, shortcut: Shortcut) {
 		super();
+		this._settings = ext.settings;
 
 		const label = new St.Label({
 			text,
@@ -38,7 +37,7 @@ class PopupMenuShortcutItem extends PopupMenu.PopupBaseMenuItem {
 		});
 		this.add_child(label);
 
-		this._shortcutLabel = new ShortcutLabel(this.ext.settings.get_strv(shortcut)[0] ?? '', {
+		this._shortcutLabel = new ShortcutLabel(this._settings.get_strv(shortcut)[0] ?? '', {
 			x_expand: true,
 			y_expand: true,
 			x_align: Clutter.ActorAlign.END,
@@ -47,15 +46,15 @@ class PopupMenuShortcutItem extends PopupMenu.PopupBaseMenuItem {
 		});
 		this.add_child(this._shortcutLabel);
 
-		this.ext.settings.connectObject(
+		this._settings.connectObject(
 			`changed::${shortcut}`,
-			() => (this._shortcutLabel.shortcut = this.ext.settings.get_strv(shortcut)[0] ?? ''),
+			() => (this._shortcutLabel.shortcut = this._settings.get_strv(shortcut)[0] ?? ''),
 			this,
 		);
 	}
 
 	override destroy() {
-		this.ext.settings.disconnectObject(this);
+		this._settings.disconnectObject(this);
 
 		super.destroy();
 	}

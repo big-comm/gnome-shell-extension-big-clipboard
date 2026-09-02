@@ -8,6 +8,7 @@ import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.j
 import type CopyousExtension from '../../../extension.js';
 import { enumParamSpec, registerClass } from '../../common/gjs.js';
 import { Icon, loadIcon } from '../../common/icons.js';
+import type { CopyousSettings } from '../../common/settings.js';
 
 export const State = {
 	Empty: 0,
@@ -28,8 +29,9 @@ export class StatusItem extends St.BoxLayout {
 	private readonly _noResultsIcon: Gio.Icon;
 	private readonly _icon: St.Icon;
 	private readonly _text: St.Label;
+	private readonly _settings: CopyousSettings;
 
-	constructor(private ext: CopyousExtension) {
+	constructor(ext: CopyousExtension) {
 		super({
 			style_class: 'clipboard-item status-item',
 			orientation: Clutter.Orientation.VERTICAL,
@@ -43,6 +45,7 @@ export class StatusItem extends St.BoxLayout {
 		});
 
 		this._state = State.Empty;
+		this._settings = ext.settings;
 
 		const box = new St.BoxLayout({
 			style_class: 'status-item-content',
@@ -76,7 +79,7 @@ export class StatusItem extends St.BoxLayout {
 		box.add_child(this._text);
 
 		// Bind properties
-		ext.settings.connectObject(
+		this._settings.connectObject(
 			'changed::item-width',
 			this.updateSize.bind(this),
 			'changed::item-height',
@@ -109,12 +112,12 @@ export class StatusItem extends St.BoxLayout {
 	}
 
 	private updateSize() {
-		this.width = this.ext.settings.get_int('item-width');
-		this.height = this.ext.settings.get_int('item-height');
+		this.width = this._settings.get_int('item-width');
+		this.height = this._settings.get_int('item-height');
 	}
 
 	override destroy() {
-		this.ext.settings.disconnectObject(this);
+		this._settings.disconnectObject(this);
 
 		super.destroy();
 	}

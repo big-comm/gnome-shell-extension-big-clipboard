@@ -339,6 +339,11 @@ export class ClipboardScrollContainer extends St.BoxLayout {
 		}
 	}
 
+	override destroy() {
+		this._statusItem.destroy();
+		super.destroy();
+	}
+
 	override vfunc_navigate_focus(from: Clutter.Actor | null, direction: St.DirectionType): boolean {
 		// Navigation from the search entry
 		if (from?.get_parent() !== this) {
