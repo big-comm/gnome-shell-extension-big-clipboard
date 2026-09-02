@@ -105,7 +105,19 @@ check-po:
 	find resources/po -name '*.po' -exec msgcmp --use-untranslated {} resources/po/main.pot \;
 
 # Copy metadata
-VERSION ?= $(shell git describe --tags --dirty | sed -E 's/^v//;s/-g([0-9a-f]{7})/+\1/')
+#
+# The tags live only in the maintainer's clone, so `git describe --tags` finds
+# nothing when a build clones this repository from the remote -- and because it
+# is piped into sed, the pipeline still succeeds and VERSION comes out empty.
+# Packages built that way carry "version-name": "" and say nothing about the
+# code inside them, which is what made a stale package impossible to tell apart
+# from a current one. The commit is always there, so it is the fallback.
+GIT_DESCRIBE := $(shell git describe --tags --dirty 2>/dev/null)
+ifeq ($(strip $(GIT_DESCRIBE)),)
+VERSION ?= $(shell git rev-parse --short HEAD 2>/dev/null)
+else
+VERSION ?= $(shell printf '%s' '$(GIT_DESCRIBE)' | sed -E 's/^v//;s/-g([0-9a-f]{7})/+\1/')
+endif
 
 $(DIST_DIR)/metadata.json: resources/metadata.json | $(DIST_DIR)
 	jq '."version-name" = "$(VERSION)"' $< > $@
