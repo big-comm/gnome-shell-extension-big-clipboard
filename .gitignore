@@ -9,3 +9,8 @@
 
 dist
 node_modules
+
+# Local-only notes and backups: never push these to the fork.
+/PLANO_*.md
+/NOTAS_*.md
+/backup-copyous-*/
