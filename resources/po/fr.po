@@ -1524,7 +1524,7 @@ msgstr "Tout conserver"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "Conserver les éléments épinglés"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1803,7 +1803,7 @@ msgstr "Êtes-vous sûr de vouloir effacer votre historique du presse-papiers ?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "Effacer les éléments épinglés"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

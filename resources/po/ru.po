@@ -1494,7 +1494,7 @@ msgstr "Сохранять всё"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "Сохранять закреплённые"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1771,7 +1771,7 @@ msgstr "Действительно очистить историю буфера 
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "Очистить закреплённые элементы"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

@@ -1499,7 +1499,7 @@ msgstr "Hepsini Koru"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "İğnelenenleri Koru"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1775,7 +1775,7 @@ msgstr "Pano geçmişinizi temizlemek istediğinden emin misin?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "İğnelenen Öğeleri Temizle"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

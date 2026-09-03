@@ -1415,23 +1415,23 @@ msgstr "Opinie"
 
 #: src/lib/preferences/general/feedbackSettings.ts:227
 msgid "Indicator Display"
-msgstr ""
+msgstr "Wyświetlanie kontrolki"
 
 #: src/lib/preferences/general/feedbackSettings.ts:228
 msgid "Choose how the clipboard indicator appears in the top panel"
-msgstr ""
+msgstr "Wybierz, jak powinna wyglądać kontrolka schowka na panelu"
 
 #: src/lib/preferences/general/feedbackSettings.ts:231
 msgid "Icon Only"
-msgstr ""
+msgstr "Tylko ikona"
 
 #: src/lib/preferences/general/feedbackSettings.ts:232
 msgid "Clipboard Content Only"
-msgstr ""
+msgstr "Tylko zawartość schowka"
 
 #: src/lib/preferences/general/feedbackSettings.ts:233
 msgid "Icon and Clipboard Content"
-msgstr ""
+msgstr "Ikona oraz zawartość schowka"
 
 #: src/lib/preferences/general/feedbackSettings.ts:239
 msgid "Wiggle Indicator"
@@ -1509,7 +1509,7 @@ msgstr "Zachowaj wszystko"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "Zachowaj przypięte"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1787,7 +1787,7 @@ msgstr "Czy na pewno chcesz wyczyścić historię schowka?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "Wyczyść przypięte elementy"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

@@ -1476,7 +1476,7 @@ msgstr "保留全部"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "保留已固定项"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1745,7 +1745,7 @@ msgstr "您确定要清除剪贴板历史记录吗？"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "清除已固定的项目"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

@@ -1521,7 +1521,7 @@ msgstr "Alle behalten"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "Angeheftet behalten"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1798,7 +1798,7 @@ msgstr "Möchten Sie wirklich den Verlauf Ihrer Zwischenablage löschen?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "Fixierte Elemente löschen"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

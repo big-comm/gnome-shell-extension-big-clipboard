@@ -17,13 +17,13 @@ import { TagsItem } from './components/tagsItem.js';
 
 // Reused across calls: constructing Intl.Collator is non-trivial, and a single
 // search batch invokes localeContains once per item per text field.
-const _collator = new Intl.Collator(undefined, { sensitivity: 'base' });
+const SearchCollator = new Intl.Collator(undefined, { sensitivity: 'base' });
 
 function localeContains(text: string, query: string): boolean {
 	const queryLen = query.length;
 	const limit = text.length - queryLen;
 	for (let offset = 0; offset <= limit; offset++) {
-		if (_collator.compare(text.substring(offset, offset + queryLen), query) === 0) return true;
+		if (SearchCollator.compare(text.substring(offset, offset + queryLen), query) === 0) return true;
 	}
 	return false;
 }

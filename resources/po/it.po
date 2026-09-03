@@ -1515,7 +1515,7 @@ msgstr "Conserva tutto"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "Conserva gli elementi fissati"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1793,7 +1793,7 @@ msgstr "Sei sicuro di voler cancellare la cronologia dei tuoi appunti?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "Cancella elementi fissati"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"

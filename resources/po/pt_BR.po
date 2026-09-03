@@ -1501,7 +1501,7 @@ msgstr "Manter Todos"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned"
-msgstr ""
+msgstr "Manter Fixados"
 
 #: src/lib/preferences/general/historySettings.ts:137
 msgid "Keep Pinned/Tagged"
@@ -1775,7 +1775,7 @@ msgstr "Tem certeza de que deseja limpar o histórico da área de transferência
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
-msgstr ""
+msgstr "Limpar Itens Fixados"
 
 #: src/lib/ui/indicator.ts:99
 msgid "Incognito Mode"
