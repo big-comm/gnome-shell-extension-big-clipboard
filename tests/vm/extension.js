@@ -15,7 +15,7 @@ export default class Audit extends Extension {
 		this.object.export(Gio.DBus.session, '/org/bigcommunity/CopyousAudit');
 	}
 	ext() {
-		return Main.extensionManager.lookup('copyous@boerdereinar.dev')?.stateObj;
+		return Main.extensionManager.lookup('big-clipboard@communitybig.org')?.stateObj;
 	}
 	async PrepareAsync([count], invocation) {
 		try {
@@ -133,6 +133,7 @@ export default class Audit extends Extension {
 				const c = St.Clipboard.get_default();
 				if (image) {
 					result.file = Gio.File.new_for_uri(e.content).get_path();
+					result.sha256 = await new Promise(resolve => c.get_content(St.ClipboardType.CLIPBOARD, 'image/png', (_clipboard, bytes) => resolve(bytes ? GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA256, bytes) : null)));
 				} else {
 					const text = await new Promise((r) =>
 						c.get_text(St.ClipboardType.CLIPBOARD, (_c, text) => r(text)),
@@ -162,6 +163,9 @@ export default class Audit extends Extension {
 		const items = c?.get_children().filter((a) => a.entry) ?? [];
 		return JSON.stringify({
 			version: ext?.metadata['version-name'],
+			path: ext?.path,
+			name: ext?.metadata.name,
+			hljs: ext?.hljs ? {version: ext.hljs.versionString, languages: ext.hljs.listLanguages(), js: ext.hljs.highlight('const x = 1;', {language: 'javascript'}).value} : null,
 			fixture: this.count,
 			mixed: this.mixed,
 			previewCount: items.filter((a) => a._imagePreview?._imageBox).length,
@@ -175,6 +179,7 @@ export default class Audit extends Extension {
 			opened: d?.opened,
 			mapped: d?.mapped,
 			items: items.length,
+			total: d?._entries?.size,
 			visible: items.filter((a) => a.visible).length,
 			first: items[0]?.entry.id,
 			last: items.at(-1)?.entry.id,

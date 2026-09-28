@@ -1,6 +1,6 @@
 # Constants
 NAME := copyous
-UUID := copyous@boerdereinar.dev
+UUID := big-clipboard@communitybig.org
 
 # Directories
 SRC_DIR := src

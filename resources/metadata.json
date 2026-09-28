@@ -1,7 +1,7 @@
 {
 	"name": "Big Clipboard",
 	"description": "Clipboard history for GNOME, maintained by BigCommunity",
-	"uuid": "copyous@boerdereinar.dev",
+	"uuid": "big-clipboard@communitybig.org",
 	"shell-version": ["48", "49", "50", "51"],
 	"settings-schema": "org.gnome.shell.extensions.copyous",
 	"gettext-domain": "copyous@boerdereinar.dev",

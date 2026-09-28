@@ -24,10 +24,10 @@ Hybrid on GNOME 51.0, with vertical clipboard history and English sample entries
 | Long text and code | Limit rendered previews to 4096 characters. Search and clipboard copying retain the full content. |
 | Extension lifecycle | Disconnect card callbacks and guard asynchronous work across disable/enable cycles. Handle search resets during closing without leaving an incomplete first page. |
 | GNOME compatibility | Adapt shader effects, input handling and button masks for GNOME 50 and 51. |
-| Big Gnome Center integration | Preserve the extension UUID, settings schema, clipboard database format and D-Bus API. Validate opening after transitions through all six BGC layouts. |
+| Big Gnome Center integration | Migrate the extension UUID while preserving settings, clipboard data and the D-Bus API. Validate opening after transitions through all six BGC layouts. |
 | Packaging and checks | Keep source and PKGBUILD together under BigCommunity. Run type checks and focused regression tests in CI and package checks. |
 
-The package replaces `gnome-shell-extension-copyous`. The UUID `copyous@boerdereinar.dev`, settings paths, history database and D-Bus API stay unchanged, so Big Gnome Center layouts and existing history keep working. An upstream Copyous installation and Big Clipboard still occupy the same extension slot. See [upgrade notes](docs/UPGRADE.md).
+The package replaces `gnome-shell-extension-copyous`. The extension UUID is `big-clipboard@communitybig.org`. The package migrates activation before GNOME Shell starts; log out and back in after upgrading. Legacy storage paths, settings and the D-Bus API remain compatible, preserving history, images and custom actions. Updated Big Gnome Center layouts use the new UUID and migrate saved profiles. See [upgrade notes](docs/UPGRADE.md).
 
 ## Validation and performance
 

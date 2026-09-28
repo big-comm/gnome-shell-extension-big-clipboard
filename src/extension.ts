@@ -141,6 +141,12 @@ export default class CopyousExtension extends Extension {
 	private _lifecycleSerial = 0;
 
 	override enable() {
+		// Refuse a manual live overlap with upstream; migration runs before Shell startup.
+		const state = Number(Main.extensionManager.lookup('copyous@boerdereinar.dev')?.state);
+		// State names changed across Shell versions; active/transition values stayed 1/7/8.
+		if (state === 1 || state === 7 || state === 8)
+			throw new Error('Copyous is still running. Log out and back in to finish the Big Clipboard upgrade.');
+
 		this._enabled = true;
 		const serial = ++this._lifecycleSerial;
 

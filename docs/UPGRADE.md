@@ -5,8 +5,12 @@
 ## Compatibility
 
 - `provides`, `conflicts` and `replaces`: `gnome-shell-extension-copyous`. Keep epoch 1. A repository system upgrade replaces the old package; `provides` also satisfies existing Big Gnome Center dependencies.
-- Preserve UUID `copyous@boerdereinar.dev`, settings schema/path, gettext domain, data directory, database format and D-Bus interface. No history relocation or UUID migration.
-- User-installed extensions under `~/.local/share/gnome-shell/extensions` override system packages. Back up and remove an old override before expecting the packaged code to run.
+- UUID: `big-clipboard@communitybig.org`. Before Shell startup, the package maps the old UUID in enabled/disabled lists, deduplicates entries and preserves explicit disablement. It leaves the global extension switch unchanged. It refuses migration while Shell is running and skips GDM.
+- Preserve settings schema/path, gettext domain, data/config/cache directories, database format and D-Bus interface. Storage uses the fixed legacy ID `copyous@boerdereinar.dev`, independently of the new UUID. Default SQLite/JSON history, image URIs, custom database locations and `actions.json` stay in place; no copy, deletion or reset is needed.
+- The package removes the old system extension directory. An upstream user installation may remain on disk; migration removes its activation. Do not manually enable both extensions. Big Clipboard refuses activation while the legacy extension is active or transitioning.
+- Big Gnome Center migrates saved activation lists through its locked persistence store. All six bundled layouts use the new UUID; old saved layouts are normalized when applied. Both UUIDs share the protected clipboard settings subtree during upgrades.
+- Manual ZIP installs do not install the pre-session migration hook. Disable Copyous, log out, then enable the new UUID after logging in. Existing data paths remain compatible.
+- User-installed extensions with the new UUID override the system package. Back up and remove an outdated new-UUID override before expecting the packaged code to run. The old UUID does not shadow the renamed extension.
 - Log out and back in after installation. GNOME caches extension modules in the running Shell; toggling an extension does not reliably replace loaded JavaScript.
 - Repository and local directory: `gnome-shell-extension-big-clipboard`. The PKGBUILD fetches `main`; local commits must reach that branch before remote package builds include them.
 
@@ -39,3 +43,16 @@ The VM journal contained unrelated environment warnings: Big Shot's installed GN
 Preferences opened in Brazilian Portuguese without the former install dialog. The language page and Ada switch were exercised through the real GTK accessibility interface on both VMs; the switch updated the selection successfully.
 
 A final fresh login after all six layouts retained the fixture and settings. Super+V opened 12 cards from all 120 stored entries on both VMs. Original user preferences/history were restored after testing; the new package and BGC retention fix remain installed. Test backups remain under `~/.local/state/big-clipboard-package-audit/` in each VM.
+
+## UUID migration validation
+
+The subsequent UUID migration was tested on GNOME 50.4 and 51.0 with freshly built packages and real session restarts:
+
+- Old-name package replacement and already-renamed package upgrade passed. Enabled and explicitly disabled activation survived login; a legacy user extension remained on disk without activation. Repeated migration, global disablement and empty lists passed with real Gio settings.
+- Each VM retained 120 entries, 24 pins, 40 image hashes, custom actions, JSON history and the exact clipboard settings dump. SQLite used the default path on one VM and a custom path containing spaces on the other.
+- All six layouts passed on both VMs. Legacy-UUID saved layouts activated the replacement and persisted the new UUID. Exact SQL and file hashes remained unchanged.
+- Unicode text/image copying, pin/unpin, full-history search, pagination, optional highlighting, default JSON storage, preferences, Super+V and the existing D-Bus interface passed.
+- Original VM histories and preferences were restored and verified afterward. Test fixtures and backups remain outside the packages; VM viewers remain open.
+- Full BGC package check: 1,735 passed. Clipboard type checking, lifecycle/paging/storage tests, migration tests, release build and gettext checks passed.
+
+This validates clipboard migration; unrelated installed-extension warnings remain as documented above.

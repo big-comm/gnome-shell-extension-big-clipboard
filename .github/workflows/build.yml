@@ -7,7 +7,7 @@ on:
   pull_request:
 
 env:
-  UUID: copyous@boerdereinar.dev
+  UUID: big-clipboard@communitybig.org
 
 jobs:
   lint:
@@ -24,6 +24,7 @@ jobs:
         run: |
           pnpm exec tsc --noEmit
           pnpm test
+          python3 -m unittest discover -s tests -p 'test_uuid_migration.py'
 
       - name: Lint
         run: make lint

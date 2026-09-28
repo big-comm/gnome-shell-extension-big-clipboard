@@ -10,7 +10,8 @@ license=('GPL-3.0-or-later' 'BSD-3-Clause')
 url="https://github.com/big-comm/gnome-shell-extension-big-clipboard"
 depends=('gnome-shell>=48'
          'libgda6'
-         'gsound')
+         'gsound'
+         'python-gobject')
 makedepends=('git'
              'jq'
              'gettext'
@@ -53,13 +54,14 @@ check() {
   cd "${srcdir}/copyous"
   pnpm exec tsc --noEmit
   pnpm test
+  python -m unittest discover -s tests -p 'test_uuid_migration.py'
   make check-pot check-po
 }
 
 package() {
   cd "${srcdir}/copyous"
 
-  local uuid="copyous@boerdereinar.dev"
+  local uuid="big-clipboard@communitybig.org"
   local schema="org.gnome.shell.extensions.copyous.gschema.xml"
   local destdir="${pkgdir}/usr/share/gnome-shell/extensions/${uuid}"
 
@@ -72,6 +74,10 @@ package() {
   if [ -f "${destdir}/schemas/${schema}" ]; then
     glib-compile-schemas "${destdir}/schemas/"
   fi
+
+  install -Dm644 scripts/migrate-uuid.py "${pkgdir}/usr/share/big-clipboard/migrate-uuid.py"
+  install -Dm644 pkgbuild/60-big-clipboard-migration.conf \
+    "${pkgdir}/usr/lib/systemd/user/org.gnome.Shell@.service.d/60-big-clipboard-migration.conf"
 
   # Install license
   install -Dm644 dist/highlight-LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/Highlight.js-LICENSE"

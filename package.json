@@ -43,6 +43,6 @@
 		"lint": "make lint",
 		"lint-fix": "make lint-fix",
 		"shexli": "make shexli",
-		"test": "node tests/history-paging.mjs && node tests/preview-lifecycle.mjs && node tests/shader-compatibility.mjs && node tests/highlight-bundle.mjs"
+		"test": "node tests/history-paging.mjs && node tests/preview-lifecycle.mjs && node tests/shader-compatibility.mjs && node tests/highlight-bundle.mjs && node tests/storage-identity.mjs"
 	}
 }

@@ -276,20 +276,23 @@ export const HljsLanguages: [string, string, string][] = [
 	["zephir",         "Zephir",                  "313b3f5bd94b11b8e991cb14ab17226bed0c2eaac1d049eefb648fc6677d3d380c32ec0c51b263ea1f7cde23070680afe8798533c49f2dc6cfcf217e51eb42fe"],
 ];
 
-export function getCachePath(ext: Extension | ExtensionPreferences): Gio.File {
-	return Gio.file_new_build_filenamev([GLib.get_user_cache_dir(), ext.uuid]);
+// Storage identity is independent of the public extension UUID. Never relocate user data.
+export const STORAGE_ID = 'copyous@boerdereinar.dev';
+
+export function getCachePath(_ext: Extension | ExtensionPreferences): Gio.File {
+	return Gio.file_new_build_filenamev([GLib.get_user_cache_dir(), STORAGE_ID]);
 }
 
-export function getDataPath(ext: Extension | ExtensionPreferences): Gio.File {
-	return Gio.file_new_build_filenamev([GLib.get_user_data_dir(), ext.uuid]);
+export function getDataPath(_ext: Extension | ExtensionPreferences): Gio.File {
+	return Gio.file_new_build_filenamev([GLib.get_user_data_dir(), STORAGE_ID]);
 }
 
 export function getImagesPath(ext: Extension | ExtensionPreferences): Gio.File {
 	return getDataPath(ext).get_child('images');
 }
 
-export function getConfigPath(ext: Extension | ExtensionPreferences): Gio.File {
-	return Gio.file_new_build_filenamev([GLib.get_user_config_dir(), ext.uuid]);
+export function getConfigPath(_ext: Extension | ExtensionPreferences): Gio.File {
+	return Gio.file_new_build_filenamev([GLib.get_user_config_dir(), STORAGE_ID]);
 }
 
 export function getActionsConfigPath(ext: Extension | ExtensionPreferences): Gio.File {
