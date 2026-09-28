@@ -1,0 +1,172 @@
+.clipboard-dialog {
+	background-color: $bg_color;
+	border-radius: $alert_radius;
+	border: 1px solid $outer_borders_color;
+	box-shadow: 0 2px 4px 0 $shadow_color;
+	padding: 0;
+
+	// Header
+	.dialog-header {
+		.dialog-header-box {
+			padding: $base_padding * 2.5;
+			padding-bottom: 0;
+
+			> StBoxLayout {
+				spacing: $base_padding * 2;
+			}
+
+			.dialog-header-icon-button {
+				@extend %button;
+
+				border-radius: $forced_circular_radius;
+				padding: $scaled_padding * 2 * 0.9;
+				min-height: $scalable_icon_size * 0.9;
+
+				StIcon {
+					icon-size: $scalable_icon_size;
+					-st-icon-style: symbolic;
+				}
+
+				// prettier-ignore
+				&:checked:checked {
+					@include button(normal, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default);
+					&:focus { @include button(focus, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+					&:hover { @include button(hover, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+					&:active { @include button(active, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+				}
+			}
+
+			.dialog-header-button {
+				@extend %button;
+				border-radius: $forced_circular_radius;
+				min-height: to_em(22px);
+			}
+		}
+	}
+
+	// Footer
+	.dialog-footer {
+		padding: $base_padding * 1.5;
+		spacing: $base_padding * 1.5;
+
+		.dialog-footer-icon-button {
+			@extend %button;
+
+			border-radius: $forced_circular_radius;
+			padding: $scaled_padding * 1.5;
+			min-height: $scalable_icon_size;
+
+			StIcon {
+				icon-size: $scalable_icon_size;
+				-st-icon-style: symbolic;
+			}
+
+			// prettier-ignore
+			&:checked:checked {
+				@include button(normal, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default);
+				&:focus { @include button(focus, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+				&:hover { @include button(hover, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+				&:active { @include button(active, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+			}
+		}
+
+		.dialog-footer-button {
+			@extend %button;
+			border-radius: $forced_circular_radius;
+			min-height: to_em(12px);
+		}
+	}
+
+	// Items
+	.clipboard-item-list {
+		spacing: $base_padding * 2;
+	}
+
+	// Horizontal layout
+	&.horizontal {
+		.clipboard-item-list {
+			margin: $base_padding * 2.5 0;
+
+			.clipboard-item:first-child {
+				margin-left: $base_padding * 2.5;
+
+				&:rtl {
+					margin-left: 0;
+					margin-right: $base_padding * 2.5;
+				}
+			}
+
+			.clipboard-item:last-child {
+				margin-right: $base_padding * 2.5;
+
+				&:rtl {
+					margin-right: 0;
+					margin-left: $base_padding * 2.5;
+				}
+			}
+
+			// Fill full width
+			.status-item {
+				width: auto !important;
+			}
+		}
+
+		StScrollBar {
+			padding: $base_padding * 0.5 $base_padding * 3;
+		}
+	}
+
+	// Vertical layout
+	&.vertical {
+		.clipboard-item-list {
+			margin: 0 $base_padding * 2.5;
+
+			.clipboard-item:first-child {
+				margin-top: $base_padding * 2.5;
+			}
+
+			// Fill full height
+			.status-item {
+				height: auto !important;
+			}
+		}
+
+		StScrollBar {
+			padding: $base_padding * 3 $base_padding * 0.5 $base_padding * 0.5 $base_padding * 0.5;
+		}
+	}
+
+	// Vertical layout with header/search shown
+	&.vertical.show-header {
+		.dialog-header {
+			margin-bottom: $base_padding * 2.5;
+		}
+
+		.clipboard-item-list {
+			.clipboard-item:first-child {
+				margin-top: 0;
+			}
+		}
+
+		StScrollBar {
+			padding-top: $base_padding * 0.5;
+		}
+	}
+
+	// Scrollbar
+	StScrollBar {
+		StButton#vhandle,
+		StButton#hhandle,
+		> .vhandle,
+		> .hhandle {
+			background-color: mix($fg_color, $bg_color, 30%);
+
+			&:hover {
+				background-color: mix($fg_color, $bg_color, 50%);
+			}
+			&:active {
+				background-color: mix($fg_color, $bg_color, 40%);
+			}
+		}
+	}
+}

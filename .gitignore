@@ -1,3 +1,21 @@
+.vscode/*
+!.vscode/extensions.json
+!.vscode/gnome-css.json
+!.vscode/settings.json
+
+.env
+.idea
+.venv
+
+dist
+node_modules
+
+# Local-only notes and backups: never push these to the fork.
+/PLANO_*.md
+/NOTAS_*.md
+/backup-copyous-*/
+
+# Package build output
 # Claude Code documentation
 CLAUDE.md
 .claude

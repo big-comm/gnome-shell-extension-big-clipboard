@@ -1,0 +1,301 @@
+@mixin header_color($color) {
+	color: $color;
+
+	.clipboard-item-header-buttons {
+		// prettier-ignore
+		.clipboard-item-header-button {
+			&:checked {
+				@include button(normal, $c: $color, $tc: #ffffff, $style: default);
+				&:focus { @include button(focus, $c: $color, $tc: #ffffff, $style: default); }
+				&:hover { @include button(hover, $c: $color, $tc: #ffffff, $style: default); }
+				&:insensitive { @include button(insensitive, $c: $color, $tc: #ffffff, $style: default); }
+				&:active { @include button(active, $c: $color, $tc: #ffffff, $style: default); }
+			}
+		}
+
+		.clipboard-item-tag-button {
+			color: $color;
+		}
+	}
+}
+
+.clipboard-item {
+	@extend %card;
+	border-radius: $base_border_radius * 2;
+	padding: 0;
+	margin: 0;
+
+	.clipboard-item-box {
+		padding: $base_padding * 0.75 0 $base_padding * 1.25 0;
+	}
+
+	// Ensure that the active state is still visible on hover and focus
+	&:hover:active {
+		@include button(active, $style: card);
+	}
+
+	// Header
+	.clipboard-item-header {
+		spacing: $base_padding;
+		padding-left: $base_padding * 1.5;
+		padding-right: $base_padding * 1.5 - 2px;
+		color: $card_insensitive_fg_color;
+
+		&:rtl {
+			padding-left: $base_padding * 1.5 - 2px;
+			padding-right: $base_padding * 1.5;
+		}
+
+		// Tag colors
+		// prettier-ignore
+		& {
+			&.blue { @include header_color($tag_color_blue); }
+			&.teal { @include header_color($tag_color_teal); }
+			&.green { @include header_color($tag_color_green); }
+			&.yellow { @include header_color($tag_color_yellow); }
+			&.orange { @include header_color($tag_color_orange); }
+			&.red { @include header_color($tag_color_red); }
+			&.pink { @include header_color($tag_color_pink); }
+			&.purple { @include header_color($tag_color_purple); }
+			&.slate { @include header_color($tag_color_slate); }
+		}
+
+		// Header icon
+		.clipboard-item-header-icon {
+			icon-size: $scalable_icon_size; // 16px
+			-st-icon-style: symbolic;
+		}
+
+		// Header content
+		.clipboard-item-header-content {
+			spacing: $base_padding;
+			min-height: to_em(24px);
+			padding-bottom: $base_padding;
+
+			.clipboard-item-title {
+				font-weight: bold;
+			}
+
+			// Title entry (inline editing)
+			.clipboard-item-title-entry {
+				@extend %reset;
+				font-weight: bold;
+				padding-top: $base_padding - 1px;
+				color: $fg_color;
+			}
+
+			// Time label
+			.event-time {
+				@extend %caption;
+				color: $card_insensitive_fg_color;
+				// Add bottom padding to align the title with the time horizontally
+				padding-bottom: to_em(1px);
+			}
+		}
+
+		// Header buttons
+		.clipboard-item-header-buttons {
+			.clipboard-item-header-button {
+				@extend %notification_button;
+
+				StIcon {
+					icon-size: $scalable_icon_size - to_em(4px);
+					-st-icon-style: symbolic;
+				}
+
+				margin: 2px;
+				padding: $base_padding;
+				border-radius: $forced_circular_radius; // make circular
+				color: $fg_color;
+
+				// prettier-ignore
+				&.menu-button {
+					background-color: transparent;
+					&:focus { @include button(focus, $style: notification); }
+					&:hover { @include button(hover, $style: notification); }
+					&:active { @include button(active, $style: notification); }
+				}
+
+				// prettier-ignore
+				&:checked {
+					// @extend %default_button; doesnt work
+					@include button(normal, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default);
+					&:focus { @include button(focus, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+					&:hover { @include button(hover, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+					&:insensitive { @include button(insensitive, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+					&:active { @include button(active, $c: -st-accent-color, $tc: -st-accent-fg-color, $style: default); }
+				}
+			}
+
+			.clipboard-item-tag-button {
+				margin: 2px;
+				padding: 4px 3px 3px 4px;
+
+				StIcon {
+					icon-size: $scalable_icon_size;
+					-st-icon-style: symbolic;
+				}
+			}
+		}
+	}
+
+	// Content
+	.clipboard-item-content {
+		spacing: $base_padding;
+		padding-left: $base_padding * 1.5;
+		padding-right: $base_padding * 1.5;
+	}
+
+	// Status item
+	&.status-item {
+		background-color: transparent;
+		box-shadow: none;
+		border: 1px solid transparent;
+		spacing: 0;
+
+		.status-item-content {
+			spacing: $base_padding * 3;
+			color: transparentize($fg_color, 0.75);
+
+			.status-item-icon {
+				icon-size: $scalable_icon_size * 4;
+			}
+
+			.status-item-title {
+				@extend %title_2;
+			}
+		}
+	}
+
+	// Text item
+	&.text-item {
+		.text-item-content {
+			padding: 0 2px;
+		}
+
+		&.no-header .text-item-content {
+			padding-top: $base_padding;
+		}
+	}
+
+	// Code item
+	&.code-item {
+		.code-item-content {
+			@extend %monospace;
+			@include fontsize(10pt);
+
+			padding: 0 2px;
+		}
+
+		&.no-header .code-item-content {
+			padding-top: $base_padding;
+		}
+	}
+
+	// File item
+	&.file-item {
+		.file-item-file {
+			font-style: italic;
+			padding: 0 4px 4px 2px;
+		}
+
+		&.no-header .file-item-file {
+			padding-top: $base_padding;
+		}
+	}
+
+	// Files item
+	&.files-item {
+		.files-item-path {
+			font-style: italic;
+			padding: 0 4px 4px 2px;
+		}
+
+		&.no-header .files-item-path {
+			padding-top: $base_padding;
+		}
+	}
+
+	// Link item
+	&.link-item {
+		.link-url {
+			color: $link_color;
+		}
+
+		.link-preview {
+			.link-title {
+				@extend %heading;
+
+				&.no-title {
+					color: $card_insensitive_fg_color;
+				}
+			}
+
+			.link-description {
+				&.no-description {
+					color: $card_insensitive_fg_color;
+				}
+			}
+
+			.link-url.small {
+				@extend %caption;
+
+				padding-top: $base_padding * 0.5;
+			}
+		}
+	}
+
+	// Character item
+	&.character-item {
+		.character-item-content {
+			text-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+		}
+
+		.character-item-chars {
+			@extend %heading;
+			color: $card_insensitive_fg_color;
+		}
+	}
+
+	// Color item without header
+	&.color-item.no-header {
+		.color-box {
+			padding: $base_padding 1.5 * $base_padding;
+		}
+	}
+
+	// Image item and color item without header
+	&.image-item.no-header.no-image-info,
+	&.color-item.no-header {
+		&:focus {
+			.image-box,
+			.color-box {
+				@include focus_ring(2px);
+			}
+		}
+
+		.clipboard-item-box {
+			padding: 0;
+		}
+
+		.clipboard-item-header {
+			padding-top: $base_padding * 0.75;
+		}
+
+		.clipboard-item-content {
+			padding: 0;
+
+			.content-preview {
+				margin: 0;
+				border: none;
+				border-radius: $base_border_radius * 2 - 1px;
+				box-shadow: none;
+
+				.image-box,
+				.color-box {
+					border-radius: $base_border_radius * 2 - 1px;
+				}
+			}
+		}
+	}
+}

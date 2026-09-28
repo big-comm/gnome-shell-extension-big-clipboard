@@ -1,0 +1,5 @@
+[submodule "gnome-shell"]
+	path = submodules/gnome-shell
+	url = https://gitlab.gnome.org/GNOME/gnome-shell.git
+	branch = gnome-48
+	shallow = true
