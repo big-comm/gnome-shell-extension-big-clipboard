@@ -85,7 +85,6 @@ export default class Preferences extends ExtensionPreferences {
 		general.add(new AppExclusionSettings(this, window));
 		const dependenciesSettings = new DependenciesSettings(this, window);
 		dependenciesButton.bind_property('hljs', dependenciesSettings, 'hljs', GObject.BindingFlags.SYNC_CREATE);
-		dependenciesButton.connect('hljs-installed', () => dependenciesSettings.openHighlightJsPage());
 		general.add(dependenciesSettings);
 		general.add(new LocationsGroup(this, window));
 

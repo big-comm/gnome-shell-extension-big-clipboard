@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 12:21-0300\n"
+"POT-Creation-Date: 2026-09-28 14:16-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,7 +213,6 @@ msgstr ""
 #: src/lib/preferences/actions/actionsPage.ts:21
 #: src/lib/preferences/actions/actionsPage.ts:34
 #: src/lib/preferences/customization/items/exclusions.ts:90
-#: src/lib/preferences/dependencies/dependencies.ts:224
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
 #: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
@@ -1103,121 +1102,80 @@ msgstr ""
 msgid "Set the background color of the search bar"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:153
-#: src/lib/preferences/dependencies/dependencies.ts:440
+#: src/lib/preferences/dependencies/dependencies.ts:143
+#: src/lib/preferences/dependencies/dependencies.ts:219
 msgid "Libgda Not Installed"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:155
+#: src/lib/preferences/dependencies/dependencies.ts:145
 msgid ""
 "Libgda is required to store clipboard history between sessions. Install "
 "either libgda 5.0 or 6.0 with SQLite support to use this feature. After "
 "installing libgda you will need to log out or restart your system."
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:159
+#: src/lib/preferences/dependencies/dependencies.ts:149
 msgid "Install Libgda"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:172
-#: src/lib/preferences/dependencies/dependencies.ts:442
-msgid "Highlight.js Not Installed"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:173
-msgid "Highlight.js is required to display syntax highlighted code."
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:177
-msgid "Manual Installation"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:191
-msgid ""
-"You can manually install highlight.js by downloading highlight.min.js from "
-"\"Url\" to \"Install Location\"."
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:208
-msgid "Url"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:217
-msgid "Install Location"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:226
-msgid "Install"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependencies.ts:355
-#: src/lib/preferences/dependencies/dependencies.ts:441
+#: src/lib/preferences/dependencies/dependencies.ts:182
+#: src/lib/preferences/dependencies/dependencies.ts:220
 msgid "GSound Not Installed"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:357
+#: src/lib/preferences/dependencies/dependencies.ts:184
 msgid ""
 "GSound is required to play sound effects. Install GSound to use this "
 "feature. After installing GSound you will need to log out or restart your "
 "system."
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:360
+#: src/lib/preferences/dependencies/dependencies.ts:187
 msgid "Install GSound"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:373
-msgid "Starting Highlight.js Download"
+#: src/lib/preferences/dependencies/dependencies.ts:195
+#: src/lib/preferences/dependencies/dependencies.ts:221
+msgid "Syntax highlighting unavailable"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Error Installing Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:196
+msgid ""
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Successfully Installed Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:198
+#: src/lib/ui/components/qrCodeDialog.ts:146
+msgid "Close"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:240
-#, javascript-format
-msgid "Successfully Installed %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:22
+msgid "Syntax highlighting"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:241
-#, javascript-format
-msgid "Error Installing %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:24
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:43
+msgid "Code languages"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:261
-#, javascript-format
-msgid "Successfully Uninstalled %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:25
+msgid "Included with Big Clipboard. No download required."
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:262
-#, javascript-format
-msgid "Error Uninstalling %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:51
+msgid ""
+"Common languages are always available. Enable additional languages for code "
+"detection and highlighting."
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:288
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:382
-msgid "Manage Highlight.js"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:300
-msgid "Languages"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:321
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
 msgid "Search"
 msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:375
-msgid "Dependencies"
-msgstr ""
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:383
-msgid "Manage the Highlight.js installation"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:73
+msgid "Always available"
 msgstr ""
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
@@ -1725,10 +1683,6 @@ msgstr ""
 msgid "Edit Clipboard Item"
 msgstr ""
 
-#: src/lib/ui/components/qrCodeDialog.ts:146
-msgid "Close"
-msgstr ""
-
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
 msgstr ""
@@ -1838,10 +1792,10 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: src/prefs.ts:95
+#: src/prefs.ts:94
 msgid "Customization"
 msgstr ""
 
-#: src/prefs.ts:112
+#: src/prefs.ts:111
 msgid "Shortcuts"
 msgstr ""

@@ -102,7 +102,10 @@ check-pot:
 	| diff -q -I '^"POT-Creation-Date: .*' - resources/po/main.pot
 
 check-po:
-	find resources/po -name '*.po' -exec msgcmp --use-untranslated {} resources/po/main.pot \;
+	@for po in resources/po/*.po; do \
+		msgcmp --use-untranslated "$$po" resources/po/main.pot || exit 1; \
+		msgfmt --check --output-file=/dev/null "$$po" || exit 1; \
+	done
 
 # Copy metadata
 #
@@ -191,8 +194,12 @@ $(DIST_DIR)/theme.gresource: resources/theme.gresource.xml $(CSS) | $(DIST_DIR)
 
 RESOURCES := $(DIST_DIR)/resources.gresource $(DIST_DIR)/theme.gresource
 
+# Bundle pinned ESM assets; verify every module before packaging.
+$(DIST_DIR)/highlight.min.js: scripts/highlight/bundle.mjs src/lib/common/constants.ts pnpm-lock.yaml | $(DIST_DIR)
+	node scripts/highlight/bundle.mjs
+
 # Build all
-$(DIST_ZIP): $(DIST_DIR)/metadata.json $(TSC) $(CSS) $(SCHEMAS) $(DEBUG_SCHEMAS) $(RESOURCES) | $(DIST_DIR)
+$(DIST_ZIP): $(DIST_DIR)/metadata.json $(TSC) $(CSS) $(SCHEMAS) $(DEBUG_SCHEMAS) $(RESOURCES) $(DIST_DIR)/highlight.min.js | $(DIST_DIR)
 	gnome-extensions pack $(DIST_DIR) -o $(@D) \
 		--force \
 		--podir=$(PO_PATH) \
@@ -200,7 +207,10 @@ $(DIST_ZIP): $(DIST_DIR)/metadata.json $(TSC) $(CSS) $(SCHEMAS) $(DEBUG_SCHEMAS)
 		--extra-source="thirdparty" \
 		--extra-source=$(ICONS_PATH) \
 		--extra-source="resources.gresource" \
-		--extra-source="theme.gresource"
+		--extra-source="theme.gresource" \
+		--extra-source="highlight.min.js" \
+		--extra-source="languages" \
+		--extra-source="highlight-LICENSE"
 	@mv $(DIST_DIR)/$(UUID).shell-extension.zip $@
 
 build: $(DIST_ZIP)

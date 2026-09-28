@@ -74,15 +74,7 @@ export const DefaultColors = {
 } as const;
 
 export const UserAgent =
-	'Mozilla/5.0 (compatible; BigClipboardBot/1.0; +https://github.com/big-comm/gnome-shell-extension-copyous)';
-
-export const HljsCdns = [
-	'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/es',
-	'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/es',
-	'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es',
-];
-
-export const HljsUrls = HljsCdns.map((cdn) => `${cdn}/highlight.min.js`);
+	'Mozilla/5.0 (compatible; BigClipboardBot/1.0; +https://github.com/big-comm/gnome-shell-extension-big-clipboard)';
 
 export const HljsSha512 =
 	'f35f24636b981f53d194735964bd7b8606c79e0f4b04e800e24f13415b1761368ac20839a4cc416a1c5e1c351d00c4cf509f360972d098964e97739050a675f1';
@@ -341,6 +333,10 @@ export function getHljsLanguages(ext: Extension | ExtensionPreferences): [string
 	});
 }
 
-export function getHljsLanguageUrls(language: string): string[] {
-	return HljsCdns.map((cdn) => `${cdn}/languages/${language}.min.js`);
+// Preserve previously downloaded language selections until explicitly changed.
+export function getSelectedHljsLanguages(ext: Extension | ExtensionPreferences): string[] {
+	const settings = ext.getSettings();
+	if (settings.get_user_value('highlight-languages') !== null) return settings.get_strv('highlight-languages');
+	const directory = getDataPath(ext).get_child('languages');
+	return HljsLanguages.filter(([id]) => directory.get_child(`${id}.min.js`).query_exists(null)).map(([id]) => id);
 }

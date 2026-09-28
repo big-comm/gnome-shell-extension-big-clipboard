@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-16 16:01-0300\n"
+"POT-Creation-Date: 2026-09-28 14:16-0300\n"
 "PO-Revision-Date: 2026-04-30 18:05+0200\n"
 "Last-Translator: Adam Lewicki <a.lewicki95@gmail.com>\n"
 "Language-Team: \n"
@@ -180,7 +180,7 @@ msgstr "Pliki"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:304
+#: src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Odnośnik"
 
@@ -216,7 +216,6 @@ msgstr "Wybierz dozwolone typy"
 #: src/lib/preferences/actions/actionsPage.ts:21
 #: src/lib/preferences/actions/actionsPage.ts:34
 #: src/lib/preferences/customization/items/exclusions.ts:90
-#: src/lib/preferences/dependencies/dependencies.ts:224
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
 #: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
@@ -362,7 +361,7 @@ msgstr "Dodaj podmenu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:94
+#: src/lib/ui/components/clipboardItemMenu.ts:93
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -1124,12 +1123,12 @@ msgstr "Kolor wyszukiwania"
 msgid "Set the background color of the search bar"
 msgstr "Ustaw kolor tła paska wyszukiwania"
 
-#: src/lib/preferences/dependencies/dependencies.ts:153
-#: src/lib/preferences/dependencies/dependencies.ts:440
+#: src/lib/preferences/dependencies/dependencies.ts:143
+#: src/lib/preferences/dependencies/dependencies.ts:219
 msgid "Libgda Not Installed"
 msgstr "Libgda nie jest zainstalowane"
 
-#: src/lib/preferences/dependencies/dependencies.ts:155
+#: src/lib/preferences/dependencies/dependencies.ts:145
 msgid ""
 "Libgda is required to store clipboard history between sessions. Install "
 "either libgda 5.0 or 6.0 with SQLite support to use this feature. After "
@@ -1140,51 +1139,16 @@ msgstr ""
 "korzystać z tej funkcji. Po zainstalowaniu Libgda konieczne będzie "
 "wylogowanie się lub ponowne uruchomienie systemu."
 
-#: src/lib/preferences/dependencies/dependencies.ts:159
+#: src/lib/preferences/dependencies/dependencies.ts:149
 msgid "Install Libgda"
 msgstr "Zainstaluj Libgda"
 
-#: src/lib/preferences/dependencies/dependencies.ts:172
-#: src/lib/preferences/dependencies/dependencies.ts:442
-msgid "Highlight.js Not Installed"
-msgstr "Highlight.js nie jest zainstalowane"
-
-#: src/lib/preferences/dependencies/dependencies.ts:173
-msgid "Highlight.js is required to display syntax highlighted code."
-msgstr ""
-"Wymagana jest biblioteka Highlight.js, aby wyświetlać kod z podświetloną "
-"składnią."
-
-#: src/lib/preferences/dependencies/dependencies.ts:177
-msgid "Manual Installation"
-msgstr "Instalacja ręczna"
-
-#: src/lib/preferences/dependencies/dependencies.ts:191
-msgid ""
-"You can manually install highlight.js by downloading highlight.min.js from "
-"\"Url\" to \"Install Location\"."
-msgstr ""
-"Możesz ręcznie zainstalować highlight.js, pobierając 'highlight.min.js' z "
-"\"URL\" do \"Lokalizacja instalacji\"."
-
-#: src/lib/preferences/dependencies/dependencies.ts:208
-msgid "Url"
-msgstr "URL"
-
-#: src/lib/preferences/dependencies/dependencies.ts:217
-msgid "Install Location"
-msgstr "Lokalizacja instalacji"
-
-#: src/lib/preferences/dependencies/dependencies.ts:226
-msgid "Install"
-msgstr "Zainstaluj"
-
-#: src/lib/preferences/dependencies/dependencies.ts:355
-#: src/lib/preferences/dependencies/dependencies.ts:441
+#: src/lib/preferences/dependencies/dependencies.ts:182
+#: src/lib/preferences/dependencies/dependencies.ts:220
 msgid "GSound Not Installed"
 msgstr "GSound nie jest zainstalowane"
 
-#: src/lib/preferences/dependencies/dependencies.ts:357
+#: src/lib/preferences/dependencies/dependencies.ts:184
 msgid ""
 "GSound is required to play sound effects. Install GSound to use this "
 "feature. After installing GSound you will need to log out or restart your "
@@ -1194,63 +1158,53 @@ msgstr ""
 "GSound, aby korzystać z tej funkcji. Po zainstalowaniu GSound konieczne "
 "będzie wylogowanie się lub ponowne uruchomienie systemu."
 
-#: src/lib/preferences/dependencies/dependencies.ts:360
+#: src/lib/preferences/dependencies/dependencies.ts:187
 msgid "Install GSound"
 msgstr "Zainstaluj GSound"
 
-#: src/lib/preferences/dependencies/dependencies.ts:373
-msgid "Starting Highlight.js Download"
-msgstr "Rozpoczynanie pobierania Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:195
+#: src/lib/preferences/dependencies/dependencies.ts:221
+msgid "Syntax highlighting unavailable"
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Error Installing Highlight.js"
-msgstr "Błąd instalacji Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:196
+msgid ""
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Successfully Installed Highlight.js"
-msgstr "Pomyślnie zainstalowano Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:198
+#: src/lib/ui/components/qrCodeDialog.ts:146
+msgid "Close"
+msgstr "Zamknij"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:240
-#, javascript-format
-msgid "Successfully Installed %s"
-msgstr "Pomyślnie zainstalowano %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:22
+msgid "Syntax highlighting"
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:241
-#, javascript-format
-msgid "Error Installing %s"
-msgstr "Błąd instalacji %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:24
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:43
+msgid "Code languages"
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:261
-#, javascript-format
-msgid "Successfully Uninstalled %s"
-msgstr "Pomyślnie odinstalowano %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:25
+msgid "Included with Big Clipboard. No download required."
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:262
-#, javascript-format
-msgid "Error Uninstalling %s"
-msgstr "Błąd odinstalowania %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:51
+msgid ""
+"Common languages are always available. Enable additional languages for code "
+"detection and highlighting."
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:288
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:382
-msgid "Manage Highlight.js"
-msgstr "Zarządzaj Highlight.js"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:300
-msgid "Languages"
-msgstr "Języki"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:321
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
 msgid "Search"
 msgstr "Szukaj"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:375
-msgid "Dependencies"
-msgstr "Zależności"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:383
-msgid "Manage the Highlight.js installation"
-msgstr "Zarządzaj instalacją Highlight.js"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:73
+msgid "Always available"
+msgstr ""
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
@@ -1498,7 +1452,7 @@ msgstr ""
 "wylogowywania lub zamykania systemu"
 
 #: src/lib/preferences/general/historySettings.ts:137
-#: src/lib/ui/clipboardDialog.ts:134 src/lib/ui/clipboardDialog.ts:239
+#: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Wyczyść"
@@ -1773,10 +1727,6 @@ msgstr "Błąd"
 msgid "Edit Clipboard Item"
 msgstr "Edytuj element schowka"
 
-#: src/lib/ui/components/qrCodeDialog.ts:146
-msgid "Close"
-msgstr "Zamknij"
-
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
 msgstr "Wyczyścić historię schowka?"
@@ -1829,59 +1779,59 @@ msgstr[0] "%d plik"
 msgstr[1] "%d pliki"
 msgstr[2] "%d plików"
 
-#: src/lib/ui/items/linkItem.ts:95
+#: src/lib/ui/items/linkItem.ts:97
 msgid "No Title"
 msgstr "Brak tytułu"
 
-#: src/lib/ui/items/linkItem.ts:97
+#: src/lib/ui/items/linkItem.ts:99
 msgid "No Description"
 msgstr "Brak opisu"
 
-#: src/lib/ui/items/statusItem.ts:70 src/lib/ui/items/statusItem.ts:104
+#: src/lib/ui/items/statusItem.ts:73 src/lib/ui/items/statusItem.ts:107
 msgid "Clipboard is Empty"
 msgstr "Schowek jest pusty"
 
-#: src/lib/ui/items/statusItem.ts:107
+#: src/lib/ui/items/statusItem.ts:110
 msgid "No Items Found"
 msgstr "Nie znaleziono elementów"
 
-#: src/lib/ui/searchEntry.ts:154
+#: src/lib/ui/searchEntry.ts:155
 msgid "__All"
 msgstr "__Wszystko"
 
-#: src/lib/ui/searchEntry.ts:158
+#: src/lib/ui/searchEntry.ts:159
 msgid "__Text"
 msgstr "__Tekst"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:160
 msgid "__Code"
 msgstr "__Kod"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:161
 msgid "__Image"
 msgstr "__Obraz"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:162
 msgid "__File"
 msgstr "__Plik"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:163
 msgid "File__s"
 msgstr "Plik_i"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:164
 msgid "__Link"
 msgstr "__Odnośnik"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:165
 msgid "C__haracter"
 msgstr "Z_nak"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:166
 msgid "Colo__r"
 msgstr "Kolo_r"
 
-#: src/lib/ui/searchEntry.ts:277
+#: src/lib/ui/searchEntry.ts:278
 msgid "Type to search"
 msgstr "Wpisz, aby wyszukać"
 
@@ -1889,11 +1839,11 @@ msgstr "Wpisz, aby wyszukać"
 msgid "General"
 msgstr "Ogólne"
 
-#: src/prefs.ts:95
+#: src/prefs.ts:94
 msgid "Customization"
 msgstr "Personalizacja"
 
-#: src/prefs.ts:112
+#: src/prefs.ts:111
 msgid "Shortcuts"
 msgstr "Skróty klawiszowe"
 
@@ -1923,6 +1873,9 @@ msgstr "Skróty klawiszowe"
 #~ msgid "Bottom margin of the clipboard dialog"
 #~ msgstr "Dolny margines okna dialogowego schowka"
 
+#~ msgid "Dependencies"
+#~ msgstr "Zależności"
+
 #~ msgid "Disable Gda warning"
 #~ msgstr "Wyłącz ostrzeżenie GDA"
 
@@ -1949,6 +1902,17 @@ msgstr "Skróty klawiszowe"
 #~ msgid "Enable syntax highlighting in the text preview"
 #~ msgstr "Włącz podświetlanie składni w podglądzie tekstu"
 
+#, javascript-format
+#~ msgid "Error Installing %s"
+#~ msgstr "Błąd instalacji %s"
+
+#~ msgid "Error Installing Highlight.js"
+#~ msgstr "Błąd instalacji Highlight.js"
+
+#, javascript-format
+#~ msgid "Error Uninstalling %s"
+#~ msgstr "Błąd odinstalowania %s"
+
 #~ msgid ""
 #~ "File preview shows a preview of the contents of a file. File info shows "
 #~ "some information about the file."
@@ -1962,14 +1926,40 @@ msgstr "Skróty klawiszowe"
 #~ msgid "Height of a clipboard item"
 #~ msgstr "Wysokość elementu schowka"
 
+#~ msgid "Highlight.js Not Installed"
+#~ msgstr "Highlight.js nie jest zainstalowane"
+
+#~ msgid "Highlight.js is required to display syntax highlighted code."
+#~ msgstr ""
+#~ "Wymagana jest biblioteka Highlight.js, aby wyświetlać kod z podświetloną "
+#~ "składnią."
+
 #~ msgid "Horizontal position of the clipboard dialog"
 #~ msgstr "Pozycja poziomowa okna dialogowego schowka"
+
+#~ msgid "Install"
+#~ msgstr "Zainstaluj"
+
+#~ msgid "Install Location"
+#~ msgstr "Lokalizacja instalacji"
+
+#~ msgid "Languages"
+#~ msgstr "Języki"
 
 #~ msgid "Left margin of the clipboard dialog"
 #~ msgstr "Lewy margines okna dialogowego schowka"
 
 #~ msgid "Links matching these regex patterns will not have a preview"
 #~ msgstr "Odnośniki pasujące do tych wzorców regex nie będą miały podglądu"
+
+#~ msgid "Manage Highlight.js"
+#~ msgstr "Zarządzaj Highlight.js"
+
+#~ msgid "Manage the Highlight.js installation"
+#~ msgstr "Zarządzaj instalacją Highlight.js"
+
+#~ msgid "Manual Installation"
+#~ msgstr "Instalacja ręczna"
 
 #~ msgid "Maximum number of characters that are recognized as a character"
 #~ msgstr "Maksymalna liczba znaków rozpoznawana jako znak"
@@ -2061,9 +2051,23 @@ msgstr "Skróty klawiszowe"
 #~ msgid "Show the title of a clipboard item"
 #~ msgstr "Pokaż tytuł elementu schowka"
 
+#~ msgid "Starting Highlight.js Download"
+#~ msgstr "Rozpoczynanie pobierania Highlight.js"
+
 #~ msgid "Store clipboard history in memory instead of on disk (Deprecated)"
 #~ msgstr ""
 #~ "Przechowuj historię schowka w pamięci zamiast na dysku (Przestarzałe)"
+
+#, javascript-format
+#~ msgid "Successfully Installed %s"
+#~ msgstr "Pomyślnie zainstalowano %s"
+
+#~ msgid "Successfully Installed Highlight.js"
+#~ msgstr "Pomyślnie zainstalowano Highlight.js"
+
+#, javascript-format
+#~ msgid "Successfully Uninstalled %s"
+#~ msgstr "Pomyślnie odinstalowano %s"
 
 #~ msgid "Swaps copy and paste shortcuts"
 #~ msgstr "Zamienia skróty kopiowania i wklejania"
@@ -2095,6 +2099,9 @@ msgstr "Skróty klawiszowe"
 #~ msgid "Top margin of the clipboard dialog"
 #~ msgstr "Górny margines okna dialogowego schowka"
 
+#~ msgid "Url"
+#~ msgstr "URL"
+
 #~ msgid "Vertical position of the clipboard dialog"
 #~ msgstr "Pozycja pionowa okna dialogowego schowka"
 
@@ -2110,3 +2117,10 @@ msgstr "Skróty klawiszowe"
 #~ msgid "Width or height of the clipboard dialog depending on the orientation"
 #~ msgstr ""
 #~ "Szerokość lub wysokość okna dialogowego schowka w zależności od orientacji"
+
+#~ msgid ""
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
+#~ msgstr ""
+#~ "Możesz ręcznie zainstalować highlight.js, pobierając 'highlight.min.js' z "
+#~ "\"URL\" do \"Lokalizacja instalacji\"."

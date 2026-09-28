@@ -5,6 +5,7 @@ export const Settings = {
 	Incognito: 'incognito',
 	DisableGdaWarning: 'disable-gda-warning',
 	DisableHljsDialog: 'disable-hljs-dialog',
+	HighlightLanguages: 'highlight-languages',
 
 	InMemoryDatabase: 'in-memory-database',
 	DatabaseBackend: 'database-backend',
@@ -136,6 +137,7 @@ export const SettingsTypes = {
 	[Settings.Incognito]: 'boolean',
 	[Settings.DisableGdaWarning]: 'boolean',
 	[Settings.DisableHljsDialog]: 'boolean',
+	[Settings.HighlightLanguages]: 'strv',
 
 	[Settings.InMemoryDatabase]: 'boolean', // deprecated
 	[Settings.DatabaseBackend]: 'enum',

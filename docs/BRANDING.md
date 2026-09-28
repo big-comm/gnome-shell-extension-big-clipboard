@@ -1,6 +1,6 @@
 # Big Clipboard identity — phase 1
 
-2026-09-28. Visible identity only. Package/repository renaming remains pending.
+2026-09-28. Historical phase-1 record. Package migration is covered in [UPGRADE.md](UPGRADE.md).
 
 Changed: extension metadata, notification/indicator/preferences name (metadata consumers), diagnostic prefix, HTTP user agent, gettext project headers, package description and README captures. Preserve upstream credits and artwork attribution.
 

@@ -27,7 +27,7 @@ GNOME 51.0, vertical history and a Big Clipboard notification:
 | Big Gnome Center integration | Preserve the extension UUID, settings schema, clipboard database format and D-Bus API. Validate opening after transitions through all six BGC layouts. |
 | Packaging and checks | Keep source and PKGBUILD together under BigCommunity. Run type checks and focused regression tests in CI and package checks. |
 
-The visible name is **Big Clipboard**. Package and repository names remain `gnome-shell-extension-copyous` during the staged migration. The extension keeps the UUID `copyous@boerdereinar.dev` so existing settings and integrations continue to work. The upstream extension and this fork therefore occupy the same extension slot. See the [identity migration notes](docs/BRANDING.md) for the scope and validation of this first stage.
+The package replaces `gnome-shell-extension-copyous`. The UUID `copyous@boerdereinar.dev`, settings paths, history database and D-Bus API stay unchanged, so Big Gnome Center layouts and existing history keep working. An upstream Copyous installation and Big Clipboard still occupy the same extension slot. See [upgrade notes](docs/UPGRADE.md).
 
 ## Validation and performance
 
@@ -51,7 +51,7 @@ See the [performance report](docs/PERFORMANCE.md) for measurements, test coverag
 
 ### BigCommunity package
 
-The distribution package is `gnome-shell-extension-copyous`. Its [PKGBUILD](pkgbuild/PKGBUILD) uses the source in this repository, with GNOME Shell 48 or newer, Libgda 6 and GSound as runtime dependencies.
+The distribution package is `gnome-shell-extension-big-clipboard`. Highlight.js 11.11.1 and all 192 language modules are included with verified checksums and the upstream license. No runtime download is needed; 36 common languages load by default, and extra languages can be enabled in preferences. Its [PKGBUILD](pkgbuild/PKGBUILD) uses the source in this repository, with GNOME Shell 48 or newer, Libgda 6 and GSound as runtime dependencies.
 
 To build the package with Arch packaging tools:
 
@@ -67,8 +67,8 @@ The PKGBUILD explicitly fetches **`main`**. Changes must be published to that br
 Install Node.js, pnpm, Make, jq, gettext, zip and the runtime dependencies above. The PKGBUILD lists the distribution build dependencies.
 
 ```sh
-git clone --recurse-submodules https://github.com/big-comm/gnome-shell-extension-copyous.git
-cd gnome-shell-extension-copyous
+git clone --recurse-submodules https://github.com/big-comm/gnome-shell-extension-big-clipboard.git
+cd gnome-shell-extension-big-clipboard
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm exec tsc --noEmit
 pnpm test
@@ -137,7 +137,7 @@ gdbus call --session \
 
 ## Contributing
 
-Report issues with this fork in the [BigCommunity repository](https://github.com/big-comm/gnome-shell-extension-copyous/issues). Include the GNOME version, extension revision, active BGC layout and reproduction steps.
+Report issues with this fork in the [BigCommunity repository](https://github.com/big-comm/gnome-shell-extension-big-clipboard/issues). Include the GNOME version, extension revision, active BGC layout and reproduction steps.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and [tests/vm/README.md](tests/vm/README.md) for the optional VM fixture.
 

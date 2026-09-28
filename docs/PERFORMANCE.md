@@ -50,4 +50,4 @@ No claim of exhaustive correctness or zero latency.
 
 `pnpm exec tsc --noEmit`, `pnpm test`, `make lint`, `make RELEASE=1`.
 CI and PKGBUILD check type safety and the paging, preview cancellation and shader compatibility regressions.
-Package source points to `big-comm/gnome-shell-extension-copyous`, branch `main`; publish the migrated source there before a remote package build.
+Package source points to `big-comm/gnome-shell-extension-big-clipboard`, branch `main`; publish the migrated source there before a remote package build.

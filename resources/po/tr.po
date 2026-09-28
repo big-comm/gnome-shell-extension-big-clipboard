@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-08-16 16:01-0300\n"
+"POT-Creation-Date: 2026-09-28 14:16-0300\n"
 "PO-Revision-Date: 2026-03-18 07:29+0300\n"
 "Last-Translator: Muha Aliss <muhaaliss@pm.me>\n"
 "Language-Team: Turkish\n"
@@ -16,7 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 49.0\n"
 
 #: src/lib/common/actions.ts:182
@@ -178,7 +178,7 @@ msgstr "Dosyalar"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:304
+#: src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Bağlantı"
 
@@ -214,7 +214,6 @@ msgstr "Hangi türlere izin verileceğini seç"
 #: src/lib/preferences/actions/actionsPage.ts:21
 #: src/lib/preferences/actions/actionsPage.ts:34
 #: src/lib/preferences/customization/items/exclusions.ts:90
-#: src/lib/preferences/dependencies/dependencies.ts:224
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
 #: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
@@ -359,7 +358,7 @@ msgstr "Alt Menü Ekle"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:94
+#: src/lib/ui/components/clipboardItemMenu.ts:93
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -1123,12 +1122,12 @@ msgstr "Arama Rengi"
 msgid "Set the background color of the search bar"
 msgstr "Arama çubuğunun arka plan rengini ayarla"
 
-#: src/lib/preferences/dependencies/dependencies.ts:153
-#: src/lib/preferences/dependencies/dependencies.ts:440
+#: src/lib/preferences/dependencies/dependencies.ts:143
+#: src/lib/preferences/dependencies/dependencies.ts:219
 msgid "Libgda Not Installed"
 msgstr "Libgda Kurulu Değil"
 
-#: src/lib/preferences/dependencies/dependencies.ts:155
+#: src/lib/preferences/dependencies/dependencies.ts:145
 msgid ""
 "Libgda is required to store clipboard history between sessions. Install "
 "either libgda 5.0 or 6.0 with SQLite support to use this feature. After "
@@ -1139,49 +1138,16 @@ msgstr ""
 "Libgda kurduktan sonra oturumu kapatman veya sistemi yeniden başlatman "
 "gerekecek."
 
-#: src/lib/preferences/dependencies/dependencies.ts:159
+#: src/lib/preferences/dependencies/dependencies.ts:149
 msgid "Install Libgda"
 msgstr "Libgda Kur"
 
-#: src/lib/preferences/dependencies/dependencies.ts:172
-#: src/lib/preferences/dependencies/dependencies.ts:442
-msgid "Highlight.js Not Installed"
-msgstr "Highlight.js Kurulu Değil"
-
-#: src/lib/preferences/dependencies/dependencies.ts:173
-msgid "Highlight.js is required to display syntax highlighted code."
-msgstr "Sözdizimi vurgulu kodları görüntülemek için Highlight.js gereklidir."
-
-#: src/lib/preferences/dependencies/dependencies.ts:177
-msgid "Manual Installation"
-msgstr "Elle Kurulum"
-
-#: src/lib/preferences/dependencies/dependencies.ts:191
-msgid ""
-"You can manually install highlight.js by downloading highlight.min.js from "
-"\"Url\" to \"Install Location\"."
-msgstr ""
-"Highlight.js'yi \"Adres\" üzerinden \"Kurulum Konumu\"na indirerek elle "
-"kurabilirsin."
-
-#: src/lib/preferences/dependencies/dependencies.ts:208
-msgid "Url"
-msgstr "Adres"
-
-#: src/lib/preferences/dependencies/dependencies.ts:217
-msgid "Install Location"
-msgstr "Kurulum Konumu"
-
-#: src/lib/preferences/dependencies/dependencies.ts:226
-msgid "Install"
-msgstr "Kur"
-
-#: src/lib/preferences/dependencies/dependencies.ts:355
-#: src/lib/preferences/dependencies/dependencies.ts:441
+#: src/lib/preferences/dependencies/dependencies.ts:182
+#: src/lib/preferences/dependencies/dependencies.ts:220
 msgid "GSound Not Installed"
 msgstr "GSound Kurulu Değil"
 
-#: src/lib/preferences/dependencies/dependencies.ts:357
+#: src/lib/preferences/dependencies/dependencies.ts:184
 msgid ""
 "GSound is required to play sound effects. Install GSound to use this "
 "feature. After installing GSound you will need to log out or restart your "
@@ -1191,63 +1157,53 @@ msgstr ""
 "GSound kur. GSound kurduktan sonra oturumu kapatman veya sistemi yeniden "
 "başlatman gerekecek."
 
-#: src/lib/preferences/dependencies/dependencies.ts:360
+#: src/lib/preferences/dependencies/dependencies.ts:187
 msgid "Install GSound"
 msgstr "GSound Kur"
 
-#: src/lib/preferences/dependencies/dependencies.ts:373
-msgid "Starting Highlight.js Download"
-msgstr "Highlight.js İndirmesi Başlatılıyor"
+#: src/lib/preferences/dependencies/dependencies.ts:195
+#: src/lib/preferences/dependencies/dependencies.ts:221
+msgid "Syntax highlighting unavailable"
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Error Installing Highlight.js"
-msgstr "Highlight.js Kurulurken Hata Oluştu"
+#: src/lib/preferences/dependencies/dependencies.ts:196
+msgid ""
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Successfully Installed Highlight.js"
-msgstr "Highlight.js Başarıyla Kuruldu"
+#: src/lib/preferences/dependencies/dependencies.ts:198
+#: src/lib/ui/components/qrCodeDialog.ts:146
+msgid "Close"
+msgstr "Kapat"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:240
-#, javascript-format
-msgid "Successfully Installed %s"
-msgstr "%s Başarıyla Kuruldu"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:22
+msgid "Syntax highlighting"
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:241
-#, javascript-format
-msgid "Error Installing %s"
-msgstr "%s Kurulurken Hata Oluştu"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:24
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:43
+msgid "Code languages"
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:261
-#, javascript-format
-msgid "Successfully Uninstalled %s"
-msgstr "%s Başarıyla Kaldırıldı"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:25
+msgid "Included with Big Clipboard. No download required."
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:262
-#, javascript-format
-msgid "Error Uninstalling %s"
-msgstr "%s Kaldırılırken Hata Oluştu"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:51
+msgid ""
+"Common languages are always available. Enable additional languages for code "
+"detection and highlighting."
+msgstr ""
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:288
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:382
-msgid "Manage Highlight.js"
-msgstr "Highlight.js'yi Yönet"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:300
-msgid "Languages"
-msgstr "Diller"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:321
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
 msgid "Search"
 msgstr "Ara"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:375
-msgid "Dependencies"
-msgstr "Bağımlılıklar"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:383
-msgid "Manage the Highlight.js installation"
-msgstr "Highlight.js kurulumunu yönet"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:73
+msgid "Always available"
+msgstr ""
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
@@ -1488,7 +1444,7 @@ msgstr ""
 "pano geçmişine ne yapılacağını seç"
 
 #: src/lib/preferences/general/historySettings.ts:137
-#: src/lib/ui/clipboardDialog.ts:134 src/lib/ui/clipboardDialog.ts:239
+#: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Temizle"
@@ -1761,10 +1717,6 @@ msgstr "Hata"
 msgid "Edit Clipboard Item"
 msgstr "Pano Öğesini Düzenle"
 
-#: src/lib/ui/components/qrCodeDialog.ts:146
-msgid "Close"
-msgstr "Kapat"
-
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
 msgstr "Pano Geçmişi Temizlensin mi?"
@@ -1814,59 +1766,59 @@ msgid_plural "%d files"
 msgstr[0] "%d dosya"
 msgstr[1] "%d dosya"
 
-#: src/lib/ui/items/linkItem.ts:95
+#: src/lib/ui/items/linkItem.ts:97
 msgid "No Title"
 msgstr "Başlık Yok"
 
-#: src/lib/ui/items/linkItem.ts:97
+#: src/lib/ui/items/linkItem.ts:99
 msgid "No Description"
 msgstr "Açıklama Yok"
 
-#: src/lib/ui/items/statusItem.ts:70 src/lib/ui/items/statusItem.ts:104
+#: src/lib/ui/items/statusItem.ts:73 src/lib/ui/items/statusItem.ts:107
 msgid "Clipboard is Empty"
 msgstr "Pano Boş"
 
-#: src/lib/ui/items/statusItem.ts:107
+#: src/lib/ui/items/statusItem.ts:110
 msgid "No Items Found"
 msgstr "Öğe Bulunamadı"
 
-#: src/lib/ui/searchEntry.ts:154
+#: src/lib/ui/searchEntry.ts:155
 msgid "__All"
 msgstr "__Hepsi"
 
-#: src/lib/ui/searchEntry.ts:158
+#: src/lib/ui/searchEntry.ts:159
 msgid "__Text"
 msgstr "__Metin"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:160
 msgid "__Code"
 msgstr "__Kod"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:161
 msgid "__Image"
 msgstr "__Resim"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:162
 msgid "__File"
 msgstr "__Dosya"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:163
 msgid "File__s"
 msgstr "Dosy__alar"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:164
 msgid "__Link"
 msgstr "__Bağlantı"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:165
 msgid "C__haracter"
 msgstr "K__arakter"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:166
 msgid "Colo__r"
 msgstr "Re__nk"
 
-#: src/lib/ui/searchEntry.ts:277
+#: src/lib/ui/searchEntry.ts:278
 msgid "Type to search"
 msgstr "Aramak için yaz"
 
@@ -1874,11 +1826,11 @@ msgstr "Aramak için yaz"
 msgid "General"
 msgstr "Genel"
 
-#: src/prefs.ts:95
+#: src/prefs.ts:94
 msgid "Customization"
 msgstr "Özelleştirme"
 
-#: src/prefs.ts:112
+#: src/prefs.ts:111
 msgid "Shortcuts"
 msgstr "Kısayollar"
 
@@ -1886,8 +1838,47 @@ msgstr "Kısayollar"
 #~ "Automatically paste clipboard items when selected from clipboard history"
 #~ msgstr "Pano geçmişinden bir öğe seçildiğinde otomatik olarak yapıştır"
 
+#~ msgid "Dependencies"
+#~ msgstr "Bağımlılıklar"
+
+#, javascript-format
+#~ msgid "Error Installing %s"
+#~ msgstr "%s Kurulurken Hata Oluştu"
+
+#~ msgid "Error Installing Highlight.js"
+#~ msgstr "Highlight.js Kurulurken Hata Oluştu"
+
+#, javascript-format
+#~ msgid "Error Uninstalling %s"
+#~ msgstr "%s Kaldırılırken Hata Oluştu"
+
 #~ msgid "Failed to load database"
 #~ msgstr "Veritabanı yüklenemedi"
+
+#~ msgid "Highlight.js Not Installed"
+#~ msgstr "Highlight.js Kurulu Değil"
+
+#~ msgid "Highlight.js is required to display syntax highlighted code."
+#~ msgstr ""
+#~ "Sözdizimi vurgulu kodları görüntülemek için Highlight.js gereklidir."
+
+#~ msgid "Install"
+#~ msgstr "Kur"
+
+#~ msgid "Install Location"
+#~ msgstr "Kurulum Konumu"
+
+#~ msgid "Languages"
+#~ msgstr "Diller"
+
+#~ msgid "Manage Highlight.js"
+#~ msgstr "Highlight.js'yi Yönet"
+
+#~ msgid "Manage the Highlight.js installation"
+#~ msgstr "Highlight.js kurulumunu yönet"
+
+#~ msgid "Manual Installation"
+#~ msgstr "Elle Kurulum"
 
 #~ msgid "Paste on Copy"
 #~ msgstr "Kopyalamada Yapıştır"
@@ -1907,8 +1898,32 @@ msgstr "Kısayollar"
 #~ msgid "Show the current clipboard content in the indicator"
 #~ msgstr "Göstergede mevcut pano içeriğini göster"
 
+#~ msgid "Starting Highlight.js Download"
+#~ msgstr "Highlight.js İndirmesi Başlatılıyor"
+
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Pano geçmişini disk yerine bellekte sakla"
 
+#, javascript-format
+#~ msgid "Successfully Installed %s"
+#~ msgstr "%s Başarıyla Kuruldu"
+
+#~ msgid "Successfully Installed Highlight.js"
+#~ msgstr "Highlight.js Başarıyla Kuruldu"
+
+#, javascript-format
+#~ msgid "Successfully Uninstalled %s"
+#~ msgstr "%s Başarıyla Kaldırıldı"
+
+#~ msgid "Url"
+#~ msgstr "Adres"
+
 #~ msgid "Use In-Memory Database"
 #~ msgstr "Bellek İçi Veritabanı Kullan"
+
+#~ msgid ""
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
+#~ msgstr ""
+#~ "Highlight.js'yi \"Adres\" üzerinden \"Kurulum Konumu\"na indirerek elle "
+#~ "kurabilirsin."
