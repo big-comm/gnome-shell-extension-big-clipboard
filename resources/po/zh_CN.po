@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-28 14:16-0300\n"
-"PO-Revision-Date: 2025-12-19 18:30+0800\n"
-"Last-Translator: everyx <lunt.luo@gmail.com>\n"
+"PO-Revision-Date: 2026-09-28 18:45-0300\n"
+"Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -83,7 +83,7 @@ msgstr "禁用警告"
 
 #: src/lib/database/entryTracker.ts:164
 msgid "Failed to load JSON"
-msgstr ""
+msgstr "加载 JSON 失败"
 
 #: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
 msgid "Copied Text"
@@ -1044,7 +1044,7 @@ msgstr "设置偏好主题"
 
 #: src/lib/preferences/customization/themeCustomization.ts:75
 msgid "Yaru"
-msgstr ""
+msgstr "Yaru"
 
 #: src/lib/preferences/customization/themeCustomization.ts:89
 #: src/lib/preferences/customization/themeCustomization.ts:96
@@ -1054,7 +1054,7 @@ msgstr "配色方案"
 #: src/lib/preferences/customization/themeCustomization.ts:90
 #: src/lib/preferences/customization/themeCustomization.ts:97
 msgid "Set the color scheme of the theme"
-msgstr ""
+msgstr "设置主题的配色方案"
 
 #: src/lib/preferences/customization/themeCustomization.ts:91
 #: src/lib/preferences/customization/themeCustomization.ts:98
@@ -1063,7 +1063,7 @@ msgstr "暗色"
 
 #: src/lib/preferences/customization/themeCustomization.ts:91
 msgid "High Contrast"
-msgstr ""
+msgstr "高对比度"
 
 #: src/lib/preferences/customization/themeCustomization.ts:91
 #: src/lib/preferences/customization/themeCustomization.ts:98
@@ -1145,13 +1145,13 @@ msgstr "安装 GSound"
 #: src/lib/preferences/dependencies/dependencies.ts:195
 #: src/lib/preferences/dependencies/dependencies.ts:221
 msgid "Syntax highlighting unavailable"
-msgstr ""
+msgstr "语法高亮不可用"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
 "Reinstall the Big Clipboard package to restore the bundled code highlighting "
 "files."
-msgstr ""
+msgstr "请重新安装 Big Clipboard 软件包以恢复内置的代码高亮文件。"
 
 #: src/lib/preferences/dependencies/dependencies.ts:198
 #: src/lib/ui/components/qrCodeDialog.ts:146
@@ -1160,22 +1160,22 @@ msgstr "关闭"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:22
 msgid "Syntax highlighting"
-msgstr ""
+msgstr "语法高亮"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:24
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:43
 msgid "Code languages"
-msgstr ""
+msgstr "代码语言"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:25
 msgid "Included with Big Clipboard. No download required."
-msgstr ""
+msgstr "随 Big Clipboard 一起提供，无需下载。"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:51
 msgid ""
 "Common languages are always available. Enable additional languages for code "
 "detection and highlighting."
-msgstr ""
+msgstr "常用语言始终可用。启用其他语言以支持代码检测和高亮。"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
@@ -1184,7 +1184,7 @@ msgstr "搜索"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:73
 msgid "Always available"
-msgstr ""
+msgstr "始终可用"
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
@@ -1341,23 +1341,23 @@ msgstr "反馈"
 
 #: src/lib/preferences/general/feedbackSettings.ts:227
 msgid "Indicator Display"
-msgstr ""
+msgstr "指示器显示方式"
 
 #: src/lib/preferences/general/feedbackSettings.ts:228
 msgid "Choose how the clipboard indicator appears in the top panel"
-msgstr ""
+msgstr "选择剪贴板指示器在顶部面板中的显示方式"
 
 #: src/lib/preferences/general/feedbackSettings.ts:231
 msgid "Icon Only"
-msgstr ""
+msgstr "仅图标"
 
 #: src/lib/preferences/general/feedbackSettings.ts:232
 msgid "Clipboard Content Only"
-msgstr ""
+msgstr "仅剪贴板内容"
 
 #: src/lib/preferences/general/feedbackSettings.ts:233
 msgid "Icon and Clipboard Content"
-msgstr ""
+msgstr "图标和剪贴板内容"
 
 #: src/lib/preferences/general/feedbackSettings.ts:239
 msgid "Wiggle Indicator"
@@ -1385,27 +1385,27 @@ msgstr "历史"
 
 #: src/lib/preferences/general/historySettings.ts:70
 msgid "Memory"
-msgstr ""
+msgstr "内存"
 
 #: src/lib/preferences/general/historySettings.ts:71
 msgid "(recommended)"
-msgstr ""
+msgstr "（推荐）"
 
 #: src/lib/preferences/general/historySettings.ts:71
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #: src/lib/preferences/general/historySettings.ts:72
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: src/lib/preferences/general/historySettings.ts:99
 msgid "Database"
-msgstr ""
+msgstr "数据库"
 
 #: src/lib/preferences/general/historySettings.ts:100
 msgid "Select which database type to use for storing your clipboard"
-msgstr ""
+msgstr "选择用于存储剪贴板内容的数据库类型"
 
 #: src/lib/preferences/general/historySettings.ts:125
 msgid "Database Location"
@@ -1483,15 +1483,15 @@ msgstr "切换隐私模式"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:27
 msgid "Open Clipboard Dialog Behavior"
-msgstr ""
+msgstr "打开剪贴板对话框行为"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Open / Select Next Item"
-msgstr ""
+msgstr "打开／选择下一项"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Toggle Dialog"
-msgstr ""
+msgstr "切换对话框"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:20
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
@@ -1517,7 +1517,7 @@ msgstr "仅支持文本和代码项目"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:31
 msgid "Edit Title"
-msgstr ""
+msgstr "编辑标题"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:34
 msgid "Open Menu"
@@ -1529,15 +1529,15 @@ msgstr "中键单击操作"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:67
 msgid "Swap Copy Shortcut"
-msgstr ""
+msgstr "交换复制快捷键"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Swap copy and paste shortcuts"
-msgstr ""
+msgstr "交换复制和粘贴快捷键"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:72
 msgid "Paste Item"
-msgstr ""
+msgstr "粘贴项目"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:74
 msgid "Copy Item"

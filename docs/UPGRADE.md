@@ -22,9 +22,9 @@ The 36 common languages load by default. Additional languages are enabled throug
 
 ## Localization
 
-Regenerated gettext catalogs; completed Brazilian Portuguese: 399 translated messages, none fuzzy or untranslated. Fixed the Turkish plural header to match its two-form entries and gettext's `tr_TR` rule. Package checks now fail on invalid catalogs.
+All eight gettext catalogs contain 399 translated messages, with no fuzzy or untranslated entries. Sonnet 5 completed the remaining 189 messages in German, French, Italian, Polish, Russian, Turkish and Simplified Chinese; existing translations were preserved. Placeholder, compiled-catalog and plural checks passed. The Italian plural rule now treats zero as plural.
 
-Remaining untranslated messages: de 12, fr 29, it 29, pl 7, ru 58, tr 25, zh_CN 29. These locales retain their translations and English fallback; they are not claimed complete.
+Brazilian Portuguese was already complete. Technical names such as SQLite, JSON and Yaru remain unchanged. Package checks reject invalid catalogs. GJS on GNOME 50.4 and 51.0 loaded all eight compiled catalogs correctly, including plural lookups at 0, 1, 2, 5, 11, 21 and 101.
 
 ## Validation
 

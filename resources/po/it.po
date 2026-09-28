@@ -7,14 +7,14 @@ msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-28 14:16-0300\n"
-"PO-Revision-Date: 2025-12-14 10:45+0100\n"
-"Last-Translator: Fabian Esposito <fabian.esposito@outlook.com>\n"
+"PO-Revision-Date: 2026-09-28 18:45-0300\n"
+"Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Italiano\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 49.0\n"
 
 #: src/lib/common/actions.ts:182
@@ -81,7 +81,7 @@ msgstr "Disabilita avviso"
 
 #: src/lib/database/entryTracker.ts:164
 msgid "Failed to load JSON"
-msgstr ""
+msgstr "Caricamento JSON non riuscito"
 
 #: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
 msgid "Copied Text"
@@ -1066,7 +1066,7 @@ msgstr "Imposta il tema preferito"
 
 #: src/lib/preferences/customization/themeCustomization.ts:75
 msgid "Yaru"
-msgstr ""
+msgstr "Yaru"
 
 #: src/lib/preferences/customization/themeCustomization.ts:89
 #: src/lib/preferences/customization/themeCustomization.ts:96
@@ -1076,7 +1076,7 @@ msgstr "Schema di colori"
 #: src/lib/preferences/customization/themeCustomization.ts:90
 #: src/lib/preferences/customization/themeCustomization.ts:97
 msgid "Set the color scheme of the theme"
-msgstr ""
+msgstr "Imposta lo schema di colori del tema"
 
 #: src/lib/preferences/customization/themeCustomization.ts:91
 #: src/lib/preferences/customization/themeCustomization.ts:98
@@ -1085,7 +1085,7 @@ msgstr "Scuro"
 
 #: src/lib/preferences/customization/themeCustomization.ts:91
 msgid "High Contrast"
-msgstr ""
+msgstr "Contrasto elevato"
 
 #: src/lib/preferences/customization/themeCustomization.ts:91
 #: src/lib/preferences/customization/themeCustomization.ts:98
@@ -1170,13 +1170,15 @@ msgstr "Installa GSound"
 #: src/lib/preferences/dependencies/dependencies.ts:195
 #: src/lib/preferences/dependencies/dependencies.ts:221
 msgid "Syntax highlighting unavailable"
-msgstr ""
+msgstr "Evidenziazione sintassi non disponibile"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
 "Reinstall the Big Clipboard package to restore the bundled code highlighting "
 "files."
 msgstr ""
+"Reinstalla il pacchetto Big Clipboard per ripristinare i file di "
+"evidenziazione del codice inclusi."
 
 #: src/lib/preferences/dependencies/dependencies.ts:198
 #: src/lib/ui/components/qrCodeDialog.ts:146
@@ -1185,22 +1187,24 @@ msgstr "Chiudi"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:22
 msgid "Syntax highlighting"
-msgstr ""
+msgstr "Evidenziazione sintassi"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:24
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:43
 msgid "Code languages"
-msgstr ""
+msgstr "Linguaggi di codice"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:25
 msgid "Included with Big Clipboard. No download required."
-msgstr ""
+msgstr "Incluso in Big Clipboard. Nessun download richiesto."
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:51
 msgid ""
 "Common languages are always available. Enable additional languages for code "
 "detection and highlighting."
 msgstr ""
+"I linguaggi comuni sono sempre disponibili. Abilita linguaggi aggiuntivi per"
+" il rilevamento e l'evidenziazione del codice."
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
@@ -1209,7 +1213,7 @@ msgstr "Ricerca"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:73
 msgid "Always available"
-msgstr ""
+msgstr "Sempre disponibile"
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
@@ -1374,23 +1378,23 @@ msgstr "Feedback"
 
 #: src/lib/preferences/general/feedbackSettings.ts:227
 msgid "Indicator Display"
-msgstr ""
+msgstr "Visualizzazione indicatore"
 
 #: src/lib/preferences/general/feedbackSettings.ts:228
 msgid "Choose how the clipboard indicator appears in the top panel"
-msgstr ""
+msgstr "Scegli come appare l'indicatore degli appunti nel pannello superiore"
 
 #: src/lib/preferences/general/feedbackSettings.ts:231
 msgid "Icon Only"
-msgstr ""
+msgstr "Solo icona"
 
 #: src/lib/preferences/general/feedbackSettings.ts:232
 msgid "Clipboard Content Only"
-msgstr ""
+msgstr "Solo contenuto degli appunti"
 
 #: src/lib/preferences/general/feedbackSettings.ts:233
 msgid "Icon and Clipboard Content"
-msgstr ""
+msgstr "Icona e contenuto degli appunti"
 
 #: src/lib/preferences/general/feedbackSettings.ts:239
 msgid "Wiggle Indicator"
@@ -1419,27 +1423,27 @@ msgstr "Cronologia"
 
 #: src/lib/preferences/general/historySettings.ts:70
 msgid "Memory"
-msgstr ""
+msgstr "Memoria"
 
 #: src/lib/preferences/general/historySettings.ts:71
 msgid "(recommended)"
-msgstr ""
+msgstr "(consigliato)"
 
 #: src/lib/preferences/general/historySettings.ts:71
 msgid "SQLite"
-msgstr ""
+msgstr "SQLite"
 
 #: src/lib/preferences/general/historySettings.ts:72
 msgid "JSON"
-msgstr ""
+msgstr "JSON"
 
 #: src/lib/preferences/general/historySettings.ts:99
 msgid "Database"
-msgstr ""
+msgstr "Database"
 
 #: src/lib/preferences/general/historySettings.ts:100
 msgid "Select which database type to use for storing your clipboard"
-msgstr ""
+msgstr "Seleziona il tipo di database da usare per memorizzare gli appunti"
 
 #: src/lib/preferences/general/historySettings.ts:125
 msgid "Database Location"
@@ -1523,15 +1527,15 @@ msgstr "Attiva/Disattiva modalità Incognito"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:27
 msgid "Open Clipboard Dialog Behavior"
-msgstr ""
+msgstr "Comportamento della finestra di dialogo degli appunti"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Open / Select Next Item"
-msgstr ""
+msgstr "Apri / Seleziona elemento successivo"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Toggle Dialog"
-msgstr ""
+msgstr "Attiva/disattiva finestra di dialogo"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:20
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
@@ -1557,7 +1561,7 @@ msgstr "Supportato solo per elementi di testo e codice"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:31
 msgid "Edit Title"
-msgstr ""
+msgstr "Modifica titolo"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:34
 msgid "Open Menu"
@@ -1569,15 +1573,15 @@ msgstr "Azione clic centrale"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:67
 msgid "Swap Copy Shortcut"
-msgstr ""
+msgstr "Scambia scorciatoia di copia"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Swap copy and paste shortcuts"
-msgstr ""
+msgstr "Scambia le scorciatoie di copia e incolla"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:72
 msgid "Paste Item"
-msgstr ""
+msgstr "Incolla elemento"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:74
 msgid "Copy Item"

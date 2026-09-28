@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-09-28 14:16-0300\n"
-"PO-Revision-Date: 2026-04-30 18:05+0200\n"
-"Last-Translator: Adam Lewicki <a.lewicki95@gmail.com>\n"
+"PO-Revision-Date: 2026-09-28 18:45-0300\n"
+"Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -1165,13 +1165,15 @@ msgstr "Zainstaluj GSound"
 #: src/lib/preferences/dependencies/dependencies.ts:195
 #: src/lib/preferences/dependencies/dependencies.ts:221
 msgid "Syntax highlighting unavailable"
-msgstr ""
+msgstr "Podświetlanie składni niedostępne"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
 "Reinstall the Big Clipboard package to restore the bundled code highlighting "
 "files."
 msgstr ""
+"Zainstaluj ponownie pakiet Big Clipboard, aby przywrócić dołączone pliki "
+"podświetlania kodu."
 
 #: src/lib/preferences/dependencies/dependencies.ts:198
 #: src/lib/ui/components/qrCodeDialog.ts:146
@@ -1180,22 +1182,24 @@ msgstr "Zamknij"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:22
 msgid "Syntax highlighting"
-msgstr ""
+msgstr "Podświetlanie składni"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:24
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:43
 msgid "Code languages"
-msgstr ""
+msgstr "Języki kodu"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:25
 msgid "Included with Big Clipboard. No download required."
-msgstr ""
+msgstr "Dołączone do Big Clipboard. Pobieranie niewymagane."
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:51
 msgid ""
 "Common languages are always available. Enable additional languages for code "
 "detection and highlighting."
 msgstr ""
+"Popularne języki są zawsze dostępne. Włącz dodatkowe języki, aby umożliwić "
+"wykrywanie kodu i podświetlanie składni."
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
@@ -1204,7 +1208,7 @@ msgstr "Szukaj"
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:73
 msgid "Always available"
-msgstr ""
+msgstr "Zawsze dostępne"
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
