@@ -114,37 +114,36 @@ class AsyncImageBox extends St.Widget {
 })
 export class ImagePreview extends ContentPreview {
 	private _backgroundSize: BackgroundSize = BackgroundSize.Cover;
-	private readonly _ratio: number | null;
+	private _ratio: number | null = null;
+	private readonly _cancellable = new Gio.Cancellable();
+	private _loading = false;
 	private readonly _image: Gio.File;
 	private _imageBox?: AsyncImageBox;
 	private _effect?: Clutter.BrightnessContrastEffect;
 
-	constructor(ext: Extension, image: Gio.File, dimensions?: ImageDimensions | null, load: boolean = true) {
+	constructor(
+		private ext: Extension,
+		image: Gio.File,
+		dimensions?: ImageDimensions | null,
+		load: boolean = true,
+	) {
 		super();
 
 		this._image = image;
 		this.add_style_class_name('image-preview');
+		this.connect('destroy', () => this._cancellable.cancel());
 
-		if (image.query_exists(null)) {
-			try {
-				let width = dimensions?.width ?? 0;
-				let height = dimensions?.height ?? 0;
-				if (width <= 0 || height <= 0) {
-					[, width, height] = GdkPixbuf.Pixbuf.get_file_info(image.get_path()!);
-				}
-				this._ratio = height / width;
-				if (load) this.load();
-				return;
-			} catch {
-				// Ignore
-			}
-		}
+		if (dimensions && dimensions.width > 0 && dimensions.height > 0)
+			this._ratio = dimensions.height / dimensions.width;
+		if (load) this.load();
+	}
 
+	private missingImage(): void {
 		this._ratio = null;
 		this.add_style_class_name('missing-image');
 		this.add_child(
 			new St.Icon({
-				gicon: loadIcon(ext, Icon.MissingImage),
+				gicon: loadIcon(this.ext, Icon.MissingImage),
 				x_align: Clutter.ActorAlign.CENTER,
 				y_align: Clutter.ActorAlign.CENTER,
 				x_expand: true,
@@ -155,14 +154,58 @@ export class ImagePreview extends ContentPreview {
 	}
 
 	public load(): void {
-		if (this._ratio === null || this._imageBox) return;
+		if (this._loading || this._imageBox || this._cancellable.is_cancelled()) return;
+		this._loading = true;
+		this.loadImage().catch(() => {
+			if (!this._cancellable.is_cancelled()) this.missingImage();
+		});
+	}
 
+	private async loadImage(): Promise<void> {
+		await new Promise<void>((resolve, reject) => {
+			this._image.query_info_async(
+				'standard::type',
+				Gio.FileQueryInfoFlags.NONE,
+				GLib.PRIORITY_DEFAULT,
+				this._cancellable,
+				(file, result) => {
+					try {
+						file!.query_info_finish(result);
+						resolve();
+					} catch (error) {
+						reject(error as Error);
+					}
+				},
+			);
+		});
+		if (this._cancellable.is_cancelled()) return;
+		if (this._ratio === null) {
+			const path = this._image.get_path();
+			if (!path) throw new Error('Image preview requires a local file');
+			this._ratio = await new Promise<number>((resolve, reject) => {
+				GdkPixbuf.Pixbuf.get_file_info_async(path, this._cancellable, (_source, result) => {
+					try {
+						const [format, width, height] = GdkPixbuf.Pixbuf.get_file_info_finish(result);
+						if (!format || width <= 0 || height <= 0) throw new Error('Invalid image');
+						resolve(height / width);
+					} catch (error) {
+						reject(error as Error);
+					}
+				});
+			});
+		}
+		if (this._cancellable.is_cancelled()) return;
 		this._imageBox = new AsyncImageBox(this._image, this._ratio);
 		this._imageBox.backgroundSize = this._backgroundSize;
 		this.add_child(this._imageBox);
-
 		this._effect = new Clutter.BrightnessContrastEffect();
 		this._imageBox.add_effect(this._effect);
+		this.queue_relayout();
+	}
+
+	override destroy() {
+		this._cancellable.cancel();
+		super.destroy();
 	}
 
 	get backgroundSize() {

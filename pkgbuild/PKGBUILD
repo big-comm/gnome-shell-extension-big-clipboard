@@ -8,7 +8,7 @@ epoch=1
 arch=('any')
 license=('GPL-3.0-or-later')
 url="https://github.com/big-comm/gnome-shell-extension-copyous"
-depends=('gnome-shell>=45'
+depends=('gnome-shell>=48'
          'libgda6'
          'gsound')
 makedepends=('git'
@@ -45,6 +45,12 @@ build() {
 
   # Build the extension using Make
   make RELEASE=1
+}
+
+check() {
+  cd "${srcdir}/copyous"
+  pnpm exec tsc --noEmit
+  pnpm test
 }
 
 package() {

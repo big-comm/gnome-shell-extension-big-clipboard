@@ -11,6 +11,8 @@ import { flagsParamSpec, registerClass } from '../../common/gjs.js';
 import { Icon } from '../../common/icons.js';
 import { MiddleClickAction } from '../../common/settings.js';
 import { ClipboardEntry } from '../../database/database.js';
+import { entrySearchText } from '../../database/searchText.js';
+import { ButtonMask } from '../../misc/compatibility.js';
 import { Shortcut } from '../../misc/shortcuts.js';
 import { SearchQuery } from '../searchEntry.js';
 import { ClipboardItemHeader } from './clipboardItemHeader.js';
@@ -48,7 +50,7 @@ export class ClipboardItem extends St.Button {
 	) {
 		super({
 			style_class: 'clipboard-item',
-			button_mask: St.ButtonMask.ONE | St.ButtonMask.THREE,
+			button_mask: ButtonMask.PRIMARY | ButtonMask.SECONDARY,
 			x_expand: false,
 			y_expand: false,
 			track_hover: true,
@@ -161,7 +163,7 @@ export class ClipboardItem extends St.Button {
 	}
 
 	private get searchText(): readonly string[] {
-		this._searchText ??= this.createSearchText();
+		this._searchText ??= entrySearchText(this.entry);
 		return this._searchText;
 	}
 
@@ -190,9 +192,9 @@ export class ClipboardItem extends St.Button {
 	private updateMiddleClickAction() {
 		this._middleClickAction = this.ext.settings.get_enum('middle-click-action');
 		if (this._middleClickAction === MiddleClickAction.None) {
-			this.button_mask &= ~St.ButtonMask.TWO;
+			this.button_mask &= ~ButtonMask.MIDDLE;
 		} else {
-			this.button_mask |= St.ButtonMask.TWO;
+			this.button_mask |= ButtonMask.MIDDLE;
 		}
 	}
 
@@ -343,34 +345,77 @@ export class ClipboardItem extends St.Button {
 	}
 }
 
-// Based on https://gitlab.gnome.org/GNOME/mutter/-/blob/8b5c757bea75b7712bbe09c2018a8eb15b4d22cc/src/compositor/meta-background-content.c
-@registerClass()
-class HoleEffect extends Shell.GLSLEffect {
-	private readonly _sizeLocation: number;
-	private readonly _holeBoxLocation: number;
+// GNOME 51 moved the shader base from Shell to Clutter.
+const HoleEffect = createHoleEffectClass();
 
-	constructor(private target: Clutter.Actor) {
-		super();
+type NativeShader = Clutter.OffscreenEffect & {
+	set_uniform_float(name: string, components: number, values: number[]): void;
+};
 
-		this._sizeLocation = this.get_uniform_location('size');
-		this._holeBoxLocation = this.get_uniform_location('hole_box');
+function updateHole(
+	effect: Clutter.OffscreenEffect,
+	target: Clutter.Actor,
+	uniform: (name: string, values: number[]) => void,
+) {
+	const actor = effect.get_actor();
+	if (!actor) return;
+	uniform('size', actor.get_transformed_size());
+	const position = target.apply_relative_transform_to_point(actor, new Graphene.Point3D());
+	const [width, height] = target.get_transformed_size();
+	uniform('hole_box', [position.x - 1.5, position.y + 1, width + 2, height + 1]);
+}
 
-		target.connect('notify::allocation', () => this.queue_repaint());
+function createHoleEffectClass() {
+	if (Shell.GLSLEffect) {
+		@registerClass()
+		class LegacyHoleEffect extends Shell.GLSLEffect {
+			constructor(private target: Clutter.Actor) {
+				super();
+				target.connect('notify::allocation', () => this.queue_repaint());
+			}
+
+			override vfunc_paint_target(node: Clutter.PaintNode, context: Clutter.PaintContext) {
+				updateHole(this, this.target, (name, values) =>
+					this.set_uniform_float(this.get_uniform_location(name), values.length, values),
+				);
+				super.vfunc_paint_target(node, context);
+			}
+
+			override vfunc_build_pipeline() {
+				const { dec, src } = holeShader();
+				this.add_glsl_snippet(Cogl.SnippetHook.FRAGMENT, dec, src, true);
+			}
+		}
+		return LegacyHoleEffect;
 	}
 
-	override vfunc_paint_target(node: Clutter.PaintNode, paintContext: Clutter.PaintContext): void {
-		const size = this.actor.get_transformed_size();
-		this.set_uniform_float(this._sizeLocation, 2, size);
+	@registerClass()
+	class NativeHoleEffect extends Clutter.ShaderEffect {
+		constructor(private target: Clutter.Actor) {
+			super();
+			target.connect('notify::allocation', () => this.queue_repaint());
+		}
 
-		const position = this.target.apply_relative_transform_to_point(this.actor, new Graphene.Point3D());
-		const [width, height] = this.target.get_transformed_size();
-		this.set_uniform_float(this._holeBoxLocation, 4, [position.x - 1.5, position.y + 1, width + 2, height + 1]);
+		override vfunc_paint_target(node: Clutter.PaintNode, context: Clutter.PaintContext) {
+			updateHole(this, this.target, (name, values) =>
+				(this as unknown as NativeShader).set_uniform_float(name, values.length, values),
+			);
+			super.vfunc_paint_target(node, context);
+		}
 
-		super.vfunc_paint_target(node, paintContext);
+		vfunc_get_static_snippet() {
+			const { dec, src } = holeShader();
+			const snippet = Cogl.Snippet.new(Cogl.SnippetHook.FRAGMENT, dec, null);
+			snippet.set_replace(src);
+			return snippet;
+		}
 	}
+	return NativeHoleEffect;
+}
 
-	override vfunc_build_pipeline(): void {
-		const dec = `
+// Based on Mutter's rounded background coverage shader.
+function holeShader() {
+	const dec = `
 			uniform sampler2D tex;
 			uniform vec2 size;
 			uniform vec4 hole_box;
@@ -412,7 +457,7 @@ class HoleEffect extends Shell.GLSLEffect {
 				return circle_bounds(p, center, radius);
 			}`;
 
-		const src = `
+	const src = `
 			vec2 uv = cogl_tex_coord_in[0].xy;
 			vec2 p = size * cogl_tex_coord_in[0].xy;
 			vec4 c = cogl_color_in * texture2D(tex, uv);
@@ -427,6 +472,5 @@ class HoleEffect extends Shell.GLSLEffect {
 			float alpha = rounded_rect_coverage(p, bounds, radius);
 			cogl_color_out = vec4(c.rgb * alpha, min(alpha, c.a));`;
 
-		this.add_glsl_snippet(Cogl.SnippetHook.FRAGMENT, dec, src, true);
-	}
+	return { dec, src };
 }

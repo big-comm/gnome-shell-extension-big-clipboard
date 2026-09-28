@@ -88,12 +88,12 @@ export class ClipboardEntryTracker {
 		entries ??= await this.initMemory();
 
 		// Track all entries
-		this.track(...entries);
+		this.track(entries);
 
 		// Delete oldest entries
 		await this.deleteOldest();
 
-		return entries;
+		return [...this._entries.values()];
 	}
 
 	private getFile(): Gio.File {
@@ -215,7 +215,7 @@ export class ClipboardEntryTracker {
 		if (!entry) return null;
 
 		// Start tracking it
-		this.track(entry);
+		this.track([entry]);
 
 		// Also delete oldest entries
 		await this.deleteOldest();
@@ -252,7 +252,7 @@ export class ClipboardEntryTracker {
 		return history === ClipboardHistory.KeepPinnedAndTagged;
 	}
 
-	private track(...entries: ClipboardEntry[]) {
+	private track(entries: ClipboardEntry[]) {
 		for (const entry of entries) {
 			entry.connect('notify::content', async () => {
 				const id = await this._database?.updateProperty(entry, 'content');

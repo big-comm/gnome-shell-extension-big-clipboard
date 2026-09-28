@@ -8,7 +8,7 @@ export class Keyboard {
 	private _purpose: Clutter.InputContentPurpose = Clutter.InputContentPurpose.NORMAL;
 
 	constructor() {
-		const seat = Clutter.get_default_backend().get_default_seat();
+		const seat = global.stage.context.get_backend().get_default_seat();
 		this._device = seat.create_virtual_device(Clutter.InputDeviceType.KEYBOARD_DEVICE);
 
 		(Main.inputMethod as Clutter.InputMethod).connectObject(
@@ -30,7 +30,7 @@ export class Keyboard {
 	}
 
 	private notify(keyval: number, state: Clutter.KeyState) {
-		this._device?.notify_keyval(Clutter.get_current_event_time() * 1000, keyval, state);
+		this._device?.notify_keyval(global.get_current_time() * 1000, keyval, state);
 	}
 
 	press(keyval: number) {

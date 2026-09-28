@@ -13,6 +13,7 @@ import { ItemType, ItemTypes, Tag, Tags } from '../common/constants.js';
 import { enumParamSpec, registerClass } from '../common/gjs.js';
 import { Icon, loadIcon } from '../common/icons.js';
 import { ClipboardEntry } from '../database/database.js';
+import { ButtonMask } from '../misc/compatibility.js';
 import { TagsItem } from './components/tagsItem.js';
 
 // Reused across calls: constructing Intl.Collator is non-trivial, and a single
@@ -299,7 +300,7 @@ export class SearchEntry extends St.Entry {
 
 		this._itemButton = new St.Button({
 			style_class: 'search-entry-button item-button',
-			button_mask: St.ButtonMask.ONE | St.ButtonMask.TWO,
+			button_mask: ButtonMask.PRIMARY | ButtonMask.MIDDLE,
 		});
 		left.add_child(this._itemButton);
 

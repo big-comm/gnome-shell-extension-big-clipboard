@@ -20,6 +20,7 @@ import { registerClass } from '../common/gjs.js';
 import { Icon, loadIcon } from '../common/icons.js';
 import { OpenClipboardDialogBehavior } from '../common/settings.js';
 import { ClipboardEntry } from '../database/database.js';
+import { entrySearchText } from '../database/searchText.js';
 import { VERSION } from '../misc/compatibility.js';
 import { ClipboardScrollView } from './clipboardScrollView.js';
 import { ClipboardItemMenu } from './components/clipboardItemMenu.js';
@@ -34,10 +35,10 @@ import { ImageItem } from './items/imageItem.js';
 import { LinkItem } from './items/linkItem.js';
 import { TextItem } from './items/textItem.js';
 import { CenterBox, CollapsibleHeaderLayout, FitConstraint } from './layout.js';
-import { SearchEntry, SearchQuery } from './searchEntry.js';
+import { SearchChange, SearchEntry, SearchQuery } from './searchEntry.js';
 
 const ANIMATION_TIME = 100;
-const INITIAL_LOAD_ITEMS = 4;
+const INITIAL_LOAD_ITEMS = 12;
 const LOAD_BATCH_ITEMS = 12;
 
 @registerClass()
@@ -264,7 +265,15 @@ export class ClipboardDialog extends St.Widget {
 	private _nextCursor: [number, number] | null = null;
 	private _cursor: [number, number] | null = null;
 	private _loadIdleId: number = 0;
-	private _loadGeneration: number = 0;
+	private _entries = new Map<number, ClipboardEntry>();
+	private _entrySignals = new Map<ClipboardEntry, number[]>();
+	private _pendingEntries: ClipboardEntry[] = [];
+	private _pendingIndex = 0;
+	private _renderedCount = 0;
+	private _pageTarget = INITIAL_LOAD_ITEMS;
+	private _loadToEnd = false;
+	private _refreshIdleId = 0;
+	private _query: SearchQuery | null = null;
 
 	private _orientation: Clutter.Orientation = Clutter.Orientation.HORIZONTAL;
 	private _layoutDirty: boolean = true;
@@ -319,7 +328,9 @@ export class ClipboardDialog extends St.Widget {
 
 		this._header.connect('open-settings', this.openSettings.bind(this));
 		this._header.connect('clear-history', this.confirmClearHistory.bind(this));
-		this._header.searchEntry.connect('search', (_, query: SearchQuery) => this._scrollView.search(query));
+		this._header.searchEntry.connect('search', (_, query: SearchQuery) => {
+			if (query.change !== SearchChange.Same) this.searchEntries(query);
+		});
 		this._header.searchEntry.connect('activate', () => this._scrollView.activateFirst());
 
 		this._header.connect('notify::header-visible', () => {
@@ -333,6 +344,11 @@ export class ClipboardDialog extends St.Widget {
 		// Scrollbox
 		this._scrollView = new ClipboardScrollView(ext);
 		this._dialog.add_child(this._scrollView);
+		this._scrollView.connect('load-more', () => this.requestMore());
+		this._scrollView.connect('load-end', () => {
+			this._loadToEnd = true;
+			this.requestMore();
+		});
 
 		this._widthConstraint = new Clutter.BindConstraint({
 			coordinate: Clutter.BindCoordinate.WIDTH,
@@ -412,7 +428,7 @@ export class ClipboardDialog extends St.Widget {
 	}
 
 	override destroy() {
-		this.cancelPendingLoad();
+		this.clearEntries();
 		(Main.inputMethod as Clutter.InputMethod).disconnectObject(this);
 		this._ibusManager.disconnectObject(this);
 		this.ext.settings.disconnectObject(this);
@@ -424,6 +440,7 @@ export class ClipboardDialog extends St.Widget {
 			this.finishClose();
 		}
 
+		this._scrollView.destroy();
 		super.destroy();
 	}
 
@@ -577,60 +594,116 @@ export class ClipboardDialog extends St.Widget {
 		}
 
 		this._closing = false;
+		this.cancelPendingLoad();
+		this._pageTarget = INITIAL_LOAD_ITEMS;
+		// Unmapping may reset search and start a new first-page load.
 		this.hide();
 		global.compositor.enable_unredirect();
+		// Keep only the first page ready for the next invocation.
+		if (this._renderedCount > INITIAL_LOAD_ITEMS) this.searchEntries(this._header.searchEntry.searchQuery);
+		else if (this._renderedCount < this._pageTarget && this._pendingIndex < this._pendingEntries.length)
+			this.queueLoad();
 	}
 
 	public addEntry(entry: ClipboardEntry): void {
-		const item = this.createItem(entry);
-		if (!item) return;
-		this._scrollView.addItem(item);
+		this.trackEntry(entry);
+		this.scheduleRefresh();
 	}
 
-	public loadEntries(entries: ClipboardEntry[]): void {
-		this.cancelPendingLoad();
-		const generation = ++this._loadGeneration;
-		const initialEntries = entries.slice(0, INITIAL_LOAD_ITEMS);
+	private trackEntry(entry: ClipboardEntry): void {
+		if (this._entries.has(entry.id)) return;
+		this._entries.set(entry.id, entry);
+		const changed = entry.connect('notify', () => this.scheduleRefresh());
+		const deleted = entry.connect('delete', () => {
+			this._entries.delete(entry.id);
+			for (const id of this._entrySignals.get(entry) ?? []) entry.disconnect(id);
+			this._entrySignals.delete(entry);
+			this.scheduleRefresh();
+		});
+		this._entrySignals.set(entry, [changed, deleted]);
+	}
 
-		const items = [];
-		for (const entry of initialEntries) {
-			const item = this.createItem(entry);
-			if (item) items.push(item);
-		}
-		this._scrollView.loadItems(items);
-
-		// Apply initial search filter for exclude-pinned / exclude-tagged once after bulk load.
-		this._scrollView.search(this._header.searchEntry.searchQuery);
-
-		let index = initialEntries.length;
-		if (index >= entries.length) return;
-
-		this._loadIdleId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
-			if (generation !== this._loadGeneration || !this.get_parent()) {
-				this._loadIdleId = 0;
-				return GLib.SOURCE_REMOVE;
-			}
-
-			const batch: ClipboardItem[] = [];
-			for (let end = Math.min(index + LOAD_BATCH_ITEMS, entries.length); index < end; index++) {
-				const item = this.createItem(entries[index]!, false);
-				if (item) batch.push(item);
-			}
-
-			this._scrollView.appendItems(batch);
-			if (index < entries.length) return GLib.SOURCE_CONTINUE;
-
-			this._loadIdleId = 0;
+	private scheduleRefresh(): void {
+		if (this._refreshIdleId) return;
+		this._refreshIdleId = GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+			this._refreshIdleId = 0;
+			this.searchEntries(this._header.searchEntry.searchQuery);
 			return GLib.SOURCE_REMOVE;
 		});
 	}
 
-	private cancelPendingLoad() {
-		this._loadGeneration++;
-		if (this._loadIdleId) {
-			GLib.source_remove(this._loadIdleId);
-			this._loadIdleId = 0;
+	public loadEntries(entries: ClipboardEntry[]): void {
+		for (const entry of entries) this.trackEntry(entry);
+		this.searchEntries(this._header.searchEntry.searchQuery);
+	}
+
+	private searchEntries(query: SearchQuery): void {
+		this._clipboardItemMenu?.close(BoxPointer.PopupAnimation.NONE);
+		this.cancelPendingLoad();
+		this._query = query.withChange(SearchChange.Different);
+		this._pendingEntries = [...this._entries.values()].sort((a, b) => b.datetime.compare(a.datetime));
+		this._pendingIndex = 0;
+		this._renderedCount = 0;
+		this._pageTarget = INITIAL_LOAD_ITEMS;
+		this._scrollView.clearItems();
+		this._scrollView.search(this._query);
+		this.loadBatch();
+	}
+
+	private loadBatch(): void {
+		const batch: ClipboardItem[] = [];
+		const deadline = GLib.get_monotonic_time() + 4000;
+		while (
+			this._pendingIndex < this._pendingEntries.length &&
+			batch.length < Math.min(LOAD_BATCH_ITEMS, this._pageTarget - this._renderedCount)
+		) {
+			const entry = this._pendingEntries[this._pendingIndex++]!;
+			if (this._query!.matchesEntry(true, entry, ...entrySearchText(entry))) {
+				const item = this.createItem(entry, false);
+				if (item) batch.push(item);
+			}
+			if (GLib.get_monotonic_time() >= deadline) break;
 		}
+		this._renderedCount += batch.length;
+		this._scrollView.appendItems(batch);
+		// Finish the first page; further pages require scrolling or End.
+		if (
+			this._pendingIndex < this._pendingEntries.length &&
+			(this._renderedCount < this._pageTarget || this._loadToEnd)
+		) {
+			if (this._loadToEnd && this._renderedCount >= this._pageTarget) this._pageTarget += LOAD_BATCH_ITEMS;
+			this.queueLoad();
+		} else if (this._loadToEnd) {
+			this._loadToEnd = false;
+			this._scrollView.selectItem(this._renderedCount - 1);
+		}
+	}
+
+	private requestMore(): void {
+		if (
+			!this.opened ||
+			this._loadIdleId ||
+			this._renderedCount < this._pageTarget ||
+			this._pendingIndex >= this._pendingEntries.length
+		)
+			return;
+		this._pageTarget = this._renderedCount + LOAD_BATCH_ITEMS;
+		this.queueLoad();
+	}
+
+	private queueLoad(): void {
+		if (this._loadIdleId) return;
+		this._loadIdleId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
+			this._loadIdleId = 0;
+			this.loadBatch();
+			return GLib.SOURCE_REMOVE;
+		});
+	}
+
+	private cancelPendingLoad(): void {
+		if (this._loadIdleId) GLib.source_remove(this._loadIdleId);
+		this._loadIdleId = 0;
+		this._loadToEnd = false;
 	}
 
 	private createItem(entry: ClipboardEntry, loadImagePreview: boolean = true): ClipboardItem | null {
@@ -737,6 +810,15 @@ export class ClipboardDialog extends St.Widget {
 
 	public clearEntries() {
 		this.cancelPendingLoad();
+		if (this._refreshIdleId) GLib.source_remove(this._refreshIdleId);
+		this._refreshIdleId = 0;
+		for (const [entry, ids] of this._entrySignals) for (const id of ids) entry.disconnect(id);
+		this._entrySignals.clear();
+		this._entries.clear();
+		this._pendingEntries = [];
+		this._pendingIndex = 0;
+		this._renderedCount = 0;
+		this._pageTarget = INITIAL_LOAD_ITEMS;
 		this._scrollView.clearItems();
 	}
 

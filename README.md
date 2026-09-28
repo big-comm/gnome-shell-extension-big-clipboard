@@ -29,10 +29,10 @@ For the extension to work optimally you need to install the following dependenci
 | openSUSE      | `sudo zypper install libgda-6_0-sqlite typelib-1_0-Gda-6_0 typelib-1_0-GSound-1_0` |
 </details>
 
-### From Gnome Extensions (Recommended)
+### Upstream GNOME Extensions release
 [<img width="200" src="https://github.com/andyholmes/gnome-shell-extensions-badge/raw/master/get-it-on-ego.png">](https://extensions.gnome.org/extension/8834/copyous/)
 
-### From Latest GitHub Release
+### Upstream GitHub release
 1. Download the latest release from [Releases](https://github.com/boerdereinar/copyous/releases).
 2. Install extension:
    ```shell
@@ -52,12 +52,13 @@ For the extension to work optimally you need to install the following dependenci
     - [jq](https://jqlang.org/)
 2. Clone the repository:
    ```shell
-   git clone --recurse-submodules https://github.com/boerdereinar/copyous
-   cd copyous
+   git clone --recurse-submodules https://github.com/big-comm/gnome-shell-extension-copyous
+   cd gnome-shell-extension-copyous
    ```
 3. Build and install the extension:
    ```shell
-   pnpm install
+   pnpm install --frozen-lockfile --ignore-scripts
+   make RELEASE=1 install
    ```
 4. Restart the session by logging out.
 5. Enable the extension in [Extension Manager](https://flathub.org/en/apps/com.mattjakeman.ExtensionManager) or by running the following command:
@@ -130,3 +131,5 @@ schema remain unchanged for existing users.
 
 Build the distribution package with `cd pkgbuild && makepkg -s`.
 The packaging license is in `pkgbuild/LICENSE`; extension code retains GPL-3.0-or-later.
+
+Performance changes and VM validation: [docs/PERFORMANCE.md](docs/PERFORMANCE.md).

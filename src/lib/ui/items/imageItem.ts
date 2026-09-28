@@ -114,6 +114,10 @@ export class ImageItem extends ClipboardItem {
 				dimensions,
 			)
 				.then((imageInfo) => {
+					if (this._cancellable.is_cancelled()) {
+						imageInfo.destroy();
+						return;
+					}
 					this._imageInfo = imageInfo;
 					this._content.add_child(this._imageInfo);
 					this.configureImageInfo();

@@ -254,8 +254,6 @@ export function applyTheme(colorScheme: CustomColorScheme | undefined, highlight
 	},
 })
 export class CodeLabel extends St.Label {
-	private readonly _colorSchemeChangedId: number = -1;
-
 	private _code: string = '';
 	private _language: Language | null = null;
 	private _tabWidth = 4;
@@ -263,6 +261,7 @@ export class CodeLabel extends St.Label {
 	private _showLineNumbers = true;
 
 	private _highlighted: string = '';
+	private _disconnectHljs: (() => void) | undefined;
 
 	public constructor(
 		private ext: CopyousExtension,
@@ -284,22 +283,23 @@ export class CodeLabel extends St.Label {
 
 		// Update text when global color scheme changes
 		if (this.ext.themeManager) {
-			this._colorSchemeChangedId = this.ext.themeManager?.connect(
-				'notify::color-scheme',
-				this.updateText.bind(this),
-			);
+			this.ext.themeManager.connectObject('notify::color-scheme', this.updateText.bind(this), this);
 		}
 
 		// Update text after hljs is loaded
-		this.ext.connectHljsInit(this.updateText.bind(this));
+		this._disconnectHljs = this.ext.connectHljsInit(this.updateText.bind(this));
+		this.connect('destroy', () => {
+			this._disconnectHljs?.();
+			this._disconnectHljs = undefined;
+		});
 
 		this.updateText();
 	}
 
 	override destroy(): void {
-		if (this._colorSchemeChangedId >= 0) {
-			this.ext.themeManager?.disconnect(this._colorSchemeChangedId);
-		}
+		this._disconnectHljs?.();
+		this._disconnectHljs = undefined;
+		this.ext.themeManager?.disconnectObject(this);
 
 		super.destroy();
 	}
@@ -363,7 +363,7 @@ export class CodeLabel extends St.Label {
 		if (this._code == null) return;
 
 		// Trim indentation before highlighting to prevent empty lines
-		let text = normalizeIndentation(trim(this._code), this.tabWidth);
+		let text = normalizeIndentation(trim(this._code.slice(0, 4096)), this.tabWidth);
 		if (this.syntaxHighlighting && this.ext.hljs != null) {
 			const language =
 				this.language && this.ext.hljs.getLanguage(this.language.id) != null ? this.language.id : null;

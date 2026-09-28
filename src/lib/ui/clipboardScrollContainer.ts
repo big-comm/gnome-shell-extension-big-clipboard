@@ -160,18 +160,18 @@ export class ClipboardScrollContainer extends St.BoxLayout {
 		this._connectedItems.add(item);
 
 		// Move item when datetime changes
-		item.entry.connect('notify::datetime', () => this.insertOrMoveItem(item, false));
+		item.entry.connectObject('notify::datetime', () => this.insertOrMoveItem(item, false), item);
 
 		// Delete item when deleted
-		item.entry.connect('delete', () => this.removeItem(item));
+		item.entry.connectObject('delete', () => this.removeItem(item), item);
 
 		// Update search only when a searchable property changes.
-		item.entry.connect('notify::content', () => this.updateSearch(item));
-		item.entry.connect('notify::pinned', () => this.updateSearch(item));
-		item.entry.connect('notify::tag', () => this.updateSearch(item));
-		item.entry.connect('notify::type', () => this.updateSearch(item));
-		item.entry.connect('notify::metadata', () => this.updateSearch(item));
-		item.entry.connect('notify::title', () => this.updateSearch(item));
+		item.entry.connectObject('notify::content', () => this.updateSearch(item), item);
+		item.entry.connectObject('notify::pinned', () => this.updateSearch(item), item);
+		item.entry.connectObject('notify::tag', () => this.updateSearch(item), item);
+		item.entry.connectObject('notify::type', () => this.updateSearch(item), item);
+		item.entry.connectObject('notify::metadata', () => this.updateSearch(item), item);
+		item.entry.connectObject('notify::title', () => this.updateSearch(item), item);
 	}
 
 	private insertOrMoveItem(item: ClipboardItem, search: boolean = true): void {
@@ -205,8 +205,10 @@ export class ClipboardScrollContainer extends St.BoxLayout {
 			if (child instanceof ClipboardItem) {
 				focus ||= child.has_key_focus();
 				this.remove_child(child);
+				child.destroy();
 			}
 		}
+		this._lastFocus = null;
 		this.updateVisible();
 
 		if (focus) {
@@ -237,6 +239,7 @@ export class ClipboardScrollContainer extends St.BoxLayout {
 				global.focus_manager.get_group(this).navigate_focus(this, St.DirectionType.UP, true);
 			}
 		}
+		child.destroy();
 	}
 
 	public selectItem(index: number): boolean {

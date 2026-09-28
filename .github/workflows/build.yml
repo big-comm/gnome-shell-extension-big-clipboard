@@ -20,6 +20,11 @@ jobs:
 
       - uses: ./.github/actions/setup
 
+      - name: Typecheck and regression tests
+        run: |
+          pnpm exec tsc --noEmit
+          pnpm test
+
       - name: Lint
         run: make lint
 

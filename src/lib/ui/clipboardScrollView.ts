@@ -11,6 +11,7 @@ import { ClipboardItem } from './items/clipboardItem.js';
 import { SearchQuery } from './searchEntry.js';
 
 @registerClass({
+	Signals: { 'load-more': {}, 'load-end': {} },
 	Properties: {
 		orientation: enumParamSpec(
 			'orientation',
@@ -145,7 +146,7 @@ export class ClipboardScrollView extends St.ScrollView {
 
 		this._previewLoadIdleId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
 			this._previewLoadIdleId = 0;
-			if (!this.get_parent()) return GLib.SOURCE_REMOVE;
+			if (!this.mapped) return GLib.SOURCE_REMOVE;
 
 			const adjustment =
 				this._orientation === Clutter.Orientation.HORIZONTAL ? this.hadjustment : this.vadjustment;
@@ -154,6 +155,8 @@ export class ClipboardScrollView extends St.ScrollView {
 			const start = Math.max(adjustment.lower, adjustment.value - adjustment.page_size);
 			const end = Math.min(adjustment.upper, adjustment.value + adjustment.page_size * 2);
 			this._scrollContainer.loadPreviews(start, end);
+			if (adjustment.value > adjustment.lower && adjustment.value + adjustment.page_size * 2 >= adjustment.upper)
+				this.emit('load-more');
 			return GLib.SOURCE_REMOVE;
 		});
 	}
@@ -204,6 +207,7 @@ export class ClipboardScrollView extends St.ScrollView {
 
 		// End
 		if (key === Clutter.KEY_End) {
+			this.emit('load-end');
 			const child = get_last_visible_child(this._scrollContainer);
 			if (child) {
 				this._scrollContainer.focusChild(child);

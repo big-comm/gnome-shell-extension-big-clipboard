@@ -2,8 +2,8 @@
 	"name": "Copyous",
 	"description": "Modern Clipboard Manager for GNOME",
 	"uuid": "copyous@boerdereinar.dev",
-	"shell-version": ["48", "49", "50"],
+	"shell-version": ["48", "49", "50", "51"],
 	"settings-schema": "org.gnome.shell.extensions.copyous",
 	"gettext-domain": "copyous@boerdereinar.dev",
-	"url": "https://github.com/boerdereinar/copyous"
+	"url": "https://github.com/big-comm/gnome-shell-extension-copyous"
 }

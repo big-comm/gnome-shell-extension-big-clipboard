@@ -135,24 +135,26 @@ export default class CopyousExtension extends Extension {
 	private _preWarmIdleId: number = 0;
 	private _entryTrackerInitSerial: number = 0;
 	private _enabled: boolean = false;
+	private _lifecycleSerial = 0;
 
 	override enable() {
 		this._enabled = true;
+		const serial = ++this._lifecycleSerial;
 
 		// Defer the actual work to an idle callback that resolves once the
 		// shell has finished startup and the heavy modules have loaded.
 		this._enableDeferredId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
 			this._enableDeferredId = 0;
-			this._runDeferredEnable().catch((e: unknown) => {
+			this._runDeferredEnable(serial).catch((e: unknown) => {
 				console.error(`[Copyous] Failed to enable: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
 			});
 			return GLib.SOURCE_REMOVE;
 		});
 	}
 
-	private async _runDeferredEnable() {
+	private async _runDeferredEnable(serial: number) {
 		await heavyDepsReady;
-		if (!this._enabled || !M) return;
+		if (!this._enabled || serial !== this._lifecycleSerial || !M) return;
 
 		this.settings = this.getSettings();
 		M.migrateSettings(this.settings);
@@ -218,7 +220,8 @@ export default class CopyousExtension extends Extension {
 		this.notificationManager = new M.NotificationManager(this);
 		M.tryCreateSoundManager(this)
 			.then((soundManager) => {
-				if (soundManager) this.soundManager = soundManager;
+				if (serial === this._lifecycleSerial && this._enabled) this.soundManager = soundManager ?? undefined;
+				else soundManager?.destroy();
 			})
 			.catch(error);
 
@@ -277,7 +280,8 @@ export default class CopyousExtension extends Extension {
 	}
 
 	private async initHljs() {
-		if (this.hljs || !M) return;
+		if (!this._enabled || this.hljs || !M) return;
+		const serial = this._lifecycleSerial;
 
 		const hljsPath = M.getHljsPath(this);
 		if (!hljsPath.query_exists(null)) {
@@ -288,6 +292,7 @@ export default class CopyousExtension extends Extension {
 
 		try {
 			const hljs = (await import(hljsPath.get_uri())) as { default: HLJSApi };
+			if (!this._enabled || serial !== this._lifecycleSerial) return;
 			this.hljs = hljs.default;
 
 			// Disable file monitor
@@ -296,11 +301,13 @@ export default class CopyousExtension extends Extension {
 
 			// Initialize extra languages
 			await this.loadHljsLanguages();
+			if (!this._enabled || serial !== this._lifecycleSerial) return;
 
 			// Notify dependents
 			this.hljsCallbacks?.forEach((fn) => fn());
 			this.hljsCallbacks = undefined;
 		} catch {
+			if (!this._enabled || serial !== this._lifecycleSerial) return;
 			this.hljs = null;
 			this.monitorHljs(hljsPath);
 		}
@@ -333,7 +340,8 @@ export default class CopyousExtension extends Extension {
 	}
 
 	private async loadHljsLanguages() {
-		if (!M) return;
+		if (!this._enabled || !M) return;
+		const serial = this._lifecycleSerial;
 		this.hljsLanguages ??= new Map<string, boolean>();
 
 		if (!this.hljsMonitor) {
@@ -371,20 +379,25 @@ export default class CopyousExtension extends Extension {
 
 				try {
 					const language = (await import(path.get_uri())) as { default: LanguageFn };
+					if (!this._enabled || serial !== this._lifecycleSerial) return;
 					this.hljs?.registerLanguage(name, language.default);
 					this.hljsLanguages?.set(name, true);
 				} catch {
-					this.logger.error(`Failed to register language "${name}"`);
+					this.logger?.error(`Failed to register language "${name}"`);
 				}
 			}),
 		);
 	}
 
-	public connectHljsInit(fn: () => void) {
-		if (this.hljs != null) return;
+	public connectHljsInit(fn: () => void): () => void {
+		if (this.hljs != null) return () => {};
 
 		this.hljsCallbacks ??= [];
 		this.hljsCallbacks.push(fn);
+		return () => {
+			const index = this.hljsCallbacks?.indexOf(fn) ?? -1;
+			if (index >= 0) this.hljsCallbacks?.splice(index, 1);
+		};
 	}
 
 	private async initEntryTracker() {
@@ -417,12 +430,14 @@ export default class CopyousExtension extends Extension {
 	}
 
 	private async initHistoryTimeout() {
+		const serial = this._lifecycleSerial;
 		if (this.historyTimeoutId >= 0) GLib.source_remove(this.historyTimeoutId);
 
 		const historyTime = this.settings?.get_int('history-time');
 		if (historyTime === undefined || historyTime === 0) return;
 
 		await this.entryTracker?.deleteOldest();
+		if (!this._enabled || serial !== this._lifecycleSerial) return;
 		this.historyTimeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 60, () => {
 			// Do not update the history if the dialog is open
 			this.updateHistory = this.clipboardDialog?.opened ?? false;
@@ -438,6 +453,7 @@ export default class CopyousExtension extends Extension {
 
 	override disable() {
 		this._enabled = false;
+		this._lifecycleSerial++;
 		this._entryTrackerInitSerial++;
 		this.cancelPreWarm();
 

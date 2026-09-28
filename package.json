@@ -41,6 +41,7 @@
 		"launch-settings": "make launch-settings",
 		"lint": "make lint",
 		"lint-fix": "make lint-fix",
-		"shexli": "make shexli"
+		"shexli": "make shexli",
+		"test": "node tests/history-paging.mjs && node tests/preview-lifecycle.mjs && node tests/shader-compatibility.mjs"
 	}
 }

@@ -37,6 +37,7 @@ export interface DBusInterface {
 export class DbusService extends GObject.Object implements DBusInterface {
 	private dbus: Gio.DBusExportedObject | undefined;
 	private ownerId: number;
+	private destroyed = false;
 	private confirmedLogoutId: number = -1;
 	private confirmedRebootId: number = -1;
 	private confirmedShutdownId: number = -1;
@@ -75,6 +76,7 @@ export class DbusService extends GObject.Object implements DBusInterface {
 	}
 
 	public destroy() {
+		this.destroyed = true;
 		this.dbus?.unexport();
 		this.dbus = undefined;
 
@@ -82,6 +84,7 @@ export class DbusService extends GObject.Object implements DBusInterface {
 	}
 
 	private busAcquired(connection: Gio.DBusConnection, _name: string) {
+		if (this.destroyed) return;
 		this.dbus = Gio.DBusExportedObject.wrapJSObject(DBusInterfaceXml, this);
 		this.dbus.export(connection, '/org/gnome/Shell/Extensions/Copyous');
 	}

@@ -81,6 +81,6 @@ export class Label extends St.Label {
 	}
 
 	private updateLabel() {
-		this.text = normalizeIndentation(trim(this.label), this.tabWidth);
+		this.text = normalizeIndentation(trim(this.label.slice(0, 4096)), this.tabWidth);
 	}
 }
