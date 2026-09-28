@@ -1,12 +1,18 @@
-# <img src="resources/images/icon.svg" height="32px" alt="Icon"/> Copyous — BigCommunity fork
+# <img src="resources/images/icon.svg" height="32px" alt="Big Clipboard icon"/> Big Clipboard
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](LICENSE)
 
-A fork of [Copyous by boerdereinar](https://github.com/boerdereinar/copyous), maintained by **BigCommunity** for integration with [Big Gnome Center](https://github.com/big-comm/big-gnome-center).
+**Big Clipboard** is a fork of [Copyous by boerdereinar](https://github.com/boerdereinar/copyous), maintained by **BigCommunity** for integration with [Big Gnome Center](https://github.com/big-comm/big-gnome-center).
 
 This repository contains the extension source, BigCommunity modifications and distribution packaging. The original authors retain credit for Copyous; the changes below focus on large clipboard histories, GNOME compatibility and layout switching.
 
-![Screenshot](resources/images/screenshot.png)
+GNOME 50.4, horizontal history with synthetic sample entries:
+
+![Big Clipboard on GNOME 50](resources/images/big-clipboard-gnome50.png)
+
+GNOME 51.0, vertical history and a Big Clipboard notification:
+
+![Big Clipboard on GNOME 51](resources/images/big-clipboard-gnome51.png)
 
 ## BigCommunity changes
 
@@ -21,7 +27,7 @@ This repository contains the extension source, BigCommunity modifications and di
 | Big Gnome Center integration | Preserve the extension UUID, settings schema, clipboard database format and D-Bus API. Validate opening after transitions through all six BGC layouts. |
 | Packaging and checks | Keep source and PKGBUILD together under BigCommunity. Run type checks and focused regression tests in CI and package checks. |
 
-The extension keeps the UUID `copyous@boerdereinar.dev` so existing settings and integrations continue to work. The upstream extension and this fork therefore occupy the same extension slot.
+The visible name is **Big Clipboard**. Package and repository names remain `gnome-shell-extension-copyous` during the staged migration. The extension keeps the UUID `copyous@boerdereinar.dev` so existing settings and integrations continue to work. The upstream extension and this fork therefore occupy the same extension slot. See the [identity migration notes](docs/BRANDING.md) for the scope and validation of this first stage.
 
 ## Validation and performance
 
@@ -69,7 +75,7 @@ pnpm test
 make RELEASE=1 install
 ```
 
-Log out and back in after replacing an installed extension so GNOME Shell loads the updated JavaScript. Then enable Copyous:
+Log out and back in after replacing an installed extension so GNOME Shell loads the updated JavaScript. Then enable Big Clipboard:
 
 ```sh
 gnome-extensions enable copyous@boerdereinar.dev

@@ -76,7 +76,7 @@ resources/po/main.pot: $(SRC)
 	| xargs xgettext \
 		--from-code=UTF-8 \
 		--copyright-holder="Copyous" \
-		--package-name="Copyous" \
+		--package-name="Big Clipboard" \
 		--language="javascript" \
 		--sort-by-file \
 		--output="$@"
@@ -95,7 +95,7 @@ check-pot:
 	| xargs xgettext \
 		--from-code=UTF-8 \
 		--copyright-holder="Copyous" \
-		--package-name="Copyous" \
+		--package-name="Big Clipboard" \
 		--language="javascript" \
 		--sort-by-file \
 		--output=- \

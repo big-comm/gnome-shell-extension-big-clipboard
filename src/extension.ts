@@ -146,7 +146,9 @@ export default class CopyousExtension extends Extension {
 		this._enableDeferredId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
 			this._enableDeferredId = 0;
 			this._runDeferredEnable(serial).catch((e: unknown) => {
-				console.error(`[Copyous] Failed to enable: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
+				console.error(
+					`[Big Clipboard] Failed to enable: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`,
+				);
 			});
 			return GLib.SOURCE_REMOVE;
 		});

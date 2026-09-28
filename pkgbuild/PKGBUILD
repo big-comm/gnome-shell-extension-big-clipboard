@@ -1,7 +1,7 @@
 # Maintainer: Tales A. Mendonça <talesam@gmail.com>
 
 pkgname=gnome-shell-extension-copyous
-pkgdesc="Modern clipboard manager extension for GNOME Shell (full rewrite of Pano)"
+pkgdesc="Big Clipboard: clipboard history for GNOME Shell, maintained by BigCommunity"
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
 epoch=1

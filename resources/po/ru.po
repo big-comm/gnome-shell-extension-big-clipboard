@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Copyous
-# This file is distributed under the same license as the Copyous package.
+# This file is distributed under the same license as the Big Clipboard package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # Victor <firephantom303@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Copyous\n"
+"Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-08-16 16:01-0300\n"
 "PO-Revision-Date: 2025-11-30 20:29+0700\n"

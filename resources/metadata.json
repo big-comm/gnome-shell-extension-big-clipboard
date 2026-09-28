@@ -1,6 +1,6 @@
 {
-	"name": "Copyous",
-	"description": "Modern Clipboard Manager for GNOME",
+	"name": "Big Clipboard",
+	"description": "Clipboard history for GNOME, maintained by BigCommunity",
 	"uuid": "copyous@boerdereinar.dev",
 	"shell-version": ["48", "49", "50", "51"],
 	"settings-schema": "org.gnome.shell.extensions.copyous",
