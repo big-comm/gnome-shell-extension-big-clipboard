@@ -6,13 +6,13 @@
 
 This repository contains the extension source, BigCommunity modifications and distribution packaging. The original authors retain credit for Copyous; the changes below focus on large clipboard histories, GNOME compatibility and layout switching.
 
-GNOME 50.4, horizontal history with synthetic sample entries:
+G-Unity on GNOME 50.4, with horizontal clipboard history and English sample entries:
 
-![Big Clipboard on GNOME 50](resources/images/big-clipboard-gnome50.png)
+![Big Clipboard in English on G-Unity, GNOME 50.4](resources/images/big-clipboard-gnome50.png)
 
-GNOME 51.0, vertical history and a Big Clipboard notification:
+Hybrid on GNOME 51.0, with vertical clipboard history and English sample entries:
 
-![Big Clipboard on GNOME 51](resources/images/big-clipboard-gnome51.png)
+![Big Clipboard in English on Hybrid, GNOME 51.0](resources/images/big-clipboard-gnome51.png)
 
 ## BigCommunity changes
 
