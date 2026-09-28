@@ -1,0 +1,86 @@
+[
+  {
+    "gnome": "50",
+    "layout": "BigGnome",
+    "items": 12,
+    "firstPaintMs": 128.989
+  },
+  {
+    "gnome": "50",
+    "layout": "Desk UX",
+    "items": 12,
+    "firstPaintMs": 152.192
+  },
+  {
+    "gnome": "50",
+    "layout": "Hybrid",
+    "items": 12,
+    "firstPaintMs": 144.225
+  },
+  {
+    "gnome": "50",
+    "layout": "G-Unity",
+    "items": 12,
+    "firstPaintMs": 188.225
+  },
+  {
+    "gnome": "50",
+    "layout": "Classic",
+    "items": 12,
+    "firstPaintMs": 170.481
+  },
+  {
+    "gnome": "50",
+    "layout": "Minimal",
+    "items": 12,
+    "firstPaintMs": 162.685
+  },
+  {
+    "gnome": "50",
+    "layout": "G-Unity",
+    "items": 12,
+    "firstPaintMs": 207.437
+  },
+  {
+    "gnome": "51",
+    "layout": "BigGnome",
+    "items": 12,
+    "firstPaintMs": 182.998
+  },
+  {
+    "gnome": "51",
+    "layout": "Desk UX",
+    "items": 12,
+    "firstPaintMs": 240.68
+  },
+  {
+    "gnome": "51",
+    "layout": "Hybrid",
+    "items": 12,
+    "firstPaintMs": 189.935
+  },
+  {
+    "gnome": "51",
+    "layout": "G-Unity",
+    "items": 12,
+    "firstPaintMs": 199.607
+  },
+  {
+    "gnome": "51",
+    "layout": "Classic",
+    "items": 12,
+    "firstPaintMs": 186.46
+  },
+  {
+    "gnome": "51",
+    "layout": "Minimal",
+    "items": 12,
+    "firstPaintMs": 233.644
+  },
+  {
+    "gnome": "51",
+    "layout": "G-Unity",
+    "items": 12,
+    "firstPaintMs": 224.663
+  }
+]

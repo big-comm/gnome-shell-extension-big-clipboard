@@ -1,0 +1,9 @@
+import '@girs/gda-5.0';
+import '@girs/gda-6.0';
+import '@girs/gjs';
+import '@girs/gjs/dom';
+import '@girs/gnome-shell/ambient';
+import '@girs/gnome-shell/extensions/global';
+import '@girs/gsound-1.0';
+import '@girs/gst-1.0';
+import '@girs/soup-3.0';

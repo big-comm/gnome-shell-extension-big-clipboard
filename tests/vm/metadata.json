@@ -1,0 +1,6 @@
+{
+	"uuid": "copyous-audit@local.test",
+	"name": "Copyous Audit",
+	"description": "Temporary performance fixtures",
+	"shell-version": ["50", "51"]
+}

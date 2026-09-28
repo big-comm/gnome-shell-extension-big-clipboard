@@ -1,0 +1,12 @@
+{
+	"$schema": "https://raw.githubusercontent.com/microsoft/vscode-css-languageservice/refs/heads/main/docs/customData.schema.json",
+	"version": 1.1,
+	"properties": [
+		{ "name": "spacing" },
+		{ "name": "spacing-rows" },
+		{ "name": "spacing-columns" },
+		{ "name": "icon-size" },
+		{ "name": "icon-shadow" },
+		{ "name": "link-color" }
+	]
+}

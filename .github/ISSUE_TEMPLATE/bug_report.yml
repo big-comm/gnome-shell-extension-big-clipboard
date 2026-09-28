@@ -1,0 +1,75 @@
+name: Bug Report
+description: Report a bug
+labels: ["bug"]
+body:
+  - type: textarea
+    attributes:
+      label: Description
+      description: A clear and concise description of what the bug is.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Expected Behavior
+      description: A clear and concise description of what you expected to happen.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Reproduction Steps
+      description: Describe how to reproduce the behavior.
+      placeholder: |
+        1. Open ...
+        2. Click on ...
+        3. See ...
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Extension Version
+      description: |
+        You can find the extension version by running:
+        ```shell
+        gnome-extensions info copyous@boerdereinar.dev
+        ```
+      placeholder: i.e. 1.0.0
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Environment
+      description: Please fill out the information about the environment where this bug occurs.
+      value: |
+        - GNOME Version: ...
+        - Distro: ...
+        - Distro Version: ...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Enabled Extensions
+      description: |
+        Run the following command and paste the output below:
+        ```shell
+        gnome-extensions list --enabled
+        ```
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Configuration
+      description: |
+        Run the following command and paste the output below:
+        ```shell
+        dconf dump /org/gnome/shell/extensions/copyous/
+        ```
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Logs
+      description: |
+        Please copy and paste any relevant log output. You can get the log output by running the following command:
+        ```shell
+        journalctl --since="1 hour ago" -f /usr/bin/gnome-shell /usr/bin/gjs /usr/lib/systemd/systemd-coredump
+        ```

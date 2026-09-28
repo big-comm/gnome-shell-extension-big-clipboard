@@ -1,0 +1,62 @@
+// Edit dialog
+.clipboard-item-edit-dialog {
+	width: 35em;
+
+	.modal-dialog-content-box {
+		margin: $base_padding * 0.5 $base_padding * 1.5 $base_padding;
+		spacing: $base_padding * 1.25;
+		max-width: none;
+	}
+
+	.message-dialog-content {
+		spacing: $base_padding * 1.25;
+	}
+
+	.clipboard-item-edit-dialog-entry {
+		height: 13em;
+		padding: 0;
+		background-color: $card_bg_color;
+		border: 1px solid $card_shadow_border_color;
+		border-radius: $alert_radius;
+		box-shadow: none;
+
+		&:focus {
+			border-color: -st-accent-color;
+			box-shadow: none;
+		}
+
+		&.monospace {
+			@extend %monospace;
+			@include fontsize(9pt);
+		}
+
+		.multiline-scrollview {
+			padding: $base_padding;
+
+			.multiline-box {
+				padding-right: 0;
+			}
+
+			StScrollBar {
+				padding: $base_padding * 0.5 0 $base_padding * 0.5 $base_padding * 0.25;
+			}
+		}
+	}
+
+	.modal-dialog-top-button-box {
+		padding: 0;
+	}
+}
+
+// Language button popupmenu
+.scrollable-popup-menu-section {
+	max-height: 350px;
+
+	.popup-menu-section {
+		margin-right: $base_padding + 7px;
+	}
+
+	StScrollBar {
+		padding: $base_padding 0;
+	}
+}

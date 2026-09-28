@@ -1,0 +1,60 @@
+name: Setup
+
+inputs:
+  install-gnome-extensions-tool:
+    description: 'Whether to install the gnome extensions tool'
+    default: 'false'
+
+runs:
+  using: composite
+  steps:
+    - name: Install Pnpm
+      uses: pnpm/action-setup@v5
+      with:
+        version: latest
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version: latest
+        cache: pnpm
+
+    - name: Install Dependencies
+      shell: bash
+      run: pnpm install --ignore-scripts
+
+    - name: Install Gnome Extensions Tool Dependencies
+      if: inputs.install-gnome-extensions-tool == 'true'
+      shell: bash
+      run: |
+        sudo apt update
+        sudo apt install -y meson gettext libglib2.0-dev libgnome-autoar-0-dev libjson-glib-dev libsoup-3.0-dev
+
+    - name: Get Submodule SHA
+      id: submodule-sha
+      if: inputs.install-gnome-extensions-tool == 'true'
+      shell: bash
+      run: echo "sha=$(git rev-parse HEAD:submodules/gnome-shell)" >> $GITHUB_OUTPUT
+
+    - name: Cache Gnome Extensions Tool
+      id: cache
+      if: inputs.install-gnome-extensions-tool == 'true'
+      uses: actions/cache@v5
+      with:
+        path: submodules/gnome-shell/subprojects/extensions-tool/build/src
+        key: gnome-extensions-${{ runner.os }}-${{ steps.submodule-sha.outputs.sha }}
+
+    - name: Install Gnome Extensions Tool
+      if: inputs.install-gnome-extensions-tool == 'true' && steps.cache.outputs.cache-hit != 'true'
+      working-directory: submodules/gnome-shell/subprojects/extensions-tool
+      shell: bash
+      run: |
+        ./generate-translations.sh
+        meson setup --buildtype=release -Dman=false build
+        meson compile -C build
+
+    - name: Add Gnome Extensions Tool to Path
+      if: inputs.install-gnome-extensions-tool == 'true'
+      working-directory: submodules/gnome-shell/subprojects/extensions-tool
+      shell: bash
+      run: echo "$PWD/build/src" >> $GITHUB_PATH

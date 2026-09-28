@@ -1,0 +1,65 @@
+.clipboard-item {
+	// Content info
+	.content-info {
+		color: $card_insensitive_fg_color;
+
+		StIcon {
+			icon-size: $scalable_icon_size - to_em(4px);
+		}
+
+		// Number style
+		.content-info-number {
+			@extend %numeric;
+		}
+
+		// Code Info
+		.language {
+			@extend %heading;
+		}
+
+		// File Info
+		&.file-info .content-info-left {
+			@extend %heading;
+		}
+
+		.file-info-size {
+			spacing: $base_padding * 0.5;
+
+			.file-info-unit {
+				@include fontsize(8pt);
+				padding-bottom: 1px;
+			}
+		}
+
+		&.missing-info,
+		&.error-info {
+			.content-info-left {
+				spacing: $base_padding;
+
+				StIcon {
+					padding-top: 2px;
+				}
+			}
+		}
+
+		&.directory-info {
+			.content-info-left {
+				spacing: $base_padding * 2;
+
+				.directory-count {
+					spacing: $base_padding;
+				}
+
+				.file-count {
+					spacing: $base_padding - 2px;
+				}
+			}
+		}
+
+		&.media-info {
+			.content-info-right .media-duration {
+				spacing: $base_padding;
+			}
+		}
+	}
+}

@@ -1,0 +1,57 @@
+.blue {
+	color: oklab(from var(--blue-3) var(--standalone-color-oklab));
+}
+
+/* Flow Box */
+.hljs-languages > flowboxchild {
+	padding: 0;
+}
+
+.hljs-languages > flowboxchild:hover {
+	background: transparent;
+}
+
+/* App Selection Popover */
+.app-selection-popover contents {
+	padding: 0;
+}
+
+.app-selection-popover .listview {
+	background: none;
+	color: inherit;
+}
+
+.app-selection-popover .listview row {
+	border-radius: 6px;
+}
+
+/* Nested List */
+.nested-list-row {
+	padding: 0;
+}
+
+.nested-list {
+	background: none;
+	border-radius: 0;
+	box-shadow: none;
+}
+
+.nested-list > row {
+	border-radius: 0;
+}
+
+/* Actions */
+.has-placeholder > row:nth-last-child(2) {
+	border: none;
+}
+
+.nested:drop(active) {
+	box-shadow: none;
+}
+
+.actions-badge {
+	background: color-mix(in srgb, currentColor 10%, transparent);
+	border-radius: 999px;
+	padding: 2px 10px;
+	font-weight: bold;
+}

@@ -7,12 +7,15 @@ pkgrel=$(date +%H%M)
 epoch=1
 arch=('any')
 license=('GPL-3.0-or-later')
-url="https://github.com/talesam/copyous"
-#url="https://github.com/boerdereinar/copyous"
-depends=('gnome-shell>=45'
+url="https://github.com/big-comm/gnome-shell-extension-copyous"
+depends=('gnome-shell>=48'
          'libgda6'
          'gsound')
-makedepends=('gobject-introspection'
+makedepends=('git'
+             'jq'
+             'gettext'
+             'zip'
+             'gobject-introspection'
              'pnpm'
              'typescript'
              'sass'
@@ -24,7 +27,7 @@ provides=("$pkgname")
 # Name the branch instead of relying on whatever makepkg resolves as the
 # remote default: a package built from the wrong revision still builds and
 # still installs, so the ref this compiles from belongs in the file.
-source=("git+${url}.git#branch=main")
+source=("copyous::git+${url}.git#branch=main")
 md5sums=('SKIP')
 
 prepare() {
@@ -41,7 +44,13 @@ build() {
   cd "${srcdir}/copyous"
 
   # Build the extension using Make
-  make
+  make RELEASE=1
+}
+
+check() {
+  cd "${srcdir}/copyous"
+  pnpm exec tsc --noEmit
+  pnpm test
 }
 
 package() {

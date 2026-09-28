@@ -1,0 +1,84 @@
+name: Build CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+env:
+  UUID: copyous@boerdereinar.dev
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+
+      - uses: ./.github/actions/setup
+
+      - name: Typecheck and regression tests
+        run: |
+          pnpm exec tsc --noEmit
+          pnpm test
+
+      - name: Lint
+        run: make lint
+
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          submodules: true
+          fetch-tags: true
+          fetch-depth: 0
+
+      - uses: ./.github/actions/setup
+        with:
+          install-gnome-extensions-tool: 'true'
+
+      - name: Build
+        run: RELEASE=1 make build
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v7
+        with:
+          path: dist/${{ env.UUID }}.zip
+          archive: false
+
+  localization:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Install Gettext
+        run: |
+          sudo apt update
+          sudo apt install -y gettext
+
+      - name: Check Update
+        run: make check-pot && make check-po && echo "PO_CHANGED=false" >> $GITHUB_ENV || echo "PO_CHANGED=true" >> $GITHUB_ENV
+
+      - name: Update POT
+        if: env.PO_CHANGED == 'true'
+        run: make pot -B
+
+      - name: Update PO
+        if: env.PO_CHANGED == 'true'
+        run: make po -B
+
+      - uses: stefanzweifel/git-auto-commit-action@v7
+        if: env.PO_CHANGED == 'true'
+        with:
+          commit_message: 'Update localization'
+          file_pattern: 'resources/po'
