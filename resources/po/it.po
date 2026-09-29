@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:16-0300\n"
+"POT-Creation-Date: 2026-09-29 12:26-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Italiano\n"
@@ -121,8 +121,8 @@ msgstr "Colore copiato"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
 #: src/lib/ui/components/editDialog.ts:225
 #: src/lib/ui/components/editDialog.ts:252
@@ -663,8 +663,8 @@ msgstr "Altezza dinamica elementi"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content. "
-"Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content."
+" Only works in vertical orientation"
 msgstr ""
 "Regola dinamicamente l'altezza degli elementi degli appunti in base al loro "
 "contenuto. Funziona solo con l'orientamento verticale"
@@ -919,7 +919,8 @@ msgstr "Copertina"
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:180
 msgid "Enable or disable syntax highlighting in the text preview"
 msgstr ""
-"Abilita o disabilita l'evidenziazione della sintassi nell'anteprima del testo"
+"Abilita o disabilita l'evidenziazione della sintassi nell'anteprima del "
+"testo"
 
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:186
 msgid "Show line numbers in the text preview"
@@ -958,8 +959,8 @@ msgstr "Esclusioni link"
 msgid ""
 "Enter a regular expression to exclude links that should not have a preview."
 msgstr ""
-"Inserire un'espressione regolare per escludere i collegamenti che non devono "
-"avere un'anteprima"
+"Inserire un'espressione regolare per escludere i collegamenti che non devono"
+" avere un'anteprima"
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:48
 msgid "Link Exclusion Patterns"
@@ -1174,8 +1175,8 @@ msgstr "Evidenziazione sintassi non disponibile"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting "
-"files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting"
+" files."
 msgstr ""
 "Reinstalla il pacchetto Big Clipboard per ripristinare i file di "
 "evidenziazione del codice inclusi."
@@ -1208,6 +1209,9 @@ msgstr ""
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "Ricerca"
 
@@ -1256,7 +1260,7 @@ msgstr "Gestisci esclusioni app"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Gestire le app che saranno escluse dalla cronologia degli appunti"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
 msgid "Behavior"
 msgstr "Comportamento"
 
@@ -1305,7 +1309,8 @@ msgstr "Proteggi gli elementi contrassegnati"
 
 #: src/lib/preferences/general/behaviorSettings.ts:43
 msgid "Prevents tagged clipboard items from being deleted"
-msgstr "Impedisce la cancellazione degli elementi contrassegnati degli appunti"
+msgstr ""
+"Impedisce la cancellazione degli elementi contrassegnati degli appunti"
 
 #: src/lib/preferences/general/behaviorSettings.ts:48
 msgid "Sync Primary Clipboard"
@@ -1328,47 +1333,47 @@ msgstr ""
 "selezionati dalla cronologia"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "Suono"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "Clic"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "Ronzio"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "Corda"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "Altalena"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "Messaggio"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "Messaggio Nuovo Istantaneo"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "Campana"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "Avviso di finestra di dialogo"
 
@@ -1396,110 +1401,101 @@ msgstr "Solo contenuto degli appunti"
 msgid "Icon and Clipboard Content"
 msgstr "Icona e contenuto degli appunti"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "Agita indicatore"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "Agita l'indicatore quando un elemento degli appunti 00e8 copiato"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "Invia notifica"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr ""
 "Envoie une notification lorsqu'un élément est copié dans le presse-papiers"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Suono da riprodurre quando un elemento degli appunti è copiato"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "Cronologia"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
 msgstr "Memoria"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "(recommended)"
 msgstr "(consigliato)"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "SQLite"
 msgstr "SQLite"
 
-#: src/lib/preferences/general/historySettings.ts:72
+#: src/lib/preferences/general/historySettings.ts:73
 msgid "JSON"
 msgstr "JSON"
 
-#: src/lib/preferences/general/historySettings.ts:99
+#: src/lib/preferences/general/historySettings.ts:100
 msgid "Database"
 msgstr "Database"
 
-#: src/lib/preferences/general/historySettings.ts:100
+#: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr "Seleziona il tipo di database da usare per memorizzare gli appunti"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "Posizione del database"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "Cronologia degli appunti"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "Conserva cronologia"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
-msgstr ""
-"Scegliere cosa fare con la cronologia degli appunti al riavvio, "
-"disconnessione o spegnimento del sistema"
+msgid "Choose what to keep after logout or restart."
+msgstr "Scegli cosa conservare dopo la disconnessione o il riavvio."
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Cancella"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "Conserva tutto"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "Conserva gli elementi fissati"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "Conserva gli elementi fissati/contrassegnati"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "Lunghezza della cronologia"
+msgid "History Size"
+msgstr "Dimensione della cronologia"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr ""
-"Selezionare il numero di elementi da conservare nella cronologia degli "
-"appunti"
+msgid "Maximum number of saved items."
+msgstr "Numero massimo di elementi salvati."
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "Limite di tempo della cronologia"
+msgid "Expiration"
+msgstr "Scadenza"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
 msgstr ""
-"Selezionare per quanti minuti mantenere gli elementi nella cronologia degli "
-"appunti. Impostare su 0 per disattivare il limite di tempo"
+"Minuti prima della scadenza degli elementi. Imposta 0 per conservarli."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1666,8 +1662,8 @@ msgstr "Scambia scorciatoia di scorrimento"
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:77
 msgid "Swaps scroll shortcuts of cycling item types and item tags"
 msgstr ""
-"Scambiare le scorciatoie di scorrimento per scorrere i tipi di elementi e le "
-"etichette"
+"Scambiare le scorciatoie di scorrimento per scorrere i tipi di elementi e le"
+" etichette"
 
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:81
 msgid "Cycle Item Type"
@@ -1688,6 +1684,10 @@ msgstr "Disabilita scorciatoia"
 #: src/lib/preferences/shortcuts/shortcutRow.ts:219
 msgid "Disabled"
 msgstr "Disabilitato"
+
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "Nessun risultato trovato"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1842,15 +1842,23 @@ msgstr "Color__e"
 msgid "Type to search"
 msgstr "Digitare per la ricerca"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "Generale"
+#: src/prefs.ts:63
+msgid "Advanced"
+msgstr "Avanzate"
 
-#: src/prefs.ts:94
-msgid "Customization"
-msgstr "Personalizzazione"
+#: src/prefs.ts:66
+msgid "Storage"
+msgstr "Archiviazione"
 
-#: src/prefs.ts:111
+#: src/prefs.ts:71
+msgid "Panel Indicator"
+msgstr "Indicatore del pannello"
+
+#: src/prefs.ts:85
+msgid "Appearance"
+msgstr "Aspetto"
+
+#: src/prefs.ts:104
 msgid "Shortcuts"
 msgstr "Scorciatoie"
 
@@ -1859,6 +1867,19 @@ msgstr "Scorciatoie"
 #~ msgstr ""
 #~ "Incolla automaticamente gli elementi degli appunti quando vengono "
 #~ "selezionati dalla cronologia degli appunti"
+
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, or "
+#~ "shut down your system"
+#~ msgstr ""
+#~ "Scegliere cosa fare con la cronologia degli appunti al riavvio, "
+#~ "disconnessione o spegnimento del sistema"
+
+#~ msgid "Clipboard History"
+#~ msgstr "Cronologia degli appunti"
+
+#~ msgid "Customization"
+#~ msgstr "Personalizzazione"
 
 #~ msgid "Dependencies"
 #~ msgstr "Dipendenze"
@@ -1877,6 +1898,9 @@ msgstr "Scorciatoie"
 #~ msgid "Failed to load database"
 #~ msgstr "Impossibile caricare il database"
 
+#~ msgid "General"
+#~ msgstr "Generale"
+
 #~ msgid "Highlight.js Not Installed"
 #~ msgstr "Highlight.js non installato"
 
@@ -1884,6 +1908,12 @@ msgstr "Scorciatoie"
 #~ msgstr ""
 #~ "Highlight.js è necessario per visualizzare il codice con evidenziazione "
 #~ "della sintassi."
+
+#~ msgid "History Length"
+#~ msgstr "Lunghezza della cronologia"
+
+#~ msgid "History Time Limit"
+#~ msgstr "Limite di tempo della cronologia"
 
 #~ msgid "Install"
 #~ msgstr "Installa"
@@ -1905,6 +1935,18 @@ msgstr "Scorciatoie"
 
 #~ msgid "Paste on Copy"
 #~ msgstr "Incolla alla copia"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr ""
+#~ "Selezionare il numero di elementi da conservare nella cronologia degli "
+#~ "appunti"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
+#~ "disable the time limit"
+#~ msgstr ""
+#~ "Selezionare per quanti minuti mantenere gli elementi nella cronologia degli "
+#~ "appunti. Impostare su 0 per disattivare il limite di tempo"
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Imposta lo schema di colori del tema personalizzato"
@@ -1945,8 +1987,8 @@ msgstr "Scorciatoie"
 #~ msgstr "Usa un database in memoria"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js from "
+#~ "\"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Puoi installare manualmente highlight.js scaricando highlight.min.js da "
 #~ "\"Url\" a \"Percorso di installazione\"."

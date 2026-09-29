@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:16-0300\n"
+"POT-Creation-Date: 2026-09-29 12:26-0300\n"
 "PO-Revision-Date: 2025-12-01 18:02-0300\n"
 "Last-Translator: Murilo Leal <murilormleal@outlook.com>\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -121,8 +121,8 @@ msgstr "Cor copiada"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
 #: src/lib/ui/components/editDialog.ts:225
 #: src/lib/ui/components/editDialog.ts:252
@@ -562,7 +562,8 @@ msgstr "Ocultar automaticamente a barra de pesquisa"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:116
 msgid "Automatically hide the search bar when not focused"
-msgstr "Ocultar automaticamente a barra de pesquisa quando não estiver em foco"
+msgstr ""
+"Ocultar automaticamente a barra de pesquisa quando não estiver em foco"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:121
 msgid "Show Scrollbar"
@@ -657,11 +658,11 @@ msgstr "Altura Dinâmica do Item"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content. "
-"Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content."
+" Only works in vertical orientation"
 msgstr ""
-"Ajustar a altura dinamicamente dos itens da área de transferência baseado no "
-"conteúdo. Funciona apenas na orientação vertical"
+"Ajustar a altura dinamicamente dos itens da área de transferência baseado no"
+" conteúdo. Funciona apenas na orientação vertical"
 
 #: src/lib/preferences/customization/itemCustomization.ts:55
 msgid "Tab Width"
@@ -957,7 +958,8 @@ msgstr "Exclusões de Links"
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:49
 msgid "Links matching these patterns will not have a preview"
-msgstr "Links que correspondem a essas expressões regular não terão uma prévia"
+msgstr ""
+"Links que correspondem a essas expressões regular não terão uma prévia"
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:66
 msgid "Link Item"
@@ -1164,8 +1166,8 @@ msgstr "Realce de sintaxe indisponível"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting "
-"files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting"
+" files."
 msgstr ""
 "Reinstale o pacote Big Clipboard para restaurar os arquivos de realce de "
 "código incluídos."
@@ -1198,6 +1200,9 @@ msgstr ""
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "Pesquisar"
 
@@ -1248,7 +1253,7 @@ msgstr ""
 "Gerenciar aplicativos que serão excluídos do histórico da área de "
 "transferência"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
 msgid "Behavior"
 msgstr "Comportamento"
 
@@ -1316,47 +1321,47 @@ msgstr ""
 "los do histórico"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "Som"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "Clique"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "Hum"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "String"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "Swing"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "Mensagem"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "Mensagem Nova Instantânea"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "Sino"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "Aviso de Diálogo"
 
@@ -1385,110 +1390,102 @@ msgstr "Somente conteúdo da área de transferência"
 msgid "Icon and Clipboard Content"
 msgstr "Ícone e conteúdo da área de transferência"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "Agitar Indicador"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "Agitar o indicador quando um item da área de transferência é copiado"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "Enviar notificação"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr ""
 "Enviar uma notificação quando um item da área de transferência for copiado"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Som a reproduzir quando um item da área de transferência for copiado"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "Histórico"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
 msgstr "Memória"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "(recommended)"
 msgstr "(recomendado)"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "SQLite"
 msgstr "SQLite"
 
-#: src/lib/preferences/general/historySettings.ts:72
+#: src/lib/preferences/general/historySettings.ts:73
 msgid "JSON"
 msgstr "JSON"
 
-#: src/lib/preferences/general/historySettings.ts:99
+#: src/lib/preferences/general/historySettings.ts:100
 msgid "Database"
 msgstr "Banco de dados"
 
-#: src/lib/preferences/general/historySettings.ts:100
+#: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr ""
 "Selecione o tipo de banco de dados para armazenar o histórico da área de "
 "transferência"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "Local do Banco de Dados"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "Histórico de Clipboard"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "Manter histórico"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
-msgstr ""
-"Escolha o que fazer com o histórico da área de transferência ao reiniciar, "
-"fazer logout ou desligar o sistema"
+msgid "Choose what to keep after logout or restart."
+msgstr "Escolha o que manter após sair da sessão ou reiniciar."
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Limpar"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "Manter Todos"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "Manter Fixados"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "Manter Marcados"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "Tamanho do Histórico"
+msgid "History Size"
+msgstr "Tamanho do histórico"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr "Selecione quantos itens manter no histórico da área de transferência"
+msgid "Maximum number of saved items."
+msgstr "Número máximo de itens salvos."
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "Tempo Limite do Histórico"
+msgid "Expiration"
+msgstr "Expiração"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
-msgstr ""
-"Selecione quantos minutos manter itens no histórico da área de "
-"transferência. Defina como 0 para desativar o limite de tempo"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
+msgstr "Minutos até os itens expirarem. Defina 0 para mantê-los."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1676,6 +1673,10 @@ msgstr "Desativar Atalho"
 msgid "Disabled"
 msgstr "Desabilitado"
 
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "Nenhum resultado encontrado"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1730,7 +1731,8 @@ msgstr "Limpar Histórico da Área de Transferência?"
 
 #: src/lib/ui/indicator.ts:39
 msgid "Are you sure you want to clear your clipboard history?"
-msgstr "Tem certeza de que deseja limpar o histórico da área de transferência?"
+msgstr ""
+"Tem certeza de que deseja limpar o histórico da área de transferência?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
@@ -1829,15 +1831,23 @@ msgstr "Co__r"
 msgid "Type to search"
 msgstr "Digite para pesquisar"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "Geral"
+#: src/prefs.ts:63
+msgid "Advanced"
+msgstr "Avançado"
 
-#: src/prefs.ts:94
-msgid "Customization"
-msgstr "Customização"
+#: src/prefs.ts:66
+msgid "Storage"
+msgstr "Armazenamento"
 
-#: src/prefs.ts:111
+#: src/prefs.ts:71
+msgid "Panel Indicator"
+msgstr "Indicador do painel"
+
+#: src/prefs.ts:85
+msgid "Appearance"
+msgstr "Aparência"
+
+#: src/prefs.ts:104
 msgid "Shortcuts"
 msgstr "Atalhos"
 
@@ -1846,6 +1856,19 @@ msgstr "Atalhos"
 #~ msgstr ""
 #~ "Colar automaticamente itens da área de transferência ao selecioná-los do "
 #~ "histórico"
+
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, or "
+#~ "shut down your system"
+#~ msgstr ""
+#~ "Escolha o que fazer com o histórico da área de transferência ao reiniciar, "
+#~ "fazer logout ou desligar o sistema"
+
+#~ msgid "Clipboard History"
+#~ msgstr "Histórico de Clipboard"
+
+#~ msgid "Customization"
+#~ msgstr "Customização"
 
 #~ msgid "Dependencies"
 #~ msgstr "Dependências"
@@ -1864,12 +1887,21 @@ msgstr "Atalhos"
 #~ msgid "Failed to load database"
 #~ msgstr "Falha ao carregar banco de dados"
 
+#~ msgid "General"
+#~ msgstr "Geral"
+
 #~ msgid "Highlight.js Not Installed"
 #~ msgstr "Highlight.js não instalado"
 
 #~ msgid "Highlight.js is required to display syntax highlighted code."
 #~ msgstr ""
 #~ "Highlight.js é necessário para exibir código sintaticamente destacado."
+
+#~ msgid "History Length"
+#~ msgstr "Tamanho do Histórico"
+
+#~ msgid "History Time Limit"
+#~ msgstr "Tempo Limite do Histórico"
 
 #~ msgid "Install"
 #~ msgstr "Instalar"
@@ -1891,6 +1923,16 @@ msgstr "Atalhos"
 
 #~ msgid "Paste on Copy"
 #~ msgstr "Colar ao Copiar"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr "Selecione quantos itens manter no histórico da área de transferência"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
+#~ "disable the time limit"
+#~ msgstr ""
+#~ "Selecione quantos minutos manter itens no histórico da área de "
+#~ "transferência. Defina como 0 para desativar o limite de tempo"
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Seleciona o esquema de cor do tema customizado"
@@ -1931,8 +1973,8 @@ msgstr "Atalhos"
 #~ msgstr "Usar Banco de Dados em Memória"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js from "
+#~ "\"Url\" to \"Install Location\"."
 #~ msgstr ""
-#~ "Você pode instalar manualmente o highlight.js baixando o highlight.min.js "
-#~ "da \"Url\" para o \"Local de Instalação\"."
+#~ "Você pode instalar manualmente o highlight.js baixando o highlight.min.js da"
+#~ " \"Url\" para o \"Local de Instalação\"."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:16-0300\n"
+"POT-Creation-Date: 2026-09-29 12:26-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -16,8 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
-"|| n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
 #: src/lib/common/actions.ts:182
@@ -125,8 +124,8 @@ msgstr "Skopiowany kolor"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
 #: src/lib/ui/components/editDialog.ts:225
 #: src/lib/ui/components/editDialog.ts:252
@@ -236,8 +235,8 @@ msgid ""
 "The regular expression does not use any flags for matching. Leaving this "
 "empty will match everything."
 msgstr ""
-"Wyrażenie regularne nie używa żadnych flag do dopasowania. Pozostawienie tej "
-"opcji pustej spowoduje dopasowanie wszystkiego."
+"Wyrażenie regularne nie używa żadnych flag do dopasowania. Pozostawienie tej"
+" opcji pustej spowoduje dopasowanie wszystkiego."
 
 #: src/lib/preferences/actions/actionDialog.ts:361
 msgid "Type"
@@ -467,8 +466,8 @@ msgid ""
 "Show the clipboard dialog at the text cursor position whenever possible, "
 "otherwise at the pointer position"
 msgstr ""
-"Pokaż okno dialogowe schowka w pozycji kursora tekstowego, jeśli to możliwe, "
-"w przeciwnym razie w pozycji wskaźnika"
+"Pokaż okno dialogowe schowka w pozycji kursora tekstowego, jeśli to możliwe,"
+" w przeciwnym razie w pozycji wskaźnika"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:50
 msgid "Orientation"
@@ -661,11 +660,11 @@ msgstr "Dynamiczna wysokość elementu"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content. "
-"Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content."
+" Only works in vertical orientation"
 msgstr ""
-"Dynamicznie dostosuj wysokość elementów schowka na podstawie ich zawartości. "
-"Działa tylko w orientacji pionowej"
+"Dynamicznie dostosuj wysokość elementów schowka na podstawie ich zawartości."
+" Działa tylko w orientacji pionowej"
 
 #: src/lib/preferences/customization/itemCustomization.ts:55
 msgid "Tab Width"
@@ -1169,8 +1168,8 @@ msgstr "Podświetlanie składni niedostępne"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting "
-"files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting"
+" files."
 msgstr ""
 "Zainstaluj ponownie pakiet Big Clipboard, aby przywrócić dołączone pliki "
 "podświetlania kodu."
@@ -1203,6 +1202,9 @@ msgstr ""
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "Szukaj"
 
@@ -1251,7 +1253,7 @@ msgstr "Zarządzaj wykluczonymi programami"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Zarządzaj programami wykluczonymi z historii schowka"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
 msgid "Behavior"
 msgstr "Zachowanie"
 
@@ -1323,47 +1325,47 @@ msgstr ""
 "schowka"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "Dźwięk"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "Klik"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "Brum"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "Plum"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "Buczenie"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "Wiadomość"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "Nowa natychmiastowa wiadomość"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "Dzwonek"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "Komunikat ostrzegawczy"
 
@@ -1391,107 +1393,99 @@ msgstr "Tylko zawartość schowka"
 msgid "Icon and Clipboard Content"
 msgstr "Ikona oraz zawartość schowka"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "Wskaźnik drgający"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "Włącz drganie wskaźnika, gdy element zostanie skopiowany do schowka"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "Wyślij powiadomienie"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr "Wyślij powiadomienie, gdy element zostanie skopiowany do schowka"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Dźwięk odtwarzany po skopiowaniu elementu do schowka"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "Historia"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
 msgstr "Pamięć"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "(recommended)"
 msgstr "(zalecane)"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "SQLite"
 msgstr "SQLite"
 
-#: src/lib/preferences/general/historySettings.ts:72
+#: src/lib/preferences/general/historySettings.ts:73
 msgid "JSON"
 msgstr "Plik JSON"
 
-#: src/lib/preferences/general/historySettings.ts:99
+#: src/lib/preferences/general/historySettings.ts:100
 msgid "Database"
 msgstr "Baza danych"
 
-#: src/lib/preferences/general/historySettings.ts:100
+#: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr "Wybierz bazę danych do przechowywania zawartości schowka"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "Lokalizacja bazy danych"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "Historia schowka"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "Zachowuj historię"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
-msgstr ""
-"Wybierz, co zrobić z historią schowka podczas ponownego uruchamiania, "
-"wylogowywania lub zamykania systemu"
+msgid "Choose what to keep after logout or restart."
+msgstr "Wybierz, co zachować po wylogowaniu lub ponownym uruchomieniu."
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Wyczyść"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "Zachowaj wszystko"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "Zachowaj przypięte"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "Zachowaj przypięte/oznaczone"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "Długość historii"
+msgid "History Size"
+msgstr "Rozmiar historii"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr "Wybierz, ile elementów ma być przechowywanych w historii schowka"
+msgid "Maximum number of saved items."
+msgstr "Maksymalna liczba zapisanych elementów."
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "Limit czasu historii"
+msgid "Expiration"
+msgstr "Wygasanie"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
-msgstr ""
-"Wybierz, ile minut mają być przechowywane elementy w historii schowka. Ustaw "
-"0, aby wyłączyć limit czasu"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
+msgstr "Liczba minut do wygaśnięcia elementów. Ustaw 0, aby je zachować."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1658,7 +1652,8 @@ msgstr "Zamień skrót klawiszowy przewijania"
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:77
 msgid "Swaps scroll shortcuts of cycling item types and item tags"
 msgstr ""
-"Zamienia skróty przewijania przełączania typów elementów i oznaczeń elementów"
+"Zamienia skróty przewijania przełączania typów elementów i oznaczeń "
+"elementów"
 
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:81
 msgid "Cycle Item Type"
@@ -1679,6 +1674,10 @@ msgstr "Wyłącz skrót klawiszowy"
 #: src/lib/preferences/shortcuts/shortcutRow.ts:219
 msgid "Disabled"
 msgstr "Wyłączono"
+
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "Nie znaleziono wyników"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1839,15 +1838,23 @@ msgstr "Kolo_r"
 msgid "Type to search"
 msgstr "Wpisz, aby wyszukać"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "Ogólne"
+#: src/prefs.ts:63
+msgid "Advanced"
+msgstr "Zaawansowane"
 
-#: src/prefs.ts:94
-msgid "Customization"
-msgstr "Personalizacja"
+#: src/prefs.ts:66
+msgid "Storage"
+msgstr "Przechowywanie"
 
-#: src/prefs.ts:111
+#: src/prefs.ts:71
+msgid "Panel Indicator"
+msgstr "Wskaźnik panelu"
+
+#: src/prefs.ts:85
+msgid "Appearance"
+msgstr "Wygląd"
+
+#: src/prefs.ts:104
 msgid "Shortcuts"
 msgstr "Skróty klawiszowe"
 
@@ -1868,14 +1875,27 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Rozmiar tła obrazu podglądu odnośnika"
 
 #~ msgid ""
-#~ "Behavior of the open clipboard dialog shortcut when the dialog is open/"
-#~ "closed."
+#~ "Behavior of the open clipboard dialog shortcut when the dialog is "
+#~ "open/closed."
 #~ msgstr ""
 #~ "Zachowanie skrótu otwierania okna dialogowego schowka, gdy okno jest "
 #~ "otwarte/zamknięte."
 
 #~ msgid "Bottom margin of the clipboard dialog"
 #~ msgstr "Dolny margines okna dialogowego schowka"
+
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, or "
+#~ "shut down your system"
+#~ msgstr ""
+#~ "Wybierz, co zrobić z historią schowka podczas ponownego uruchamiania, "
+#~ "wylogowywania lub zamykania systemu"
+
+#~ msgid "Clipboard History"
+#~ msgstr "Historia schowka"
+
+#~ msgid "Customization"
+#~ msgstr "Personalizacja"
 
 #~ msgid "Dependencies"
 #~ msgstr "Zależności"
@@ -1884,8 +1904,8 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Wyłącz ostrzeżenie GDA"
 
 #~ msgid ""
-#~ "Disable the hljs dialog from showing up when launching preferences if "
-#~ "hljs is not installed"
+#~ "Disable the hljs dialog from showing up when launching preferences if hljs "
+#~ "is not installed"
 #~ msgstr ""
 #~ "Wyłącza wyświetlanie okna dialogowego hljs podczas uruchamiania ustawień, "
 #~ "jeśli hljs nie jest zainstalowany"
@@ -1894,8 +1914,7 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Nie rejestruj historii schowka"
 
 #~ msgid ""
-#~ "Dynamically adjust the height of the clipboard items based on their "
-#~ "content"
+#~ "Dynamically adjust the height of the clipboard items based on their content"
 #~ msgstr ""
 #~ "Dynamicznie dostosowuj wysokość elementów schowka na podstawie ich "
 #~ "zawartości"
@@ -1918,14 +1937,17 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Błąd odinstalowania %s"
 
 #~ msgid ""
-#~ "File preview shows a preview of the contents of a file. File info shows "
-#~ "some information about the file."
+#~ "File preview shows a preview of the contents of a file. File info shows some"
+#~ " information about the file."
 #~ msgstr ""
 #~ "Podgląd pliku wyświetla podgląd zawartości pliku. Informacje o pliku "
 #~ "wyświetlają wybrane dane na jego temat."
 
 #~ msgid "Files matching these glob patterns will not have a preview"
 #~ msgstr "Pliki pasujące do tych wzorców glob nie będą miały podglądu"
+
+#~ msgid "General"
+#~ msgstr "Ogólne"
 
 #~ msgid "Height of a clipboard item"
 #~ msgstr "Wysokość elementu schowka"
@@ -1937,6 +1959,12 @@ msgstr "Skróty klawiszowe"
 #~ msgstr ""
 #~ "Wymagana jest biblioteka Highlight.js, aby wyświetlać kod z podświetloną "
 #~ "składnią."
+
+#~ msgid "History Length"
+#~ msgstr "Długość historii"
+
+#~ msgid "History Time Limit"
+#~ msgstr "Limit czasu historii"
 
 #~ msgid "Horizontal position of the clipboard dialog"
 #~ msgstr "Pozycja poziomowa okna dialogowego schowka"
@@ -1975,11 +2003,10 @@ msgstr "Skróty klawiszowe"
 #~ "Liczba minut przechowywania nieprzypiętych i nieoznaczonych elementów w "
 #~ "historii schowka. Ustaw 0, aby wyłączyć limit czasu"
 
-#~ msgid ""
-#~ "Number of unpinned and untagged items to keep in the clipboard history"
+#~ msgid "Number of unpinned and untagged items to keep in the clipboard history"
 #~ msgstr ""
-#~ "Liczba nieprzypiętych i nieoznaczonych elementów przechowywanych w "
-#~ "historii schowka"
+#~ "Liczba nieprzypiętych i nieoznaczonych elementów przechowywanych w historii "
+#~ "schowka"
 
 #~ msgid "Orientation of the clipboard dialog"
 #~ msgstr "Orientacja okna dialogowego schowka'"
@@ -1997,6 +2024,16 @@ msgstr "Skróty klawiszowe"
 
 #~ msgid "Right margin of the clipboard dialog"
 #~ msgstr "Prawy margines okna dialogowego schowka"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr "Wybierz, ile elementów ma być przechowywanych w historii schowka"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
+#~ "disable the time limit"
+#~ msgstr ""
+#~ "Wybierz, ile minut mają być przechowywane elementy w historii schowka. Ustaw"
+#~ " 0, aby wyłączyć limit czasu"
 
 #~ msgid "Selects which backend to use for the clipboard database."
 #~ msgstr "Wybiera silnik używany przez bazę danych schowka."
@@ -2059,8 +2096,7 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Rozpoczynanie pobierania Highlight.js"
 
 #~ msgid "Store clipboard history in memory instead of on disk (Deprecated)"
-#~ msgstr ""
-#~ "Przechowuj historię schowka w pamięci zamiast na dysku (Przestarzałe)"
+#~ msgstr "Przechowuj historię schowka w pamięci zamiast na dysku (Przestarzałe)"
 
 #, javascript-format
 #~ msgid "Successfully Installed %s"
@@ -2123,8 +2159,8 @@ msgstr "Skróty klawiszowe"
 #~ "Szerokość lub wysokość okna dialogowego schowka w zależności od orientacji"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js from "
+#~ "\"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Możesz ręcznie zainstalować highlight.js, pobierając 'highlight.min.js' z "
 #~ "\"URL\" do \"Lokalizacja instalacji\"."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:16-0300\n"
+"POT-Creation-Date: 2026-09-29 12:26-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -122,8 +122,8 @@ msgstr "已复制颜色"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
 #: src/lib/ui/components/editDialog.ts:225
 #: src/lib/ui/components/editDialog.ts:252
@@ -250,9 +250,7 @@ msgstr "正则表达式"
 msgid ""
 "Clipboard content will be provided via stdin. Capture groups of the regular "
 "expression will be passed as positional parameters $1, $2, $3, ..."
-msgstr ""
-"剪贴板内容将通过 stdin 提供。正则表达式的捕获组将作为位置参数 $1, $2, "
-"$3, ... 进行传递。"
+msgstr "剪贴板内容将通过 stdin 提供。正则表达式的捕获组将作为位置参数 $1, $2, $3, ... 进行传递。"
 
 #: src/lib/preferences/actions/actionDialog.ts:441
 #: src/lib/preferences/actions/actionDialog.ts:523
@@ -651,8 +649,8 @@ msgstr "动态剪贴项高度"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content. "
-"Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content."
+" Only works in vertical orientation"
 msgstr "根据内容动态调整剪贴项的高度，仅适用于纵向。"
 
 #: src/lib/preferences/customization/itemCustomization.ts:55
@@ -1117,8 +1115,8 @@ msgid ""
 "either libgda 5.0 or 6.0 with SQLite support to use this feature. After "
 "installing libgda you will need to log out or restart your system."
 msgstr ""
-"跨会话存储剪贴板历史记录需要 libgda。请安装支持 SQLite 的 libgda 5.0 或 6.0 "
-"以使用此功能。安装 libgda 后，您需要注销或重启系统。"
+"跨会话存储剪贴板历史记录需要 libgda。请安装支持 SQLite 的 libgda 5.0 或 6.0 以使用此功能。安装 libgda "
+"后，您需要注销或重启系统。"
 
 #: src/lib/preferences/dependencies/dependencies.ts:149
 msgid "Install Libgda"
@@ -1134,9 +1132,7 @@ msgid ""
 "GSound is required to play sound effects. Install GSound to use this "
 "feature. After installing GSound you will need to log out or restart your "
 "system."
-msgstr ""
-"播放音效需要安装 GSound。请安装 GSound 以使用此功能。安装完成后，您需要注销或"
-"重启系统。"
+msgstr "播放音效需要安装 GSound。请安装 GSound 以使用此功能。安装完成后，您需要注销或重启系统。"
 
 #: src/lib/preferences/dependencies/dependencies.ts:187
 msgid "Install GSound"
@@ -1149,8 +1145,8 @@ msgstr "语法高亮不可用"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting "
-"files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting"
+" files."
 msgstr "请重新安装 Big Clipboard 软件包以恢复内置的代码高亮文件。"
 
 #: src/lib/preferences/dependencies/dependencies.ts:198
@@ -1179,6 +1175,9 @@ msgstr "常用语言始终可用。启用其他语言以支持代码检测和高
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "搜索"
 
@@ -1227,7 +1226,7 @@ msgstr "管理排除的应用"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "管理将被排除，不记录剪贴板历史的应用"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
 msgid "Behavior"
 msgstr "行为"
 
@@ -1291,47 +1290,47 @@ msgid ""
 msgstr "从剪贴板历史记录中选择项目时更新其复制日期"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "提示音"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "点击"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "蜂鸣"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "弦音"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "挥动"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "消息"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "即时消息"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "铃声"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "对话框警示"
 
@@ -1359,103 +1358,99 @@ msgstr "仅剪贴板内容"
 msgid "Icon and Clipboard Content"
 msgstr "图标和剪贴板内容"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "抖动指示器"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "复制剪贴板项时抖动指示器"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "发送通知"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr "复制剪贴板项时发送通知"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "复制剪贴板项时播放的声音"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "历史"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
 msgstr "内存"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "(recommended)"
 msgstr "（推荐）"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "SQLite"
 msgstr "SQLite"
 
-#: src/lib/preferences/general/historySettings.ts:72
+#: src/lib/preferences/general/historySettings.ts:73
 msgid "JSON"
 msgstr "JSON"
 
-#: src/lib/preferences/general/historySettings.ts:99
+#: src/lib/preferences/general/historySettings.ts:100
 msgid "Database"
 msgstr "数据库"
 
-#: src/lib/preferences/general/historySettings.ts:100
+#: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr "选择用于存储剪贴板内容的数据库类型"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "数据库位置"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "剪贴板历史"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "保留历史记录"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
-msgstr "选择系统重启、注销或关机时对剪贴板历史记录的操作"
+msgid "Choose what to keep after logout or restart."
+msgstr "选择注销或重启后要保留的内容。"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "清除"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "保留全部"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "保留已固定项"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "保留已固定/有标签项"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "历史记录长度"
+msgid "History Size"
+msgstr "历史记录大小"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr "选择剪贴板历史记录的保留条数"
+msgid "Maximum number of saved items."
+msgstr "保存条目的最大数量。"
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "历史记录时长限制"
+msgid "Expiration"
+msgstr "过期时间"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
-msgstr "选择剪贴板项目的保留分钟数，设置为 0 则不限制时长。"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
+msgstr "条目过期前的分钟数。设为 0 可永久保留。"
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1643,6 +1638,10 @@ msgstr "禁用快捷键"
 msgid "Disabled"
 msgstr "已禁用"
 
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "未找到结果"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1790,21 +1789,40 @@ msgstr "颜色(_R)"
 msgid "Type to search"
 msgstr "输入以搜索"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "通用"
+#: src/prefs.ts:63
+msgid "Advanced"
+msgstr "高级"
 
-#: src/prefs.ts:94
-msgid "Customization"
-msgstr "自定义"
+#: src/prefs.ts:66
+msgid "Storage"
+msgstr "存储"
 
-#: src/prefs.ts:111
+#: src/prefs.ts:71
+msgid "Panel Indicator"
+msgstr "面板指示器"
+
+#: src/prefs.ts:85
+msgid "Appearance"
+msgstr "外观"
+
+#: src/prefs.ts:104
 msgid "Shortcuts"
 msgstr "快捷键"
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
 #~ msgstr "从剪贴板历史记录中选择项目时自动粘贴"
+
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, or "
+#~ "shut down your system"
+#~ msgstr "选择系统重启、注销或关机时对剪贴板历史记录的操作"
+
+#~ msgid "Clipboard History"
+#~ msgstr "剪贴板历史"
+
+#~ msgid "Customization"
+#~ msgstr "自定义"
 
 #~ msgid "Dependencies"
 #~ msgstr "依赖项"
@@ -1823,11 +1841,20 @@ msgstr "快捷键"
 #~ msgid "Failed to load database"
 #~ msgstr "加载数据库失败"
 
+#~ msgid "General"
+#~ msgstr "通用"
+
 #~ msgid "Highlight.js Not Installed"
 #~ msgstr "Highlight.js 未安装"
 
 #~ msgid "Highlight.js is required to display syntax highlighted code."
 #~ msgstr "需要 Highlight.js 来显示代码语法高亮。"
+
+#~ msgid "History Length"
+#~ msgstr "历史记录长度"
+
+#~ msgid "History Time Limit"
+#~ msgstr "历史记录时长限制"
 
 #~ msgid "Install"
 #~ msgstr "安装"
@@ -1849,6 +1876,14 @@ msgstr "快捷键"
 
 #~ msgid "Paste on Copy"
 #~ msgstr "复制时粘贴"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr "选择剪贴板历史记录的保留条数"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
+#~ "disable the time limit"
+#~ msgstr "选择剪贴板项目的保留分钟数，设置为 0 则不限制时长。"
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "设置自定义主题的配色方案"
@@ -1889,7 +1924,6 @@ msgstr "快捷键"
 #~ msgstr "使用内存数据库"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
-#~ msgstr ""
-#~ "您可以从“网址”下载 highlight.min.js 到“安装位置”来手动安装 highlight.js。"
+#~ "You can manually install highlight.js by downloading highlight.min.js from "
+#~ "\"Url\" to \"Install Location\"."
+#~ msgstr "您可以从“网址”下载 highlight.min.js 到“安装位置”来手动安装 highlight.js。"

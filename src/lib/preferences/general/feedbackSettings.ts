@@ -218,28 +218,29 @@ export class FeedbackSettings extends Adw.PreferencesGroup {
 
 	private readonly _soundLabel: Gtk.Label;
 
-	constructor(prefs: Preferences, window: Adw.PreferencesWindow) {
+	constructor(prefs: Preferences, window: Adw.PreferencesWindow, indicatorGroup: Adw.PreferencesGroup) {
 		super({
 			title: _('Feedback'),
 		});
 
 		const indicatorDisplay = new Adw.ComboRow({
 			title: _('Indicator Display'),
-			subtitle: _('Choose how the clipboard indicator appears in the top panel'),
+			tooltip_text: _('Choose how the clipboard indicator appears in the top panel'),
 			model: Gtk.StringList.new([
 				_('Hidden'),
 				_('Icon Only'),
 				_('Clipboard Content Only'),
 				_('Icon and Clipboard Content'),
 			]),
+			use_subtitle: true,
 		});
-		this.add(indicatorDisplay);
+		indicatorGroup.add(indicatorDisplay);
 
 		const wiggleIndicator = new Adw.SwitchRow({
 			title: _('Wiggle Indicator'),
 			subtitle: _('Wiggle the indicator when a clipboard item is copied'),
 		});
-		this.add(wiggleIndicator);
+		indicatorGroup.add(wiggleIndicator);
 
 		const sendNotification = new Adw.SwitchRow({
 			title: _('Send Notification'),

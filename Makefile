@@ -199,7 +199,7 @@ $(DIST_DIR)/highlight.min.js: scripts/highlight/bundle.mjs src/lib/common/consta
 	node scripts/highlight/bundle.mjs
 
 # Build all
-$(DIST_ZIP): $(DIST_DIR)/metadata.json $(TSC) $(CSS) $(SCHEMAS) $(DEBUG_SCHEMAS) $(RESOURCES) $(DIST_DIR)/highlight.min.js | $(DIST_DIR)
+$(DIST_ZIP): $(DIST_DIR)/metadata.json $(TSC) $(CSS) $(SCHEMAS) $(DEBUG_SCHEMAS) $(RESOURCES) $(DIST_DIR)/highlight.min.js $(PO) | $(DIST_DIR)
 	gnome-extensions pack $(DIST_DIR) -o $(@D) \
 		--force \
 		--podir=$(PO_PATH) \

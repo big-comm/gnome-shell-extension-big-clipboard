@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 14:16-0300\n"
+"POT-Creation-Date: 2026-09-29 12:26-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Russian\n"
@@ -16,8 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
-"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 49.0\n"
 
 #: src/lib/common/actions.ts:182
@@ -125,8 +124,8 @@ msgstr "Скопирован цвет"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
 #: src/lib/ui/components/editDialog.ts:225
 #: src/lib/ui/components/editDialog.ts:252
@@ -257,8 +256,8 @@ msgid ""
 "expression will be passed as positional parameters $1, $2, $3, ..."
 msgstr ""
 "Содержимое буфера обмена будет передано через stdin. Захваченные группы "
-"регулярного выражения будут переданы как позиционные параметры $1, $2, "
-"$3, ..."
+"регулярного выражения будут переданы как позиционные параметры $1, $2, $3, "
+"..."
 
 #: src/lib/preferences/actions/actionDialog.ts:441
 #: src/lib/preferences/actions/actionDialog.ts:523
@@ -467,8 +466,8 @@ msgid ""
 "Show the clipboard dialog at the text cursor position whenever possible, "
 "otherwise at the pointer position"
 msgstr ""
-"Показывать диалоговое окно буфера обмена около текстового курсора, когда это "
-"возможно, иначе — около курсора мыши"
+"Показывать диалоговое окно буфера обмена около текстового курсора, когда это"
+" возможно, иначе — около курсора мыши"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:50
 msgid "Orientation"
@@ -661,8 +660,8 @@ msgstr "Динамическая высота элементов"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content. "
-"Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content."
+" Only works in vertical orientation"
 msgstr ""
 "Динамически изменять высоту элементов буфера обмена в зависимости от "
 "содержимого. Работает только в вертикальной ориентации"
@@ -1163,8 +1162,8 @@ msgstr "Подсветка синтаксиса недоступна"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting "
-"files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting"
+" files."
 msgstr ""
 "Переустановите пакет Big Clipboard, чтобы восстановить встроенные файлы "
 "подсветки кода."
@@ -1197,6 +1196,9 @@ msgstr ""
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "Поиск"
 
@@ -1245,7 +1247,7 @@ msgstr "Управление исключениями приложений"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Управлять приложениями, исключёнными из истории буфера обмена"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
 msgid "Behavior"
 msgstr "Поведение"
 
@@ -1312,47 +1314,47 @@ msgstr ""
 "Обновлять дату копирования элементов при выборе их из истории буфера обмена"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "Звук"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "Щелчок"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "Гудок"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "Струна"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "Свинг"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "Сообщение"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "Новое мгновенное сообщение"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "Звонок"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "Предупреждение диалогового окна"
 
@@ -1380,107 +1382,100 @@ msgstr "Только содержимое буфера обмена"
 msgid "Icon and Clipboard Content"
 msgstr "Значок и содержимое буфера обмена"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "Анимировать индикатор"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "Анимировать индикатор при копировании элемента буфера обмена"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "Отправлять уведомление"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr "Отправлять уведомление при копировании элемента буфера обмена"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Звук при копировании элемента буфера обмена"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "История"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
 msgstr "Память"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "(recommended)"
 msgstr "(рекомендуется)"
 
-#: src/lib/preferences/general/historySettings.ts:71
+#: src/lib/preferences/general/historySettings.ts:72
 msgid "SQLite"
 msgstr "SQLite"
 
-#: src/lib/preferences/general/historySettings.ts:72
+#: src/lib/preferences/general/historySettings.ts:73
 msgid "JSON"
 msgstr "JSON"
 
-#: src/lib/preferences/general/historySettings.ts:99
+#: src/lib/preferences/general/historySettings.ts:100
 msgid "Database"
 msgstr "База данных"
 
-#: src/lib/preferences/general/historySettings.ts:100
+#: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr "Выберите тип базы данных для хранения буфера обмена"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "Расположение базы данных"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "История буфера обмена"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "Сохранение истории"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
-msgstr ""
-"Выберите, что делать с историей буфера обмена при перезапуске, выходе из "
-"системы или её завершении"
+msgid "Choose what to keep after logout or restart."
+msgstr "Выберите, что сохранять после выхода из системы или перезагрузки."
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Очистить"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "Сохранять всё"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "Сохранять закреплённые"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "Сохранять закреплённые/помеченные"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "Длина истории"
+msgid "History Size"
+msgstr "Размер истории"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr "Выберите, сколько элементов хранить в истории буфера обмена"
+msgid "Maximum number of saved items."
+msgstr "Максимальное количество сохранённых элементов."
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "Срок хранения истории"
+msgid "Expiration"
+msgstr "Срок хранения"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
 msgstr ""
-"Выберите, сколько минут хранить элементы в истории буфера обмена. Значение 0 "
-"отключает ограничение по времени"
+"Время хранения элементов в минутах. Укажите 0 для бессрочного хранения."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1668,6 +1663,10 @@ msgstr "Отключить сочетание клавиш"
 msgid "Disabled"
 msgstr "Отключено"
 
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "Ничего не найдено"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1827,22 +1826,42 @@ msgstr "Цв__ет"
 msgid "Type to search"
 msgstr "Введите текст для поиска"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "Общие"
+#: src/prefs.ts:63
+msgid "Advanced"
+msgstr "Дополнительно"
 
-#: src/prefs.ts:94
-msgid "Customization"
-msgstr "Настройка вида"
+#: src/prefs.ts:66
+msgid "Storage"
+msgstr "Хранилище"
 
-#: src/prefs.ts:111
+#: src/prefs.ts:71
+msgid "Panel Indicator"
+msgstr "Индикатор панели"
+
+#: src/prefs.ts:85
+msgid "Appearance"
+msgstr "Внешний вид"
+
+#: src/prefs.ts:104
 msgid "Shortcuts"
 msgstr "Сочетания клавиш"
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
+#~ msgstr "Автоматически вставлять элементы буфера обмена при выборе из истории"
+
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, or "
+#~ "shut down your system"
 #~ msgstr ""
-#~ "Автоматически вставлять элементы буфера обмена при выборе из истории"
+#~ "Выберите, что делать с историей буфера обмена при перезапуске, выходе из "
+#~ "системы или её завершении"
+
+#~ msgid "Clipboard History"
+#~ msgstr "История буфера обмена"
+
+#~ msgid "Customization"
+#~ msgstr "Настройка вида"
 
 #~ msgid "Dependencies"
 #~ msgstr "Зависимости"
@@ -1861,12 +1880,20 @@ msgstr "Сочетания клавиш"
 #~ msgid "Failed to load database"
 #~ msgstr "Не удалось загрузить базу данных"
 
+#~ msgid "General"
+#~ msgstr "Общие"
+
 #~ msgid "Highlight.js Not Installed"
 #~ msgstr "Highlight.js не установлен"
 
 #~ msgid "Highlight.js is required to display syntax highlighted code."
-#~ msgstr ""
-#~ "Для отображения кода с подсветкой синтаксиса требуется Highlight.js."
+#~ msgstr "Для отображения кода с подсветкой синтаксиса требуется Highlight.js."
+
+#~ msgid "History Length"
+#~ msgstr "Длина истории"
+
+#~ msgid "History Time Limit"
+#~ msgstr "Срок хранения истории"
 
 #~ msgid "Install"
 #~ msgstr "Установить"
@@ -1888,6 +1915,16 @@ msgstr "Сочетания клавиш"
 
 #~ msgid "Paste on Copy"
 #~ msgstr "Вставлять при копировании"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr "Выберите, сколько элементов хранить в истории буфера обмена"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
+#~ "disable the time limit"
+#~ msgstr ""
+#~ "Выберите, сколько минут хранить элементы в истории буфера обмена. Значение 0"
+#~ " отключает ограничение по времени"
 
 #~ msgid "Show Indicator"
 #~ msgstr "Показывать индикатор"
@@ -1916,8 +1953,8 @@ msgstr "Сочетания клавиш"
 #~ msgstr "Использовать базу данных в памяти"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js from "
+#~ "\"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Можно установить Highlight.js вручную, скачав highlight.min.js из «Url» в "
 #~ "«Место установки»."
