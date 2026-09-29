@@ -1,0 +1,103 @@
+// Opaque tag fills. Palette is independent of custom theme opacity.
+@mixin tagged_card($tag) {
+	$base: if($variant == 'light', #ffffff, #202024);
+	$fill: mix($tag, $base, if($variant == 'light', 24%, 36%));
+	$text: if($variant == 'light', #202024, #ffffff);
+	$secondary: mix($text, $fill, 94%);
+
+	background-color: $fill;
+	color: $text;
+
+	&:hover {
+		background-color: mix($text, $fill, 6%);
+	}
+	&:active,
+	&:hover:active {
+		background-color: mix($text, $fill, 8%);
+	}
+	&:focus {
+		box-shadow: inset 0 0 0 2px $text;
+	}
+
+	.clipboard-item-header,
+	.clipboard-item-header .clipboard-item-title-entry,
+	.link-url {
+		color: $text;
+	}
+
+	.clipboard-item-header .event-time,
+	.content-info,
+	.content-preview,
+	.character-item-chars,
+	.link-preview .link-title.no-title,
+	.link-preview .link-description.no-description {
+		color: $secondary;
+	}
+
+	.clipboard-item-header .clipboard-item-header-buttons {
+		.clipboard-item-tag-button {
+			color: $text;
+		}
+		.clipboard-item-header-button {
+			color: $text;
+			background-color: mix($text, $fill, 12%);
+			&.menu-button {
+				background-color: transparent;
+			}
+			&:hover {
+				background-color: mix($text, $fill, 22%);
+			}
+			&:active {
+				background-color: mix($text, $fill, 30%);
+			}
+			&:focus {
+				box-shadow: inset 0 0 0 2px $text;
+			}
+			&:checked {
+				background-color: $text;
+				color: $fill;
+				&:hover,
+				&:active {
+					background-color: $secondary;
+				}
+			}
+		}
+	}
+
+	// Keep syntax highlighting on its original neutral surface.
+	&.code-item .code-item-content {
+		background-color: $base;
+		color: $text;
+		border-radius: $base_border_radius;
+	}
+}
+
+.clipboard-item {
+	&.tag-blue {
+		@include tagged_card($tag_color_blue);
+	}
+	&.tag-teal {
+		@include tagged_card($tag_color_teal);
+	}
+	&.tag-green {
+		@include tagged_card($tag_color_green);
+	}
+	&.tag-yellow {
+		@include tagged_card($tag_color_yellow);
+	}
+	&.tag-orange {
+		@include tagged_card($tag_color_orange);
+	}
+	&.tag-red {
+		@include tagged_card($tag_color_red);
+	}
+	&.tag-pink {
+		@include tagged_card($tag_color_pink);
+	}
+	&.tag-purple {
+		@include tagged_card($tag_color_purple);
+	}
+	&.tag-slate {
+		@include tagged_card($tag_color_slate);
+	}
+}

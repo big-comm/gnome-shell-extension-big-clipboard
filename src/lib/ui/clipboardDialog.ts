@@ -35,6 +35,7 @@ import { ImageItem } from './items/imageItem.js';
 import { LinkItem } from './items/linkItem.js';
 import { TextItem } from './items/textItem.js';
 import { CenterBox, CollapsibleHeaderLayout, FitConstraint } from './layout.js';
+import { PanelBlur } from './panelBlur.js';
 import { SearchChange, SearchEntry, SearchQuery } from './searchEntry.js';
 
 const ANIMATION_TIME = 100;
@@ -285,6 +286,7 @@ export class ClipboardDialog extends St.Widget {
 	private readonly _widthConstraint: Clutter.BindConstraint;
 
 	private readonly _dialog: St.BoxLayout;
+	private readonly _panelBlur: PanelBlur;
 	private readonly _header: ClipboardDialogHeader;
 	private readonly _scrollView: ClipboardScrollView;
 	private readonly _footer: ClipboardDialogFooter;
@@ -321,6 +323,7 @@ export class ClipboardDialog extends St.Widget {
 		this._dialog.add_constraint(this._fitConstraint);
 
 		global.focus_manager.add_group(this._dialog);
+		this._panelBlur = new PanelBlur(ext, this._dialog);
 
 		// Header
 		this._header = new ClipboardDialogHeader(ext);
@@ -428,6 +431,7 @@ export class ClipboardDialog extends St.Widget {
 	}
 
 	override destroy() {
+		this._panelBlur.destroy();
 		this.clearEntries();
 		(Main.inputMethod as Clutter.InputMethod).disconnectObject(this);
 		this._ibusManager.disconnectObject(this);
@@ -498,6 +502,8 @@ export class ClipboardDialog extends St.Widget {
 		this._monitorConstraint.index = global.display.get_current_monitor();
 		Main.layoutManager.emit('system-modal-opened');
 
+		// Authentication dialogs may have been added after this persistent actor.
+		this.get_parent()?.set_child_above_sibling(this, null);
 		this._dialog.opacity = 0;
 		this.show();
 
@@ -985,7 +991,7 @@ export class ClipboardDialog extends St.Widget {
 		}
 
 		// Navigate
-		if (global.focus_manager.navigate_from_event(event)) return Clutter.EVENT_STOP;
+		if (VERSION < 51 && global.focus_manager.navigate_from_event(event)) return Clutter.EVENT_STOP;
 
 		return super.vfunc_key_press_event(event);
 	}

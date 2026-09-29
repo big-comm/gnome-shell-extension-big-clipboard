@@ -6,6 +6,7 @@ import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk?version=4.0';
 
 Gio.resources_register(Gio.Resource.load('/usr/share/gnome-shell/org.gnome.Shell.Extensions.src.gresource'));
+const { PACKAGE_VERSION } = await import('resource:///org/gnome/Shell/Extensions/js/misc/config.js');
 const { ExtensionPreferences } = await import('resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js');
 if (GLib.getenv('GSETTINGS_BACKEND') !== 'memory')
 	throw new Error('Set GSETTINGS_BACKEND=memory for isolated settings');
@@ -68,6 +69,13 @@ async function check(window, prefs) {
 	assert(settings.get_int('history-time') === 45, 'Expiration writes existing setting');
 	limit.value = originalLimit;
 	select(1);
+	const blur = row('Blur Background');
+	assert(!!blur, 'background blur control exists');
+	assert(blur.sensitive === Number.parseInt(PACKAGE_VERSION) >= 51, 'background blur requires GNOME 51');
+	const theme = settings.get_child('theme');
+	blur.active = true;
+	assert(theme.get_boolean('blur-background'), 'background blur binding');
+	blur.active = false;
 	const indicator = row('Indicator Display');
 	assert(!!indicator, 'indicator controls moved to Appearance');
 	const originalIndicator = indicator.selected;

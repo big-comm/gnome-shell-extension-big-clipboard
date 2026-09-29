@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 12:26-0300\n"
+"POT-Creation-Date: 2026-09-29 13:57-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -1036,7 +1036,7 @@ msgid "Choose between pre-defined profiles"
 msgstr "Önceden tanımlanmış profiller arasından seçim yap"
 
 #: src/lib/preferences/customization/profiles.ts:217
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -1045,82 +1045,94 @@ msgid "Compact"
 msgstr "Sıkışık"
 
 #: src/lib/preferences/customization/profiles.ts:229
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Custom"
 msgstr "Özel"
 
-#: src/lib/preferences/customization/themeCustomization.ts:69
-#: src/lib/preferences/customization/themeCustomization.ts:73
+#: src/lib/preferences/customization/themeCustomization.ts:71
+#: src/lib/preferences/customization/themeCustomization.ts:75
 msgid "Theme"
 msgstr "Tema"
 
-#: src/lib/preferences/customization/themeCustomization.ts:74
+#: src/lib/preferences/customization/themeCustomization.ts:76
 msgid "Set the preferred theme"
 msgstr "Tercih edilen temayı ayarla"
 
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Yaru"
 msgstr "Yaru"
 
-#: src/lib/preferences/customization/themeCustomization.ts:89
-#: src/lib/preferences/customization/themeCustomization.ts:96
+#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:98
 msgid "Color Scheme"
 msgstr "Renk Şeması"
 
-#: src/lib/preferences/customization/themeCustomization.ts:90
-#: src/lib/preferences/customization/themeCustomization.ts:97
+#: src/lib/preferences/customization/themeCustomization.ts:92
+#: src/lib/preferences/customization/themeCustomization.ts:99
 msgid "Set the color scheme of the theme"
 msgstr "Temanın renk şemasını ayarla"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Dark"
 msgstr "Koyu"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "High Contrast"
 msgstr "Yüksek Kontrast"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Light"
 msgstr "Açık"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "System"
 msgstr "Sistem"
 
-#: src/lib/preferences/customization/themeCustomization.ts:104
+#: src/lib/preferences/customization/themeCustomization.ts:106
 msgid "Background Color"
 msgstr "Arka Plan Rengi"
 
-#: src/lib/preferences/customization/themeCustomization.ts:105
+#: src/lib/preferences/customization/themeCustomization.ts:107
 msgid "Set the background color of the clipboard dialog"
 msgstr "Pano iletişim kutusunun arka plan rengini ayarla"
 
-#: src/lib/preferences/customization/themeCustomization.ts:111
+#: src/lib/preferences/customization/themeCustomization.ts:113
 msgid "Text Color"
 msgstr "Metin Rengi"
 
-#: src/lib/preferences/customization/themeCustomization.ts:112
+#: src/lib/preferences/customization/themeCustomization.ts:114
 msgid "Set the text color of the clipboard dialog"
 msgstr "Pano iletişim kutusunun metin rengini ayarla"
 
-#: src/lib/preferences/customization/themeCustomization.ts:118
+#: src/lib/preferences/customization/themeCustomization.ts:120
 msgid "Item Color"
 msgstr "Öğe Rengi"
 
-#: src/lib/preferences/customization/themeCustomization.ts:119
+#: src/lib/preferences/customization/themeCustomization.ts:121
 msgid "Set the background color of clipboard items"
 msgstr "Pano öğelerinin arka plan rengini ayarla"
 
-#: src/lib/preferences/customization/themeCustomization.ts:125
+#: src/lib/preferences/customization/themeCustomization.ts:127
 msgid "Search Color"
 msgstr "Arama Rengi"
 
-#: src/lib/preferences/customization/themeCustomization.ts:126
+#: src/lib/preferences/customization/themeCustomization.ts:128
 msgid "Set the background color of the search bar"
 msgstr "Arama çubuğunun arka plan rengini ayarla"
+
+#: src/lib/preferences/customization/themeCustomization.ts:134
+msgid "Blur Background"
+msgstr "Arka Planı Bulanıklaştır"
+
+#: src/lib/preferences/customization/themeCustomization.ts:135
+msgid ""
+"Blur only the panel background on GNOME 51 with Frosted Glass active. Cards "
+"stay opaque."
+msgstr ""
+"GNOME 51’de Frosted Glass etkinken yalnızca panel arka planını "
+"bulanıklaştırır. Kartlar opak kalır."
 
 #: src/lib/preferences/dependencies/dependencies.ts:143
 #: src/lib/preferences/dependencies/dependencies.ts:219
@@ -1449,7 +1461,7 @@ msgstr ""
 " seçin."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
+#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Temizle"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 12:26-0300\n"
+"POT-Creation-Date: 2026-09-29 14:19-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1016,7 +1016,7 @@ msgid "Choose between pre-defined profiles"
 msgstr ""
 
 #: src/lib/preferences/customization/profiles.ts:217
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Default"
 msgstr ""
 
@@ -1025,81 +1025,91 @@ msgid "Compact"
 msgstr ""
 
 #: src/lib/preferences/customization/profiles.ts:229
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Custom"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:69
-#: src/lib/preferences/customization/themeCustomization.ts:73
+#: src/lib/preferences/customization/themeCustomization.ts:71
+#: src/lib/preferences/customization/themeCustomization.ts:75
 msgid "Theme"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:74
+#: src/lib/preferences/customization/themeCustomization.ts:76
 msgid "Set the preferred theme"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Yaru"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:89
-#: src/lib/preferences/customization/themeCustomization.ts:96
+#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:98
 msgid "Color Scheme"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:90
-#: src/lib/preferences/customization/themeCustomization.ts:97
+#: src/lib/preferences/customization/themeCustomization.ts:92
+#: src/lib/preferences/customization/themeCustomization.ts:99
 msgid "Set the color scheme of the theme"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Dark"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "High Contrast"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Light"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "System"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:104
+#: src/lib/preferences/customization/themeCustomization.ts:106
 msgid "Background Color"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:105
+#: src/lib/preferences/customization/themeCustomization.ts:107
 msgid "Set the background color of the clipboard dialog"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:111
+#: src/lib/preferences/customization/themeCustomization.ts:113
 msgid "Text Color"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:112
+#: src/lib/preferences/customization/themeCustomization.ts:114
 msgid "Set the text color of the clipboard dialog"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:118
+#: src/lib/preferences/customization/themeCustomization.ts:120
 msgid "Item Color"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:119
+#: src/lib/preferences/customization/themeCustomization.ts:121
 msgid "Set the background color of clipboard items"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:125
+#: src/lib/preferences/customization/themeCustomization.ts:127
 msgid "Search Color"
 msgstr ""
 
-#: src/lib/preferences/customization/themeCustomization.ts:126
+#: src/lib/preferences/customization/themeCustomization.ts:128
 msgid "Set the background color of the search bar"
+msgstr ""
+
+#: src/lib/preferences/customization/themeCustomization.ts:134
+msgid "Blur Background"
+msgstr ""
+
+#: src/lib/preferences/customization/themeCustomization.ts:135
+msgid ""
+"Blur only the panel background on GNOME 51 with Frosted Glass active. Cards "
+"stay opaque."
 msgstr ""
 
 #: src/lib/preferences/dependencies/dependencies.ts:143
@@ -1415,7 +1425,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr ""
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
+#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr ""

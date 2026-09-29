@@ -97,6 +97,7 @@ export const Settings = {
 	},
 
 	Theme: {
+		BlurBackground: 'blur-background',
 		Theme: 'theme',
 		ColorScheme: 'color-scheme',
 		CustomColorScheme: 'custom-color-scheme',
@@ -243,6 +244,7 @@ export const SettingsTypes = {
 	},
 
 	[ChildKeys.Theme]: {
+		[Settings.Theme.BlurBackground]: 'boolean',
 		[Settings.Theme.Theme]: 'enum',
 		[Settings.Theme.ColorScheme]: 'enum',
 		[Settings.Theme.CustomColorScheme]: 'enum',

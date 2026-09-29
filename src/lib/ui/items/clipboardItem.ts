@@ -6,7 +6,7 @@ import Shell from 'gi://Shell';
 import St from 'gi://St';
 
 import type CopyousExtension from '../../../extension.js';
-import { ActiveState } from '../../common/constants.js';
+import { ActiveState, Tags } from '../../common/constants.js';
 import { flagsParamSpec, registerClass } from '../../common/gjs.js';
 import { Icon } from '../../common/icons.js';
 import { MiddleClickAction } from '../../common/settings.js';
@@ -35,6 +35,7 @@ export class ClipboardItem extends St.Button {
 	private _protectPinned: boolean = true;
 	private _protectTagged: boolean = true;
 	private _middleClickAction: MiddleClickAction = MiddleClickAction.None;
+	private _tagClass: string | null = null;
 	private _headerShown: boolean | null = null;
 	private _searchText: readonly string[] | null = null;
 
@@ -119,12 +120,15 @@ export class ClipboardItem extends St.Button {
 		);
 
 		this.updateSize();
+		this.updateTag();
 		this.updateProtection();
 		this.updateMiddleClickAction();
 		this.updateHeader();
 
 		// Connect signals
 		entry.connectObject(
+			'notify::tag',
+			this.updateTag.bind(this),
 			'notify::content',
 			this.invalidateSearchText.bind(this),
 			'notify::metadata',
@@ -165,6 +169,15 @@ export class ClipboardItem extends St.Button {
 	private get searchText(): readonly string[] {
 		this._searchText ??= entrySearchText(this.entry);
 		return this._searchText;
+	}
+
+	private updateTag() {
+		const tag = Tags.find((value) => value === this.entry.tag);
+		const tagClass = tag ? `tag-${tag}` : null;
+		if (tagClass === this._tagClass) return;
+		if (this._tagClass) this.remove_style_class_name(this._tagClass);
+		this._tagClass = tagClass;
+		if (tagClass) this.add_style_class_name(tagClass);
 	}
 
 	private updateSize() {

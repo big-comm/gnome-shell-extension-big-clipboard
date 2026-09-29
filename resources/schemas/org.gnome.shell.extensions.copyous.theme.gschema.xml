@@ -2,6 +2,10 @@
 <?xml-model href="https://gitlab.gnome.org/GNOME/glib/-/raw/HEAD/gio/gschema.dtd"?>
 <schemalist>
 	<schema id="org.gnome.shell.extensions.copyous.theme" path="/org/gnome/shell/extensions/copyous/theme/">
+		<key name="blur-background" type="b">
+			<default>false</default>
+			<summary>Blur the panel background on GNOME 51 with Frosted Glass</summary>
+		</key>
 		<key name="theme" enum="org.gnome.shell.extensions.copyous.Theme">
 			<default>'default'</default>
 			<summary>The preferred theme</summary>
