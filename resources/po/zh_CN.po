@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 13:57-0300\n"
+"POT-Creation-Date: 2026-09-29 18:45-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -68,20 +68,20 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "二维码"
 
-#: src/lib/database/entryTracker.ts:133 src/lib/database/entryTracker.ts:148
+#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:149
 msgid "Failed to load Gda"
 msgstr "加载 Gda 失败"
 
-#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:148
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:135 src/lib/database/entryTracker.ts:149
+#: src/lib/database/entryTracker.ts:165
 msgid "Clipboard history will be disabled"
 msgstr "剪贴板历史将被禁用"
 
-#: src/lib/database/entryTracker.ts:135
+#: src/lib/database/entryTracker.ts:136
 msgid "Disable Warning"
 msgstr "禁用警告"
 
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:165
 msgid "Failed to load JSON"
 msgstr "加载 JSON 失败"
 
@@ -125,8 +125,8 @@ msgstr "已复制颜色"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:225
-#: src/lib/ui/components/editDialog.ts:252
+#: src/lib/ui/components/editDialog.ts:239
+#: src/lib/ui/components/editDialog.ts:266
 msgid "None"
 msgstr "无"
 
@@ -177,7 +177,7 @@ msgstr "多文件"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "链接"
 
@@ -215,7 +215,8 @@ msgstr "选择哪些类型被允许"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:376
+#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "取消"
 
@@ -341,7 +342,8 @@ msgid "Edit Action"
 msgstr "编辑动作"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:383
+#: src/lib/ui/components/subjectsDialog.ts:36
 msgid "Save"
 msgstr "保存"
 
@@ -353,7 +355,8 @@ msgstr "添加子菜单"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:93
+#: src/lib/ui/components/clipboardItemMenu.ts:98
+#: src/lib/ui/components/editDialog.ts:396
 msgid "Edit"
 msgstr "编辑"
 
@@ -1652,6 +1655,10 @@ msgstr "已禁用"
 msgid "No Results Found"
 msgstr "未找到结果"
 
+#: src/lib/ui/components/clipboardItemMenu.ts:90
+msgid "Subjects…"
+msgstr "主题…"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1693,9 +1700,61 @@ msgstr "文件丢失"
 msgid "Error"
 msgstr "错误"
 
-#: src/lib/ui/components/editDialog.ts:277
+#: src/lib/ui/components/editDialog.ts:297
 msgid "Edit Clipboard Item"
 msgstr "编辑剪贴板项目"
+
+#: src/lib/ui/components/editDialog.ts:317
+#: src/lib/ui/components/subjectsDialog.ts:16
+#: src/lib/ui/components/subjectsDialog.ts:27
+msgid "Subjects"
+msgstr "主题"
+
+#: src/lib/ui/components/editDialog.ts:350
+msgid "Preview shortened. The full text is preserved."
+msgstr "预览已缩短，完整文本仍会保留。"
+
+#: src/lib/ui/components/editDialog.ts:403
+msgid "Preview"
+msgstr "预览"
+
+#: src/lib/ui/components/editDialog.ts:415
+#: src/lib/ui/components/editDialog.ts:440
+msgid "Markdown formatting"
+msgstr "Markdown 格式"
+
+#: src/lib/ui/components/editDialog.ts:422
+msgid "Bold (Ctrl+B)"
+msgstr "粗体 (Ctrl+B)"
+
+#: src/lib/ui/components/editDialog.ts:423
+msgid "Italic (Ctrl+I)"
+msgstr "斜体 (Ctrl+I)"
+
+#: src/lib/ui/components/editDialog.ts:424
+msgid "Bullet list"
+msgstr "无序列表"
+
+#: src/lib/ui/components/editDialog.ts:425
+msgid "Numbered list"
+msgstr "有序列表"
+
+#: src/lib/ui/components/editDialog.ts:426
+msgid "Quote"
+msgstr "引用"
+
+#: src/lib/ui/components/editDialog.ts:427
+msgid "Inline code"
+msgstr "行内代码"
+
+#: src/lib/ui/components/subjectsDialog.ts:15
+msgid "Subjects, separated by commas"
+msgstr "主题，以逗号分隔"
+
+#: src/lib/ui/components/subjectsDialog.ts:28
+msgid ""
+"Separate subjects with commas. Search with # followed by a subject name."
+msgstr "用逗号分隔主题。输入 # 加主题名称进行搜索。"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1759,43 +1818,43 @@ msgstr "剪贴板是空的"
 msgid "No Items Found"
 msgstr "未找到项目"
 
-#: src/lib/ui/searchEntry.ts:155
+#: src/lib/ui/searchEntry.ts:161
 msgid "__All"
 msgstr "全部(_A)"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:165
 msgid "__Text"
 msgstr "文本(_T)"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:166
 msgid "__Code"
 msgstr "代码(_C)"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:167
 msgid "__Image"
 msgstr "图片(_I)"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:168
 msgid "__File"
 msgstr "文件(_F)"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:169
 msgid "File__s"
 msgstr "文件(_S)"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:170
 msgid "__Link"
 msgstr "链接(_L)"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:171
 msgid "C__haracter"
 msgstr "字符(_H)"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:172
 msgid "Colo__r"
 msgstr "颜色(_R)"
 
-#: src/lib/ui/searchEntry.ts:278
+#: src/lib/ui/searchEntry.ts:284
 msgid "Type to search"
 msgstr "输入以搜索"
 

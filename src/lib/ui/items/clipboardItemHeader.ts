@@ -432,6 +432,13 @@ export class ClipboardItemHeader extends St.BoxLayout {
 		}
 	}
 
+	private _hasSubjects = false;
+
+	set hasSubjects(value: boolean) {
+		this._hasSubjects = value;
+		this.updateHeaderControls();
+	}
+
 	private updateHeaderControls() {
 		let visible = true;
 		if (this._isEditing) {
@@ -443,7 +450,10 @@ export class ClipboardItemHeader extends St.BoxLayout {
 		}
 
 		let deleteVisible = true;
-		if (((this._protectPinned && this.pinned) || (this._protectTagged && this.tag)) && !this._forceDelete) {
+		if (
+			((this._protectPinned && this.pinned) || (this._protectTagged && (this.tag || this._hasSubjects))) &&
+			!this._forceDelete
+		) {
 			deleteVisible = false;
 		}
 

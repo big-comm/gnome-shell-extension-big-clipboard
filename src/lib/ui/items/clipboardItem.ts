@@ -2,6 +2,7 @@ import Clutter from 'gi://Clutter';
 import Cogl from 'gi://Cogl';
 import GObject from 'gi://GObject';
 import Graphene from 'gi://Graphene';
+import Pango from 'gi://Pango';
 import Shell from 'gi://Shell';
 import St from 'gi://St';
 
@@ -10,6 +11,7 @@ import { ActiveState, Tags } from '../../common/constants.js';
 import { flagsParamSpec, registerClass } from '../../common/gjs.js';
 import { Icon } from '../../common/icons.js';
 import { MiddleClickAction } from '../../common/settings.js';
+import { subjectNames } from '../../common/subjects.js';
 import { ClipboardEntry } from '../../database/database.js';
 import { entrySearchText } from '../../database/searchText.js';
 import { ButtonMask } from '../../misc/compatibility.js';
@@ -80,6 +82,27 @@ export class ClipboardItem extends St.Button {
 			effect: new HoleEffect(this._header.buttons),
 		});
 		this._box.add_child(this._content);
+		const subjects = new St.BoxLayout({ style_class: 'clipboard-item-subjects', clip_to_allocation: true });
+		const updateSubjects = () => {
+			subjects.destroy_all_children();
+			const names = subjectNames(entry.subjects);
+			const visible = names.slice(0, 2);
+			if (names.length > 2) visible.push(`+${names.length - 2}`);
+			for (const name of visible) {
+				const chip = new St.Label({
+					text: name,
+					style_class: 'clipboard-subject',
+					accessible_name: entry.subjects,
+				});
+				chip.clutter_text.ellipsize = Pango.EllipsizeMode.END;
+				subjects.add_child(chip);
+			}
+			subjects.visible = names.length > 0;
+			this._header.hasSubjects = names.length > 0;
+		};
+		entry.connectObject('notify::subjects', updateSubjects, this);
+		this._box.add_child(subjects);
+		updateSubjects();
 
 		// Bind properties
 		entry.bind_property(
@@ -239,7 +262,10 @@ export class ClipboardItem extends St.Button {
 	}
 
 	private delete() {
-		if (!(this._protectPinned && this.entry.pinned) && !(this._protectTagged && this.entry.tag)) {
+		if (
+			!(this._protectPinned && this.entry.pinned) &&
+			!(this._protectTagged && (this.entry.tag || this.entry.subjects))
+		) {
 			this.entry.emit('delete');
 		}
 	}

@@ -15,6 +15,7 @@ import { Shortcut } from '../../misc/shortcuts.js';
 import { ActionPopupMenuSection, ActionPopupMenuSectionSignals } from './actionMenu.js';
 import { EditDialog } from './editDialog.js';
 import { ShortcutLabel } from './shortcutLabel.js';
+import { SubjectsDialog } from './subjectsDialog.js';
 import { TagsItem } from './tagsItem.js';
 
 function canEdit(entry: ClipboardEntry): boolean {
@@ -85,6 +86,10 @@ export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectio
 		});
 
 		this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
+
+		this.addAction(_('Subjects…'), () => {
+			if (this._entry) new SubjectsDialog(this._entry).open();
+		});
 
 		// Edit
 		this._editSection = new PopupMenu.PopupMenuSection();

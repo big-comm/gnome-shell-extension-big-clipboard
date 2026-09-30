@@ -1,6 +1,15 @@
-# <img src="resources/images/icon.svg" height="32px" alt="Big Clipboard icon"/> Big Clipboard
-
-[![License: GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](LICENSE)
+<h1 align="center">
+  <img src="resources/images/icon.svg" height="48" alt=""/><br/>
+  Big Clipboard
+</h1>
+<p align="center">Clipboard history for GNOME, maintained by BigCommunity.</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/GJS-GNOME%20Shell-4A86CF?logo=gnome&logoColor=white" alt="GJS / GNOME Shell"/>
+  <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white" alt="SQLite"/>
+  <img src="https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white" alt="Sass"/>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg" alt="License: GPL-3.0-or-later"/></a>
+</p>
 
 **Big Clipboard** is a fork of [Copyous by boerdereinar](https://github.com/boerdereinar/copyous), maintained by **BigCommunity** for integration with [Big Gnome Center](https://github.com/big-comm/big-gnome-center).
 
@@ -18,6 +27,8 @@ Hybrid on GNOME 51.0, with vertical clipboard history and English sample entries
 
 | Area | Changes in this fork |
 | --- | --- |
+| Notes and subjects | Edit text with Markdown tools and an on-demand preview. Assign multiple subject labels alongside color tags; search subjects with `#name`. |
+| Appearance | Opaque colored cards with contrasting text, sidebar preferences and optional GNOME 51 background blur. |
 | Opening large histories | Prepare the first **12 cards** instead of creating a card for every saved entry. Load additional pages while scrolling. |
 | Search and navigation | Search the full history without creating every card. The End key loads remaining matches in small batches. Closing returns to the first page. |
 | Image previews | Load nearby previews on demand. Read image metadata asynchronously and cancel pending work when cards are destroyed. |
@@ -38,6 +49,16 @@ With 1000 mixed entries, the first painted frame took about **142 ms on GNOME 50
 Paging limits initial card creation. Entry metadata still loads into memory at startup, and scrolling through the entire history can create more cards. GNOME 48/49 remain declared upstream targets but were not tested in this VM round.
 
 See the [performance report](docs/PERFORMANCE.md) for measurements, test coverage and remaining limitations.
+
+## Notes and organization
+
+Choose **Edit** on a text card to use bold, italic, bullet and numbered lists, quotes, inline code or links. **Ctrl+B** and **Ctrl+I** format the selection. Switch between **Edit** and **Preview**; saving and copying retain the Markdown source. Code cards keep their language selector and plain code editor.
+
+The preview supports these tools, headings and fenced code blocks. It treats HTML as text, never fetches remote content and never executes links. Only the first 20,000 characters are rendered in the preview; the complete note remains stored and copied.
+
+Choose **Subjects…** from any card's menu, including images and files, or edit subjects with a note. Separate names with commas, for example `Work, Research`. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.
+
+Subject labels follow the same retention and deletion protection settings as color tags. SQLite receives an additive, transactional schema update; JSON gains an optional field. Existing text, images, pins, colors, metadata and storage locations remain intact. As with color tags, explicit **clear all** removes labeled items too.
 
 ## Features inherited from Copyous
 
@@ -60,7 +81,7 @@ cd pkgbuild
 makepkg -s
 ```
 
-The PKGBUILD explicitly fetches **`main`**. Changes must be published to that branch before a remote package build includes them; building the PKGBUILD from another branch does not change its source branch.
+The standalone PKGBUILD defaults to **`main`**. BigCommunity testing builds use **`dev-talesam`**, selected by the build pipeline. Check the source revision in the build log; changing the local branch alone does not change the standalone PKGBUILD source.
 
 ### Build this fork from source
 
@@ -78,7 +99,7 @@ make RELEASE=1 install
 Log out and back in after replacing an installed extension so GNOME Shell loads the updated JavaScript. Then enable Big Clipboard:
 
 ```sh
-gnome-extensions enable copyous@boerdereinar.dev
+gnome-extensions enable big-clipboard@communitybig.org
 ```
 
 The [upstream GNOME Extensions listing](https://extensions.gnome.org/extension/8834/copyous/) and [upstream releases](https://github.com/boerdereinar/copyous/releases) distribute the original project, not this BigCommunity fork.
@@ -87,7 +108,7 @@ The [upstream GNOME Extensions listing](https://extensions.gnome.org/extension/8
 
 You can open the extension settings either through the panel indicator, [Extension Manager](https://flathub.org/en/apps/com.mattjakeman.ExtensionManager) or by running the following command:
 ```shell
-gnome-extensions prefs copyous@boerdereinar.dev
+gnome-extensions prefs big-clipboard@communitybig.org
 ```
 
 ## Shortcuts

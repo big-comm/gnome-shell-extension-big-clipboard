@@ -10,7 +10,7 @@ import { ItemType, getDataPath } from '../common/constants.js';
 import { ClipboardHistory } from '../common/settings.js';
 import { ClipboardEntry, Database, Metadata } from './database.js';
 
-const DATABASE_VERSION = 2;
+const DATABASE_VERSION = 3;
 
 interface SqlBuilder<T> extends Omit<Gda5.SqlBuilder, 'add_field_value_as_gvalue'> {
 	add_id<K extends Extract<keyof T, string>>(str: K): Gda5.SqlBuilderId;
@@ -300,11 +300,15 @@ export class GdaDatabase implements Database {
 			await async_statement_execute_non_select(this._Gda, this._connection, addVersionStmt, this._cancellable);
 		}
 
-		// Run migrations based on version
-		switch (version) {
-			case 0: {
-				// Create table
-				const [stmt] = this._connection.parse_sql_string(`
+		// Keep the additive schema change and version update atomic.
+		if (version > DATABASE_VERSION) throw new Error('Unsupported clipboard database version');
+		this._connection.begin_transaction(null, this._Gda.TransactionIsolation.UNKNOWN);
+		try {
+			// Run migrations based on version
+			switch (version) {
+				case 0: {
+					// Create table
+					const [stmt] = this._connection.parse_sql_string(`
 					CREATE TABLE IF NOT EXISTS 'clipboard' (
 						'id'       integer   NOT NULL UNIQUE PRIMARY KEY AUTOINCREMENT,
 						'type'     text      NOT NULL,
@@ -316,37 +320,65 @@ export class GdaDatabase implements Database {
 						UNIQUE ('type', 'content')
 					);
 				`);
-				await async_statement_execute_non_select(this._Gda, this._connection, stmt, this._cancellable);
-			}
-			/* falls through */
-			case 1: {
-				try {
-					// Add title column
-					const [addColumnStmt] = this._connection.parse_sql_string(
-						`ALTER TABLE 'clipboard' ADD COLUMN 'title' text;`,
-					);
-					await async_statement_execute_non_select(
-						this._Gda,
-						this._connection,
-						addColumnStmt,
-						this._cancellable,
-					);
-				} catch {
-					// Ignore
+					await async_statement_execute_non_select(this._Gda, this._connection, stmt, this._cancellable);
+				}
+				/* falls through */
+				case 1: {
+					try {
+						// Add title column
+						const [addColumnStmt] = this._connection.parse_sql_string(
+							`ALTER TABLE 'clipboard' ADD COLUMN 'title' text;`,
+						);
+						await async_statement_execute_non_select(
+							this._Gda,
+							this._connection,
+							addColumnStmt,
+							this._cancellable,
+						);
+					} catch {
+						// Ignore
+					}
+				}
+				/* falls through */
+				case 2: {
+					// Older builds may reset the version without removing additive columns.
+					let hasSubjects = false;
+					try {
+						const [probe] = this._connection.parse_sql_string('SELECT subjects FROM clipboard LIMIT 0');
+						await async_statement_execute_select(this._Gda, this._connection, probe, this._cancellable);
+						hasSubjects = true;
+					} catch {
+						/* Add the missing column below. */
+					}
+					if (!hasSubjects) {
+						const [stmt] = this._connection.parse_sql_string(
+							"ALTER TABLE clipboard ADD COLUMN subjects text NOT NULL DEFAULT '';",
+						);
+						await async_statement_execute_non_select(this._Gda, this._connection, stmt, this._cancellable);
+					}
 				}
 			}
-		}
 
-		// Update to current version
-		if (version !== DATABASE_VERSION) {
-			// UPDATE 'version' SET version=DATABASE_VERSION
-			const builder2 = new this._Gda.SqlBuilder({ stmt_type: this._Gda.SqlStatementType.UPDATE });
-			builder2.set_table('clipboard_version');
-			builder2.add_field_value_id(builder2.add_id('version'), add_expr_value(builder2, DATABASE_VERSION));
-			const setVersionStmt = builder2.get_statement();
-			await async_statement_execute_non_select(this._Gda, this._connection, setVersionStmt, this._cancellable);
+			// Update to current version
+			if (version !== DATABASE_VERSION) {
+				// UPDATE 'version' SET version=DATABASE_VERSION
+				const builder2 = new this._Gda.SqlBuilder({ stmt_type: this._Gda.SqlStatementType.UPDATE });
+				builder2.set_table('clipboard_version');
+				builder2.add_field_value_id(builder2.add_id('version'), add_expr_value(builder2, DATABASE_VERSION));
+				const setVersionStmt = builder2.get_statement();
+				await async_statement_execute_non_select(
+					this._Gda,
+					this._connection,
+					setVersionStmt,
+					this._cancellable,
+				);
 
-			this.ext.logger.log(`Migrated database version from ${version} to ${DATABASE_VERSION}.`);
+				this.ext.logger.log(`Migrated database version from ${version} to ${DATABASE_VERSION}.`);
+			}
+			this._connection.commit_transaction(null);
+		} catch (error) {
+			this._connection.rollback_transaction(null);
+			throw error;
 		}
 	}
 
@@ -418,6 +450,7 @@ export class GdaDatabase implements Database {
 			const datetimeId = builder.select_add_field('datetime', null, null);
 			builder.select_add_field('metadata', null, null);
 			builder.select_add_field('title', null, null);
+			builder.select_add_field('subjects', null, null);
 			builder.select_order_by(datetimeId, false, null);
 
 			const stmt = builder.get_statement();
@@ -439,6 +472,7 @@ export class GdaDatabase implements Database {
 				let datetime = iter.get_value_for_field('datetime');
 				const metadata = iter.get_value_for_field('metadata') as string | null;
 				const title = (iter.get_value_for_field('title') as string | null) ?? '';
+				const subjects = (iter.get_value_for_field('subjects') as string | null) ?? '';
 
 				if ('Timestamp' in this._Gda && datetime instanceof this._Gda.Timestamp) {
 					const timezone = GLib.TimeZone.new_offset(datetime.timezone);
@@ -465,7 +499,9 @@ export class GdaDatabase implements Database {
 					}
 				}
 
-				entries.push(new ClipboardEntry(id, type, content, pinned, tag, datetime, metadataObj, title));
+				entries.push(
+					new ClipboardEntry(id, type, content, pinned, tag, datetime, metadataObj, title, subjects),
+				);
 			}
 
 			return entries;
@@ -738,7 +774,17 @@ export class GdaDatabase implements Database {
 				? builder.add_cond(
 						this._Gda.SqlOperatorType.OR,
 						pinnedCondition,
-						builder.add_cond(this._Gda.SqlOperatorType.ISNOTNULL, builder.add_id('tag'), 0, 0),
+						builder.add_cond(
+							this._Gda.SqlOperatorType.OR,
+							builder.add_cond(this._Gda.SqlOperatorType.ISNOTNULL, builder.add_id('tag'), 0, 0),
+							builder.add_cond(
+								this._Gda.SqlOperatorType.DIFF,
+								builder.add_id('subjects'),
+								add_expr_value(builder, ''),
+								0,
+							),
+							0,
+						),
 						0,
 					)
 				: pinnedCondition;

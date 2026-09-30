@@ -21,6 +21,7 @@ interface JsonClipboardEntry {
 	datetime: string;
 	metadata: Metadata | null;
 	title: string | undefined;
+	subjects?: string | undefined;
 }
 
 interface JsonDatabaseModel {
@@ -61,6 +62,7 @@ export class JsonDatabase extends MemoryDatabase {
 				GLib.DateTime.new_from_iso8601(entry.datetime, GLib.TimeZone.new_utc()),
 				entry.metadata,
 				entry.title,
+				entry.subjects,
 			);
 
 			const key = this.entryToKey(clipboardEntry);
@@ -138,6 +140,7 @@ export class JsonDatabase extends MemoryDatabase {
 						datetime: entry.datetime.to_utc()!.format_iso8601()!,
 						metadata: entry.metadata,
 						title: entry.title || undefined,
+						subjects: entry.subjects || undefined,
 					}),
 				),
 			};

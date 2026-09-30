@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 13:57-0300\n"
+"POT-Creation-Date: 2026-09-29 18:45-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Russian\n"
@@ -68,20 +68,20 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "QR‑код"
 
-#: src/lib/database/entryTracker.ts:133 src/lib/database/entryTracker.ts:148
+#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:149
 msgid "Failed to load Gda"
 msgstr "Не удалось загрузить Gda"
 
-#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:148
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:135 src/lib/database/entryTracker.ts:149
+#: src/lib/database/entryTracker.ts:165
 msgid "Clipboard history will be disabled"
 msgstr "История буфера обмена будет отключена"
 
-#: src/lib/database/entryTracker.ts:135
+#: src/lib/database/entryTracker.ts:136
 msgid "Disable Warning"
 msgstr "Отключить предупреждение"
 
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:165
 msgid "Failed to load JSON"
 msgstr "Не удалось загрузить JSON"
 
@@ -127,8 +127,8 @@ msgstr "Скопирован цвет"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:225
-#: src/lib/ui/components/editDialog.ts:252
+#: src/lib/ui/components/editDialog.ts:239
+#: src/lib/ui/components/editDialog.ts:266
 msgid "None"
 msgstr "Нет"
 
@@ -179,7 +179,7 @@ msgstr "Файлы"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Ссылка"
 
@@ -217,7 +217,8 @@ msgstr "Выберите, какие типы разрешены"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:376
+#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -348,7 +349,8 @@ msgid "Edit Action"
 msgstr "Изменить действие"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:383
+#: src/lib/ui/components/subjectsDialog.ts:36
 msgid "Save"
 msgstr "Сохранить"
 
@@ -360,7 +362,8 @@ msgstr "Добавить подменю"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:93
+#: src/lib/ui/components/clipboardItemMenu.ts:98
+#: src/lib/ui/components/editDialog.ts:396
 msgid "Edit"
 msgstr "Изменить"
 
@@ -1679,6 +1682,10 @@ msgstr "Отключено"
 msgid "No Results Found"
 msgstr "Ничего не найдено"
 
+#: src/lib/ui/components/clipboardItemMenu.ts:90
+msgid "Subjects…"
+msgstr "Темы…"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1726,9 +1733,61 @@ msgstr "Файл отсутствует"
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/lib/ui/components/editDialog.ts:277
+#: src/lib/ui/components/editDialog.ts:297
 msgid "Edit Clipboard Item"
 msgstr "Редактировать элемент буфера обмена"
+
+#: src/lib/ui/components/editDialog.ts:317
+#: src/lib/ui/components/subjectsDialog.ts:16
+#: src/lib/ui/components/subjectsDialog.ts:27
+msgid "Subjects"
+msgstr "Темы"
+
+#: src/lib/ui/components/editDialog.ts:350
+msgid "Preview shortened. The full text is preserved."
+msgstr "Предпросмотр сокращён. Полный текст сохранён."
+
+#: src/lib/ui/components/editDialog.ts:403
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: src/lib/ui/components/editDialog.ts:415
+#: src/lib/ui/components/editDialog.ts:440
+msgid "Markdown formatting"
+msgstr "Форматирование Markdown"
+
+#: src/lib/ui/components/editDialog.ts:422
+msgid "Bold (Ctrl+B)"
+msgstr "Жирный (Ctrl+B)"
+
+#: src/lib/ui/components/editDialog.ts:423
+msgid "Italic (Ctrl+I)"
+msgstr "Курсив (Ctrl+I)"
+
+#: src/lib/ui/components/editDialog.ts:424
+msgid "Bullet list"
+msgstr "Маркированный список"
+
+#: src/lib/ui/components/editDialog.ts:425
+msgid "Numbered list"
+msgstr "Нумерованный список"
+
+#: src/lib/ui/components/editDialog.ts:426
+msgid "Quote"
+msgstr "Цитата"
+
+#: src/lib/ui/components/editDialog.ts:427
+msgid "Inline code"
+msgstr "Строчный код"
+
+#: src/lib/ui/components/subjectsDialog.ts:15
+msgid "Subjects, separated by commas"
+msgstr "Темы через запятую"
+
+#: src/lib/ui/components/subjectsDialog.ts:28
+msgid ""
+"Separate subjects with commas. Search with # followed by a subject name."
+msgstr "Разделяйте темы запятыми. Для поиска введите # и название темы."
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1798,43 +1857,43 @@ msgstr "Буфер обмена пуст"
 msgid "No Items Found"
 msgstr "Элементы не найдены"
 
-#: src/lib/ui/searchEntry.ts:155
+#: src/lib/ui/searchEntry.ts:161
 msgid "__All"
 msgstr "__Все"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:165
 msgid "__Text"
 msgstr "__Текст"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:166
 msgid "__Code"
 msgstr "__Код"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:167
 msgid "__Image"
 msgstr "__Изобр"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:168
 msgid "__File"
 msgstr "__Файл"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:169
 msgid "File__s"
 msgstr "Фай__лы"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:170
 msgid "__Link"
 msgstr "__Ссылка"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:171
 msgid "C__haracter"
 msgstr "С__имвол"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:172
 msgid "Colo__r"
 msgstr "Цв__ет"
 
-#: src/lib/ui/searchEntry.ts:278
+#: src/lib/ui/searchEntry.ts:284
 msgid "Type to search"
 msgstr "Введите текст для поиска"
 

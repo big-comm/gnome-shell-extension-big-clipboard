@@ -1,0 +1,6 @@
+{
+	"uuid": "clipboard-notes-test@local.test",
+	"name": "Clipboard Notes Test",
+	"description": "Temporary isolated notes validation",
+	"shell-version": ["50", "51"]
+}

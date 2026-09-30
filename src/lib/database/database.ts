@@ -71,6 +71,7 @@ export interface LinkMetadata {
 		tag: GObject.ParamSpec.string('tag', null, null, GObject.ParamFlags.READWRITE, ''),
 		datetime: GObject.ParamSpec.boxed('datetime', null, null, GObject.ParamFlags.READWRITE, GLib.DateTime),
 		metadata: GObject.ParamSpec.jsobject('metadata', null, null, GObject.ParamFlags.READWRITE),
+		subjects: GObject.ParamSpec.string('subjects', null, null, GObject.ParamFlags.READWRITE, ''),
 		title: GObject.ParamSpec.string('title', null, null, GObject.ParamFlags.READWRITE, ''),
 	},
 	Signals: {
@@ -86,6 +87,7 @@ export class ClipboardEntry extends GObject.Object {
 	declare datetime: GLib.DateTime;
 	declare metadata: Metadata | null;
 	declare title: string;
+	declare subjects: string;
 
 	constructor(
 		id: number,
@@ -96,6 +98,7 @@ export class ClipboardEntry extends GObject.Object {
 		datetime: GLib.DateTime,
 		metadata: Metadata | null = null,
 		title: string = '',
+		subjects: string = '',
 	) {
 		super();
 
@@ -107,6 +110,7 @@ export class ClipboardEntry extends GObject.Object {
 		this.datetime = datetime;
 		this.metadata = metadata;
 		this.title = title;
+		this.subjects = subjects;
 	}
 
 	get id() {

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 13:57-0300\n"
+"POT-Creation-Date: 2026-09-29 18:45-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -68,20 +68,20 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "QR Kodu"
 
-#: src/lib/database/entryTracker.ts:133 src/lib/database/entryTracker.ts:148
+#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:149
 msgid "Failed to load Gda"
 msgstr "Gda yüklenemedi"
 
-#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:148
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:135 src/lib/database/entryTracker.ts:149
+#: src/lib/database/entryTracker.ts:165
 msgid "Clipboard history will be disabled"
 msgstr "Pano geçmişi devre dışı bırakılacak"
 
-#: src/lib/database/entryTracker.ts:135
+#: src/lib/database/entryTracker.ts:136
 msgid "Disable Warning"
 msgstr "Uyarıyı Devre Dışı Bırak"
 
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:165
 msgid "Failed to load JSON"
 msgstr "JSON yüklenemedi"
 
@@ -126,8 +126,8 @@ msgstr "Renk Kopyalandı"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:225
-#: src/lib/ui/components/editDialog.ts:252
+#: src/lib/ui/components/editDialog.ts:239
+#: src/lib/ui/components/editDialog.ts:266
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -178,7 +178,7 @@ msgstr "Dosyalar"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Bağlantı"
 
@@ -216,7 +216,8 @@ msgstr "Hangi türlere izin verileceğini seç"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:376
+#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "İptal"
 
@@ -346,7 +347,8 @@ msgid "Edit Action"
 msgstr "Eylemi Düzenle"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:383
+#: src/lib/ui/components/subjectsDialog.ts:36
 msgid "Save"
 msgstr "Kaydet"
 
@@ -358,7 +360,8 @@ msgstr "Alt Menü Ekle"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:93
+#: src/lib/ui/components/clipboardItemMenu.ts:98
+#: src/lib/ui/components/editDialog.ts:396
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -1688,6 +1691,10 @@ msgstr "Devre Dışı"
 msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
+#: src/lib/ui/components/clipboardItemMenu.ts:90
+msgid "Subjects…"
+msgstr "Konular…"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1732,9 +1739,62 @@ msgstr "Eksik Dosya"
 msgid "Error"
 msgstr "Hata"
 
-#: src/lib/ui/components/editDialog.ts:277
+#: src/lib/ui/components/editDialog.ts:297
 msgid "Edit Clipboard Item"
 msgstr "Pano Öğesini Düzenle"
+
+#: src/lib/ui/components/editDialog.ts:317
+#: src/lib/ui/components/subjectsDialog.ts:16
+#: src/lib/ui/components/subjectsDialog.ts:27
+msgid "Subjects"
+msgstr "Konular"
+
+#: src/lib/ui/components/editDialog.ts:350
+msgid "Preview shortened. The full text is preserved."
+msgstr "Önizleme kısaltıldı. Tam metin korunur."
+
+#: src/lib/ui/components/editDialog.ts:403
+msgid "Preview"
+msgstr "Önizleme"
+
+#: src/lib/ui/components/editDialog.ts:415
+#: src/lib/ui/components/editDialog.ts:440
+msgid "Markdown formatting"
+msgstr "Markdown biçimlendirmesi"
+
+#: src/lib/ui/components/editDialog.ts:422
+msgid "Bold (Ctrl+B)"
+msgstr "Kalın (Ctrl+B)"
+
+#: src/lib/ui/components/editDialog.ts:423
+msgid "Italic (Ctrl+I)"
+msgstr "İtalik (Ctrl+I)"
+
+#: src/lib/ui/components/editDialog.ts:424
+msgid "Bullet list"
+msgstr "Madde işaretli liste"
+
+#: src/lib/ui/components/editDialog.ts:425
+msgid "Numbered list"
+msgstr "Numaralı liste"
+
+#: src/lib/ui/components/editDialog.ts:426
+msgid "Quote"
+msgstr "Alıntı"
+
+#: src/lib/ui/components/editDialog.ts:427
+msgid "Inline code"
+msgstr "Satır içi kod"
+
+#: src/lib/ui/components/subjectsDialog.ts:15
+msgid "Subjects, separated by commas"
+msgstr "Virgülle ayrılmış konular"
+
+#: src/lib/ui/components/subjectsDialog.ts:28
+msgid ""
+"Separate subjects with commas. Search with # followed by a subject name."
+msgstr ""
+"Konuları virgülle ayırın. Aramak için # işaretinden sonra konu adını yazın."
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1801,43 +1861,43 @@ msgstr "Pano Boş"
 msgid "No Items Found"
 msgstr "Öğe Bulunamadı"
 
-#: src/lib/ui/searchEntry.ts:155
+#: src/lib/ui/searchEntry.ts:161
 msgid "__All"
 msgstr "__Hepsi"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:165
 msgid "__Text"
 msgstr "__Metin"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:166
 msgid "__Code"
 msgstr "__Kod"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:167
 msgid "__Image"
 msgstr "__Resim"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:168
 msgid "__File"
 msgstr "__Dosya"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:169
 msgid "File__s"
 msgstr "Dosy__alar"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:170
 msgid "__Link"
 msgstr "__Bağlantı"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:171
 msgid "C__haracter"
 msgstr "K__arakter"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:172
 msgid "Colo__r"
 msgstr "Re__nk"
 
-#: src/lib/ui/searchEntry.ts:278
+#: src/lib/ui/searchEntry.ts:284
 msgid "Type to search"
 msgstr "Aramak için yaz"
 

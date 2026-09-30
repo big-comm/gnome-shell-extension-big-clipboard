@@ -43,6 +43,33 @@
 		}
 	}
 
+	.markdown-toolbar,
+	.markdown-tabs {
+		spacing: 6px;
+	}
+	.markdown-toolbar .button {
+		padding: 5px 8px;
+		min-width: 16px;
+	}
+	.markdown-bold {
+		font-weight: bold;
+	}
+	.markdown-italic {
+		font-style: italic;
+	}
+	.markdown-hint {
+		font-size: 0.85em;
+	}
+	.markdown-preview {
+		height: 13em;
+		padding: $base_padding;
+		border: 1px solid $card_shadow_border_color;
+		border-radius: $alert_radius;
+		background-color: $card_bg_color;
+	}
+	.markdown-preview-text {
+		padding-right: $base_padding;
+	}
 	.modal-dialog-top-button-box {
 		padding: 0;
 	}
@@ -58,5 +85,18 @@
 
 	StScrollBar {
 		padding: $base_padding 0;
+	}
+}
+
+.clipboard-item-subjects {
+	spacing: 4px;
+	padding: 4px 10px;
+	.clipboard-subject {
+		font-size: 0.85em;
+		padding: 3px 8px;
+		max-width: 6em;
+		border-radius: 999px;
+		border: 1px solid transparentize($fg_color, 0.65);
+		background-color: transparentize($fg_color, 0.92);
 	}
 }

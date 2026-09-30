@@ -15,7 +15,10 @@ import type CopyousExtension from '../../../extension.js';
 import { ItemType } from '../../common/constants.js';
 import { registerClass } from '../../common/gjs.js';
 import { Icon, loadIcon } from '../../common/icons.js';
+import { normalizeSubjects } from '../../common/subjects.js';
 import { ClipboardEntry, CodeMetadata, Language } from '../../database/database.js';
+import { type MarkdownAction, formatMarkdown, markdownPreview } from './markdown.js';
+import { subjectInput } from './subjectsDialog.js';
 
 /** Entry with proper height for multiline text and event forwarding */
 @registerClass()
@@ -122,6 +125,17 @@ export class MultilineEntry extends St.Entry {
 		text.y_align = Clutter.ActorAlign.START;
 		text.x_expand = true;
 		text.y_expand = true;
+
+		// St.Entry's single-line navigation does not handle document boundaries.
+		text.connect('key-press-event', (_actor, event: Clutter.Event) => {
+			if (!event.has_control_modifier()) return Clutter.EVENT_PROPAGATE;
+			const key = event.get_key_symbol();
+			if (key !== Clutter.KEY_Home && key !== Clutter.KEY_End) return Clutter.EVENT_PROPAGATE;
+			const position = key === Clutter.KEY_Home ? 0 : -1;
+			const anchor = event.has_shift_modifier() ? text.selection_bound : position;
+			text.set_selection(position, anchor);
+			return Clutter.EVENT_STOP;
+		});
 
 		// Always keep the cursor visible
 		text.connect('cursor-changed', () => {
@@ -266,6 +280,12 @@ export class LanguageButton extends St.Button {
 export class EditDialog extends ModalDialog.ModalDialog {
 	private readonly _entry: MultilineEntry;
 	private readonly _languageButton?: LanguageButton;
+	private _preview?: St.ScrollView;
+	private _previewLabel?: St.Label;
+	private _previewNotice?: St.Label;
+	private _toolbar?: St.BoxLayout;
+	private _editButton?: St.Button;
+	private _previewButton?: St.Button;
 
 	constructor(ext: CopyousExtension, entry: ClipboardEntry) {
 		super({
@@ -294,6 +314,11 @@ export class EditDialog extends ModalDialog.ModalDialog {
 			box.add_child(this._languageButton);
 		}
 
+		content.add_child(new St.Label({ text: _('Subjects') }));
+		const subjects = subjectInput(entry.subjects);
+		content.add_child(subjects);
+		if (entry.type === ItemType.Text) this.addMarkdownTools(content);
+
 		// Entry
 		this._entry = new MultilineEntry({
 			style_class: 'clipboard-item-edit-dialog-entry',
@@ -305,6 +330,42 @@ export class EditDialog extends ModalDialog.ModalDialog {
 
 		this._entry.clutter_text.text = entry.content;
 		this._entry.clutter_text.set_selection(-1, -1);
+		if (entry.type === ItemType.Text) {
+			this._previewLabel = new St.Label({ style_class: 'markdown-preview-text', x_expand: true });
+			this._previewLabel.clutter_text.line_wrap = true;
+			this._previewLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
+			this._previewLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+			const box = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+			box.add_child(this._previewLabel);
+			this._preview = new St.ScrollView({
+				style_class: 'markdown-preview',
+				visible: false,
+				x_expand: true,
+				hscrollbar_policy: St.PolicyType.NEVER,
+				vscrollbar_policy: St.PolicyType.AUTOMATIC,
+				child: box,
+			});
+			content.add_child(this._preview);
+			this._previewNotice = new St.Label({
+				text: _('Preview shortened. The full text is preserved.'),
+				visible: false,
+			});
+			content.add_child(this._previewNotice);
+			this._entry.clutter_text.connect('key-press-event', (_actor, event: Clutter.Event) => {
+				if (!event.has_control_modifier() || event.get_state() & Clutter.ModifierType.MOD1_MASK)
+					return Clutter.EVENT_PROPAGATE;
+				const key = event.get_key_symbol();
+				if (key === Clutter.KEY_b || key === Clutter.KEY_B) {
+					this.applyFormat('bold');
+					return Clutter.EVENT_STOP;
+				}
+				if (key === Clutter.KEY_i || key === Clutter.KEY_I) {
+					this.applyFormat('italic');
+					return Clutter.EVENT_STOP;
+				}
+				return Clutter.EVENT_PROPAGATE;
+			});
+		}
 
 		if (entry.type === ItemType.Code) {
 			this._entry.add_style_class_name('monospace');
@@ -321,11 +382,93 @@ export class EditDialog extends ModalDialog.ModalDialog {
 		this.addButton({
 			label: _('Save'),
 			action: () => {
+				entry.subjects = normalizeSubjects(subjects.text);
 				entry.content = this._entry.clutter_text.text;
 				if (this._languageButton) entry.metadata = { language: this._languageButton.language };
 				this.close();
 			},
 		});
+	}
+
+	private addMarkdownTools(content: St.BoxLayout) {
+		const tabs = new St.BoxLayout({ style_class: 'markdown-tabs' });
+		this._editButton = new St.Button({
+			label: _('Edit'),
+			style_class: 'button',
+			can_focus: true,
+			toggle_mode: true,
+			checked: true,
+		});
+		this._previewButton = new St.Button({
+			label: _('Preview'),
+			style_class: 'button',
+			can_focus: true,
+			toggle_mode: true,
+		});
+		this._editButton.connect('clicked', () => this.showPreview(false));
+		this._previewButton.connect('clicked', () => this.showPreview(true));
+		tabs.add_child(this._editButton);
+		tabs.add_child(this._previewButton);
+		content.add_child(tabs);
+		this._toolbar = new St.BoxLayout({ style_class: 'markdown-toolbar' });
+		const hint = new St.Label({
+			text: _('Markdown formatting'),
+			style_class: 'markdown-hint',
+			y_align: Clutter.ActorAlign.CENTER,
+			x_expand: true,
+		});
+		hint.clutter_text.ellipsize = Pango.EllipsizeMode.END;
+		const actions: [MarkdownAction, string, string][] = [
+			['bold', 'B', _('Bold (Ctrl+B)')],
+			['italic', 'I', _('Italic (Ctrl+I)')],
+			['bullet', '•', _('Bullet list')],
+			['number', '1.', _('Numbered list')],
+			['quote', '❯', _('Quote')],
+			['code', '</>', _('Inline code')],
+			['link', '↗', _('Link')],
+		];
+		for (const [action, label, name] of actions) {
+			const button = new St.Button({
+				label,
+				accessible_name: name,
+				style_class: `button markdown-${action}`,
+				can_focus: true,
+				track_hover: true,
+			});
+			button.connect('clicked', () => this.applyFormat(action));
+			button.connect('notify::hover', () => {
+				hint.text = button.hover ? name : _('Markdown formatting');
+			});
+			button.connect('key-focus-in', () => {
+				hint.text = name;
+			});
+			this._toolbar.add_child(button);
+		}
+		this._toolbar.add_child(hint);
+		content.add_child(this._toolbar);
+	}
+
+	private applyFormat(action: MarkdownAction) {
+		const text = this._entry.clutter_text;
+		const result = formatMarkdown(text.text, text.cursor_position, text.selection_bound, action);
+		text.text = result.text;
+		text.grab_key_focus();
+		text.set_selection(result.start, result.end);
+	}
+
+	private showPreview(preview: boolean) {
+		if (!this._preview || !this._previewLabel) return;
+		if (preview) {
+			const result = markdownPreview(this._entry.clutter_text.text);
+			this._previewLabel.clutter_text.set_markup(result.markup);
+			this._previewNotice!.visible = result.truncated;
+		} else this._previewNotice!.hide();
+		this._entry.visible = !preview;
+		this._toolbar!.visible = !preview;
+		this._preview.visible = preview;
+		this._editButton!.checked = !preview;
+		this._previewButton!.checked = preview;
+		if (!preview) this._entry.clutter_text.grab_key_focus();
 	}
 
 	on_opened() {

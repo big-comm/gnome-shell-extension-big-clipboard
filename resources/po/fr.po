@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 13:57-0300\n"
+"POT-Creation-Date: 2026-09-29 18:45-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -68,20 +68,20 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "Code QR"
 
-#: src/lib/database/entryTracker.ts:133 src/lib/database/entryTracker.ts:148
+#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:149
 msgid "Failed to load Gda"
 msgstr "Échec du chargement de Gda"
 
-#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:148
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:135 src/lib/database/entryTracker.ts:149
+#: src/lib/database/entryTracker.ts:165
 msgid "Clipboard history will be disabled"
 msgstr "L'historique du presse-papiers sera désactivé"
 
-#: src/lib/database/entryTracker.ts:135
+#: src/lib/database/entryTracker.ts:136
 msgid "Disable Warning"
 msgstr "Désactiver l'avertissement"
 
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:165
 msgid "Failed to load JSON"
 msgstr "Échec du chargement du fichier JSON"
 
@@ -126,8 +126,8 @@ msgstr "Couleur copiée"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:225
-#: src/lib/ui/components/editDialog.ts:252
+#: src/lib/ui/components/editDialog.ts:239
+#: src/lib/ui/components/editDialog.ts:266
 msgid "None"
 msgstr "Aucun"
 
@@ -178,7 +178,7 @@ msgstr "Fichiers"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Lien"
 
@@ -216,7 +216,8 @@ msgstr "Sélectionnez les types autorisés"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:376
+#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -347,7 +348,8 @@ msgid "Edit Action"
 msgstr "Modifier l'action"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:383
+#: src/lib/ui/components/subjectsDialog.ts:36
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -359,7 +361,8 @@ msgstr "Ajouter un sous-menu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:93
+#: src/lib/ui/components/clipboardItemMenu.ts:98
+#: src/lib/ui/components/editDialog.ts:396
 msgid "Edit"
 msgstr "Modifier"
 
@@ -1714,6 +1717,10 @@ msgstr "Désactivé"
 msgid "No Results Found"
 msgstr "Aucun résultat trouvé"
 
+#: src/lib/ui/components/clipboardItemMenu.ts:90
+msgid "Subjects…"
+msgstr "Sujets…"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1758,9 +1765,63 @@ msgstr "Fichier manquant"
 msgid "Error"
 msgstr "Erreur"
 
-#: src/lib/ui/components/editDialog.ts:277
+#: src/lib/ui/components/editDialog.ts:297
 msgid "Edit Clipboard Item"
 msgstr "Modifier l'élément du presse-papiers"
+
+#: src/lib/ui/components/editDialog.ts:317
+#: src/lib/ui/components/subjectsDialog.ts:16
+#: src/lib/ui/components/subjectsDialog.ts:27
+msgid "Subjects"
+msgstr "Sujets"
+
+#: src/lib/ui/components/editDialog.ts:350
+msgid "Preview shortened. The full text is preserved."
+msgstr "Aperçu abrégé. Le texte intégral est conservé."
+
+#: src/lib/ui/components/editDialog.ts:403
+msgid "Preview"
+msgstr "Aperçu"
+
+#: src/lib/ui/components/editDialog.ts:415
+#: src/lib/ui/components/editDialog.ts:440
+msgid "Markdown formatting"
+msgstr "Mise en forme Markdown"
+
+#: src/lib/ui/components/editDialog.ts:422
+msgid "Bold (Ctrl+B)"
+msgstr "Gras (Ctrl+B)"
+
+#: src/lib/ui/components/editDialog.ts:423
+msgid "Italic (Ctrl+I)"
+msgstr "Italique (Ctrl+I)"
+
+#: src/lib/ui/components/editDialog.ts:424
+msgid "Bullet list"
+msgstr "Liste à puces"
+
+#: src/lib/ui/components/editDialog.ts:425
+msgid "Numbered list"
+msgstr "Liste numérotée"
+
+#: src/lib/ui/components/editDialog.ts:426
+msgid "Quote"
+msgstr "Citation"
+
+#: src/lib/ui/components/editDialog.ts:427
+msgid "Inline code"
+msgstr "Code en ligne"
+
+#: src/lib/ui/components/subjectsDialog.ts:15
+msgid "Subjects, separated by commas"
+msgstr "Sujets, séparés par des virgules"
+
+#: src/lib/ui/components/subjectsDialog.ts:28
+msgid ""
+"Separate subjects with commas. Search with # followed by a subject name."
+msgstr ""
+"Séparez les sujets par des virgules. Recherchez avec # suivi du nom d’un "
+"sujet."
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1827,43 +1888,43 @@ msgstr "Le presse-papiers est vide"
 msgid "No Items Found"
 msgstr "Aucun élément trouvé"
 
-#: src/lib/ui/searchEntry.ts:155
+#: src/lib/ui/searchEntry.ts:161
 msgid "__All"
 msgstr "__Tout"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:165
 msgid "__Text"
 msgstr "__Texte"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:166
 msgid "__Code"
 msgstr "__Code"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:167
 msgid "__Image"
 msgstr "__Image"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:168
 msgid "__File"
 msgstr "__Fichier"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:169
 msgid "File__s"
 msgstr "Fichier__s"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:170
 msgid "__Link"
 msgstr "__Lien"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:171
 msgid "C__haracter"
 msgstr "C__aractère"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:172
 msgid "Colo__r"
 msgstr "Couleu__r"
 
-#: src/lib/ui/searchEntry.ts:278
+#: src/lib/ui/searchEntry.ts:284
 msgid "Type to search"
 msgstr "Tapez pour rechercher"
 
