@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:45-0300\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Italiano\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Apri"
 
@@ -124,8 +124,8 @@ msgstr "Colore copiato"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:239
-#: src/lib/ui/components/editDialog.ts:266
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Nessuno"
 
@@ -139,14 +139,14 @@ msgstr "Azioni predefinite"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Testo"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Codice"
 
@@ -161,14 +161,15 @@ msgstr "Immagine"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "File"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "File"
 
@@ -176,7 +177,7 @@ msgstr "File"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Link"
 
@@ -190,11 +191,12 @@ msgstr "Carattere"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Colore"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Tutto"
 
@@ -214,8 +216,8 @@ msgstr "Seleziona quali tipi sono consentiti"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:376
-#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Annulla"
 
@@ -332,6 +334,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Aggiungi"
 
@@ -346,8 +349,8 @@ msgid "Edit Action"
 msgstr "Modifica l'azione"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:383
-#: src/lib/ui/components/subjectsDialog.ts:36
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Salva"
 
@@ -359,8 +362,8 @@ msgstr "Aggiungi sottomenu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:98
-#: src/lib/ui/components/editDialog.ts:396
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Modifica"
 
@@ -371,6 +374,7 @@ msgstr "Modifica sottomenu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Elimina"
 
@@ -666,8 +670,8 @@ msgstr "Altezza dinamica elementi"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content."
-" Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content. "
+"Only works in vertical orientation"
 msgstr ""
 "Regola dinamicamente l'altezza degli elementi degli appunti in base al loro "
 "contenuto. Funziona solo con l'orientamento verticale"
@@ -922,8 +926,7 @@ msgstr "Copertina"
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:180
 msgid "Enable or disable syntax highlighting in the text preview"
 msgstr ""
-"Abilita o disabilita l'evidenziazione della sintassi nell'anteprima del "
-"testo"
+"Abilita o disabilita l'evidenziazione della sintassi nell'anteprima del testo"
 
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:186
 msgid "Show line numbers in the text preview"
@@ -962,8 +965,8 @@ msgstr "Esclusioni link"
 msgid ""
 "Enter a regular expression to exclude links that should not have a preview."
 msgstr ""
-"Inserire un'espressione regolare per escludere i collegamenti che non devono"
-" avere un'anteprima"
+"Inserire un'espressione regolare per escludere i collegamenti che non devono "
+"avere un'anteprima"
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:48
 msgid "Link Exclusion Patterns"
@@ -1190,8 +1193,8 @@ msgstr "Evidenziazione sintassi non disponibile"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting"
-" files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 "Reinstalla il pacchetto Big Clipboard per ripristinare i file di "
 "evidenziazione del codice inclusi."
@@ -1219,8 +1222,8 @@ msgid ""
 "Common languages are always available. Enable additional languages for code "
 "detection and highlighting."
 msgstr ""
-"I linguaggi comuni sono sempre disponibili. Abilita linguaggi aggiuntivi per"
-" il rilevamento e l'evidenziazione del codice."
+"I linguaggi comuni sono sempre disponibili. Abilita linguaggi aggiuntivi per "
+"il rilevamento e l'evidenziazione del codice."
 
 #: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
@@ -1275,7 +1278,7 @@ msgstr "Gestisci esclusioni app"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Gestire le app che saranno escluse dalla cronologia degli appunti"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Comportamento"
 
@@ -1324,8 +1327,7 @@ msgstr "Proteggi gli elementi contrassegnati"
 
 #: src/lib/preferences/general/behaviorSettings.ts:43
 msgid "Prevents tagged clipboard items from being deleted"
-msgstr ""
-"Impedisce la cancellazione degli elementi contrassegnati degli appunti"
+msgstr "Impedisce la cancellazione degli elementi contrassegnati degli appunti"
 
 #: src/lib/preferences/general/behaviorSettings.ts:48
 msgid "Sync Primary Clipboard"
@@ -1478,7 +1480,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "Scegli cosa conservare dopo la disconnessione o il riavvio."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Cancella"
@@ -1509,8 +1511,7 @@ msgstr "Scadenza"
 
 #: src/lib/preferences/general/historySettings.ts:151
 msgid "Minutes before items expire. Set to 0 to keep them."
-msgstr ""
-"Minuti prima della scadenza degli elementi. Imposta 0 per conservarli."
+msgstr "Minuti prima della scadenza degli elementi. Imposta 0 per conservarli."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1677,8 +1678,8 @@ msgstr "Scambia scorciatoia di scorrimento"
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:77
 msgid "Swaps scroll shortcuts of cycling item types and item tags"
 msgstr ""
-"Scambiare le scorciatoie di scorrimento per scorrere i tipi di elementi e le"
-" etichette"
+"Scambiare le scorciatoie di scorrimento per scorrere i tipi di elementi e le "
+"etichette"
 
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:81
 msgid "Cycle Item Type"
@@ -1704,9 +1705,13 @@ msgstr "Disabilitato"
 msgid "No Results Found"
 msgstr "Nessun risultato trovato"
 
-#: src/lib/ui/components/clipboardItemMenu.ts:90
-msgid "Subjects…"
-msgstr "Argomenti…"
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Argomenti"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1752,63 +1757,78 @@ msgstr "File mancante"
 msgid "Error"
 msgstr "Errore"
 
-#: src/lib/ui/components/editDialog.ts:297
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Modifica elemento degli appunti"
 
-#: src/lib/ui/components/editDialog.ts:317
-#: src/lib/ui/components/subjectsDialog.ts:16
-#: src/lib/ui/components/subjectsDialog.ts:27
-msgid "Subjects"
-msgstr "Argomenti"
-
-#: src/lib/ui/components/editDialog.ts:350
+#: src/lib/ui/components/editDialog.ts:366
 msgid "Preview shortened. The full text is preserved."
 msgstr "Anteprima abbreviata. Il testo completo viene conservato."
 
-#: src/lib/ui/components/editDialog.ts:403
+#: src/lib/ui/components/editDialog.ts:420
 msgid "Preview"
 msgstr "Anteprima"
 
-#: src/lib/ui/components/editDialog.ts:415
-#: src/lib/ui/components/editDialog.ts:440
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Affiancati"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
 msgid "Markdown formatting"
 msgstr "Formattazione Markdown"
 
-#: src/lib/ui/components/editDialog.ts:422
+#: src/lib/ui/components/editDialog.ts:459
 msgid "Bold (Ctrl+B)"
 msgstr "Grassetto (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:423
+#: src/lib/ui/components/editDialog.ts:460
 msgid "Italic (Ctrl+I)"
 msgstr "Corsivo (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:424
+#: src/lib/ui/components/editDialog.ts:461
 msgid "Bullet list"
 msgstr "Elenco puntato"
 
-#: src/lib/ui/components/editDialog.ts:425
+#: src/lib/ui/components/editDialog.ts:462
 msgid "Numbered list"
 msgstr "Elenco numerato"
 
-#: src/lib/ui/components/editDialog.ts:426
+#: src/lib/ui/components/editDialog.ts:463
 msgid "Quote"
 msgstr "Citazione"
 
-#: src/lib/ui/components/editDialog.ts:427
+#: src/lib/ui/components/editDialog.ts:464
 msgid "Inline code"
 msgstr "Codice in linea"
 
-#: src/lib/ui/components/subjectsDialog.ts:15
-msgid "Subjects, separated by commas"
-msgstr "Argomenti, separati da virgole"
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Aggiungi un argomento"
 
-#: src/lib/ui/components/subjectsDialog.ts:28
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Rimuovi argomento: %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
 msgid ""
-"Separate subjects with commas. Search with # followed by a subject name."
+"Add subjects with Enter or commas. Search with # followed by a subject name."
 msgstr ""
-"Separa gli argomenti con virgole. Cerca con # seguito dal nome di un "
+"Aggiungi argomenti con Invio o virgole. Cerca con # seguito dal nome di un "
 "argomento."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Immagini"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Collegamenti"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Fissati"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1845,14 +1865,18 @@ msgstr[1] "%d file"
 msgid "Char"
 msgstr "Car"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Cartella"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
 msgstr[0] "%d altro file"
 msgstr[1] "%d altri file"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1915,25 +1939,45 @@ msgstr "Color__e"
 msgid "Type to search"
 msgstr "Digitare per la ricerca"
 
-#: src/prefs.ts:63
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Scegli cosa conservare e per quanto tempo."
+
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Gestisci copia, incolla e feedback."
+
+#: src/prefs.ts:65
 msgid "Advanced"
 msgstr "Avanzate"
 
 #: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Gestisci archiviazione e linguaggi di codice."
+
+#: src/prefs.ts:69
 msgid "Storage"
 msgstr "Archiviazione"
 
-#: src/prefs.ts:71
+#: src/prefs.ts:74
 msgid "Panel Indicator"
 msgstr "Indicatore del pannello"
 
-#: src/prefs.ts:85
+#: src/prefs.ts:88
 msgid "Appearance"
 msgstr "Aspetto"
 
-#: src/prefs.ts:104
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Personalizza pannello, schede e colori."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Scorciatoie"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Accedi agli appunti con la tastiera."
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
@@ -1942,8 +1986,8 @@ msgstr "Scorciatoie"
 #~ "selezionati dalla cronologia degli appunti"
 
 #~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, or "
-#~ "shut down your system"
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
 #~ msgstr ""
 #~ "Scegliere cosa fare con la cronologia degli appunti al riavvio, "
 #~ "disconnessione o spegnimento del sistema"
@@ -2015,11 +2059,17 @@ msgstr "Scorciatoie"
 #~ "appunti"
 
 #~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
-#~ "disable the time limit"
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
 #~ msgstr ""
-#~ "Selezionare per quanti minuti mantenere gli elementi nella cronologia degli "
-#~ "appunti. Impostare su 0 per disattivare il limite di tempo"
+#~ "Selezionare per quanti minuti mantenere gli elementi nella cronologia "
+#~ "degli appunti. Impostare su 0 per disattivare il limite di tempo"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr ""
+#~ "Separa gli argomenti con virgole. Cerca con # seguito dal nome di un "
+#~ "argomento."
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Imposta lo schema di colori del tema personalizzato"
@@ -2042,6 +2092,12 @@ msgstr "Scorciatoie"
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Archivia la cronologia degli appunti in memoria anziché su disco"
 
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Argomenti, separati da virgole"
+
+#~ msgid "Subjects…"
+#~ msgstr "Argomenti…"
+
 #, javascript-format
 #~ msgid "Successfully Installed %s"
 #~ msgstr "%s installato con successo"
@@ -2060,8 +2116,8 @@ msgstr "Scorciatoie"
 #~ msgstr "Usa un database in memoria"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js from "
-#~ "\"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Puoi installare manualmente highlight.js scaricando highlight.min.js da "
 #~ "\"Url\" a \"Percorso di installazione\"."

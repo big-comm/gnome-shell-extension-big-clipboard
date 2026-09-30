@@ -1,6 +1,9 @@
 // Edit dialog
 .clipboard-item-edit-dialog {
 	width: 35em;
+	.button {
+		@extend %button;
+	}
 
 	.modal-dialog-content-box {
 		margin: $base_padding * 0.5 $base_padding * 1.5 $base_padding;
@@ -90,7 +93,7 @@
 
 .clipboard-item-subjects {
 	spacing: 4px;
-	padding: 4px 10px;
+	padding: 0;
 	.clipboard-subject {
 		font-size: 0.85em;
 		padding: 3px 8px;
@@ -98,5 +101,40 @@
 		border-radius: 999px;
 		border: 1px solid transparentize($fg_color, 0.65);
 		background-color: transparentize($fg_color, 0.92);
+	}
+}
+
+.clipboard-item-edit-dialog {
+	.markdown-body {
+		spacing: 12px;
+	}
+	.markdown-split & {
+		width: 62em;
+	}
+	.markdown-toolbar .button {
+		padding: 7px 13px;
+	}
+	.markdown-tabs .button:checked,
+	.modal-dialog-button.suggested-action {
+		background-color: -st-accent-color;
+		color: -st-accent-fg-color;
+	}
+	.subject-editor {
+		spacing: 6px;
+	}
+	.subject-input-row {
+		spacing: 6px;
+	}
+	.subject-chips-scroll {
+		max-height: 5em;
+	}
+	.subject-chip,
+	.subject-suggestion {
+		padding: 4px 9px;
+		border-radius: 999px;
+		max-width: 16em;
+	}
+	.subject-chip {
+		border: 1px solid -st-accent-color;
 	}
 }

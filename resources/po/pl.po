@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:45-0300\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -16,10 +16,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 "
+"|| n%100>14) ? 1 : 2);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Otwórz"
 
@@ -127,8 +128,8 @@ msgstr "Skopiowany kolor"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:239
-#: src/lib/ui/components/editDialog.ts:266
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Brak"
 
@@ -142,14 +143,14 @@ msgstr "Domyślne akcje"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Tekst"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Kod"
 
@@ -164,14 +165,15 @@ msgstr "Obraz"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "Plik"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Pliki"
 
@@ -179,7 +181,7 @@ msgstr "Pliki"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Odnośnik"
 
@@ -193,11 +195,12 @@ msgstr "Znak"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Kolor"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Wszystko"
 
@@ -217,8 +220,8 @@ msgstr "Wybierz dozwolone typy"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:376
-#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -236,8 +239,8 @@ msgid ""
 "The regular expression does not use any flags for matching. Leaving this "
 "empty will match everything."
 msgstr ""
-"Wyrażenie regularne nie używa żadnych flag do dopasowania. Pozostawienie tej"
-" opcji pustej spowoduje dopasowanie wszystkiego."
+"Wyrażenie regularne nie używa żadnych flag do dopasowania. Pozostawienie tej "
+"opcji pustej spowoduje dopasowanie wszystkiego."
 
 #: src/lib/preferences/actions/actionDialog.ts:361
 msgid "Type"
@@ -335,6 +338,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Dodaj"
 
@@ -349,8 +353,8 @@ msgid "Edit Action"
 msgstr "Edytuj akcję"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:383
-#: src/lib/ui/components/subjectsDialog.ts:36
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Zapisz"
 
@@ -362,8 +366,8 @@ msgstr "Dodaj podmenu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:98
-#: src/lib/ui/components/editDialog.ts:396
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -374,6 +378,7 @@ msgstr "Edytuj podmenu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Usuń"
 
@@ -469,8 +474,8 @@ msgid ""
 "Show the clipboard dialog at the text cursor position whenever possible, "
 "otherwise at the pointer position"
 msgstr ""
-"Pokaż okno dialogowe schowka w pozycji kursora tekstowego, jeśli to możliwe,"
-" w przeciwnym razie w pozycji wskaźnika"
+"Pokaż okno dialogowe schowka w pozycji kursora tekstowego, jeśli to możliwe, "
+"w przeciwnym razie w pozycji wskaźnika"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:50
 msgid "Orientation"
@@ -663,11 +668,11 @@ msgstr "Dynamiczna wysokość elementu"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content."
-" Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content. "
+"Only works in vertical orientation"
 msgstr ""
-"Dynamicznie dostosuj wysokość elementów schowka na podstawie ich zawartości."
-" Działa tylko w orientacji pionowej"
+"Dynamicznie dostosuj wysokość elementów schowka na podstawie ich zawartości. "
+"Działa tylko w orientacji pionowej"
 
 #: src/lib/preferences/customization/itemCustomization.ts:55
 msgid "Tab Width"
@@ -1183,8 +1188,8 @@ msgstr "Podświetlanie składni niedostępne"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting"
-" files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 "Zainstaluj ponownie pakiet Big Clipboard, aby przywrócić dołączone pliki "
 "podświetlania kodu."
@@ -1268,7 +1273,7 @@ msgstr "Zarządzaj wykluczonymi programami"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Zarządzaj programami wykluczonymi z historii schowka"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Zachowanie"
 
@@ -1469,7 +1474,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "Wybierz, co zachować po wylogowaniu lub ponownym uruchomieniu."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Wyczyść"
@@ -1667,8 +1672,7 @@ msgstr "Zamień skrót klawiszowy przewijania"
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:77
 msgid "Swaps scroll shortcuts of cycling item types and item tags"
 msgstr ""
-"Zamienia skróty przewijania przełączania typów elementów i oznaczeń "
-"elementów"
+"Zamienia skróty przewijania przełączania typów elementów i oznaczeń elementów"
 
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:81
 msgid "Cycle Item Type"
@@ -1694,9 +1698,13 @@ msgstr "Wyłączono"
 msgid "No Results Found"
 msgstr "Nie znaleziono wyników"
 
-#: src/lib/ui/components/clipboardItemMenu.ts:90
-msgid "Subjects…"
-msgstr "Tematy…"
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Tematy"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1745,61 +1753,78 @@ msgstr "Brakujący plik"
 msgid "Error"
 msgstr "Błąd"
 
-#: src/lib/ui/components/editDialog.ts:297
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Edytuj element schowka"
 
-#: src/lib/ui/components/editDialog.ts:317
-#: src/lib/ui/components/subjectsDialog.ts:16
-#: src/lib/ui/components/subjectsDialog.ts:27
-msgid "Subjects"
-msgstr "Tematy"
-
-#: src/lib/ui/components/editDialog.ts:350
+#: src/lib/ui/components/editDialog.ts:366
 msgid "Preview shortened. The full text is preserved."
 msgstr "Podgląd skrócono. Pełny tekst został zachowany."
 
-#: src/lib/ui/components/editDialog.ts:403
+#: src/lib/ui/components/editDialog.ts:420
 msgid "Preview"
 msgstr "Podgląd"
 
-#: src/lib/ui/components/editDialog.ts:415
-#: src/lib/ui/components/editDialog.ts:440
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Obok siebie"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
 msgid "Markdown formatting"
 msgstr "Formatowanie Markdown"
 
-#: src/lib/ui/components/editDialog.ts:422
+#: src/lib/ui/components/editDialog.ts:459
 msgid "Bold (Ctrl+B)"
 msgstr "Pogrubienie (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:423
+#: src/lib/ui/components/editDialog.ts:460
 msgid "Italic (Ctrl+I)"
 msgstr "Kursywa (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:424
+#: src/lib/ui/components/editDialog.ts:461
 msgid "Bullet list"
 msgstr "Lista punktowana"
 
-#: src/lib/ui/components/editDialog.ts:425
+#: src/lib/ui/components/editDialog.ts:462
 msgid "Numbered list"
 msgstr "Lista numerowana"
 
-#: src/lib/ui/components/editDialog.ts:426
+#: src/lib/ui/components/editDialog.ts:463
 msgid "Quote"
 msgstr "Cytat"
 
-#: src/lib/ui/components/editDialog.ts:427
+#: src/lib/ui/components/editDialog.ts:464
 msgid "Inline code"
 msgstr "Kod w tekście"
 
-#: src/lib/ui/components/subjectsDialog.ts:15
-msgid "Subjects, separated by commas"
-msgstr "Tematy oddzielone przecinkami"
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Dodaj temat"
 
-#: src/lib/ui/components/subjectsDialog.ts:28
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Usuń temat: %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
 msgid ""
-"Separate subjects with commas. Search with # followed by a subject name."
-msgstr "Oddziel tematy przecinkami. Szukaj za pomocą # i nazwy tematu."
+"Add subjects with Enter or commas. Search with # followed by a subject name."
+msgstr ""
+"Dodawaj tematy klawiszem Enter lub przecinkami. Szukaj za pomocą # i nazwy "
+"tematu."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Obrazy"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Odnośniki"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Przypięte"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1837,7 +1862,11 @@ msgstr[2] "%d plików"
 msgid "Char"
 msgstr "Znak"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Folder"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
@@ -1845,7 +1874,7 @@ msgstr[0] "%d plik więcej"
 msgstr[1] "%d pliki więcej"
 msgstr[2] "%d plików więcej"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1909,25 +1938,45 @@ msgstr "Kolo_r"
 msgid "Type to search"
 msgstr "Wpisz, aby wyszukać"
 
-#: src/prefs.ts:63
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Wybierz, co zachować i na jak długo."
+
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Zarządzaj kopiowaniem, wklejaniem i powiadomieniami."
+
+#: src/prefs.ts:65
 msgid "Advanced"
 msgstr "Zaawansowane"
 
 #: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Zarządzaj przechowywaniem i językami kodu."
+
+#: src/prefs.ts:69
 msgid "Storage"
 msgstr "Przechowywanie"
 
-#: src/prefs.ts:71
+#: src/prefs.ts:74
 msgid "Panel Indicator"
 msgstr "Wskaźnik panelu"
 
-#: src/prefs.ts:85
+#: src/prefs.ts:88
 msgid "Appearance"
 msgstr "Wygląd"
 
-#: src/prefs.ts:104
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Dostosuj panel, karty i kolory."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Skróty klawiszowe"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Korzystaj ze schowka za pomocą klawiatury."
 
 #~ msgid "Action to perform when the middle mouse button is clicked"
 #~ msgstr "Akcja do wykonania po kliknięciu środkowym przyciskiem myszy"
@@ -1946,8 +1995,8 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Rozmiar tła obrazu podglądu odnośnika"
 
 #~ msgid ""
-#~ "Behavior of the open clipboard dialog shortcut when the dialog is "
-#~ "open/closed."
+#~ "Behavior of the open clipboard dialog shortcut when the dialog is open/"
+#~ "closed."
 #~ msgstr ""
 #~ "Zachowanie skrótu otwierania okna dialogowego schowka, gdy okno jest "
 #~ "otwarte/zamknięte."
@@ -1956,8 +2005,8 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Dolny margines okna dialogowego schowka"
 
 #~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, or "
-#~ "shut down your system"
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
 #~ msgstr ""
 #~ "Wybierz, co zrobić z historią schowka podczas ponownego uruchamiania, "
 #~ "wylogowywania lub zamykania systemu"
@@ -1975,8 +2024,8 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Wyłącz ostrzeżenie GDA"
 
 #~ msgid ""
-#~ "Disable the hljs dialog from showing up when launching preferences if hljs "
-#~ "is not installed"
+#~ "Disable the hljs dialog from showing up when launching preferences if "
+#~ "hljs is not installed"
 #~ msgstr ""
 #~ "Wyłącza wyświetlanie okna dialogowego hljs podczas uruchamiania ustawień, "
 #~ "jeśli hljs nie jest zainstalowany"
@@ -1985,7 +2034,8 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Nie rejestruj historii schowka"
 
 #~ msgid ""
-#~ "Dynamically adjust the height of the clipboard items based on their content"
+#~ "Dynamically adjust the height of the clipboard items based on their "
+#~ "content"
 #~ msgstr ""
 #~ "Dynamicznie dostosowuj wysokość elementów schowka na podstawie ich "
 #~ "zawartości"
@@ -2008,8 +2058,8 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Błąd odinstalowania %s"
 
 #~ msgid ""
-#~ "File preview shows a preview of the contents of a file. File info shows some"
-#~ " information about the file."
+#~ "File preview shows a preview of the contents of a file. File info shows "
+#~ "some information about the file."
 #~ msgstr ""
 #~ "Podgląd pliku wyświetla podgląd zawartości pliku. Informacje o pliku "
 #~ "wyświetlają wybrane dane na jego temat."
@@ -2074,10 +2124,11 @@ msgstr "Skróty klawiszowe"
 #~ "Liczba minut przechowywania nieprzypiętych i nieoznaczonych elementów w "
 #~ "historii schowka. Ustaw 0, aby wyłączyć limit czasu"
 
-#~ msgid "Number of unpinned and untagged items to keep in the clipboard history"
+#~ msgid ""
+#~ "Number of unpinned and untagged items to keep in the clipboard history"
 #~ msgstr ""
-#~ "Liczba nieprzypiętych i nieoznaczonych elementów przechowywanych w historii "
-#~ "schowka"
+#~ "Liczba nieprzypiętych i nieoznaczonych elementów przechowywanych w "
+#~ "historii schowka"
 
 #~ msgid "Orientation of the clipboard dialog"
 #~ msgstr "Orientacja okna dialogowego schowka'"
@@ -2100,14 +2151,18 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Wybierz, ile elementów ma być przechowywanych w historii schowka"
 
 #~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
-#~ "disable the time limit"
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
 #~ msgstr ""
-#~ "Wybierz, ile minut mają być przechowywane elementy w historii schowka. Ustaw"
-#~ " 0, aby wyłączyć limit czasu"
+#~ "Wybierz, ile minut mają być przechowywane elementy w historii schowka. "
+#~ "Ustaw 0, aby wyłączyć limit czasu"
 
 #~ msgid "Selects which backend to use for the clipboard database."
 #~ msgstr "Wybiera silnik używany przez bazę danych schowka."
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr "Oddziel tematy przecinkami. Szukaj za pomocą # i nazwy tematu."
 
 #~ msgid "Shortcut to delete a clipboard item"
 #~ msgstr "Skrót do usuwania elementu schowka"
@@ -2167,7 +2222,14 @@ msgstr "Skróty klawiszowe"
 #~ msgstr "Rozpoczynanie pobierania Highlight.js"
 
 #~ msgid "Store clipboard history in memory instead of on disk (Deprecated)"
-#~ msgstr "Przechowuj historię schowka w pamięci zamiast na dysku (Przestarzałe)"
+#~ msgstr ""
+#~ "Przechowuj historię schowka w pamięci zamiast na dysku (Przestarzałe)"
+
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Tematy oddzielone przecinkami"
+
+#~ msgid "Subjects…"
+#~ msgstr "Tematy…"
 
 #, javascript-format
 #~ msgid "Successfully Installed %s"
@@ -2230,8 +2292,8 @@ msgstr "Skróty klawiszowe"
 #~ "Szerokość lub wysokość okna dialogowego schowka w zależności od orientacji"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js from "
-#~ "\"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Możesz ręcznie zainstalować highlight.js, pobierając 'highlight.min.js' z "
 #~ "\"URL\" do \"Lokalizacja instalacji\"."

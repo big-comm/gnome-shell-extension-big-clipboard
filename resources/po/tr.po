@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:45-0300\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Aç"
 
@@ -126,8 +126,8 @@ msgstr "Renk Kopyalandı"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:239
-#: src/lib/ui/components/editDialog.ts:266
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -141,14 +141,14 @@ msgstr "Varsayılan Eylemler"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Metin"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Kod"
 
@@ -163,14 +163,15 @@ msgstr "Resim"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "Dosya"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Dosyalar"
 
@@ -178,7 +179,7 @@ msgstr "Dosyalar"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Bağlantı"
 
@@ -192,11 +193,12 @@ msgstr "Karakter"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Renk"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Hepsi"
 
@@ -216,8 +218,8 @@ msgstr "Hangi türlere izin verileceğini seç"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:376
-#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "İptal"
 
@@ -333,6 +335,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Ekle"
 
@@ -347,8 +350,8 @@ msgid "Edit Action"
 msgstr "Eylemi Düzenle"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:383
-#: src/lib/ui/components/subjectsDialog.ts:36
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Kaydet"
 
@@ -360,8 +363,8 @@ msgstr "Alt Menü Ekle"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:98
-#: src/lib/ui/components/editDialog.ts:396
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -372,6 +375,7 @@ msgstr "Alt Menüyü Düzenle"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Sil"
 
@@ -662,8 +666,8 @@ msgstr "Dinamik Öğe Yüksekliği"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content."
-" Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content. "
+"Only works in vertical orientation"
 msgstr ""
 "Pano öğelerinin yüksekliğini içeriklerine göre dinamik olarak ayarla. "
 "Yalnızca dikey yönelimde çalışır"
@@ -955,8 +959,8 @@ msgstr "Bağlantı Hariç Tutmaları"
 msgid ""
 "Enter a regular expression to exclude links that should not have a preview."
 msgstr ""
-"Önizlemesi olmaması gereken bağlantıları hariç tutmak için bir düzenli ifade"
-" gir."
+"Önizlemesi olmaması gereken bağlantıları hariç tutmak için bir düzenli ifade "
+"gir."
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:48
 msgid "Link Exclusion Patterns"
@@ -1183,8 +1187,8 @@ msgstr "Sözdizimi vurgulama kullanılamıyor"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting"
-" files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 "Paketlenmiş kod vurgulama dosyalarını geri yüklemek için Big Clipboard "
 "paketini yeniden yükleyin."
@@ -1268,7 +1272,7 @@ msgstr "Uygulama Hariç Tutmalarını Yönet"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Pano geçmişinden hariç tutulacak uygulamaları yönetin"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Davranış"
 
@@ -1460,11 +1464,11 @@ msgstr "Geçmişi Sakla"
 #: src/lib/preferences/general/historySettings.ts:135
 msgid "Choose what to keep after logout or restart."
 msgstr ""
-"Oturum kapatıldıktan veya yeniden başlatıldıktan sonra nelerin saklanacağını"
-" seçin."
+"Oturum kapatıldıktan veya yeniden başlatıldıktan sonra nelerin saklanacağını "
+"seçin."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Temizle"
@@ -1496,8 +1500,7 @@ msgstr "Saklama Süresi"
 #: src/lib/preferences/general/historySettings.ts:151
 msgid "Minutes before items expire. Set to 0 to keep them."
 msgstr ""
-"Öğelerin saklanacağı dakika sayısı. Süresiz saklamak için 0 olarak "
-"ayarlayın."
+"Öğelerin saklanacağı dakika sayısı. Süresiz saklamak için 0 olarak ayarlayın."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1691,9 +1694,13 @@ msgstr "Devre Dışı"
 msgid "No Results Found"
 msgstr "Sonuç Bulunamadı"
 
-#: src/lib/ui/components/clipboardItemMenu.ts:90
-msgid "Subjects…"
-msgstr "Konular…"
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Konular"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1739,62 +1746,78 @@ msgstr "Eksik Dosya"
 msgid "Error"
 msgstr "Hata"
 
-#: src/lib/ui/components/editDialog.ts:297
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Pano Öğesini Düzenle"
 
-#: src/lib/ui/components/editDialog.ts:317
-#: src/lib/ui/components/subjectsDialog.ts:16
-#: src/lib/ui/components/subjectsDialog.ts:27
-msgid "Subjects"
-msgstr "Konular"
-
-#: src/lib/ui/components/editDialog.ts:350
+#: src/lib/ui/components/editDialog.ts:366
 msgid "Preview shortened. The full text is preserved."
 msgstr "Önizleme kısaltıldı. Tam metin korunur."
 
-#: src/lib/ui/components/editDialog.ts:403
+#: src/lib/ui/components/editDialog.ts:420
 msgid "Preview"
 msgstr "Önizleme"
 
-#: src/lib/ui/components/editDialog.ts:415
-#: src/lib/ui/components/editDialog.ts:440
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Yan yana"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
 msgid "Markdown formatting"
 msgstr "Markdown biçimlendirmesi"
 
-#: src/lib/ui/components/editDialog.ts:422
+#: src/lib/ui/components/editDialog.ts:459
 msgid "Bold (Ctrl+B)"
 msgstr "Kalın (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:423
+#: src/lib/ui/components/editDialog.ts:460
 msgid "Italic (Ctrl+I)"
 msgstr "İtalik (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:424
+#: src/lib/ui/components/editDialog.ts:461
 msgid "Bullet list"
 msgstr "Madde işaretli liste"
 
-#: src/lib/ui/components/editDialog.ts:425
+#: src/lib/ui/components/editDialog.ts:462
 msgid "Numbered list"
 msgstr "Numaralı liste"
 
-#: src/lib/ui/components/editDialog.ts:426
+#: src/lib/ui/components/editDialog.ts:463
 msgid "Quote"
 msgstr "Alıntı"
 
-#: src/lib/ui/components/editDialog.ts:427
+#: src/lib/ui/components/editDialog.ts:464
 msgid "Inline code"
 msgstr "Satır içi kod"
 
-#: src/lib/ui/components/subjectsDialog.ts:15
-msgid "Subjects, separated by commas"
-msgstr "Virgülle ayrılmış konular"
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Konu ekle"
 
-#: src/lib/ui/components/subjectsDialog.ts:28
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Konuyu kaldır: %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
 msgid ""
-"Separate subjects with commas. Search with # followed by a subject name."
+"Add subjects with Enter or commas. Search with # followed by a subject name."
 msgstr ""
-"Konuları virgülle ayırın. Aramak için # işaretinden sonra konu adını yazın."
+"Enter tuşuyla veya virgülle konu ekleyin. Aramak için # işaretinden sonra "
+"konu adını yazın."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Görseller"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Bağlantılar"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Sabitlenenler"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1831,14 +1854,18 @@ msgstr[1] "%d Dosya"
 msgid "Char"
 msgstr "Karakter"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Klasör"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
 msgstr[0] "%d dosya daha"
 msgstr[1] "%d dosya daha"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1901,36 +1928,56 @@ msgstr "Re__nk"
 msgid "Type to search"
 msgstr "Aramak için yaz"
 
-#: src/prefs.ts:63
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Nelerin ne kadar süre saklanacağını seçin."
+
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Kopyalama, yapıştırma ve geri bildirimi yönetin."
+
+#: src/prefs.ts:65
 msgid "Advanced"
 msgstr "Gelişmiş"
 
 #: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Depolamayı ve kod dillerini yönetin."
+
+#: src/prefs.ts:69
 msgid "Storage"
 msgstr "Depolama"
 
-#: src/prefs.ts:71
+#: src/prefs.ts:74
 msgid "Panel Indicator"
 msgstr "Panel Göstergesi"
 
-#: src/prefs.ts:85
+#: src/prefs.ts:88
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: src/prefs.ts:104
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Paneli, kartları ve renkleri özelleştirin."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Kısayollar"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Panoya klavyeyle erişin."
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
 #~ msgstr "Pano geçmişinden bir öğe seçildiğinde otomatik olarak yapıştır"
 
 #~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, or "
-#~ "shut down your system"
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
 #~ msgstr ""
-#~ "Sistemi yeniden başlattığında, oturumu kapattığında veya cihazı kapattığında"
-#~ " pano geçmişine ne yapılacağını seç"
+#~ "Sistemi yeniden başlattığında, oturumu kapattığında veya cihazı "
+#~ "kapattığında pano geçmişine ne yapılacağını seç"
 
 #~ msgid "Clipboard History"
 #~ msgstr "Pano Geçmişi"
@@ -1962,7 +2009,8 @@ msgstr "Kısayollar"
 #~ msgstr "Highlight.js Kurulu Değil"
 
 #~ msgid "Highlight.js is required to display syntax highlighted code."
-#~ msgstr "Sözdizimi vurgulu kodları görüntülemek için Highlight.js gereklidir."
+#~ msgstr ""
+#~ "Sözdizimi vurgulu kodları görüntülemek için Highlight.js gereklidir."
 
 #~ msgid "History Length"
 #~ msgstr "Geçmiş Uzunluğu"
@@ -1995,11 +2043,17 @@ msgstr "Kısayollar"
 #~ msgstr "Pano geçmişinde kaç öğe tutulacağını seç"
 
 #~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
-#~ "disable the time limit"
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
 #~ msgstr ""
-#~ "Pano geçmişinde öğelerin kaç dakika tutulacağını seç. Zaman sınırını devre "
-#~ "dışı bırakmak için 0 olarak ayarla"
+#~ "Pano geçmişinde öğelerin kaç dakika tutulacağını seç. Zaman sınırını "
+#~ "devre dışı bırakmak için 0 olarak ayarla"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr ""
+#~ "Konuları virgülle ayırın. Aramak için # işaretinden sonra konu adını "
+#~ "yazın."
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Özel temanın renk şemasını ayarla"
@@ -2022,6 +2076,12 @@ msgstr "Kısayollar"
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Pano geçmişini disk yerine bellekte sakla"
 
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Virgülle ayrılmış konular"
+
+#~ msgid "Subjects…"
+#~ msgstr "Konular…"
+
 #, javascript-format
 #~ msgid "Successfully Installed %s"
 #~ msgstr "%s Başarıyla Kuruldu"
@@ -2040,8 +2100,8 @@ msgstr "Kısayollar"
 #~ msgstr "Bellek İçi Veritabanı Kullan"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js from "
-#~ "\"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Highlight.js'yi \"Adres\" üzerinden \"Kurulum Konumu\"na indirerek elle "
 #~ "kurabilirsin."

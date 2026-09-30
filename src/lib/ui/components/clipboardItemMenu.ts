@@ -1,64 +1,20 @@
 import Clutter from 'gi://Clutter';
 import St from 'gi://St';
 
-import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as BoxPointer from 'resource:///org/gnome/shell/ui/boxpointer.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 
 import type CopyousExtension from '../../../extension.js';
 import { ItemType, Tags } from '../../common/constants.js';
-import { registerClass } from '../../common/gjs.js';
-import type { CopyousSettings } from '../../common/settings.js';
 import { ClipboardEntry } from '../../database/database.js';
 import { Shortcut } from '../../misc/shortcuts.js';
 import { ActionPopupMenuSection, ActionPopupMenuSectionSignals } from './actionMenu.js';
 import { EditDialog } from './editDialog.js';
-import { ShortcutLabel } from './shortcutLabel.js';
-import { SubjectsDialog } from './subjectsDialog.js';
 import { TagsItem } from './tagsItem.js';
 
 function canEdit(entry: ClipboardEntry): boolean {
 	return entry.type === ItemType.Text || entry.type === ItemType.Code;
-}
-
-@registerClass()
-class PopupMenuShortcutItem extends PopupMenu.PopupBaseMenuItem {
-	private readonly _shortcutLabel: ShortcutLabel;
-	private readonly _settings: CopyousSettings;
-
-	constructor(ext: CopyousExtension, text: string, shortcut: Shortcut) {
-		super();
-		this._settings = ext.settings;
-
-		const label = new St.Label({
-			text,
-			y_expand: true,
-			y_align: Clutter.ActorAlign.CENTER,
-		});
-		this.add_child(label);
-
-		this._shortcutLabel = new ShortcutLabel(this._settings.get_strv(shortcut)[0] ?? '', {
-			x_expand: true,
-			y_expand: true,
-			x_align: Clutter.ActorAlign.END,
-			y_align: Clutter.ActorAlign.CENTER,
-			opacity: 180,
-		});
-		this.add_child(this._shortcutLabel);
-
-		this._settings.connectObject(
-			`changed::${shortcut}`,
-			() => (this._shortcutLabel.shortcut = this._settings.get_strv(shortcut)[0] ?? ''),
-			this,
-		);
-	}
-
-	override destroy() {
-		this._settings.disconnectObject(this);
-
-		super.destroy();
-	}
 }
 
 export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectionSignals> {
@@ -66,7 +22,7 @@ export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectio
 	private _entry: ClipboardEntry | null = null;
 
 	private readonly _tagsItem: TagsItem;
-	private readonly _editSection: PopupMenu.PopupMenuSection;
+	private _colorsOnly = false;
 	private readonly _actionMenuSection: ActionPopupMenuSection;
 
 	constructor(private ext: CopyousExtension) {
@@ -84,22 +40,6 @@ export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectio
 				this._entry.tag = this._tagsItem.tag;
 			}
 		});
-
-		this.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-
-		this.addAction(_('Subjects…'), () => {
-			if (this._entry) new SubjectsDialog(this._entry).open();
-		});
-
-		// Edit
-		this._editSection = new PopupMenu.PopupMenuSection();
-		this.addMenuItem(this._editSection);
-
-		const menuItem = new PopupMenuShortcutItem(ext, _('Edit'), Shortcut.Edit);
-		menuItem.connect('activate', () => {
-			if (this._entry) this.edit(this._entry);
-		});
-		this._editSection.addMenuItem(menuItem);
 
 		// Action menu
 		this._actionMenuSection = new ActionPopupMenuSection(ext);
@@ -124,13 +64,13 @@ export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectio
 				const key = event.get_key_symbol();
 
 				// Select tag with number
-				if (key === Clutter.KEY_0) {
+				if (this._colorsOnly && key === Clutter.KEY_0) {
 					this._tagsItem.tag = null;
 					this.close(BoxPointer.PopupAnimation.FADE);
 					return;
 				}
 
-				if (key >= Clutter.KEY_1 && key <= Clutter.KEY_9) {
+				if (this._colorsOnly && key >= Clutter.KEY_1 && key <= Clutter.KEY_9) {
 					let tag = Tags[key - Clutter.KEY_1] ?? null;
 					tag = this._tagsItem.tag === tag ? null : tag;
 					this._tagsItem.tag = tag;
@@ -148,6 +88,12 @@ export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectio
 		});
 	}
 
+	set colorsOnly(value: boolean) {
+		this._colorsOnly = value;
+		this._tagsItem.visible = value;
+		this._actionMenuSection.actor.visible = !value;
+	}
+
 	set arrowAlignment(alignment: number) {
 		this._arrowAlignment = alignment;
 	}
@@ -157,7 +103,6 @@ export class ClipboardItemMenu extends PopupMenu.PopupMenu<ActionPopupMenuSectio
 		this._actionMenuSection.entry = entry;
 
 		this._tagsItem.tag = entry.tag;
-		this._editSection.actor.visible = canEdit(entry);
 	}
 
 	public edit(entry: ClipboardEntry) {

@@ -10,9 +10,21 @@ import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import { ClipboardEntry } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/database/database.js';
 import { GdaDatabase } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/database/gda.js';
 import { JsonDatabase } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/database/json.js';
+import { ContentType } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/misc/clipboard.js';
 import { EditDialog } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/ui/components/editDialog.js';
 import { markdownPreview } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/ui/components/markdown.js';
-import { SubjectsDialog } from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/ui/components/subjectsDialog.js';
+import {
+	SubjectEditor,
+	SubjectsDialog,
+} from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/ui/components/subjectsDialog.js';
+import {
+	FileItem,
+	fileIcon,
+} from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/ui/items/fileItem.js';
+import {
+	FilesItem,
+	commonDirectory,
+} from 'file:///usr/share/gnome-shell/extensions/big-clipboard@communitybig.org/lib/ui/items/filesItem.js';
 import {
 	SearchChange,
 	SearchQuery,
@@ -20,6 +32,9 @@ import {
 
 const xml = `<node><interface name="org.communitybig.NotesTest">
 <method name="Run"><arg type="s" direction="out"/></method>
+<method name="Demo"><arg type="s" direction="out"/></method>
+<method name="Panel"><arg type="s" direction="out"/></method>
+<method name="CopyFiles"><arg type="s" direction="out"/></method>
 <method name="Show"><arg type="s" direction="in"/><arg type="s" direction="out"/></method>
 <method name="Action"><arg type="s" direction="in"/><arg type="s" direction="out"/></method>
 <method name="Inspect"><arg type="s" direction="out"/></method>
@@ -79,6 +94,90 @@ export default class extends Extension {
 			this.saved = null;
 		}
 	}
+	Demo() {
+		this.editor?.close();
+		this.restore();
+		const d = this.ext.clipboardDialog;
+		this.saved = [...d._entries.values()];
+		const search = d._header.searchEntry;
+		this.queryBackup = {
+			fields: { text: search.text, pinned: search.pinned, tag: search.tag, type: search.type },
+			settings: Object.fromEntries(
+				['exclude-pinned', 'exclude-tagged'].map((k) => [k, this.ext.settings.get_boolean(k)]),
+			),
+		};
+		for (const key of Object.keys(this.queryBackup.settings)) this.ext.settings.set_boolean(key, false);
+		Object.assign(search, { text: '', pinned: false, tag: null, type: null });
+		d.clearEntries();
+		const data = [
+			[
+				'Text',
+				'Release notes\n\n**Ready for review**\n- Test files and tags\n- Preserve history',
+				'teal',
+				'Work, Release',
+			],
+			['File', 'file:///tmp/bgc-ui-files/Project%20notes.pdf', null, 'Documents'],
+			[
+				'Files',
+				'file:///tmp/bgc-ui-files/Project%20notes.pdf\nfile:///tmp/bgc-ui-files/R%C3%A9sum%C3%A9.txt\nfile:///tmp/bgc-ui-files/Archive.zip',
+				'purple',
+				'Work',
+			],
+			['Code', 'const greeting = "Hello, GNOME";', 'blue', 'Development'],
+			['Image', 'file:///tmp/bgc-ui-files/Preview.png', null, 'Design'],
+			['Link', 'https://communitybig.org/', null, 'Community'],
+		];
+		const entries = Array.from({ length: 144 }, (_, i) => {
+			const [type, content, tag, subjects] = data[i % data.length];
+			return new ClipboardEntry(
+				2100000000 + i,
+				type,
+				content,
+				i < 2,
+				tag,
+				GLib.DateTime.new_now_utc().add_seconds(-i),
+				type === 'Code' ? { language: null } : null,
+				'',
+				subjects,
+			);
+		});
+		d.loadEntries(entries);
+		d.open();
+		return JSON.stringify({ fixtures: entries.length });
+	}
+	Panel() {
+		const d = this.ext.clipboardDialog;
+		return JSON.stringify({
+			rendered: d._renderedCount,
+			type: d._header.searchEntry.type,
+			actors: actors(d)
+				.filter(
+					(a) =>
+						a.mapped &&
+						(a.reactive ||
+							['file-name', 'files-preview-item', 'clipboard-type-filters'].includes(a.style_class)),
+				)
+				.map((a) => ({
+					label: a.label ?? a.text,
+					name: a.accessible_name,
+					style: a.style_class,
+					pos: a.get_transformed_position(),
+					size: a.get_transformed_size(),
+					parent: a.get_parent()
+						? {
+								pos: a.get_parent().get_transformed_position(),
+								size: a.get_parent().get_transformed_size(),
+							}
+						: null,
+				})),
+		});
+	}
+	async CopyFilesAsync(_args, invocation) {
+		const entry = this.fixture('Files');
+		entry.content = 'file:///tmp/bgc-ui-files/Project%20notes.pdf\nfile:///tmp/bgc-ui-files/R%C3%A9sum%C3%A9.txt';
+		await this.ext.clipboardManager.copyEntry(entry);
+		invocation.return_value(new GLib.Variant('(s)', ['copied']));
+	}
 	Show(type) {
 		this.editor?.close();
 		this.ext.clipboardDialog.close();
@@ -94,7 +193,10 @@ export default class extends Extension {
 			this.restore();
 			return '{}';
 		}
-		if (action === 'preview') this.editor.showPreview(true);
+		if (action === 'split') {
+			this.editor._split = true;
+			this.editor.showPreview(true);
+		} else if (action === 'preview') this.editor.showPreview(true);
 		else if (action === 'edit') this.editor.showPreview(false);
 		else if (action === 'demo') {
 			const t = this.editor._entry.clutter_text;
@@ -124,6 +226,12 @@ export default class extends Extension {
 					mapped: a.mapped,
 					pos: a.get_transformed_position(),
 					size: a.get_transformed_size(),
+					parent: a.get_parent()
+						? {
+								pos: a.get_parent().get_transformed_position(),
+								size: a.get_parent().get_transformed_size(),
+							}
+						: null,
 				})),
 		});
 	}
@@ -253,7 +361,7 @@ export default class extends Extension {
 			await delay();
 			check(e._entry.visible && global.stage.get_key_focus() === t, 'edit focus');
 			t.text = '**saved** 🌍';
-			const subject = actors(e.contentLayout).find((a) => a.hint_text);
+			const subject = actors(e.contentLayout).find((a) => a instanceof SubjectEditor);
 			subject.text = ' Work, work, Café, Research ';
 			const buttons = e.buttonLayout.get_children();
 			buttons[buttons.length - 1].emit('clicked', 1);
@@ -272,6 +380,69 @@ export default class extends Extension {
 				this.ext.settings.set_boolean('incognito', incognito);
 			}
 			passed.push('Copy: Markdown source and Unicode retained');
+			// File MIME round trips use the real Shell clipboard, isolated from history recording.
+			this.ext.settings.set_boolean('incognito', true);
+			try {
+				const manager = this.ext.clipboardManager;
+				for (const paths of [
+					['file:///tmp/bgc-ui-files/Project%20notes.pdf'],
+					['file:///tmp/bgc-ui-files/Project%20notes.pdf', 'file:///tmp/bgc-ui-files/R%C3%A9sum%C3%A9.txt'],
+				]) {
+					const original = this.fixture(paths.length === 1 ? 'File' : 'Files');
+					original.content = paths.join('\n');
+					await manager.copyEntry(original);
+					await delay();
+					const source = {
+						read_async: async () =>
+							Gio.MemoryInputStream.new_from_bytes(
+								new GLib.Bytes(new TextEncoder().encode(`copy\n${paths.join('\n')}`)),
+							),
+					};
+					const decoded = await manager.getContent(source, ['x-special/gnome-copied-files']);
+					check(JSON.stringify(decoded.paths) === JSON.stringify(paths), 'file clipboard paths');
+					check(decoded.operation === 'copy', 'file copy preserves originals');
+					const converted = await manager.convertContent(decoded);
+					check(converted[0] === original.type, 'file clipboard type');
+				}
+				const uriSource = {
+					read_async: async () =>
+						Gio.MemoryInputStream.new_from_bytes(
+							new GLib.Bytes(
+								new TextEncoder().encode('# files\r\nfile:///tmp/bgc-ui-files/Project%20notes.pdf\r\n'),
+							),
+						),
+				};
+				const parsed = await manager.getContent(uriSource, ['text/uri-list']);
+				check(parsed.paths.length === 1 && parsed.paths[0].endsWith('.pdf'), 'URI list comments and CRLF');
+				check(
+					(await manager.convertContent({ type: ContentType.File, paths: [], operation: 'copy' })) === null,
+					'empty file list',
+				);
+				check(commonDirectory([]) === null, 'empty common directory');
+				check(
+					commonDirectory([
+						Gio.File.new_for_uri('file:///a.pdf'),
+						Gio.File.new_for_uri('smb://server/a.pdf'),
+					]) === null,
+					'mixed locations',
+				);
+				const one = this.fixture('File');
+				one.content = 'file:///tmp/bgc-ui-files/Project%20notes.pdf';
+				const item = new FileItem(this.ext, one);
+				check(item._fileName.text === 'Project notes.pdf', 'file name');
+				check(fileIcon(Gio.File.new_for_uri(one.content)).to_string().includes('pdf'), 'PDF MIME icon');
+				item.destroy();
+				const many = this.fixture('Files');
+				many.content = Array.from({ length: 500 }, (_, i) => `file:///tmp/document-${i}.pdf`).join('\n');
+				const group = new FilesItem(this.ext, many);
+				const rows = actors(group).filter((a) => a.style_class === 'files-preview-item');
+				check(rows.length === 12, 'large file selection bounded to 12 rows');
+				group.destroy();
+			} finally {
+				this.ext.settings.set_boolean('incognito', incognito);
+			}
+			passed.push('Files: PDF icons, clipboard MIME, Unicode paths, URI comments, 500-file bounded preview');
+
 			this.Show('Text');
 			await delay();
 			this.editor._entry.clutter_text.text = 'cancel me';
@@ -284,7 +455,7 @@ export default class extends Extension {
 			this.editor.close();
 			this.Show('Image');
 			await delay();
-			const input = actors(this.editor.contentLayout).find((a) => a.hint_text);
+			const input = actors(this.editor.contentLayout).find((a) => a instanceof SubjectEditor);
 			input.text = 'Images, Design';
 			this.editor.buttonLayout.get_last_child().emit('clicked', 1);
 			await delay();

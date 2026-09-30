@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:45-0300\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
 "PO-Revision-Date: 2025-12-01 18:02-0300\n"
 "Last-Translator: Murilo Leal <murilormleal@outlook.com>\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Abrir"
 
@@ -124,8 +124,8 @@ msgstr "Cor copiada"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:239
-#: src/lib/ui/components/editDialog.ts:266
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Nenhum"
 
@@ -139,14 +139,14 @@ msgstr "Ações Padrão"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Texto"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Código"
 
@@ -161,14 +161,15 @@ msgstr "Imagem"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "Arquivo"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Arquivos"
 
@@ -176,7 +177,7 @@ msgstr "Arquivos"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Link"
 
@@ -190,11 +191,12 @@ msgstr "Caracter"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Cor"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Todos"
 
@@ -214,8 +216,8 @@ msgstr "Selecione quais tipos são permitidos"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:376
-#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -332,6 +334,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Adicionar"
 
@@ -346,8 +349,8 @@ msgid "Edit Action"
 msgstr "Editar Ação"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:383
-#: src/lib/ui/components/subjectsDialog.ts:36
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Salvar"
 
@@ -359,8 +362,8 @@ msgstr "Adicionar Submenu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:98
-#: src/lib/ui/components/editDialog.ts:396
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Editar"
 
@@ -371,6 +374,7 @@ msgstr "Editar Submenu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Excluir"
 
@@ -565,8 +569,7 @@ msgstr "Ocultar automaticamente a barra de pesquisa"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:116
 msgid "Automatically hide the search bar when not focused"
-msgstr ""
-"Ocultar automaticamente a barra de pesquisa quando não estiver em foco"
+msgstr "Ocultar automaticamente a barra de pesquisa quando não estiver em foco"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:121
 msgid "Show Scrollbar"
@@ -661,11 +664,11 @@ msgstr "Altura Dinâmica do Item"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content."
-" Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content. "
+"Only works in vertical orientation"
 msgstr ""
-"Ajustar a altura dinamicamente dos itens da área de transferência baseado no"
-" conteúdo. Funciona apenas na orientação vertical"
+"Ajustar a altura dinamicamente dos itens da área de transferência baseado no "
+"conteúdo. Funciona apenas na orientação vertical"
 
 #: src/lib/preferences/customization/itemCustomization.ts:55
 msgid "Tab Width"
@@ -961,8 +964,7 @@ msgstr "Exclusões de Links"
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:49
 msgid "Links matching these patterns will not have a preview"
-msgstr ""
-"Links que correspondem a essas expressões regular não terão uma prévia"
+msgstr "Links que correspondem a essas expressões regular não terão uma prévia"
 
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:66
 msgid "Link Item"
@@ -1181,8 +1183,8 @@ msgstr "Realce de sintaxe indisponível"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting"
-" files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 "Reinstale o pacote Big Clipboard para restaurar os arquivos de realce de "
 "código incluídos."
@@ -1268,7 +1270,7 @@ msgstr ""
 "Gerenciar aplicativos que serão excluídos do histórico da área de "
 "transferência"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Comportamento"
 
@@ -1469,7 +1471,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "Escolha o que manter após sair da sessão ou reiniciar."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Limpar"
@@ -1692,9 +1694,13 @@ msgstr "Desabilitado"
 msgid "No Results Found"
 msgstr "Nenhum resultado encontrado"
 
-#: src/lib/ui/components/clipboardItemMenu.ts:90
-msgid "Subjects…"
-msgstr "Assuntos…"
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Assuntos"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1740,63 +1746,78 @@ msgstr "Arquivo faltando"
 msgid "Error"
 msgstr "Erro"
 
-#: src/lib/ui/components/editDialog.ts:297
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Editar Item da Área de Transferência"
 
-#: src/lib/ui/components/editDialog.ts:317
-#: src/lib/ui/components/subjectsDialog.ts:16
-#: src/lib/ui/components/subjectsDialog.ts:27
-msgid "Subjects"
-msgstr "Assuntos"
-
-#: src/lib/ui/components/editDialog.ts:350
+#: src/lib/ui/components/editDialog.ts:366
 msgid "Preview shortened. The full text is preserved."
 msgstr "Prévia reduzida. O texto completo é preservado."
 
-#: src/lib/ui/components/editDialog.ts:403
+#: src/lib/ui/components/editDialog.ts:420
 msgid "Preview"
 msgstr "Prévia"
 
-#: src/lib/ui/components/editDialog.ts:415
-#: src/lib/ui/components/editDialog.ts:440
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Lado a lado"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
 msgid "Markdown formatting"
 msgstr "Formatação Markdown"
 
-#: src/lib/ui/components/editDialog.ts:422
+#: src/lib/ui/components/editDialog.ts:459
 msgid "Bold (Ctrl+B)"
 msgstr "Negrito (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:423
+#: src/lib/ui/components/editDialog.ts:460
 msgid "Italic (Ctrl+I)"
 msgstr "Itálico (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:424
+#: src/lib/ui/components/editDialog.ts:461
 msgid "Bullet list"
 msgstr "Lista com marcadores"
 
-#: src/lib/ui/components/editDialog.ts:425
+#: src/lib/ui/components/editDialog.ts:462
 msgid "Numbered list"
 msgstr "Lista numerada"
 
-#: src/lib/ui/components/editDialog.ts:426
+#: src/lib/ui/components/editDialog.ts:463
 msgid "Quote"
 msgstr "Citação"
 
-#: src/lib/ui/components/editDialog.ts:427
+#: src/lib/ui/components/editDialog.ts:464
 msgid "Inline code"
 msgstr "Código em linha"
 
-#: src/lib/ui/components/subjectsDialog.ts:15
-msgid "Subjects, separated by commas"
-msgstr "Assuntos, separados por vírgulas"
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Adicionar assunto"
 
-#: src/lib/ui/components/subjectsDialog.ts:28
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Remover assunto: %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
 msgid ""
-"Separate subjects with commas. Search with # followed by a subject name."
+"Add subjects with Enter or commas. Search with # followed by a subject name."
 msgstr ""
-"Separe os assuntos por vírgulas. Pesquise com # seguido do nome de um "
-"assunto."
+"Adicione assuntos com Enter ou vírgulas. Pesquise com # seguido do nome de "
+"um assunto."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Imagens"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Links"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Fixados"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1804,8 +1825,7 @@ msgstr "Limpar Histórico da Área de Transferência?"
 
 #: src/lib/ui/indicator.ts:39
 msgid "Are you sure you want to clear your clipboard history?"
-msgstr ""
-"Tem certeza de que deseja limpar o histórico da área de transferência?"
+msgstr "Tem certeza de que deseja limpar o histórico da área de transferência?"
 
 #: src/lib/ui/indicator.ts:43
 msgid "Clear Pinned Items"
@@ -1834,14 +1854,18 @@ msgstr[1] "%d Arquivos"
 msgid "Char"
 msgstr "Caractere"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Pasta"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
 msgstr[0] "%d mais arquivo"
 msgstr[1] "%d mais arquivos"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1904,25 +1928,45 @@ msgstr "Co__r"
 msgid "Type to search"
 msgstr "Digite para pesquisar"
 
-#: src/prefs.ts:63
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Escolha o que manter e por quanto tempo."
+
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Configure cópia, colagem e feedback."
+
+#: src/prefs.ts:65
 msgid "Advanced"
 msgstr "Avançado"
 
 #: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Gerencie armazenamento e linguagens de código."
+
+#: src/prefs.ts:69
 msgid "Storage"
 msgstr "Armazenamento"
 
-#: src/prefs.ts:71
+#: src/prefs.ts:74
 msgid "Panel Indicator"
 msgstr "Indicador do painel"
 
-#: src/prefs.ts:85
+#: src/prefs.ts:88
 msgid "Appearance"
 msgstr "Aparência"
 
-#: src/prefs.ts:104
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Personalize o painel, os cartões e as cores."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Atalhos"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Acesse a área de transferência pelo teclado."
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
@@ -1931,11 +1975,11 @@ msgstr "Atalhos"
 #~ "histórico"
 
 #~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, or "
-#~ "shut down your system"
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
 #~ msgstr ""
-#~ "Escolha o que fazer com o histórico da área de transferência ao reiniciar, "
-#~ "fazer logout ou desligar o sistema"
+#~ "Escolha o que fazer com o histórico da área de transferência ao "
+#~ "reiniciar, fazer logout ou desligar o sistema"
 
 #~ msgid "Clipboard History"
 #~ msgstr "Histórico de Clipboard"
@@ -1998,14 +2042,21 @@ msgstr "Atalhos"
 #~ msgstr "Colar ao Copiar"
 
 #~ msgid "Select how many items to keep in the clipboard history"
-#~ msgstr "Selecione quantos itens manter no histórico da área de transferência"
+#~ msgstr ""
+#~ "Selecione quantos itens manter no histórico da área de transferência"
 
 #~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
-#~ "disable the time limit"
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
 #~ msgstr ""
 #~ "Selecione quantos minutos manter itens no histórico da área de "
 #~ "transferência. Defina como 0 para desativar o limite de tempo"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr ""
+#~ "Separe os assuntos por vírgulas. Pesquise com # seguido do nome de um "
+#~ "assunto."
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Seleciona o esquema de cor do tema customizado"
@@ -2028,6 +2079,12 @@ msgstr "Atalhos"
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Armazenar histórico de clipboard em memória em vez de em disco"
 
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Assuntos, separados por vírgulas"
+
+#~ msgid "Subjects…"
+#~ msgstr "Assuntos…"
+
 #, javascript-format
 #~ msgid "Successfully Installed %s"
 #~ msgstr "Instalado com Sucesso %s"
@@ -2046,8 +2103,8 @@ msgstr "Atalhos"
 #~ msgstr "Usar Banco de Dados em Memória"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js from "
-#~ "\"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
 #~ msgstr ""
-#~ "Você pode instalar manualmente o highlight.js baixando o highlight.min.js da"
-#~ " \"Url\" para o \"Local de Instalação\"."
+#~ "Você pode instalar manualmente o highlight.js baixando o highlight.min.js "
+#~ "da \"Url\" para o \"Local de Instalação\"."

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:45-0300\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Russian\n"
@@ -16,10 +16,11 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Открыть"
 
@@ -127,8 +128,8 @@ msgstr "Скопирован цвет"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:239
-#: src/lib/ui/components/editDialog.ts:266
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Нет"
 
@@ -142,14 +143,14 @@ msgstr "Действия по умолчанию"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Текст"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Код"
 
@@ -164,14 +165,15 @@ msgstr "Изображение"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "Файл"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Файлы"
 
@@ -179,7 +181,7 @@ msgstr "Файлы"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Ссылка"
 
@@ -193,11 +195,12 @@ msgstr "Символ"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Цвет"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Все"
 
@@ -217,8 +220,8 @@ msgstr "Выберите, какие типы разрешены"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:376
-#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -257,8 +260,8 @@ msgid ""
 "expression will be passed as positional parameters $1, $2, $3, ..."
 msgstr ""
 "Содержимое буфера обмена будет передано через stdin. Захваченные группы "
-"регулярного выражения будут переданы как позиционные параметры $1, $2, $3, "
-"..."
+"регулярного выражения будут переданы как позиционные параметры $1, $2, "
+"$3, ..."
 
 #: src/lib/preferences/actions/actionDialog.ts:441
 #: src/lib/preferences/actions/actionDialog.ts:523
@@ -335,6 +338,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Добавить"
 
@@ -349,8 +353,8 @@ msgid "Edit Action"
 msgstr "Изменить действие"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:383
-#: src/lib/ui/components/subjectsDialog.ts:36
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Сохранить"
 
@@ -362,8 +366,8 @@ msgstr "Добавить подменю"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:98
-#: src/lib/ui/components/editDialog.ts:396
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Изменить"
 
@@ -374,6 +378,7 @@ msgstr "Изменить подменю"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Удалить"
 
@@ -469,8 +474,8 @@ msgid ""
 "Show the clipboard dialog at the text cursor position whenever possible, "
 "otherwise at the pointer position"
 msgstr ""
-"Показывать диалоговое окно буфера обмена около текстового курсора, когда это"
-" возможно, иначе — около курсора мыши"
+"Показывать диалоговое окно буфера обмена около текстового курсора, когда это "
+"возможно, иначе — около курсора мыши"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:50
 msgid "Orientation"
@@ -663,8 +668,8 @@ msgstr "Динамическая высота элементов"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content."
-" Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content. "
+"Only works in vertical orientation"
 msgstr ""
 "Динамически изменять высоту элементов буфера обмена в зависимости от "
 "содержимого. Работает только в вертикальной ориентации"
@@ -1177,8 +1182,8 @@ msgstr "Подсветка синтаксиса недоступна"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting"
-" files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 "Переустановите пакет Big Clipboard, чтобы восстановить встроенные файлы "
 "подсветки кода."
@@ -1262,7 +1267,7 @@ msgstr "Управление исключениями приложений"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Управлять приложениями, исключёнными из истории буфера обмена"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Поведение"
 
@@ -1458,7 +1463,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "Выберите, что сохранять после выхода из системы или перезагрузки."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Очистить"
@@ -1682,9 +1687,13 @@ msgstr "Отключено"
 msgid "No Results Found"
 msgstr "Ничего не найдено"
 
-#: src/lib/ui/components/clipboardItemMenu.ts:90
-msgid "Subjects…"
-msgstr "Темы…"
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Темы"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1733,61 +1742,78 @@ msgstr "Файл отсутствует"
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/lib/ui/components/editDialog.ts:297
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Редактировать элемент буфера обмена"
 
-#: src/lib/ui/components/editDialog.ts:317
-#: src/lib/ui/components/subjectsDialog.ts:16
-#: src/lib/ui/components/subjectsDialog.ts:27
-msgid "Subjects"
-msgstr "Темы"
-
-#: src/lib/ui/components/editDialog.ts:350
+#: src/lib/ui/components/editDialog.ts:366
 msgid "Preview shortened. The full text is preserved."
 msgstr "Предпросмотр сокращён. Полный текст сохранён."
 
-#: src/lib/ui/components/editDialog.ts:403
+#: src/lib/ui/components/editDialog.ts:420
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#: src/lib/ui/components/editDialog.ts:415
-#: src/lib/ui/components/editDialog.ts:440
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Рядом"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
 msgid "Markdown formatting"
 msgstr "Форматирование Markdown"
 
-#: src/lib/ui/components/editDialog.ts:422
+#: src/lib/ui/components/editDialog.ts:459
 msgid "Bold (Ctrl+B)"
 msgstr "Жирный (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:423
+#: src/lib/ui/components/editDialog.ts:460
 msgid "Italic (Ctrl+I)"
 msgstr "Курсив (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:424
+#: src/lib/ui/components/editDialog.ts:461
 msgid "Bullet list"
 msgstr "Маркированный список"
 
-#: src/lib/ui/components/editDialog.ts:425
+#: src/lib/ui/components/editDialog.ts:462
 msgid "Numbered list"
 msgstr "Нумерованный список"
 
-#: src/lib/ui/components/editDialog.ts:426
+#: src/lib/ui/components/editDialog.ts:463
 msgid "Quote"
 msgstr "Цитата"
 
-#: src/lib/ui/components/editDialog.ts:427
+#: src/lib/ui/components/editDialog.ts:464
 msgid "Inline code"
 msgstr "Строчный код"
 
-#: src/lib/ui/components/subjectsDialog.ts:15
-msgid "Subjects, separated by commas"
-msgstr "Темы через запятую"
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Добавить тему"
 
-#: src/lib/ui/components/subjectsDialog.ts:28
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Удалить тему: %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
 msgid ""
-"Separate subjects with commas. Search with # followed by a subject name."
-msgstr "Разделяйте темы запятыми. Для поиска введите # и название темы."
+"Add subjects with Enter or commas. Search with # followed by a subject name."
+msgstr ""
+"Добавляйте темы клавишей Enter или через запятую. Для поиска введите # и "
+"название темы."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Изображения"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Ссылки"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Закреплённые"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1825,7 +1851,11 @@ msgstr[2] "%d файлов"
 msgid "Char"
 msgstr "Символ"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Папка"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
@@ -1833,7 +1863,7 @@ msgstr[0] "ещё %d файл"
 msgstr[1] "ещё %d файла"
 msgstr[2] "ещё %d файлов"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1897,33 +1927,54 @@ msgstr "Цв__ет"
 msgid "Type to search"
 msgstr "Введите текст для поиска"
 
-#: src/prefs.ts:63
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Выберите, что и как долго хранить."
+
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Настройте копирование, вставку и отклик."
+
+#: src/prefs.ts:65
 msgid "Advanced"
 msgstr "Дополнительно"
 
 #: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Управляйте хранилищем и языками кода."
+
+#: src/prefs.ts:69
 msgid "Storage"
 msgstr "Хранилище"
 
-#: src/prefs.ts:71
+#: src/prefs.ts:74
 msgid "Panel Indicator"
 msgstr "Индикатор панели"
 
-#: src/prefs.ts:85
+#: src/prefs.ts:88
 msgid "Appearance"
 msgstr "Внешний вид"
 
-#: src/prefs.ts:104
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Настройте панель, карточки и цвета."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Сочетания клавиш"
 
-#~ msgid ""
-#~ "Automatically paste clipboard items when selected from clipboard history"
-#~ msgstr "Автоматически вставлять элементы буфера обмена при выборе из истории"
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Работайте с буфером обмена с помощью клавиатуры."
 
 #~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, or "
-#~ "shut down your system"
+#~ "Automatically paste clipboard items when selected from clipboard history"
+#~ msgstr ""
+#~ "Автоматически вставлять элементы буфера обмена при выборе из истории"
+
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
 #~ msgstr ""
 #~ "Выберите, что делать с историей буфера обмена при перезапуске, выходе из "
 #~ "системы или её завершении"
@@ -1958,7 +2009,8 @@ msgstr "Сочетания клавиш"
 #~ msgstr "Highlight.js не установлен"
 
 #~ msgid "Highlight.js is required to display syntax highlighted code."
-#~ msgstr "Для отображения кода с подсветкой синтаксиса требуется Highlight.js."
+#~ msgstr ""
+#~ "Для отображения кода с подсветкой синтаксиса требуется Highlight.js."
 
 #~ msgid "History Length"
 #~ msgstr "Длина истории"
@@ -1991,11 +2043,15 @@ msgstr "Сочетания клавиш"
 #~ msgstr "Выберите, сколько элементов хранить в истории буфера обмена"
 
 #~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
-#~ "disable the time limit"
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
 #~ msgstr ""
-#~ "Выберите, сколько минут хранить элементы в истории буфера обмена. Значение 0"
-#~ " отключает ограничение по времени"
+#~ "Выберите, сколько минут хранить элементы в истории буфера обмена. "
+#~ "Значение 0 отключает ограничение по времени"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr "Разделяйте темы запятыми. Для поиска введите # и название темы."
 
 #~ msgid "Show Indicator"
 #~ msgstr "Показывать индикатор"
@@ -2008,6 +2064,12 @@ msgstr "Сочетания клавиш"
 
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Хранить историю буфера обмена в памяти, а не на диске"
+
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Темы через запятую"
+
+#~ msgid "Subjects…"
+#~ msgstr "Темы…"
 
 #, javascript-format
 #~ msgid "Successfully Installed %s"
@@ -2024,8 +2086,8 @@ msgstr "Сочетания клавиш"
 #~ msgstr "Использовать базу данных в памяти"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js from "
-#~ "\"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Можно установить Highlight.js вручную, скачав highlight.min.js из «Url» в "
 #~ "«Место установки»."

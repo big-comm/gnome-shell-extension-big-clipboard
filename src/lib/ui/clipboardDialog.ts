@@ -19,11 +19,13 @@ import { ItemType } from '../common/constants.js';
 import { registerClass } from '../common/gjs.js';
 import { Icon, loadIcon } from '../common/icons.js';
 import { OpenClipboardDialogBehavior } from '../common/settings.js';
+import { subjectNames } from '../common/subjects.js';
 import { ClipboardEntry } from '../database/database.js';
 import { entrySearchText } from '../database/searchText.js';
 import { VERSION } from '../misc/compatibility.js';
 import { ClipboardScrollView } from './clipboardScrollView.js';
 import { ClipboardItemMenu } from './components/clipboardItemMenu.js';
+import { TypeFilters } from './components/typeFilters.js';
 import { ConfirmClearHistoryDialog } from './indicator.js';
 import { CharacterItem } from './items/characterItem.js';
 import type { ClipboardItem } from './items/clipboardItem.js';
@@ -275,6 +277,7 @@ export class ClipboardDialog extends St.Widget {
 	private _loadToEnd = false;
 	private _refreshIdleId = 0;
 	private _query: SearchQuery | null = null;
+	private readonly _filters: TypeFilters;
 
 	private _orientation: Clutter.Orientation = Clutter.Orientation.HORIZONTAL;
 	private _layoutDirty: boolean = true;
@@ -344,6 +347,9 @@ export class ClipboardDialog extends St.Widget {
 			}
 		});
 
+		this._filters = new TypeFilters(ext, this._header.searchEntry);
+		this._dialog.add_child(this._filters);
+
 		// Scrollbox
 		this._scrollView = new ClipboardScrollView(ext);
 		this._dialog.add_child(this._scrollView);
@@ -359,6 +365,13 @@ export class ClipboardDialog extends St.Widget {
 			enabled: false,
 		});
 		this._header.add_constraint(this._widthConstraint);
+		const filterWidth = new Clutter.BindConstraint({
+			coordinate: Clutter.BindCoordinate.WIDTH,
+			source: this._scrollView,
+			enabled: false,
+		});
+		this._filters.add_constraint(filterWidth);
+		this._widthConstraint.bind_property('enabled', filterWidth, 'enabled', GObject.BindingFlags.SYNC_CREATE);
 
 		// Footer
 		this._footer = new ClipboardDialogFooter(ext);
@@ -643,11 +656,16 @@ export class ClipboardDialog extends St.Widget {
 		this.searchEntries(this._header.searchEntry.searchQuery);
 	}
 
+	public subjectSuggestions(): string[] {
+		return subjectNames([...this._entries.values()].map((entry) => entry.subjects).join(','));
+	}
+
 	private searchEntries(query: SearchQuery): void {
 		this._clipboardItemMenu?.close(BoxPointer.PopupAnimation.NONE);
 		this.cancelPendingLoad();
 		this._query = query.withChange(SearchChange.Different);
 		this._pendingEntries = [...this._entries.values()].sort((a, b) => b.datetime.compare(a.datetime));
+		this._filters?.updateCounts(this._pendingEntries);
 		this._pendingIndex = 0;
 		this._renderedCount = 0;
 		this._pageTarget = INITIAL_LOAD_ITEMS;
@@ -750,29 +768,29 @@ export class ClipboardDialog extends St.Widget {
 		// Connect edit
 		item.connectObject('edit', () => this._clipboardItemMenu.edit(entry), this);
 
-		// Connect item menu
+		// Share one popup between colors and additional actions.
+		const openMenu = (colorsOnly: boolean, x: number, y: number, w: number, h: number) => {
+			this._clipboardItemMenu.close(BoxPointer.PopupAnimation.NONE);
+			const signalId = this._clipboardItemMenu.connect('open-state-changed', (_menu, state: boolean) => {
+				item.sync_hover();
+				if (!state) this._clipboardItemMenu.disconnect(signalId);
+				return true;
+			});
+			this._clipboardItemMenu.colorsOnly = colorsOnly;
+			this._clipboardItemMenu.arrowAlignment = w === 0 && h === 0 ? 0 : 0.5;
+			if (w === 0 && h === 0) {
+				x++;
+				y++;
+			}
+			Main.layoutManager.setDummyCursorGeometry(x, y, w, h);
+			this._clipboardItemMenu.entry = entry;
+			this._clipboardItemMenu.open(BoxPointer.PopupAnimation.SLIDE);
+		};
 		item.connectObject(
 			'open-menu',
-			(_: unknown, x: number, y: number, w: number, h: number) => {
-				// Connect the menu signal to update the hover state of the item and remove the signal when the menu is closed
-				const signalId = this._clipboardItemMenu.connect('open-state-changed', (_menu, state: boolean) => {
-					item.sync_hover();
-					if (!state) this._clipboardItemMenu.disconnect(signalId);
-					return true;
-				});
-
-				this._clipboardItemMenu.arrowAlignment = w === 0 && h === 0 ? 0 : 0.5;
-
-				// Slightly offset the menu to allow immediately clicking and closing the menu
-				if (w === 0 && h === 0) {
-					x++;
-					y++;
-				}
-
-				Main.layoutManager.setDummyCursorGeometry(x, y, w, h);
-				this._clipboardItemMenu.entry = entry;
-				this._clipboardItemMenu.open(BoxPointer.PopupAnimation.SLIDE);
-			},
+			(_: unknown, x: number, y: number, w: number, h: number) => openMenu(false, x, y, w, h),
+			'open-colors',
+			(_: unknown, x: number, y: number, w: number, h: number) => openMenu(true, x, y, w, h),
 			this,
 		);
 
@@ -822,6 +840,7 @@ export class ClipboardDialog extends St.Widget {
 		this._entrySignals.clear();
 		this._entries.clear();
 		this._pendingEntries = [];
+		this._filters?.updateCounts(this._pendingEntries);
 		this._pendingIndex = 0;
 		this._renderedCount = 0;
 		this._pageTarget = INITIAL_LOAD_ITEMS;

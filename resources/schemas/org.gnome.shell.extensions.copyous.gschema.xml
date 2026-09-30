@@ -204,7 +204,7 @@
 			<summary>Width of a clipboard item</summary>
 		</key>
 		<key name="item-height" type="i">
-			<default>170</default>
+			<default>210</default>
 			<range min="50" max="1000"/>
 			<summary>Height of a clipboard item</summary>
 		</key>

@@ -414,6 +414,10 @@ export default class CopyousExtension extends Extension {
 		);
 	}
 
+	public subjectSuggestions(): string[] {
+		return this.clipboardDialog?.subjectSuggestions() ?? [];
+	}
+
 	public connectHljsInit(fn: () => void): () => void {
 		if (this.hljs != null) return () => {};
 

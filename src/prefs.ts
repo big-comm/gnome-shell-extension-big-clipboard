@@ -51,16 +51,19 @@ export default class Preferences extends ExtensionPreferences {
 		const history = new Adw.PreferencesPage({
 			name: 'history',
 			title: _('History'),
+			description: _('Choose what to keep and for how long.'),
 			icon_name: Icon.Clipboard,
 		});
 		const behavior = new Adw.PreferencesPage({
 			name: 'behavior',
 			title: _('Behavior'),
+			description: _('Control copying, pasting and feedback.'),
 			icon_name: Icon.Settings,
 		});
 		const advanced = new Adw.PreferencesPage({
 			name: 'advanced',
 			title: _('Advanced'),
+			description: _('Manage storage and code languages.'),
 			icon_name: 'preferences-other-symbolic',
 		});
 		const storage = new Adw.PreferencesGroup({ title: _('Storage') });
@@ -83,6 +86,7 @@ export default class Preferences extends ExtensionPreferences {
 		const customization = new Adw.PreferencesPage({
 			name: 'appearance',
 			title: _('Appearance'),
+			description: _('Customize the panel, cards and colors.'),
 			icon_name: Icon.Image,
 		});
 		navigation.add(customization);
@@ -90,18 +94,19 @@ export default class Preferences extends ExtensionPreferences {
 		customization.add(indicator);
 
 		customization.add(new Profiles(this));
+		customization.add(new ThemeCustomization(this));
 		customization.add(new DialogCustomization(this));
 		customization.add(new ItemCustomization(this));
 		customization.add(new HeaderCustomization(this));
 		const items = new ItemsCustomization(this, window);
 		dependenciesButton.bind_property('hljs', items, 'hljs', GObject.BindingFlags.SYNC_CREATE);
 		customization.add(items);
-		customization.add(new ThemeCustomization(this));
 
 		// Shortcuts page
 		const shortcuts = new Adw.PreferencesPage({
 			name: 'shortcuts',
 			title: _('Shortcuts'),
+			description: _('Access your clipboard with the keyboard.'),
 			icon_name: Icon.Keyboard,
 		});
 		navigation.add(shortcuts);

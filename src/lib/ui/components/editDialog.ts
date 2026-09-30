@@ -1,4 +1,5 @@
 import Clutter from 'gi://Clutter';
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Meta from 'gi://Meta';
 import Pango from 'gi://Pango';
@@ -286,6 +287,10 @@ export class EditDialog extends ModalDialog.ModalDialog {
 	private _toolbar?: St.BoxLayout;
 	private _editButton?: St.Button;
 	private _previewButton?: St.Button;
+	private _splitButton?: St.Button;
+	private _split = false;
+	private _previewIdle = 0;
+	private readonly _editorBody: St.BoxLayout;
 
 	constructor(ext: CopyousExtension, entry: ClipboardEntry) {
 		super({
@@ -315,17 +320,19 @@ export class EditDialog extends ModalDialog.ModalDialog {
 		}
 
 		content.add_child(new St.Label({ text: _('Subjects') }));
-		const subjects = subjectInput(entry.subjects);
+		const subjects = subjectInput(entry.subjects, ext.subjectSuggestions());
 		content.add_child(subjects);
 		if (entry.type === ItemType.Text) this.addMarkdownTools(content);
 
+		this._editorBody = new St.BoxLayout({ style_class: 'markdown-body', x_expand: true });
+		content.add_child(this._editorBody);
 		// Entry
 		this._entry = new MultilineEntry({
 			style_class: 'clipboard-item-edit-dialog-entry',
 			can_focus: true,
 			x_expand: true,
 		});
-		content.add_child(this._entry);
+		this._editorBody.add_child(this._entry);
 		this.setInitialKeyFocus(this._entry);
 
 		this._entry.clutter_text.text = entry.content;
@@ -345,7 +352,16 @@ export class EditDialog extends ModalDialog.ModalDialog {
 				vscrollbar_policy: St.PolicyType.AUTOMATIC,
 				child: box,
 			});
-			content.add_child(this._preview);
+			this._editorBody.add_child(this._preview);
+			this._entry.clutter_text.connect('text-changed', () => {
+				if (!this._split) return;
+				if (this._previewIdle) GLib.source_remove(this._previewIdle);
+				this._previewIdle = GLib.timeout_add(GLib.PRIORITY_LOW, 150, () => {
+					this._previewIdle = 0;
+					this.refreshPreview();
+					return GLib.SOURCE_REMOVE;
+				});
+			});
 			this._previewNotice = new St.Label({
 				text: _('Preview shortened. The full text is preserved.'),
 				visible: false,
@@ -375,11 +391,10 @@ export class EditDialog extends ModalDialog.ModalDialog {
 		this.addButton({
 			label: _('Cancel'),
 			action: () => this.close(),
-			default: true,
 			key: Clutter.KEY_Escape,
 		});
 
-		this.addButton({
+		const save = this.addButton({
 			label: _('Save'),
 			action: () => {
 				entry.subjects = normalizeSubjects(subjects.text);
@@ -388,6 +403,8 @@ export class EditDialog extends ModalDialog.ModalDialog {
 				this.close();
 			},
 		});
+		save.add_style_class_name('suggested-action');
+		save.add_style_class_name('default');
 	}
 
 	private addMarkdownTools(content: St.BoxLayout) {
@@ -405,10 +422,30 @@ export class EditDialog extends ModalDialog.ModalDialog {
 			can_focus: true,
 			toggle_mode: true,
 		});
-		this._editButton.connect('clicked', () => this.showPreview(false));
-		this._previewButton.connect('clicked', () => this.showPreview(true));
+		this._editButton.connect('clicked', () => {
+			this._split = false;
+			this.showPreview(false);
+		});
+		this._previewButton.connect('clicked', () => {
+			this._split = false;
+			this.showPreview(true);
+		});
 		tabs.add_child(this._editButton);
 		tabs.add_child(this._previewButton);
+		this._splitButton = new St.Button({
+			label: _('Side by side'),
+			style_class: 'button',
+			can_focus: true,
+			toggle_mode: true,
+		});
+		this._splitButton.connect('clicked', () => {
+			this._split = true;
+			this.showPreview(true);
+		});
+		const monitor = Main.layoutManager.currentMonitor;
+		const scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
+		this._splitButton.visible = !!monitor && monitor.width / scale >= 1050 && monitor.height / scale >= 650;
+		tabs.add_child(this._splitButton);
 		content.add_child(tabs);
 		this._toolbar = new St.BoxLayout({ style_class: 'markdown-toolbar' });
 		const hint = new St.Label({
@@ -444,8 +481,8 @@ export class EditDialog extends ModalDialog.ModalDialog {
 			});
 			this._toolbar.add_child(button);
 		}
-		this._toolbar.add_child(hint);
 		content.add_child(this._toolbar);
+		content.add_child(hint);
 	}
 
 	private applyFormat(action: MarkdownAction) {
@@ -458,17 +495,29 @@ export class EditDialog extends ModalDialog.ModalDialog {
 
 	private showPreview(preview: boolean) {
 		if (!this._preview || !this._previewLabel) return;
-		if (preview) {
-			const result = markdownPreview(this._entry.clutter_text.text);
-			this._previewLabel.clutter_text.set_markup(result.markup);
-			this._previewNotice!.visible = result.truncated;
-		} else this._previewNotice!.hide();
-		this._entry.visible = !preview;
-		this._toolbar!.visible = !preview;
+		if (preview) this.refreshPreview();
+		else this._previewNotice!.hide();
+		if (this._split) this.add_style_class_name('markdown-split');
+		else this.remove_style_class_name('markdown-split');
+		this._editorBody.layout_manager.homogeneous = this._split;
+		this._splitButton!.checked = this._split;
+		this._entry.visible = !preview || this._split;
+		this._toolbar!.visible = !preview || this._split;
 		this._preview.visible = preview;
 		this._editButton!.checked = !preview;
-		this._previewButton!.checked = preview;
+		this._previewButton!.checked = preview && !this._split;
 		if (!preview) this._entry.clutter_text.grab_key_focus();
+	}
+
+	private refreshPreview() {
+		const result = markdownPreview(this._entry.clutter_text.text);
+		this._previewLabel!.clutter_text.set_markup(result.markup);
+		this._previewNotice!.visible = result.truncated;
+	}
+
+	override destroy() {
+		if (this._previewIdle) GLib.source_remove(this._previewIdle);
+		super.destroy();
 	}
 
 	on_opened() {

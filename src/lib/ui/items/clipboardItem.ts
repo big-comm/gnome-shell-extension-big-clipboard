@@ -1,21 +1,26 @@
 import Clutter from 'gi://Clutter';
 import Cogl from 'gi://Cogl';
 import GObject from 'gi://GObject';
+import Gio from 'gi://Gio';
 import Graphene from 'gi://Graphene';
-import Pango from 'gi://Pango';
 import Shell from 'gi://Shell';
 import St from 'gi://St';
 
+import { gettext as _ } from 'resource:///org/gnome/shell/extensions/extension.js';
+
 import type CopyousExtension from '../../../extension.js';
-import { ActiveState, Tags } from '../../common/constants.js';
+import { ActiveState, ItemType, Tags } from '../../common/constants.js';
 import { flagsParamSpec, registerClass } from '../../common/gjs.js';
-import { Icon } from '../../common/icons.js';
+import { Icon, loadIcon } from '../../common/icons.js';
 import { MiddleClickAction } from '../../common/settings.js';
 import { subjectNames } from '../../common/subjects.js';
 import { ClipboardEntry } from '../../database/database.js';
 import { entrySearchText } from '../../database/searchText.js';
 import { ButtonMask } from '../../misc/compatibility.js';
 import { Shortcut } from '../../misc/shortcuts.js';
+import { actionHint } from '../components/actionHint.js';
+import { CardSubjects } from '../components/cardSubjects.js';
+import { SubjectsDialog } from '../components/subjectsDialog.js';
 import { SearchQuery } from '../searchEntry.js';
 import { ClipboardItemHeader } from './clipboardItemHeader.js';
 
@@ -30,6 +35,7 @@ import { ClipboardItemHeader } from './clipboardItemHeader.js';
 		'activate-ctrl': {},
 		'activate-action': { param_types: [GObject.TYPE_STRING] },
 		'edit': {},
+		'open-colors': { param_types: [GObject.TYPE_INT, GObject.TYPE_INT, GObject.TYPE_INT, GObject.TYPE_INT] },
 		'open-menu': { param_types: [GObject.TYPE_INT, GObject.TYPE_INT, GObject.TYPE_INT, GObject.TYPE_INT] },
 	},
 })
@@ -42,6 +48,9 @@ export class ClipboardItem extends St.Button {
 	private _searchText: readonly string[] | null = null;
 
 	private readonly _box: St.Widget;
+	private readonly _footer: St.BoxLayout;
+	private readonly _subjects: CardSubjects;
+	private readonly _subjectRow: St.BoxLayout;
 	private readonly _header: ClipboardItemHeader;
 	protected _content: St.BoxLayout;
 
@@ -75,6 +84,7 @@ export class ClipboardItem extends St.Button {
 
 		this._content = new St.BoxLayout({
 			style_class: 'clipboard-item-content',
+			min_height: 0,
 			orientation: Clutter.Orientation.VERTICAL,
 			x_expand: true,
 			y_expand: true,
@@ -82,27 +92,63 @@ export class ClipboardItem extends St.Button {
 			effect: new HoleEffect(this._header.buttons),
 		});
 		this._box.add_child(this._content);
-		const subjects = new St.BoxLayout({ style_class: 'clipboard-item-subjects', clip_to_allocation: true });
+		this._footer = new St.BoxLayout({ style_class: 'clipboard-item-actions' });
+		this._subjects = new CardSubjects(ext, () => this.editSubjects());
+		this._subjectRow = new St.BoxLayout({ style_class: 'clipboard-subject-row' });
+		this._subjectRow.add_child(this._subjects);
+		this._box.add_child(this._subjectRow);
+		this._footer.add_child(new St.Widget({ x_expand: true }));
 		const updateSubjects = () => {
-			subjects.destroy_all_children();
 			const names = subjectNames(entry.subjects);
-			const visible = names.slice(0, 2);
-			if (names.length > 2) visible.push(`+${names.length - 2}`);
-			for (const name of visible) {
-				const chip = new St.Label({
-					text: name,
-					style_class: 'clipboard-subject',
-					accessible_name: entry.subjects,
-				});
-				chip.clutter_text.ellipsize = Pango.EllipsizeMode.END;
-				subjects.add_child(chip);
-			}
-			subjects.visible = names.length > 0;
+			this._subjects.names = names;
 			this._header.hasSubjects = names.length > 0;
 		};
 		entry.connectObject('notify::subjects', updateSubjects, this);
-		this._box.add_child(subjects);
 		updateSubjects();
+		const addAction = (label: string, actionIcon: Icon, action: () => void) => {
+			const button = new St.Button({
+				child: new St.Icon({ gicon: loadIcon(ext, actionIcon), icon_size: 16 }),
+				style_class: 'clipboard-item-action',
+				can_focus: true,
+				accessible_name: label,
+				y_align: Clutter.ActorAlign.CENTER,
+			});
+			actionHint(button, label);
+			button.connect('clicked', action);
+			this._footer.add_child(button);
+			return button;
+		};
+		const colorButton = addAction(_('Color'), Icon.Color, () => {
+			const box = colorButton.get_transformed_extents();
+			this.emit('open-colors', box.get_x(), box.get_y(), box.get_width(), box.get_height());
+		});
+		colorButton.add_style_class_name('color-action');
+		if (entry.type === ItemType.Text || entry.type === ItemType.Code)
+			addAction(_('Edit'), Icon.Edit, () => this.emit('edit'));
+		else if ([ItemType.Image, ItemType.File, ItemType.Link].includes(entry.type as never))
+			addAction(_('Open'), Icon.Next, () => {
+				Gio.AppInfo.launch_default_for_uri_async(
+					entry.content,
+					global.create_app_launch_context(0, -1),
+					null,
+					(_source, result) => {
+						try {
+							Gio.AppInfo.launch_default_for_uri_finish(result);
+						} catch (error) {
+							this.ext.logger.error(error);
+						}
+					},
+				);
+			});
+		const deleteButton = this._header.deleteButton;
+		this._header.buttons.remove_child(deleteButton);
+		deleteButton.style_class = 'clipboard-item-action delete-action';
+		deleteButton.accessible_name = _('Delete');
+		deleteButton.can_focus = true;
+		(deleteButton.child as St.Icon).icon_size = 16;
+		actionHint(deleteButton, _('Delete'));
+		this._footer.add_child(deleteButton);
+		this._box.add_child(this._footer);
 
 		// Bind properties
 		entry.bind_property(
@@ -163,8 +209,12 @@ export class ClipboardItem extends St.Button {
 		this.connect('notify::hover', () => this.notify('active'));
 		this.connect('style-changed', () => this.notify('active'));
 		this._header.connect('delete', () => this.forceDelete());
-		this._header.connect('open-menu', (_, x, y, w, h) => this.emit('open-menu', x, y, w, h));
+		this._header.connect('open-menu', (_header, x, y, w, h) => this.emit('open-menu', x, y, w, h));
 		this._header.connect('editing-finished', () => this.grab_key_focus());
+	}
+
+	private editSubjects() {
+		new SubjectsDialog(this.entry, this.ext.subjectSuggestions()).open();
 	}
 
 	get active(): ActiveState {
@@ -245,6 +295,8 @@ export class ClipboardItem extends St.Button {
 		// triggers a full relayout pass per item.
 		if (this._headerShown === show) return;
 		this._headerShown = show;
+		this._footer.visible = show;
+		this._subjectRow.visible = show;
 
 		if (show) {
 			this.remove_style_class_name('no-header');

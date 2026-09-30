@@ -15,20 +15,24 @@
 
 This repository contains the extension source, BigCommunity modifications and distribution packaging. The original authors retain credit for Copyous; the changes below focus on large clipboard histories, GNOME compatibility and layout switching.
 
-G-Unity on GNOME 50.4, with horizontal clipboard history and English sample entries:
+Horizontal history on GNOME 50.4, with colored notes, code, files and images:
 
 ![Big Clipboard in English on G-Unity, GNOME 50.4](resources/images/big-clipboard-gnome50.png)
 
-Hybrid on GNOME 51.0, with vertical clipboard history and English sample entries:
+Vertical history on GNOME 51.0, with file previews and subject labels:
 
-![Big Clipboard in English on Hybrid, GNOME 51.0](resources/images/big-clipboard-gnome51.png)
+![Big Clipboard vertical history in English on GNOME 51.0](resources/images/big-clipboard-gnome51.png)
+
+Markdown editing with formatting tools, subject labels and a preview:
+
+![Big Clipboard Markdown editor and preview in English](resources/images/big-clipboard-notes.png)
 
 ## BigCommunity changes
 
 | Area | Changes in this fork |
 | --- | --- |
 | Notes and subjects | Edit text with Markdown tools and an on-demand preview. Assign multiple subject labels alongside color tags; search subjects with `#name`. |
-| Appearance | Opaque colored cards with contrasting text, sidebar preferences and optional GNOME 51 background blur. |
+| Appearance | Opaque colored cards with contrasting text that follow the desktop light/dark preference, sidebar preferences and optional GNOME 51 background blur. |
 | Opening large histories | Prepare the first **12 cards** instead of creating a card for every saved entry. Load additional pages while scrolling. |
 | Search and navigation | Search the full history without creating every card. The End key loads remaining matches in small batches. Closing returns to the first page. |
 | Image previews | Load nearby previews on demand. Read image metadata asynchronously and cancel pending work when cards are destroyed. |
@@ -52,13 +56,21 @@ See the [performance report](docs/PERFORMANCE.md) for measurements, test coverag
 
 ## Notes and organization
 
-Choose **Edit** on a text card to use bold, italic, bullet and numbered lists, quotes, inline code or links. **Ctrl+B** and **Ctrl+I** format the selection. Switch between **Edit** and **Preview**; saving and copying retain the Markdown source. Code cards keep their language selector and plain code editor.
+Choose the **Edit** pencil in the card footer on a text card to use bold, italic, bullet and numbered lists, quotes, inline code or links. **Ctrl+B** and **Ctrl+I** format the selection. Switch between **Edit** and **Preview**, or use **Side by side** on larger displays; saving and copying retain the Markdown source. Code cards keep their language selector and plain code editor.
 
 The preview supports these tools, headings and fenced code blocks. It treats HTML as text, never fetches remote content and never executes links. Only the first 20,000 characters are rendered in the preview; the complete note remains stored and copied.
 
-Choose **Subjects…** from any card's menu, including images and files, or edit subjects with a note. Separate names with commas, for example `Work, Research`. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.
+Choose the subject icon above a card's action buttons, including on images and files, or edit subjects with a note. Once subjects are assigned, use **+** beside their labels to add more. Add names with Enter or commas, for example `Work, Research`. Reuse suggested subjects and remove a label with its × button. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.
 
 Subject labels follow the same retention and deletion protection settings as color tags. SQLite receives an additive, transactional schema update; JSON gains an optional field. Existing text, images, pins, colors, metadata and storage locations remain intact. As with color tags, explicit **clear all** removes labeled items too.
+
+## Cards and files
+
+The compact horizontal panel and vertical view share quick type filters and a pinned filter. Counts use history metadata; only the first 12 matching cards are initially created. Cards default to 250 × 210 pixels. Subject labels sit above the footer; the footer contains color, edit/open and delete controls. Pinning stays in the header, separate from deletion. The three-dot menu contains additional actions. Clicking the content keeps the existing copy/paste behavior; footer buttons do not copy the card.
+
+Copy PDFs, documents, archives, folders or multiple files in the file manager, then select their card and paste into a destination folder. File cards show the name, a MIME-type icon and asynchronously loaded metadata. File groups show up to 12 rows with icons and a remaining count. File history stores references, not backup copies: moving or deleting an original can make its entry unavailable. Reusing a cut entry copies the original instead of repeating a destructive move.
+
+Preferences retain the 830 × 610 default size, searchable sidebar and native shortcut labels. Appearance controls are grouped separately from behavior, shortcuts, actions and storage.
 
 ## Features inherited from Copyous
 

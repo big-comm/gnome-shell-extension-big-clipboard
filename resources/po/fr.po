@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-29 18:45-0300\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -126,8 +126,8 @@ msgstr "Couleur copiée"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:239
-#: src/lib/ui/components/editDialog.ts:266
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Aucun"
 
@@ -141,14 +141,14 @@ msgstr "Actions par défaut"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Texte"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Code"
 
@@ -163,14 +163,15 @@ msgstr "Image"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "Fichier"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Fichiers"
 
@@ -178,7 +179,7 @@ msgstr "Fichiers"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:428 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Lien"
 
@@ -192,11 +193,12 @@ msgstr "Caractère"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Couleur"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Tout"
 
@@ -216,8 +218,8 @@ msgstr "Sélectionnez les types autorisés"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:376
-#: src/lib/ui/components/subjectsDialog.ts:34 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -334,6 +336,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Ajouter"
 
@@ -348,8 +351,8 @@ msgid "Edit Action"
 msgstr "Modifier l'action"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:383
-#: src/lib/ui/components/subjectsDialog.ts:36
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -361,8 +364,8 @@ msgstr "Ajouter un sous-menu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:98
-#: src/lib/ui/components/editDialog.ts:396
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Modifier"
 
@@ -373,6 +376,7 @@ msgstr "Modifier le sous-menu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -410,8 +414,8 @@ msgstr "Restaurer"
 #: src/lib/preferences/actions/actionsPage.ts:70
 msgid "Set default actions that trigger when holding control"
 msgstr ""
-"Définir les actions par défaut qui se déclenchent lorsque la touche Ctrl est"
-" maintenue"
+"Définir les actions par défaut qui se déclenchent lorsque la touche Ctrl est "
+"maintenue"
 
 #: src/lib/preferences/actions/actionsPage.ts:87
 msgid "Restore Built-In Actions"
@@ -673,8 +677,8 @@ msgstr "Hauteur dynamique des éléments"
 
 #: src/lib/preferences/customization/itemCustomization.ts:48
 msgid ""
-"Dynamically adjust the height of the clipboard items based on their content."
-" Only works in vertical orientation"
+"Dynamically adjust the height of the clipboard items based on their content. "
+"Only works in vertical orientation"
 msgstr ""
 "Ajuste dynamiquement la hauteur des éléments du presse-papiers en fonction "
 "de leur contenu. Fonctionne uniquement en orientation verticale"
@@ -855,8 +859,8 @@ msgstr "Ajouter un motif"
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:102
 msgid "Enter a glob pattern to exclude files that should not have a preview."
 msgstr ""
-"Entrez un motif générique pour exclure les fichiers qui ne doivent pas avoir"
-" d'aperçu."
+"Entrez un motif générique pour exclure les fichiers qui ne doivent pas avoir "
+"d'aperçu."
 
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:103
 msgid "Path"
@@ -1196,8 +1200,8 @@ msgstr "Coloration syntaxique indisponible"
 
 #: src/lib/preferences/dependencies/dependencies.ts:196
 msgid ""
-"Reinstall the Big Clipboard package to restore the bundled code highlighting"
-" files."
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
 msgstr ""
 "Réinstallez le paquet Big Clipboard pour restaurer les fichiers de "
 "coloration de code intégrés."
@@ -1282,7 +1286,7 @@ msgid "Manage apps that will be excluded from clipboard history"
 msgstr ""
 "Gérer les applications qui seront exclues de l'historique du presse-papiers"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:58
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Comportement"
 
@@ -1314,8 +1318,8 @@ msgstr "Exclure les éléments marqués de la vue principale"
 #: src/lib/preferences/general/behaviorSettings.ts:31
 msgid "Tagged items appear only when searching for tagged items"
 msgstr ""
-"Les éléments marqués apparaissent uniquement lors de la recherche d'éléments"
-" marqués"
+"Les éléments marqués apparaissent uniquement lors de la recherche d'éléments "
+"marqués"
 
 #: src/lib/preferences/general/behaviorSettings.ts:36
 msgid "Protect Pinned Items"
@@ -1474,8 +1478,8 @@ msgstr "Base de données"
 #: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr ""
-"Sélectionnez le type de base de données à utiliser pour stocker votre "
-"presse-papiers"
+"Sélectionnez le type de base de données à utiliser pour stocker votre presse-"
+"papiers"
 
 #: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
@@ -1491,7 +1495,7 @@ msgstr ""
 "Choisissez les éléments à conserver après une déconnexion ou un redémarrage."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:136 src/lib/ui/clipboardDialog.ts:241
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Effacer"
@@ -1522,8 +1526,7 @@ msgstr "Expiration"
 
 #: src/lib/preferences/general/historySettings.ts:151
 msgid "Minutes before items expire. Set to 0 to keep them."
-msgstr ""
-"Délai d’expiration en minutes. Indiquez 0 pour conserver les éléments."
+msgstr "Délai d’expiration en minutes. Indiquez 0 pour conserver les éléments."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1717,9 +1720,13 @@ msgstr "Désactivé"
 msgid "No Results Found"
 msgstr "Aucun résultat trouvé"
 
-#: src/lib/ui/components/clipboardItemMenu.ts:90
-msgid "Subjects…"
-msgstr "Sujets…"
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Sujets"
 
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
@@ -1765,63 +1772,78 @@ msgstr "Fichier manquant"
 msgid "Error"
 msgstr "Erreur"
 
-#: src/lib/ui/components/editDialog.ts:297
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Modifier l'élément du presse-papiers"
 
-#: src/lib/ui/components/editDialog.ts:317
-#: src/lib/ui/components/subjectsDialog.ts:16
-#: src/lib/ui/components/subjectsDialog.ts:27
-msgid "Subjects"
-msgstr "Sujets"
-
-#: src/lib/ui/components/editDialog.ts:350
+#: src/lib/ui/components/editDialog.ts:366
 msgid "Preview shortened. The full text is preserved."
 msgstr "Aperçu abrégé. Le texte intégral est conservé."
 
-#: src/lib/ui/components/editDialog.ts:403
+#: src/lib/ui/components/editDialog.ts:420
 msgid "Preview"
 msgstr "Aperçu"
 
-#: src/lib/ui/components/editDialog.ts:415
-#: src/lib/ui/components/editDialog.ts:440
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Côte à côte"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
 msgid "Markdown formatting"
 msgstr "Mise en forme Markdown"
 
-#: src/lib/ui/components/editDialog.ts:422
+#: src/lib/ui/components/editDialog.ts:459
 msgid "Bold (Ctrl+B)"
 msgstr "Gras (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:423
+#: src/lib/ui/components/editDialog.ts:460
 msgid "Italic (Ctrl+I)"
 msgstr "Italique (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:424
+#: src/lib/ui/components/editDialog.ts:461
 msgid "Bullet list"
 msgstr "Liste à puces"
 
-#: src/lib/ui/components/editDialog.ts:425
+#: src/lib/ui/components/editDialog.ts:462
 msgid "Numbered list"
 msgstr "Liste numérotée"
 
-#: src/lib/ui/components/editDialog.ts:426
+#: src/lib/ui/components/editDialog.ts:463
 msgid "Quote"
 msgstr "Citation"
 
-#: src/lib/ui/components/editDialog.ts:427
+#: src/lib/ui/components/editDialog.ts:464
 msgid "Inline code"
 msgstr "Code en ligne"
 
-#: src/lib/ui/components/subjectsDialog.ts:15
-msgid "Subjects, separated by commas"
-msgstr "Sujets, séparés par des virgules"
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Ajouter un sujet"
 
-#: src/lib/ui/components/subjectsDialog.ts:28
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Retirer le sujet : %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
 msgid ""
-"Separate subjects with commas. Search with # followed by a subject name."
+"Add subjects with Enter or commas. Search with # followed by a subject name."
 msgstr ""
-"Séparez les sujets par des virgules. Recherchez avec # suivi du nom d’un "
-"sujet."
+"Ajoutez des sujets avec Entrée ou des virgules. Recherchez avec # suivi du "
+"nom d’un sujet."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Images"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Liens"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Épinglés"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1858,14 +1880,18 @@ msgstr[1] "%d Fichiers"
 msgid "Char"
 msgstr "Car"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Dossier"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
 msgstr[0] "%d fichier supplémentaire"
 msgstr[1] "%d fichiers supplémentaires"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1928,25 +1954,45 @@ msgstr "Couleu__r"
 msgid "Type to search"
 msgstr "Tapez pour rechercher"
 
-#: src/prefs.ts:63
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Choisissez les éléments à conserver et leur durée de conservation."
+
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Gérez la copie, le collage et les retours."
+
+#: src/prefs.ts:65
 msgid "Advanced"
 msgstr "Avancé"
 
 #: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Gérez le stockage et les langages de code."
+
+#: src/prefs.ts:69
 msgid "Storage"
 msgstr "Stockage"
 
-#: src/prefs.ts:71
+#: src/prefs.ts:74
 msgid "Panel Indicator"
 msgstr "Indicateur du panneau"
 
-#: src/prefs.ts:85
+#: src/prefs.ts:88
 msgid "Appearance"
 msgstr "Apparence"
 
-#: src/prefs.ts:104
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Personnalisez le panneau, les cartes et les couleurs."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Raccourcis"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Accédez au presse-papiers avec le clavier."
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
@@ -1955,8 +2001,8 @@ msgstr "Raccourcis"
 #~ "sélectionnés dans l'historique du presse-papiers"
 
 #~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, or "
-#~ "shut down your system"
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
 #~ msgstr ""
 #~ "Choisissez ce qu'il advient de votre historique du presse-papiers lorsque "
 #~ "vous redémarrez, vous déconnectez ou éteignez votre système"
@@ -2028,12 +2074,18 @@ msgstr "Raccourcis"
 #~ "papiers"
 
 #~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 to "
-#~ "disable the time limit"
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
 #~ msgstr ""
 #~ "Sélectionnez combien de minutes les éléments doivent être conservés dans "
 #~ "l'historique du presse-papiers. Réglez sur 0 pour désactiver la limite de "
 #~ "temps"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr ""
+#~ "Séparez les sujets par des virgules. Recherchez avec # suivi du nom d’un "
+#~ "sujet."
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Définit le schéma de couleurs du thème personnalisé"
@@ -2056,6 +2108,12 @@ msgstr "Raccourcis"
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Stocke l'historique du presse-papiers en mémoire au lieu du disque"
 
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Sujets, séparés par des virgules"
+
+#~ msgid "Subjects…"
+#~ msgstr "Sujets…"
+
 #, javascript-format
 #~ msgid "Successfully Installed %s"
 #~ msgstr "%s installé avec succès"
@@ -2074,8 +2132,8 @@ msgstr "Raccourcis"
 #~ msgstr "Utiliser une base de données en mémoire"
 
 #~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js from "
-#~ "\"Url\" to \"Install Location\"."
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
 #~ msgstr ""
 #~ "Vous pouvez installer manuellement highlight.js en téléchargeant "
 #~ "highlight.min.js de \"Url\" vers \"Emplacement d'installation\"."

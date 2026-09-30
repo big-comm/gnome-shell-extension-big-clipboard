@@ -72,7 +72,7 @@ export class SearchQuery extends GObject.Object {
 	}
 
 	public matchesType(type: ItemType): boolean {
-		return this.type === null || this.type === type;
+		return this.type === null || this.type === type || (this.type === ItemType.File && type === ItemType.Files);
 	}
 
 	public matchesProperties(pinned: boolean, tag: Tag | null, type: ItemType): boolean {

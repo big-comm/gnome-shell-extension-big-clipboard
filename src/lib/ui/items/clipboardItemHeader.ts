@@ -220,6 +220,10 @@ export class ClipboardItemHeader extends St.BoxLayout {
 		this.bind_property('pinned', this._pinButton, 'checked', GObject.BindingFlags.BIDIRECTIONAL);
 	}
 
+	get deleteButton() {
+		return this._deleteButton;
+	}
+
 	get isEditing() {
 		return this._isEditing;
 	}

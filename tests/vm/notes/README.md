@@ -16,4 +16,6 @@ Expect `ok: true`. Coverage: SQLite/JSON persistence, retention, label removal, 
 
 `Show Text`, `Show Code` and `Show Image` open disposable editor fixtures. `Action demo`, `Action preview`, `Action edit` and `Action close` support visual checks. `Inspect` exposes only the synthetic dialog's contents and actor geometry.
 
+`Demo` shows 144 synthetic cards without writing to the history database. Prepare a PDF, Unicode-named text file, archive and PNG under `/tmp/bgc-ui-files` first. `Panel` exposes visible actor geometry for pointer checks. `CopyFiles` places the synthetic PDF/text selection on the real clipboard for a Nautilus paste test. `Action close` restores the previous history view.
+
 After testing, call `Action close`, disable and uninstall the fixture. Check the journal and compare original database rows/image hashes with the backup taken before installing the build. This fixture is not packaged.

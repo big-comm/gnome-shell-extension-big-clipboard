@@ -70,6 +70,21 @@
 		background-color: transparentize($text, 0.92);
 	}
 
+	.clipboard-item-action {
+		color: $text;
+		background-color: transparentize($text, 0.92);
+		&:hover {
+			background-color: transparentize($text, 0.82);
+		}
+		&:focus {
+			box-shadow: inset 0 0 0 2px $text;
+		}
+	}
+
+	.color-action StIcon {
+		color: $tag;
+	}
+
 	// Keep syntax highlighting on its original neutral surface.
 	&.code-item .code-item-content {
 		background-color: $base;

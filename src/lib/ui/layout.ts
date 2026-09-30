@@ -250,3 +250,51 @@ export class CenterBox extends St.Widget {
 		this._endWidget.allocate(endBox);
 	}
 }
+
+/** Wrap controls without relying on FlowLayout's cached unconstrained row sizes. */
+@registerClass()
+export class WrapLayout extends Clutter.LayoutManager {
+	private rows(container: Clutter.Actor, width: number) {
+		const gap = 6 * St.ThemeContext.get_for_stage(global.stage).scale_factor;
+		const rows: { children: { actor: Clutter.Actor; width: number }[]; width: number; height: number }[] = [];
+		for (const actor of container.get_children().filter((child) => child.visible)) {
+			const natural = actor.get_preferred_width(-1)[1];
+			const childWidth = width < 0 ? natural : Math.min(natural, Math.max(0, width));
+			let row = rows.at(-1);
+			if (!row || (width >= 0 && row.width + gap + childWidth > width)) {
+				row = { children: [], width: 0, height: 0 };
+				rows.push(row);
+			}
+			row.width += (row.children.length ? gap : 0) + childWidth;
+			row.height = Math.max(row.height, actor.get_preferred_height(childWidth)[1]);
+			row.children.push({ actor, width: childWidth });
+		}
+		return { rows, gap };
+	}
+
+	override vfunc_get_preferred_width(container: Clutter.Actor, _height: number): [number, number] {
+		const { rows } = this.rows(container, -1);
+		return [0, rows[0]?.width ?? 0];
+	}
+
+	override vfunc_get_preferred_height(container: Clutter.Actor, width: number): [number, number] {
+		const { rows, gap } = this.rows(container, width);
+		const height = rows.reduce((sum, row) => sum + row.height, 0) + Math.max(0, rows.length - 1) * gap;
+		return [height, height];
+	}
+
+	override vfunc_allocate(container: Clutter.Actor, box: Clutter.ActorBox) {
+		const { rows, gap } = this.rows(container, box.get_width());
+		const rtl = container.get_text_direction() === Clutter.TextDirection.RTL;
+		let y = box.y1;
+		for (const row of rows) {
+			let x = rtl ? box.x2 : box.x1;
+			for (const child of row.children) {
+				const left = rtl ? x - child.width : x;
+				child.actor.allocate(Clutter.ActorBox.new(left, y, left + child.width, y + row.height));
+				x += (rtl ? -1 : 1) * (child.width + gap);
+			}
+			y += row.height + gap;
+		}
+	}
+}
