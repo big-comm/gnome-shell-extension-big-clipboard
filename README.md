@@ -15,6 +15,13 @@
 
 This repository contains the extension source, BigCommunity modifications and distribution packaging. The original authors retain credit for Copyous; the changes below focus on large clipboard histories, GNOME compatibility and layout switching.
 
+Watch the English walkthrough recorded on **GNOME 51 with Frosted Glass blur**: copy text to create a card, edit Markdown notes, add subjects and colors, pin favorites, browse code/images/PDF files, search by subject, and switch between light and dark themes.
+
+![Big Clipboard walkthrough in English: capture, editing, subjects, files and light/dark themes](resources/images/big-clipboard-demo.gif)
+
+<details>
+<summary>Still screenshots</summary>
+
 Horizontal history on GNOME 50.4, with colored notes, code, files and images:
 
 ![Big Clipboard in English on G-Unity, GNOME 50.4](resources/images/big-clipboard-gnome50.png)
@@ -26,6 +33,8 @@ Vertical history on GNOME 51.0, with file previews and subject labels:
 Markdown editing with formatting tools, subject labels and a preview:
 
 ![Big Clipboard Markdown editor and preview in English](resources/images/big-clipboard-notes.png)
+
+</details>
 
 ## BigCommunity changes
 
@@ -96,6 +105,40 @@ makepkg -s
 ```
 
 The standalone PKGBUILD defaults to **`main`**. BigCommunity testing builds use **`dev-talesam`**, selected by the build pipeline. Check the source revision in the build log; changing the local branch alone does not change the standalone PKGBUILD source.
+
+### Manual ZIP installation
+
+Use the compiled `big-clipboard@communitybig.org.shell-extension.zip` attached to a Big Clipboard release, when available. GitHub's automatic **Source code (zip)** download is not an installable extension. Compiled ZIPs belong in release assets, not in the source tree.
+
+Install GNOME Shell 48–51, Libgda 6 and GSound through your distribution first. GNOME 50 and 51 have been tested. Highlight.js and translations are bundled. On BigCommunity, prefer the distribution package so updates and UUID migration are managed automatically; a manual user installation overrides the system package.
+
+If migrating from Copyous, disable it before installing:
+
+```sh
+gnome-extensions disable copyous@boerdereinar.dev
+```
+
+Install the downloaded ZIP without `sudo`:
+
+```sh
+gnome-extensions install --force ./big-clipboard@communitybig.org.shell-extension.zip
+```
+
+Log out and back in, then enable Big Clipboard:
+
+```sh
+gnome-extensions enable big-clipboard@communitybig.org
+```
+
+The manual ZIP does not install the package's activation migration hook. Keep Copyous disabled; existing history and settings use the same storage locations. See [upgrade notes](docs/UPGRADE.md).
+
+To create an installable ZIP from a prepared source checkout:
+
+```sh
+make RELEASE=1 build
+```
+
+The output is `dist/big-clipboard@communitybig.org.zip`; `dist/` is excluded from Git. Rename the file to `big-clipboard@communitybig.org.shell-extension.zip` when attaching it to a release.
 
 ### Build this fork from source
 

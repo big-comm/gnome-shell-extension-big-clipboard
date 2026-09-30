@@ -25,6 +25,12 @@ export function detectCodeLanguage(text: string, hljs?: HLJSApi | null) {
 	)
 		return { id: 'bash', name: 'Bash' };
 	if (!hljs || !sample) return null;
+	// Keywords in ordinary prose (for example "interface" and "package") are not code.
+	const hasSyntax =
+		/[{};=$]|\b\w+\s*\([^)]*\)|(?:^|\n)\s*(?:def |class |import |from |SELECT |INSERT |UPDATE |DELETE |#include|<\/?[a-zA-Z])/.test(
+			sample,
+		);
+	if (!hasSyntax) return null;
 	// Markdown remains a note, not highlighted source code.
 	const result = hljs.highlightAuto(sample);
 	if (!result.language || ['markdown', 'plaintext', 'asciidoc'].includes(result.language)) return null;

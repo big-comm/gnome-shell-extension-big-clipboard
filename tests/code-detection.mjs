@@ -17,7 +17,11 @@ for (const note of ['', 'Just a plain note', '**Apenas um texto de teste**', '# 
     assert.equal(detect(note, hljs), null, note);
 assert.equal(detect('echo \"Hello\"', hljs).id, 'bash');
 assert.equal(detect('sudo dnf update', hljs).id, 'bash');
+for (const text of [
+    'Release checklist\n\nReview the interface\nTest on GNOME 50 and 51\nPublish the package',
+    '**Release checklist**\n\n- Review the interface\n- Test on GNOME 50 and 51\n- Publish the package',
+]) assert.equal(detect(text, hljs), null, 'ordinary notes must not become Kotlin code');
 let sample;
-detect('x'.repeat(100000), {highlightAuto(text) {sample = text; return {relevance: 0};}});
+detect('x='.repeat(50000), {highlightAuto(text) {sample = text; return {relevance: 0};}});
 assert.equal(sample.length, 10000, 'bounded detection');
 console.log('Code detection: shebang priority, incomplete shell, startup fallback, JavaScript, prose and bounded input passed');
