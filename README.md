@@ -58,6 +58,8 @@ See the [performance report](docs/PERFORMANCE.md) for measurements, test coverag
 
 Choose the **Edit** pencil in the card footer on a text card to use bold, italic, bullet and numbered lists, quotes, inline code or links. **Ctrl+B** and **Ctrl+I** format the selection. Switch between **Edit** and **Preview**, or use **Side by side** on larger displays; saving and copying retain the Markdown source. Code cards keep their language selector and plain code editor.
 
+Text cards render Markdown formatting directly; copying and editing retain the original source. Code detection prioritizes interpreter declarations such as `#!/bin/bash`, and existing text cards can display detected code without rewriting saved history.
+
 The preview supports these tools, headings and fenced code blocks. It treats HTML as text, never fetches remote content and never executes links. Only the first 20,000 characters are rendered in the preview; the complete note remains stored and copied.
 
 Choose the subject icon above a card's action buttons, including on images and files, or edit subjects with a note. Once subjects are assigned, use **+** beside their labels to add more. Add names with Enter or commas, for example `Work, Research`. Reuse suggested subjects and remove a label with its × button. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.

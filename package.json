@@ -43,6 +43,6 @@
 		"lint": "make lint",
 		"lint-fix": "make lint-fix",
 		"shexli": "make shexli",
-		"test": "node tests/theme-following.mjs && node tests/action-hints.mjs && node tests/notes.mjs && node tests/panel-blur.mjs && node tests/tagged-cards.mjs && node tests/history-paging.mjs && node tests/preview-lifecycle.mjs && node tests/shader-compatibility.mjs && node tests/highlight-bundle.mjs && node tests/storage-identity.mjs"
+		"test": "node tests/theme-following.mjs && node tests/action-hints.mjs && node tests/notes.mjs && node tests/code-detection.mjs && node tests/panel-blur.mjs && node tests/tagged-cards.mjs && node tests/history-paging.mjs && node tests/preview-lifecycle.mjs && node tests/shader-compatibility.mjs && node tests/highlight-bundle.mjs && node tests/storage-identity.mjs"
 	}
 }

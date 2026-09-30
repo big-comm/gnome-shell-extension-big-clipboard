@@ -45,7 +45,7 @@ export class CardSubjects extends St.Widget {
 	set names(names: string[]) {
 		for (const chip of this._chips) chip.destroy();
 		this._names = names;
-		this._add.child = new St.Icon({ gicon: loadIcon(this.ext, names.length ? Icon.Add : Icon.Tag), icon_size: 14 });
+		this._add.child = new St.Icon({ gicon: loadIcon(this.ext, names.length ? Icon.Add : Icon.Tag), icon_size: 12 });
 		this._chips = names.slice(0, 2).map((name) => this.createChip(name));
 		for (const chip of [...this._chips, this._more]) chip.accessible_name = names.join(', ');
 		this._more.visible = names.length > 2;
@@ -70,7 +70,7 @@ export class CardSubjects extends St.Widget {
 		const height = box.get_height();
 		const scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
 		const gap = 4 * scale;
-		const addWidth = this._add.get_preferred_width(-1)[1];
+		const addWidth = Math.min(height, 22 * scale);
 		const width = Math.max(0, fullWidth - addWidth - (this._names.length ? gap : 0));
 		let count = this._chips.length;
 		let moreWidth = 0;
@@ -104,6 +104,7 @@ export class CardSubjects extends St.Widget {
 			x += w + gap;
 		}
 		const addLeft = rtl ? fullWidth - x - addWidth : x;
-		this._add.allocate(Clutter.ActorBox.new(addLeft, 0, addLeft + addWidth, height));
+		const addTop = (height - addWidth) / 2;
+		this._add.allocate(Clutter.ActorBox.new(addLeft, addTop, addLeft + addWidth, addTop + addWidth));
 	}
 }

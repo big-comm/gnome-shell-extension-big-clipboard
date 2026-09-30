@@ -43,3 +43,7 @@ assert.equal(f('***abc***', 3, 6, 'bold').text, '*abc*');
 assert.equal(f('**abc**', 0, -1, 'italic').text, '***abc***');
 assert.equal(p('***abc***').markup, '<b><i>abc</i></b>');
 assert.equal(p('**a *b***').markup, '<b>a <i>b</i></b>');
+
+assert.equal(p(String.raw`C:\Users\notes`).markup, String.raw`C:\Users\notes`);
+assert.equal(p(String.raw`\*literal\*`).markup, '*literal*');
+assert.equal(p('**Apenas um texto de teste**').markup, '<b>Apenas um texto de teste</b>');
