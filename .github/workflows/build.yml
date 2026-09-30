@@ -20,6 +20,14 @@ jobs:
 
       - uses: ./.github/actions/setup
 
+      - name: Install Gettext
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gettext
+
+      - name: Check translation catalogs
+        run: make check-pot check-po
+
       - name: Typecheck and regression tests
         run: |
           pnpm exec tsc --noEmit
