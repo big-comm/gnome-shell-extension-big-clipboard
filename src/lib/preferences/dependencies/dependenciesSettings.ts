@@ -79,7 +79,10 @@ class LanguagePage extends Adw.NavigationPage {
 				const selected = new Set(getSelectedHljsLanguages(prefs));
 				if (row.active) selected.add(id);
 				else selected.delete(id);
-				settings.set_strv('highlight-languages', [...selected].sort());
+				settings.set_strv(
+					'highlight-languages',
+					[...selected].sort((a, b) => a.localeCompare(b)),
+				);
 			});
 			search.connect('search-changed', () => {
 				const text = search.text.toLocaleLowerCase();

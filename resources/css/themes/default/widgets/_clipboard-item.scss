@@ -266,7 +266,7 @@
 }
 
 .clipboard-item-actions {
-	spacing: 6px;
+	spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
 	padding: 6px 10px 0;
 	.clipboard-item-action {
 		border-radius: 8px;
@@ -282,7 +282,7 @@
 	}
 }
 .file-identity {
-	spacing: 8px;
+	spacing: 8px; // NOSONAR: GNOME StBoxLayout spacing property.
 }
 .file-name {
 	font-weight: bold;

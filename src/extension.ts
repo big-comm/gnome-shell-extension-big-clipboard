@@ -473,7 +473,8 @@ export default class CopyousExtension extends Extension {
 			if (this.updateHistory) return GLib.SOURCE_CONTINUE;
 
 			if (this.entryTracker?.checkOldest()) {
-				this.entryTracker?.deleteOldest().catch(this.logger.error.bind(this.logger));
+				const logger = this.logger;
+				this.entryTracker?.deleteOldest().catch((error) => logger.error(error));
 			}
 
 			return GLib.SOURCE_CONTINUE;
@@ -528,8 +529,8 @@ export default class CopyousExtension extends Extension {
 		this.shortcutsManager = undefined;
 
 		// Database
-		const error = this.logger?.error.bind(this.logger);
-		this.entryTracker?.destroy().catch(error ?? (() => {}));
+		const logError = this.logger?.error.bind(this.logger);
+		this.entryTracker?.destroy().catch((error) => logError?.(error));
 		this.entryTracker = undefined;
 
 		if (this.historyTimeoutId >= 0) GLib.source_remove(this.historyTimeoutId);

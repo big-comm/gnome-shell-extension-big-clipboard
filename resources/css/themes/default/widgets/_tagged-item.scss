@@ -8,14 +8,14 @@
 	background-color: $fill;
 	color: $text;
 
-	&:hover {
+	&:hover /* NOSONAR: Sass mixin parent selector resolves at @include. */ {
 		background-color: mix($text, $fill, 6%);
 	}
-	&:active,
-	&:hover:active {
+	&:active, // NOSONAR: Sass mixin parent selector resolves at @include.
+	&:hover:active /* NOSONAR: Sass mixin parent selector resolves at @include. */ {
 		background-color: mix($text, $fill, 8%);
 	}
-	&:focus {
+	&:focus /* NOSONAR: Sass mixin parent selector resolves at @include. */ {
 		box-shadow: inset 0 0 0 2px $text;
 	}
 
@@ -81,12 +81,12 @@
 		}
 	}
 
-	.color-action StIcon {
+	.color-action StIcon /* NOSONAR: GNOME StIcon actor selector. */ {
 		color: $tag;
 	}
 
 	// Keep syntax highlighting on its original neutral surface.
-	&.code-item .code-item-content {
+	&.code-item .code-item-content /* NOSONAR: Sass mixin parent selector resolves at @include. */ {
 		background-color: $base;
 		color: $text;
 		border-radius: $base_border_radius;

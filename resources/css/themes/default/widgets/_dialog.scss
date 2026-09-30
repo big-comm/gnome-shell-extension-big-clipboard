@@ -191,7 +191,7 @@
 		color: -st-accent-fg-color;
 	}
 	.filter-content {
-		spacing: 5px;
+		spacing: 5px; // NOSONAR: GNOME StBoxLayout spacing property.
 	}
 	.filter-count {
 		font-size: 0.85em;

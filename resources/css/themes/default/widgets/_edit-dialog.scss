@@ -48,7 +48,7 @@
 
 	.markdown-toolbar,
 	.markdown-tabs {
-		spacing: 6px;
+		spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
 	}
 	.markdown-toolbar .button {
 		padding: 5px 8px;
@@ -92,7 +92,7 @@
 }
 
 .clipboard-item-subjects {
-	spacing: 4px;
+	spacing: 4px; // NOSONAR: GNOME StBoxLayout spacing property.
 	padding: 0;
 	.clipboard-subject {
 		font-size: 0.85em;
@@ -106,7 +106,7 @@
 
 .clipboard-item-edit-dialog {
 	.markdown-body {
-		spacing: 12px;
+		spacing: 12px; // NOSONAR: GNOME StBoxLayout spacing property.
 	}
 	.markdown-split & {
 		width: 62em;
@@ -120,10 +120,10 @@
 		color: -st-accent-fg-color;
 	}
 	.subject-editor {
-		spacing: 6px;
+		spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
 	}
 	.subject-input-row {
-		spacing: 6px;
+		spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
 	}
 	.subject-chips-scroll {
 		max-height: 5em;

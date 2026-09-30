@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import {execFileSync} from 'node:child_process';
 
-execFileSync('node', ['scripts/highlight/bundle.mjs'], {stdio: 'inherit'});
+execFileSync(process.execPath, ['scripts/highlight/bundle.mjs'], {stdio: 'inherit'});
 const {default: bundled} = await import('../dist/highlight.min.js');
 assert.equal(bundled.versionString, '11.11.1');
 assert.equal(bundled.listLanguages().length, 36);
