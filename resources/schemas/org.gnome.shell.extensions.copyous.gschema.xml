@@ -16,6 +16,11 @@
 			<summary>Disable the hljs dialog from showing up when launching preferences if hljs is not installed</summary>
 		</key>
 
+        <key name="highlight-languages" type="as">
+            <default>[]</default>
+            <summary>Additional bundled languages enabled for syntax highlighting and automatic detection</summary>
+        </key>
+
 		<!-- History -->
 		<key name="in-memory-database" type="b">
 			<default>false</default>
@@ -199,7 +204,7 @@
 			<summary>Width of a clipboard item</summary>
 		</key>
 		<key name="item-height" type="i">
-			<default>170</default>
+			<default>210</default>
 			<range min="50" max="1000"/>
 			<summary>Height of a clipboard item</summary>
 		</key>

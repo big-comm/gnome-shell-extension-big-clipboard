@@ -1,4 +1,5 @@
 import Clutter from 'gi://Clutter';
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Meta from 'gi://Meta';
 import Pango from 'gi://Pango';
@@ -15,7 +16,10 @@ import type CopyousExtension from '../../../extension.js';
 import { ItemType } from '../../common/constants.js';
 import { registerClass } from '../../common/gjs.js';
 import { Icon, loadIcon } from '../../common/icons.js';
+import { normalizeSubjects } from '../../common/subjects.js';
 import { ClipboardEntry, CodeMetadata, Language } from '../../database/database.js';
+import { type MarkdownAction, formatMarkdown, markdownPreview } from './markdown.js';
+import { subjectInput } from './subjectsDialog.js';
 
 /** Entry with proper height for multiline text and event forwarding */
 @registerClass()
@@ -122,6 +126,17 @@ export class MultilineEntry extends St.Entry {
 		text.y_align = Clutter.ActorAlign.START;
 		text.x_expand = true;
 		text.y_expand = true;
+
+		// St.Entry's single-line navigation does not handle document boundaries.
+		text.connect('key-press-event', (_actor, event: Clutter.Event) => {
+			if (!event.has_control_modifier()) return Clutter.EVENT_PROPAGATE;
+			const key = event.get_key_symbol();
+			if (key !== Clutter.KEY_Home && key !== Clutter.KEY_End) return Clutter.EVENT_PROPAGATE;
+			const position = key === Clutter.KEY_Home ? 0 : -1;
+			const anchor = event.has_shift_modifier() ? text.selection_bound : position;
+			text.set_selection(position, anchor);
+			return Clutter.EVENT_STOP;
+		});
 
 		// Always keep the cursor visible
 		text.connect('cursor-changed', () => {
@@ -266,6 +281,16 @@ export class LanguageButton extends St.Button {
 export class EditDialog extends ModalDialog.ModalDialog {
 	private readonly _entry: MultilineEntry;
 	private readonly _languageButton?: LanguageButton;
+	private _preview?: St.ScrollView;
+	private _previewLabel?: St.Label;
+	private _previewNotice?: St.Label;
+	private _toolbar?: St.BoxLayout;
+	private _editButton?: St.Button;
+	private _previewButton?: St.Button;
+	private _splitButton?: St.Button;
+	private _split = false;
+	private _previewIdle = 0;
+	private readonly _editorBody: St.BoxLayout;
 
 	constructor(ext: CopyousExtension, entry: ClipboardEntry) {
 		super({
@@ -294,17 +319,69 @@ export class EditDialog extends ModalDialog.ModalDialog {
 			box.add_child(this._languageButton);
 		}
 
+		content.add_child(new St.Label({ text: _('Subjects') }));
+		const subjects = subjectInput(entry.subjects, ext.subjectSuggestions());
+		content.add_child(subjects);
+		if (entry.type === ItemType.Text) this.addMarkdownTools(content);
+
+		this._editorBody = new St.BoxLayout({ style_class: 'markdown-body', x_expand: true });
+		content.add_child(this._editorBody);
 		// Entry
 		this._entry = new MultilineEntry({
 			style_class: 'clipboard-item-edit-dialog-entry',
 			can_focus: true,
 			x_expand: true,
 		});
-		content.add_child(this._entry);
+		this._editorBody.add_child(this._entry);
 		this.setInitialKeyFocus(this._entry);
 
 		this._entry.clutter_text.text = entry.content;
 		this._entry.clutter_text.set_selection(-1, -1);
+		if (entry.type === ItemType.Text) {
+			this._previewLabel = new St.Label({ style_class: 'markdown-preview-text', x_expand: true });
+			this._previewLabel.clutter_text.line_wrap = true;
+			this._previewLabel.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
+			this._previewLabel.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
+			const box = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+			box.add_child(this._previewLabel);
+			this._preview = new St.ScrollView({
+				style_class: 'markdown-preview',
+				visible: false,
+				x_expand: true,
+				hscrollbar_policy: St.PolicyType.NEVER,
+				vscrollbar_policy: St.PolicyType.AUTOMATIC,
+				child: box,
+			});
+			this._editorBody.add_child(this._preview);
+			this._entry.clutter_text.connect('text-changed', () => {
+				if (!this._split) return;
+				if (this._previewIdle) GLib.source_remove(this._previewIdle);
+				this._previewIdle = GLib.timeout_add(GLib.PRIORITY_LOW, 150, () => {
+					this._previewIdle = 0;
+					this.refreshPreview();
+					return GLib.SOURCE_REMOVE;
+				});
+			});
+			this._previewNotice = new St.Label({
+				text: _('Preview shortened. The full text is preserved.'),
+				visible: false,
+			});
+			content.add_child(this._previewNotice);
+			this._entry.clutter_text.connect('key-press-event', (_actor, event: Clutter.Event) => {
+				const altPressed = event.get_state() & Clutter.ModifierType.MOD1_MASK;
+				if (!event.has_control_modifier() || altPressed !== 0) return Clutter.EVENT_PROPAGATE;
+				const key = event.get_key_symbol();
+				if (key === Clutter.KEY_b || key === Clutter.KEY_B) {
+					this.applyFormat('bold');
+					return Clutter.EVENT_STOP;
+				}
+				if (key === Clutter.KEY_i || key === Clutter.KEY_I) {
+					this.applyFormat('italic');
+					return Clutter.EVENT_STOP;
+				}
+				return Clutter.EVENT_PROPAGATE;
+			});
+		}
 
 		if (entry.type === ItemType.Code) {
 			this._entry.add_style_class_name('monospace');
@@ -314,18 +391,133 @@ export class EditDialog extends ModalDialog.ModalDialog {
 		this.addButton({
 			label: _('Cancel'),
 			action: () => this.close(),
-			default: true,
 			key: Clutter.KEY_Escape,
 		});
 
-		this.addButton({
+		const save = this.addButton({
 			label: _('Save'),
 			action: () => {
+				entry.subjects = normalizeSubjects(subjects.text);
 				entry.content = this._entry.clutter_text.text;
 				if (this._languageButton) entry.metadata = { language: this._languageButton.language };
 				this.close();
 			},
 		});
+		save.add_style_class_name('suggested-action');
+		save.add_style_class_name('default');
+	}
+
+	private addMarkdownTools(content: St.BoxLayout) {
+		const tabs = new St.BoxLayout({ style_class: 'markdown-tabs' });
+		this._editButton = new St.Button({
+			label: _('Edit'),
+			style_class: 'button',
+			can_focus: true,
+			toggle_mode: true,
+			checked: true,
+		});
+		this._previewButton = new St.Button({
+			label: _('Preview'),
+			style_class: 'button',
+			can_focus: true,
+			toggle_mode: true,
+		});
+		this._editButton.connect('clicked', () => {
+			this._split = false;
+			this.showPreview(false);
+		});
+		this._previewButton.connect('clicked', () => {
+			this._split = false;
+			this.showPreview(true);
+		});
+		tabs.add_child(this._editButton);
+		tabs.add_child(this._previewButton);
+		this._splitButton = new St.Button({
+			label: _('Side by side'),
+			style_class: 'button',
+			can_focus: true,
+			toggle_mode: true,
+		});
+		this._splitButton.connect('clicked', () => {
+			this._split = true;
+			this.showPreview(true);
+		});
+		const monitor = Main.layoutManager.currentMonitor;
+		const scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
+		this._splitButton.visible = !!monitor && monitor.width / scale >= 1050 && monitor.height / scale >= 650;
+		tabs.add_child(this._splitButton);
+		content.add_child(tabs);
+		this._toolbar = new St.BoxLayout({ style_class: 'markdown-toolbar' });
+		const hint = new St.Label({
+			text: _('Markdown formatting'),
+			style_class: 'markdown-hint',
+			y_align: Clutter.ActorAlign.CENTER,
+			x_expand: true,
+		});
+		hint.clutter_text.ellipsize = Pango.EllipsizeMode.END;
+		const actions: [MarkdownAction, string, string][] = [
+			['bold', 'B', _('Bold (Ctrl+B)')],
+			['italic', 'I', _('Italic (Ctrl+I)')],
+			['bullet', '•', _('Bullet list')],
+			['number', '1.', _('Numbered list')],
+			['quote', '❯', _('Quote')],
+			['code', '</>', _('Inline code')],
+			['link', '↗', _('Link')],
+		];
+		for (const [action, label, name] of actions) {
+			const button = new St.Button({
+				label,
+				accessible_name: name,
+				style_class: `button markdown-${action}`,
+				can_focus: true,
+				track_hover: true,
+			});
+			button.connect('clicked', () => this.applyFormat(action));
+			button.connect('notify::hover', () => {
+				hint.text = button.hover ? name : _('Markdown formatting');
+			});
+			button.connect('key-focus-in', () => {
+				hint.text = name;
+			});
+			this._toolbar.add_child(button);
+		}
+		content.add_child(this._toolbar);
+		content.add_child(hint);
+	}
+
+	private applyFormat(action: MarkdownAction) {
+		const text = this._entry.clutter_text;
+		const result = formatMarkdown(text.text, text.cursor_position, text.selection_bound, action);
+		text.text = result.text;
+		text.grab_key_focus();
+		text.set_selection(result.start, result.end);
+	}
+
+	private showPreview(preview: boolean) {
+		if (!this._preview || !this._previewLabel) return;
+		if (preview) this.refreshPreview();
+		else this._previewNotice!.hide();
+		if (this._split) this.add_style_class_name('markdown-split');
+		else this.remove_style_class_name('markdown-split');
+		this._editorBody.layout_manager.homogeneous = this._split;
+		this._splitButton!.checked = this._split;
+		this._entry.visible = !preview || this._split;
+		this._toolbar!.visible = !preview || this._split;
+		this._preview.visible = preview;
+		this._editButton!.checked = !preview;
+		this._previewButton!.checked = preview && !this._split;
+		if (!preview) this._entry.clutter_text.grab_key_focus();
+	}
+
+	private refreshPreview() {
+		const result = markdownPreview(this._entry.clutter_text.text);
+		this._previewLabel!.clutter_text.set_markup(result.markup);
+		this._previewNotice!.visible = result.truncated;
+	}
+
+	override destroy() {
+		if (this._previewIdle) GLib.source_remove(this._previewIdle);
+		super.destroy();
 	}
 
 	on_opened() {

@@ -1,6 +1,6 @@
 # Manual VM fixture
 
-Use a disposable GNOME 50/51 session with Copyous enabled. This harness replaces the in-memory dialog contents, changes the clipboard and generates PNG files in `/tmp`; it does not seed the production database.
+Use a disposable GNOME 50/51 session with Big Clipboard enabled. This harness replaces the in-memory dialog contents, changes the clipboard and generates PNG files in `/tmp`; it does not seed the production database.
 
 Install this directory as `~/.local/share/gnome-shell/extensions/copyous-audit@local.test/`, log in again, then enable `copyous-audit@local.test`.
 
@@ -23,5 +23,5 @@ call_audit Prepare 10000  # Text stress fixture
 Check `State` after each operation and after repeated reopenings. `Action` supports `copy-text`, `copy-image`, `pin`, `delete`, `horizontal`, `vertical`, `light`, `dark`.
 For image verification, hide the popup and compare `wl-paste --type image/png | sha256sum` with the returned source path. Never retain a borrowed `GBytes` outside an `St.Clipboard` callback.
 
-After testing, disable/uninstall the audit extension and disable/enable Copyous to restore the regular database view. Restore any changed orientation/theme settings.
+After testing, disable/uninstall the audit extension and disable/enable Big Clipboard to restore the regular database view. Restore any changed orientation/theme settings.
 The audit extension is excluded from release archives.

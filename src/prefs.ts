@@ -34,85 +34,82 @@ import {
 	SearchScrollShortcuts,
 	SearchShortcuts,
 } from './lib/preferences/shortcuts/searchShortcuts.js';
-
-function findHeaderBar(window: Adw.PreferencesWindow): Adw.HeaderBar | null {
-	// Depth first search for the header bar
-	const stack: Gtk.Widget[] = [window];
-	let widget = undefined;
-	while ((widget = stack.pop())) {
-		if (widget instanceof Adw.HeaderBar) {
-			return widget;
-		} else {
-			const sibling = widget.get_next_sibling();
-			if (sibling) stack.push(sibling);
-
-			const child = widget.get_first_child();
-			if (child) stack.push(child);
-		}
-	}
-
-	return null;
-}
+import { SidebarPreferences } from './lib/preferences/sidebarPreferences.js';
 
 export default class Preferences extends ExtensionPreferences {
 	override async fillPreferencesWindow(window: Adw.PreferencesWindow) {
-		window.default_height = 810;
+		window.default_width = 830;
+		window.default_height = 610;
+		window.search_enabled = false;
 
-		// Enable search
-		window.search_enabled = true;
-
-		// Migrate settings
 		migrateSettings(this.getSettings());
 
-		// Add dependencies button to headerbar
-		const headerBar = findHeaderBar(window);
+		const navigation = new SidebarPreferences(window, this.metadata.name);
 		const dependenciesButton = new DependenciesWarningButton(this, window);
-		headerBar?.pack_end(dependenciesButton);
+		navigation.header.pack_end(dependenciesButton);
 
-		// General page
-		const general = new Adw.PreferencesPage({
-			name: 'general',
-			title: _('General'),
+		const history = new Adw.PreferencesPage({
+			name: 'history',
+			title: _('History'),
+			description: _('Choose what to keep and for how long.'),
+			icon_name: Icon.Clipboard,
+		});
+		const behavior = new Adw.PreferencesPage({
+			name: 'behavior',
+			title: _('Behavior'),
+			description: _('Control copying, pasting and feedback.'),
 			icon_name: Icon.Settings,
 		});
-		window.add(general);
+		const advanced = new Adw.PreferencesPage({
+			name: 'advanced',
+			title: _('Advanced'),
+			description: _('Manage storage and code languages.'),
+			icon_name: 'preferences-other-symbolic',
+		});
+		const storage = new Adw.PreferencesGroup({ title: _('Storage') });
+		advanced.add(storage);
+		history.add(new HistorySettings(this, window, storage));
+		navigation.add(history);
 
-		general.add(new HistorySettings(this, window));
-		const feedback = new FeedbackSettings(this, window);
+		const indicator = new Adw.PreferencesGroup({ title: _('Panel Indicator') });
+		const feedback = new FeedbackSettings(this, window, indicator);
 		dependenciesButton.bind_property('gsound', feedback, 'gsound', GObject.BindingFlags.SYNC_CREATE);
-		general.add(feedback);
-		general.add(new BehaviorSettings(this));
-		general.add(new AppExclusionSettings(this, window));
+		behavior.add(new BehaviorSettings(this));
+		behavior.add(feedback);
+		behavior.add(new AppExclusionSettings(this, window));
 		const dependenciesSettings = new DependenciesSettings(this, window);
 		dependenciesButton.bind_property('hljs', dependenciesSettings, 'hljs', GObject.BindingFlags.SYNC_CREATE);
-		dependenciesButton.connect('hljs-installed', () => dependenciesSettings.openHighlightJsPage());
-		general.add(dependenciesSettings);
-		general.add(new LocationsGroup(this, window));
+		advanced.add(dependenciesSettings);
+		advanced.add(new LocationsGroup(this, window));
 
 		// Customization page
 		const customization = new Adw.PreferencesPage({
-			name: 'customization',
-			title: _('Customization'),
+			name: 'appearance',
+			title: _('Appearance'),
+			description: _('Customize the panel, cards and colors.'),
 			icon_name: Icon.Image,
 		});
-		window.add(customization);
+		navigation.add(customization);
+		navigation.add(behavior);
+		customization.add(indicator);
 
 		customization.add(new Profiles(this));
+		customization.add(new ThemeCustomization(this));
 		customization.add(new DialogCustomization(this));
 		customization.add(new ItemCustomization(this));
 		customization.add(new HeaderCustomization(this));
 		const items = new ItemsCustomization(this, window);
 		dependenciesButton.bind_property('hljs', items, 'hljs', GObject.BindingFlags.SYNC_CREATE);
 		customization.add(items);
-		customization.add(new ThemeCustomization(this));
 
 		// Shortcuts page
 		const shortcuts = new Adw.PreferencesPage({
 			name: 'shortcuts',
 			title: _('Shortcuts'),
+			description: _('Access your clipboard with the keyboard.'),
 			icon_name: Icon.Keyboard,
 		});
-		window.add(shortcuts);
+		navigation.add(shortcuts);
 
 		shortcuts.add(new DialogShortcuts(this));
 		shortcuts.add(new ItemShortcuts(this));
@@ -126,7 +123,9 @@ export default class Preferences extends ExtensionPreferences {
 		// Actions page
 		const config = await loadConfig(this);
 		const actions = new ActionsPage(this, window, config);
-		window.add(actions);
+		navigation.add(actions);
+		navigation.add(advanced);
+		navigation.present();
 
 		// Register icons
 		const display = Gdk.Display.get_default()!;

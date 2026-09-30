@@ -5,6 +5,7 @@ export const Settings = {
 	Incognito: 'incognito',
 	DisableGdaWarning: 'disable-gda-warning',
 	DisableHljsDialog: 'disable-hljs-dialog',
+	HighlightLanguages: 'highlight-languages',
 
 	InMemoryDatabase: 'in-memory-database',
 	DatabaseBackend: 'database-backend',
@@ -96,6 +97,7 @@ export const Settings = {
 	},
 
 	Theme: {
+		BlurBackground: 'blur-background',
 		Theme: 'theme',
 		ColorScheme: 'color-scheme',
 		CustomColorScheme: 'custom-color-scheme',
@@ -136,6 +138,7 @@ export const SettingsTypes = {
 	[Settings.Incognito]: 'boolean',
 	[Settings.DisableGdaWarning]: 'boolean',
 	[Settings.DisableHljsDialog]: 'boolean',
+	[Settings.HighlightLanguages]: 'strv',
 
 	[Settings.InMemoryDatabase]: 'boolean', // deprecated
 	[Settings.DatabaseBackend]: 'enum',
@@ -241,6 +244,7 @@ export const SettingsTypes = {
 	},
 
 	[ChildKeys.Theme]: {
+		[Settings.Theme.BlurBackground]: 'boolean',
 		[Settings.Theme.Theme]: 'enum',
 		[Settings.Theme.ColorScheme]: 'enum',
 		[Settings.Theme.CustomColorScheme]: 'enum',

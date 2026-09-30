@@ -1,16 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Copyous
-# This file is distributed under the same license as the Copyous package.
+# This file is distributed under the same license as the Big Clipboard package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # everyx <lunt.luo@gmail.com>, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Copyous\n"
+"Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 03:53+0000\n"
-"PO-Revision-Date: 2025-12-19 18:30+0800\n"
-"Last-Translator: everyx <lunt.luo@gmail.com>\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
+"PO-Revision-Date: 2026-09-28 18:45-0300\n"
+"Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "打开"
 
@@ -68,22 +68,22 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "二维码"
 
-#: src/lib/database/entryTracker.ts:133 src/lib/database/entryTracker.ts:148
+#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:149
 msgid "Failed to load Gda"
 msgstr "加载 Gda 失败"
 
-#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:148
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:135 src/lib/database/entryTracker.ts:149
+#: src/lib/database/entryTracker.ts:165
 msgid "Clipboard history will be disabled"
 msgstr "剪贴板历史将被禁用"
 
-#: src/lib/database/entryTracker.ts:135
+#: src/lib/database/entryTracker.ts:136
 msgid "Disable Warning"
 msgstr "禁用警告"
 
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:165
 msgid "Failed to load JSON"
-msgstr ""
+msgstr "加载 JSON 失败"
 
 #: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
 msgid "Copied Text"
@@ -122,11 +122,11 @@ msgstr "已复制颜色"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:225
-#: src/lib/ui/components/editDialog.ts:252
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "无"
 
@@ -140,14 +140,14 @@ msgstr "默认动作"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "文本"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "代码"
 
@@ -162,14 +162,15 @@ msgstr "图片"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "文件"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "多文件"
 
@@ -177,7 +178,7 @@ msgstr "多文件"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "链接"
 
@@ -191,11 +192,12 @@ msgstr "字符"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "颜色"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "所有"
 
@@ -213,10 +215,10 @@ msgstr "选择哪些类型被允许"
 #: src/lib/preferences/actions/actionsPage.ts:21
 #: src/lib/preferences/actions/actionsPage.ts:34
 #: src/lib/preferences/customization/items/exclusions.ts:90
-#: src/lib/preferences/dependencies/dependencies.ts:224
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "取消"
 
@@ -330,6 +332,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "添加"
 
@@ -344,7 +347,8 @@ msgid "Edit Action"
 msgstr "编辑动作"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "保存"
 
@@ -356,7 +360,8 @@ msgstr "添加子菜单"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:93
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "编辑"
 
@@ -367,6 +372,7 @@ msgstr "编辑子菜单"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "删除"
 
@@ -1021,7 +1027,7 @@ msgid "Choose between pre-defined profiles"
 msgstr "在预定义的配置文件之间选择"
 
 #: src/lib/preferences/customization/profiles.ts:217
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Default"
 msgstr "默认"
 
@@ -1030,89 +1036,99 @@ msgid "Compact"
 msgstr "紧凑"
 
 #: src/lib/preferences/customization/profiles.ts:229
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Custom"
 msgstr "自定义"
 
-#: src/lib/preferences/customization/themeCustomization.ts:69
-#: src/lib/preferences/customization/themeCustomization.ts:73
+#: src/lib/preferences/customization/themeCustomization.ts:71
+#: src/lib/preferences/customization/themeCustomization.ts:75
 msgid "Theme"
 msgstr "主题"
 
-#: src/lib/preferences/customization/themeCustomization.ts:74
+#: src/lib/preferences/customization/themeCustomization.ts:76
 msgid "Set the preferred theme"
 msgstr "设置偏好主题"
 
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Yaru"
-msgstr ""
+msgstr "Yaru"
 
-#: src/lib/preferences/customization/themeCustomization.ts:89
-#: src/lib/preferences/customization/themeCustomization.ts:96
+#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:98
 msgid "Color Scheme"
 msgstr "配色方案"
 
-#: src/lib/preferences/customization/themeCustomization.ts:90
-#: src/lib/preferences/customization/themeCustomization.ts:97
+#: src/lib/preferences/customization/themeCustomization.ts:92
+#: src/lib/preferences/customization/themeCustomization.ts:99
 msgid "Set the color scheme of the theme"
-msgstr ""
+msgstr "设置主题的配色方案"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Dark"
 msgstr "暗色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "High Contrast"
-msgstr ""
+msgstr "高对比度"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Light"
 msgstr "亮色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "System"
 msgstr "跟随系统"
 
-#: src/lib/preferences/customization/themeCustomization.ts:104
+#: src/lib/preferences/customization/themeCustomization.ts:106
 msgid "Background Color"
 msgstr "背景色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:105
+#: src/lib/preferences/customization/themeCustomization.ts:107
 msgid "Set the background color of the clipboard dialog"
 msgstr "设置剪贴板对话框的背景颜色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:111
+#: src/lib/preferences/customization/themeCustomization.ts:113
 msgid "Text Color"
 msgstr "文本颜色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:112
+#: src/lib/preferences/customization/themeCustomization.ts:114
 msgid "Set the text color of the clipboard dialog"
 msgstr "设置剪贴板对话框的文本颜色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:118
+#: src/lib/preferences/customization/themeCustomization.ts:120
 msgid "Item Color"
 msgstr "项目颜色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:119
+#: src/lib/preferences/customization/themeCustomization.ts:121
 msgid "Set the background color of clipboard items"
 msgstr "设置剪贴板项目的背景颜色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:125
+#: src/lib/preferences/customization/themeCustomization.ts:127
 msgid "Search Color"
 msgstr "搜索框颜色"
 
-#: src/lib/preferences/customization/themeCustomization.ts:126
+#: src/lib/preferences/customization/themeCustomization.ts:128
 msgid "Set the background color of the search bar"
 msgstr "设置搜索栏的背景颜色"
 
-#: src/lib/preferences/dependencies/dependencies.ts:153
-#: src/lib/preferences/dependencies/dependencies.ts:440
+#: src/lib/preferences/customization/themeCustomization.ts:134
+msgid "Blur Background"
+msgstr "模糊背景"
+
+#: src/lib/preferences/customization/themeCustomization.ts:135
+msgid ""
+"Blur only the panel background on GNOME 51 with Frosted Glass active. Cards "
+"stay opaque."
+msgstr "在 GNOME 51 中启用 Frosted Glass 时，仅模糊面板背景。卡片保持不透明。"
+
+#: src/lib/preferences/dependencies/dependencies.ts:143
+#: src/lib/preferences/dependencies/dependencies.ts:219
 msgid "Libgda Not Installed"
 msgstr "Libgda 未安装"
 
-#: src/lib/preferences/dependencies/dependencies.ts:155
+#: src/lib/preferences/dependencies/dependencies.ts:145
 msgid ""
 "Libgda is required to store clipboard history between sessions. Install "
 "either libgda 5.0 or 6.0 with SQLite support to use this feature. After "
@@ -1121,48 +1137,16 @@ msgstr ""
 "跨会话存储剪贴板历史记录需要 libgda。请安装支持 SQLite 的 libgda 5.0 或 6.0 "
 "以使用此功能。安装 libgda 后，您需要注销或重启系统。"
 
-#: src/lib/preferences/dependencies/dependencies.ts:159
+#: src/lib/preferences/dependencies/dependencies.ts:149
 msgid "Install Libgda"
 msgstr "安装 Libgda"
 
-#: src/lib/preferences/dependencies/dependencies.ts:172
-#: src/lib/preferences/dependencies/dependencies.ts:442
-msgid "Highlight.js Not Installed"
-msgstr "Highlight.js 未安装"
-
-#: src/lib/preferences/dependencies/dependencies.ts:173
-msgid "Highlight.js is required to display syntax highlighted code."
-msgstr "需要 Highlight.js 来显示代码语法高亮。"
-
-#: src/lib/preferences/dependencies/dependencies.ts:177
-msgid "Manual Installation"
-msgstr "手动安装"
-
-#: src/lib/preferences/dependencies/dependencies.ts:191
-msgid ""
-"You can manually install highlight.js by downloading highlight.min.js from "
-"\"Url\" to \"Install Location\"."
-msgstr ""
-"您可以从“网址”下载 highlight.min.js 到“安装位置”来手动安装 highlight.js。"
-
-#: src/lib/preferences/dependencies/dependencies.ts:208
-msgid "Url"
-msgstr "网址"
-
-#: src/lib/preferences/dependencies/dependencies.ts:217
-msgid "Install Location"
-msgstr "安装位置"
-
-#: src/lib/preferences/dependencies/dependencies.ts:226
-msgid "Install"
-msgstr "安装"
-
-#: src/lib/preferences/dependencies/dependencies.ts:355
-#: src/lib/preferences/dependencies/dependencies.ts:441
+#: src/lib/preferences/dependencies/dependencies.ts:182
+#: src/lib/preferences/dependencies/dependencies.ts:220
 msgid "GSound Not Installed"
 msgstr "GSound 未安装"
 
-#: src/lib/preferences/dependencies/dependencies.ts:357
+#: src/lib/preferences/dependencies/dependencies.ts:184
 msgid ""
 "GSound is required to play sound effects. Install GSound to use this "
 "feature. After installing GSound you will need to log out or restart your "
@@ -1171,63 +1155,56 @@ msgstr ""
 "播放音效需要安装 GSound。请安装 GSound 以使用此功能。安装完成后，您需要注销或"
 "重启系统。"
 
-#: src/lib/preferences/dependencies/dependencies.ts:360
+#: src/lib/preferences/dependencies/dependencies.ts:187
 msgid "Install GSound"
 msgstr "安装 GSound"
 
-#: src/lib/preferences/dependencies/dependencies.ts:373
-msgid "Starting Highlight.js Download"
-msgstr "开始下载 Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:195
+#: src/lib/preferences/dependencies/dependencies.ts:221
+msgid "Syntax highlighting unavailable"
+msgstr "语法高亮不可用"
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Error Installing Highlight.js"
-msgstr "安装 Highlight.js 时出错"
+#: src/lib/preferences/dependencies/dependencies.ts:196
+msgid ""
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
+msgstr "请重新安装 Big Clipboard 软件包以恢复内置的代码高亮文件。"
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Successfully Installed Highlight.js"
-msgstr "安装 Highlight.js 成功"
+#: src/lib/preferences/dependencies/dependencies.ts:198
+#: src/lib/ui/components/qrCodeDialog.ts:146
+msgid "Close"
+msgstr "关闭"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:240
-#, javascript-format
-msgid "Successfully Installed %s"
-msgstr "已成功安装 %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:22
+msgid "Syntax highlighting"
+msgstr "语法高亮"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:241
-#, javascript-format
-msgid "Error Installing %s"
-msgstr "安装 %s 时出错"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:24
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:43
+msgid "Code languages"
+msgstr "代码语言"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:261
-#, javascript-format
-msgid "Successfully Uninstalled %s"
-msgstr "卸载 %s 成功"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:25
+msgid "Included with Big Clipboard. No download required."
+msgstr "随 Big Clipboard 一起提供，无需下载。"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:262
-#, javascript-format
-msgid "Error Uninstalling %s"
-msgstr "卸载 %s 出错"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:51
+msgid ""
+"Common languages are always available. Enable additional languages for code "
+"detection and highlighting."
+msgstr "常用语言始终可用。启用其他语言以支持代码检测和高亮。"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:288
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:382
-msgid "Manage Highlight.js"
-msgstr "管理 Highlight.js"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:300
-msgid "Languages"
-msgstr "语言"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:321
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "搜索"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:375
-msgid "Dependencies"
-msgstr "依赖项"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:383
-msgid "Manage the Highlight.js installation"
-msgstr "管理 Highlight.js 的安装"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:73
+msgid "Always available"
+msgstr "始终可用"
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
@@ -1270,7 +1247,7 @@ msgstr "管理排除的应用"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "管理将被排除，不记录剪贴板历史的应用"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "行为"
 
@@ -1334,47 +1311,47 @@ msgid ""
 msgstr "从剪贴板历史记录中选择项目时更新其复制日期"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "提示音"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "点击"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "蜂鸣"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "弦音"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "挥动"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "消息"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "即时消息"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "铃声"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "对话框警示"
 
@@ -1384,121 +1361,117 @@ msgstr "反馈"
 
 #: src/lib/preferences/general/feedbackSettings.ts:227
 msgid "Indicator Display"
-msgstr ""
+msgstr "指示器显示方式"
 
 #: src/lib/preferences/general/feedbackSettings.ts:228
 msgid "Choose how the clipboard indicator appears in the top panel"
-msgstr ""
+msgstr "选择剪贴板指示器在顶部面板中的显示方式"
 
 #: src/lib/preferences/general/feedbackSettings.ts:231
 msgid "Icon Only"
-msgstr ""
+msgstr "仅图标"
 
 #: src/lib/preferences/general/feedbackSettings.ts:232
 msgid "Clipboard Content Only"
-msgstr ""
+msgstr "仅剪贴板内容"
 
 #: src/lib/preferences/general/feedbackSettings.ts:233
 msgid "Icon and Clipboard Content"
-msgstr ""
+msgstr "图标和剪贴板内容"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "抖动指示器"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "复制剪贴板项时抖动指示器"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "发送通知"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr "复制剪贴板项时发送通知"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "复制剪贴板项时播放的声音"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "历史"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
-msgstr ""
-
-#: src/lib/preferences/general/historySettings.ts:71
-msgid "(recommended)"
-msgstr ""
-
-#: src/lib/preferences/general/historySettings.ts:71
-msgid "SQLite"
-msgstr ""
+msgstr "内存"
 
 #: src/lib/preferences/general/historySettings.ts:72
-msgid "JSON"
-msgstr ""
+msgid "(recommended)"
+msgstr "（推荐）"
 
-#: src/lib/preferences/general/historySettings.ts:99
-msgid "Database"
-msgstr ""
+#: src/lib/preferences/general/historySettings.ts:72
+msgid "SQLite"
+msgstr "SQLite"
+
+#: src/lib/preferences/general/historySettings.ts:73
+msgid "JSON"
+msgstr "JSON"
 
 #: src/lib/preferences/general/historySettings.ts:100
-msgid "Select which database type to use for storing your clipboard"
-msgstr ""
+msgid "Database"
+msgstr "数据库"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:101
+msgid "Select which database type to use for storing your clipboard"
+msgstr "选择用于存储剪贴板内容的数据库类型"
+
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "数据库位置"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "剪贴板历史"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "保留历史记录"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
-msgstr "选择系统重启、注销或关机时对剪贴板历史记录的操作"
+msgid "Choose what to keep after logout or restart."
+msgstr "选择注销或重启后要保留的内容。"
 
-#: src/lib/preferences/general/historySettings.ts:137
-#: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
+#: src/lib/preferences/general/historySettings.ts:136
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "清除"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "保留全部"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "保留已固定项"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "保留已固定/有标签项"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "历史记录长度"
+msgid "History Size"
+msgstr "历史记录大小"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr "选择剪贴板历史记录的保留条数"
+msgid "Maximum number of saved items."
+msgstr "保存条目的最大数量。"
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "历史记录时长限制"
+msgid "Expiration"
+msgstr "过期时间"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
-msgstr "选择剪贴板项目的保留分钟数，设置为 0 则不限制时长。"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
+msgstr "条目过期前的分钟数。设为 0 可永久保留。"
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1526,15 +1499,15 @@ msgstr "切换隐私模式"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:27
 msgid "Open Clipboard Dialog Behavior"
-msgstr ""
+msgstr "打开剪贴板对话框行为"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Open / Select Next Item"
-msgstr ""
+msgstr "打开／选择下一项"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Toggle Dialog"
-msgstr ""
+msgstr "切换对话框"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:20
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
@@ -1560,7 +1533,7 @@ msgstr "仅支持文本和代码项目"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:31
 msgid "Edit Title"
-msgstr ""
+msgstr "编辑标题"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:34
 msgid "Open Menu"
@@ -1572,15 +1545,15 @@ msgstr "中键单击操作"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:67
 msgid "Swap Copy Shortcut"
-msgstr ""
+msgstr "交换复制快捷键"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Swap copy and paste shortcuts"
-msgstr ""
+msgstr "交换复制和粘贴快捷键"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:72
 msgid "Paste Item"
-msgstr ""
+msgstr "粘贴项目"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:74
 msgid "Copy Item"
@@ -1686,6 +1659,18 @@ msgstr "禁用快捷键"
 msgid "Disabled"
 msgstr "已禁用"
 
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "未找到结果"
+
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "主题"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1727,13 +1712,76 @@ msgstr "文件丢失"
 msgid "Error"
 msgstr "错误"
 
-#: src/lib/ui/components/editDialog.ts:277
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "编辑剪贴板项目"
 
-#: src/lib/ui/components/qrCodeDialog.ts:146
-msgid "Close"
-msgstr "关闭"
+#: src/lib/ui/components/editDialog.ts:366
+msgid "Preview shortened. The full text is preserved."
+msgstr "预览已缩短，完整文本仍会保留。"
+
+#: src/lib/ui/components/editDialog.ts:420
+msgid "Preview"
+msgstr "预览"
+
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "并排显示"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
+msgid "Markdown formatting"
+msgstr "Markdown 格式"
+
+#: src/lib/ui/components/editDialog.ts:459
+msgid "Bold (Ctrl+B)"
+msgstr "粗体 (Ctrl+B)"
+
+#: src/lib/ui/components/editDialog.ts:460
+msgid "Italic (Ctrl+I)"
+msgstr "斜体 (Ctrl+I)"
+
+#: src/lib/ui/components/editDialog.ts:461
+msgid "Bullet list"
+msgstr "无序列表"
+
+#: src/lib/ui/components/editDialog.ts:462
+msgid "Numbered list"
+msgstr "有序列表"
+
+#: src/lib/ui/components/editDialog.ts:463
+msgid "Quote"
+msgstr "引用"
+
+#: src/lib/ui/components/editDialog.ts:464
+msgid "Inline code"
+msgstr "行内代码"
+
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "添加主题"
+
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "移除主题：%s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
+msgid ""
+"Add subjects with Enter or commas. Search with # followed by a subject name."
+msgstr "使用回车或逗号添加主题。输入 # 加主题名称进行搜索。"
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "图像"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "链接"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "已固定"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1769,13 +1817,17 @@ msgstr[0] "%d 个文件"
 msgid "Char"
 msgstr "字符"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "文件夹"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
 msgstr[0] "还有 %d 个文件"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1797,67 +1849,165 @@ msgstr "剪贴板是空的"
 msgid "No Items Found"
 msgstr "未找到项目"
 
-#: src/lib/ui/searchEntry.ts:155
+#: src/lib/ui/searchEntry.ts:161
 msgid "__All"
 msgstr "全部(_A)"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:165
 msgid "__Text"
 msgstr "文本(_T)"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:166
 msgid "__Code"
 msgstr "代码(_C)"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:167
 msgid "__Image"
 msgstr "图片(_I)"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:168
 msgid "__File"
 msgstr "文件(_F)"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:169
 msgid "File__s"
 msgstr "文件(_S)"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:170
 msgid "__Link"
 msgstr "链接(_L)"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:171
 msgid "C__haracter"
 msgstr "字符(_H)"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:172
 msgid "Colo__r"
 msgstr "颜色(_R)"
 
-#: src/lib/ui/searchEntry.ts:278
+#: src/lib/ui/searchEntry.ts:284
 msgid "Type to search"
 msgstr "输入以搜索"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "通用"
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "选择保留的内容及保留时长。"
 
-#: src/prefs.ts:95
-msgid "Customization"
-msgstr "自定义"
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "设置复制、粘贴和反馈。"
 
-#: src/prefs.ts:112
+#: src/prefs.ts:65
+msgid "Advanced"
+msgstr "高级"
+
+#: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "管理存储和代码语言。"
+
+#: src/prefs.ts:69
+msgid "Storage"
+msgstr "存储"
+
+#: src/prefs.ts:74
+msgid "Panel Indicator"
+msgstr "面板指示器"
+
+#: src/prefs.ts:88
+msgid "Appearance"
+msgstr "外观"
+
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "自定义面板、卡片和颜色。"
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "快捷键"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "使用键盘访问剪贴板。"
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
 #~ msgstr "从剪贴板历史记录中选择项目时自动粘贴"
 
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
+#~ msgstr "选择系统重启、注销或关机时对剪贴板历史记录的操作"
+
+#~ msgid "Clipboard History"
+#~ msgstr "剪贴板历史"
+
+#~ msgid "Customization"
+#~ msgstr "自定义"
+
+#~ msgid "Dependencies"
+#~ msgstr "依赖项"
+
+#, javascript-format
+#~ msgid "Error Installing %s"
+#~ msgstr "安装 %s 时出错"
+
+#~ msgid "Error Installing Highlight.js"
+#~ msgstr "安装 Highlight.js 时出错"
+
+#, javascript-format
+#~ msgid "Error Uninstalling %s"
+#~ msgstr "卸载 %s 出错"
+
 #~ msgid "Failed to load database"
 #~ msgstr "加载数据库失败"
 
+#~ msgid "General"
+#~ msgstr "通用"
+
+#~ msgid "Highlight.js Not Installed"
+#~ msgstr "Highlight.js 未安装"
+
+#~ msgid "Highlight.js is required to display syntax highlighted code."
+#~ msgstr "需要 Highlight.js 来显示代码语法高亮。"
+
+#~ msgid "History Length"
+#~ msgstr "历史记录长度"
+
+#~ msgid "History Time Limit"
+#~ msgstr "历史记录时长限制"
+
+#~ msgid "Install"
+#~ msgstr "安装"
+
+#~ msgid "Install Location"
+#~ msgstr "安装位置"
+
+#~ msgid "Languages"
+#~ msgstr "语言"
+
+#~ msgid "Manage Highlight.js"
+#~ msgstr "管理 Highlight.js"
+
+#~ msgid "Manage the Highlight.js installation"
+#~ msgstr "管理 Highlight.js 的安装"
+
+#~ msgid "Manual Installation"
+#~ msgstr "手动安装"
+
 #~ msgid "Paste on Copy"
 #~ msgstr "复制时粘贴"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr "选择剪贴板历史记录的保留条数"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
+#~ msgstr "选择剪贴板项目的保留分钟数，设置为 0 则不限制时长。"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr "用逗号分隔主题。输入 # 加主题名称进行搜索。"
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "设置自定义主题的配色方案"
@@ -1874,8 +2024,37 @@ msgstr "快捷键"
 #~ msgid "Show the current clipboard content in the indicator"
 #~ msgstr "在指示器中显示当前剪贴板内容"
 
+#~ msgid "Starting Highlight.js Download"
+#~ msgstr "开始下载 Highlight.js"
+
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "将剪贴板历史记录存储在内存而非磁盘中"
 
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "主题，以逗号分隔"
+
+#~ msgid "Subjects…"
+#~ msgstr "主题…"
+
+#, javascript-format
+#~ msgid "Successfully Installed %s"
+#~ msgstr "已成功安装 %s"
+
+#~ msgid "Successfully Installed Highlight.js"
+#~ msgstr "安装 Highlight.js 成功"
+
+#, javascript-format
+#~ msgid "Successfully Uninstalled %s"
+#~ msgstr "卸载 %s 成功"
+
+#~ msgid "Url"
+#~ msgstr "网址"
+
 #~ msgid "Use In-Memory Database"
 #~ msgstr "使用内存数据库"
+
+#~ msgid ""
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
+#~ msgstr ""
+#~ "您可以从“网址”下载 highlight.min.js 到“安装位置”来手动安装 highlight.js。"

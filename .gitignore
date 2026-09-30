@@ -13,6 +13,7 @@ node_modules
 # Local-only notes and backups: never push these to the fork.
 /PLANO_*.md
 /NOTAS_*.md
+/docs/BRANDING.md
 /backup-copyous-*/
 
 # Package build output

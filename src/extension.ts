@@ -29,6 +29,7 @@ type Mods = {
 	getDataPath: typeof import('./lib/common/constants.js').getDataPath;
 	getHljsLanguages: typeof import('./lib/common/constants.js').getHljsLanguages;
 	getHljsPath: typeof import('./lib/common/constants.js').getHljsPath;
+	getSelectedHljsLanguages: typeof import('./lib/common/constants.js').getSelectedHljsLanguages;
 	DbusService: typeof import('./lib/common/dbus.js').DbusService;
 	migrateSettings: typeof import('./lib/common/settings.js').migrateSettings;
 	tryCreateSoundManager: typeof import('./lib/common/sound.js').tryCreateSoundManager;
@@ -91,6 +92,7 @@ const heavyDepsReady: Promise<void> = (async () => {
 		getDataPath: constantsMod.getDataPath,
 		getHljsLanguages: constantsMod.getHljsLanguages,
 		getHljsPath: constantsMod.getHljsPath,
+		getSelectedHljsLanguages: constantsMod.getSelectedHljsLanguages,
 		DbusService: dbusMod.DbusService,
 		migrateSettings: settingsMod.migrateSettings,
 		tryCreateSoundManager: soundMod.tryCreateSoundManager,
@@ -111,6 +113,7 @@ export default class CopyousExtension extends Extension {
 	public hljs: HLJSApi | null | undefined;
 	private hljsMonitor: Gio.FileMonitor | undefined;
 	private hljsLanguages: Map<string, boolean> | undefined;
+	private _hljsLanguageSerial = 0;
 	private hljsCallbacks: (() => void)[] | undefined;
 
 	public themeManager: ThemeManager | undefined;
@@ -138,6 +141,12 @@ export default class CopyousExtension extends Extension {
 	private _lifecycleSerial = 0;
 
 	override enable() {
+		// Refuse a manual live overlap with upstream; migration runs before Shell startup.
+		const state = Number(Main.extensionManager.lookup('copyous@boerdereinar.dev')?.state);
+		// State names changed across Shell versions; active/transition values stayed 1/7/8.
+		if (state === 1 || state === 7 || state === 8)
+			throw new Error('Copyous is still running. Log out and back in to finish the Big Clipboard upgrade.');
+
 		this._enabled = true;
 		const serial = ++this._lifecycleSerial;
 
@@ -146,7 +155,9 @@ export default class CopyousExtension extends Extension {
 		this._enableDeferredId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
 			this._enableDeferredId = 0;
 			this._runDeferredEnable(serial).catch((e: unknown) => {
-				console.error(`[Copyous] Failed to enable: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`);
+				console.error(
+					`[Big Clipboard] Failed to enable: ${e instanceof Error ? (e.stack ?? e.message) : String(e)}`,
+				);
 			});
 			return GLib.SOURCE_REMOVE;
 		});
@@ -164,6 +175,13 @@ export default class CopyousExtension extends Extension {
 
 		// Highlight.js
 		this.initHljs().catch(error);
+		this.settings.connectObject(
+			'changed::highlight-languages',
+			() => {
+				if (this.hljs) this.loadHljsLanguages().catch(error);
+			},
+			this,
+		);
 
 		// Theme
 		this.themeManager = new M.ThemeManager(this);
@@ -293,7 +311,11 @@ export default class CopyousExtension extends Extension {
 		try {
 			const hljs = (await import(hljsPath.get_uri())) as { default: HLJSApi };
 			if (!this._enabled || serial !== this._lifecycleSerial) return;
-			this.hljs = hljs.default;
+			this.hljs = hljs.default.newInstance();
+			for (const name of hljs.default.listLanguages()) {
+				const language = hljs.default.getLanguage(name)!;
+				this.hljs.registerLanguage(name, language.rawDefinition ?? (() => language));
+			}
 
 			// Disable file monitor
 			this.hljsMonitor?.cancel();
@@ -362,12 +384,14 @@ export default class CopyousExtension extends Extension {
 			);
 		}
 
+		const languageSerial = ++this._hljsLanguageSerial;
+		const selected = new Set(M.getSelectedHljsLanguages(this));
 		const languages = M.getHljsLanguages(this);
 		await Promise.all(
 			languages.map(async ([name, _language, _hash, path]) => {
 				const enabled = this.hljsLanguages?.get(name) ?? false;
 
-				if (!path.query_exists(null)) {
+				if (!selected.has(name) || !path.query_exists(null)) {
 					if (enabled) {
 						this.hljs?.unregisterLanguage(name);
 						this.hljsLanguages?.set(name, false);
@@ -375,11 +399,12 @@ export default class CopyousExtension extends Extension {
 					return;
 				}
 
-				if (enabled) return;
+				if (enabled || this.hljs?.getLanguage(name)) return;
 
 				try {
 					const language = (await import(path.get_uri())) as { default: LanguageFn };
 					if (!this._enabled || serial !== this._lifecycleSerial) return;
+					if (languageSerial !== this._hljsLanguageSerial) return;
 					this.hljs?.registerLanguage(name, language.default);
 					this.hljsLanguages?.set(name, true);
 				} catch {
@@ -387,6 +412,10 @@ export default class CopyousExtension extends Extension {
 				}
 			}),
 		);
+	}
+
+	public subjectSuggestions(): string[] {
+		return this.clipboardDialog?.subjectSuggestions() ?? [];
 	}
 
 	public connectHljsInit(fn: () => void): () => void {
@@ -444,7 +473,8 @@ export default class CopyousExtension extends Extension {
 			if (this.updateHistory) return GLib.SOURCE_CONTINUE;
 
 			if (this.entryTracker?.checkOldest()) {
-				this.entryTracker?.deleteOldest().catch(this.logger.error.bind(this.logger));
+				const logger = this.logger;
+				this.entryTracker?.deleteOldest().catch((error) => logger.error(error));
 			}
 
 			return GLib.SOURCE_CONTINUE;
@@ -499,8 +529,8 @@ export default class CopyousExtension extends Extension {
 		this.shortcutsManager = undefined;
 
 		// Database
-		const error = this.logger?.error.bind(this.logger);
-		this.entryTracker?.destroy().catch(error ?? (() => {}));
+		const logError = this.logger?.error.bind(this.logger);
+		this.entryTracker?.destroy().catch((error) => logError?.(error));
 		this.entryTracker = undefined;
 
 		if (this.historyTimeoutId >= 0) GLib.source_remove(this.historyTimeoutId);

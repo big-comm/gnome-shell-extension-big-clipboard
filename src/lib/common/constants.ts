@@ -73,15 +73,8 @@ export const DefaultColors = {
 	'custom-search-bg-color': ['rgb(71,71,76)', 'rgb(255,255,255)'],
 } as const;
 
-export const UserAgent = 'Mozilla/5.0 (compatible; CopyousBot/1.0; +https://github.com/boerdereinar/copyous)';
-
-export const HljsCdns = [
-	'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.1/es',
-	'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.11.1/build/es',
-	'https://unpkg.com/@highlightjs/cdn-assets@11.11.1/es',
-];
-
-export const HljsUrls = HljsCdns.map((cdn) => `${cdn}/highlight.min.js`);
+export const UserAgent =
+	'Mozilla/5.0 (compatible; BigClipboardBot/1.0; +https://github.com/big-comm/gnome-shell-extension-big-clipboard)';
 
 export const HljsSha512 =
 	'f35f24636b981f53d194735964bd7b8606c79e0f4b04e800e24f13415b1761368ac20839a4cc416a1c5e1c351d00c4cf509f360972d098964e97739050a675f1';
@@ -283,20 +276,23 @@ export const HljsLanguages: [string, string, string][] = [
 	["zephir",         "Zephir",                  "313b3f5bd94b11b8e991cb14ab17226bed0c2eaac1d049eefb648fc6677d3d380c32ec0c51b263ea1f7cde23070680afe8798533c49f2dc6cfcf217e51eb42fe"],
 ];
 
-export function getCachePath(ext: Extension | ExtensionPreferences): Gio.File {
-	return Gio.file_new_build_filenamev([GLib.get_user_cache_dir(), ext.uuid]);
+// Storage identity is independent of the public extension UUID. Never relocate user data.
+export const STORAGE_ID = 'copyous@boerdereinar.dev';
+
+export function getCachePath(_ext: Extension | ExtensionPreferences): Gio.File {
+	return Gio.file_new_build_filenamev([GLib.get_user_cache_dir(), STORAGE_ID]);
 }
 
-export function getDataPath(ext: Extension | ExtensionPreferences): Gio.File {
-	return Gio.file_new_build_filenamev([GLib.get_user_data_dir(), ext.uuid]);
+export function getDataPath(_ext: Extension | ExtensionPreferences): Gio.File {
+	return Gio.file_new_build_filenamev([GLib.get_user_data_dir(), STORAGE_ID]);
 }
 
 export function getImagesPath(ext: Extension | ExtensionPreferences): Gio.File {
 	return getDataPath(ext).get_child('images');
 }
 
-export function getConfigPath(ext: Extension | ExtensionPreferences): Gio.File {
-	return Gio.file_new_build_filenamev([GLib.get_user_config_dir(), ext.uuid]);
+export function getConfigPath(_ext: Extension | ExtensionPreferences): Gio.File {
+	return Gio.file_new_build_filenamev([GLib.get_user_config_dir(), STORAGE_ID]);
 }
 
 export function getActionsConfigPath(ext: Extension | ExtensionPreferences): Gio.File {
@@ -340,6 +336,10 @@ export function getHljsLanguages(ext: Extension | ExtensionPreferences): [string
 	});
 }
 
-export function getHljsLanguageUrls(language: string): string[] {
-	return HljsCdns.map((cdn) => `${cdn}/languages/${language}.min.js`);
+// Preserve previously downloaded language selections until explicitly changed.
+export function getSelectedHljsLanguages(ext: Extension | ExtensionPreferences): string[] {
+	const settings = ext.getSettings();
+	if (settings.get_user_value('highlight-languages') !== null) return settings.get_strv('highlight-languages');
+	const directory = getDataPath(ext).get_child('languages');
+	return HljsLanguages.filter(([id]) => directory.get_child(`${id}.min.js`).query_exists(null)).map(([id]) => id);
 }

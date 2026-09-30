@@ -325,7 +325,7 @@ export class ClipboardManager extends GObject.Object {
 				const files = text
 					.split('\n')
 					.map((f) => f.trim())
-					.filter((f) => f.length !== 0);
+					.filter((f) => f.length !== 0 && !f.startsWith('#'));
 				const operation = files[0]?.toLowerCase();
 				if (operation === FileOperation.Copy || operation === FileOperation.Cut) {
 					return { type: ContentType.File, paths: files.slice(1), operation };
@@ -429,6 +429,7 @@ export class ClipboardManager extends GObject.Object {
 		// File
 		if (content.type === ContentType.File) {
 			const metadata = { operation: content.operation };
+			if (content.paths.length === 0) return null;
 			if (content.paths.length === 1) {
 				return [ItemType.File, content.paths[0]!, metadata];
 			} else {

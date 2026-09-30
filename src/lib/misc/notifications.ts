@@ -151,7 +151,7 @@ export class NotificationManager extends GObject.Object {
 				const common = files.length === 1 ? files[0]! : commonDirectory(files);
 
 				title = ngettext('Copied %d File', 'Copied %d Files', files.length).format(files.length);
-				body = common.get_path() ?? '';
+				body = common?.get_parse_name() ?? '';
 				gicon = loadIcon(this.ext, files.length === 1 ? Icon.File : Icon.Folder);
 				break;
 			}

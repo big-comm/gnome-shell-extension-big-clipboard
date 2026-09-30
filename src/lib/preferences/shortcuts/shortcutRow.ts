@@ -222,6 +222,8 @@ export class ShortcutRow extends Adw.ActionRow {
 
 		this._canEdit = canEdit;
 		this.activatable = canEdit;
+		if (canEdit)
+			this.add_suffix(new Gtk.Image({ icon_name: 'document-edit-symbolic', css_classes: ['dim-label'] }));
 	}
 
 	get shortcuts(): string[] {

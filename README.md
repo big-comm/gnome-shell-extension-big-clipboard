@@ -1,27 +1,48 @@
-# <img src="resources/images/icon.svg" height="32px" alt="Icon"/> Copyous — BigCommunity fork
+<h1 align="center">
+  <img src="resources/images/icon.svg" height="48" alt=""/><br/>
+  Big Clipboard
+</h1>
+<p align="center">Clipboard history for GNOME, maintained by BigCommunity.</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white" alt="TypeScript"/>
+  <img src="https://img.shields.io/badge/GJS-GNOME%20Shell-4A86CF?logo=gnome&logoColor=white" alt="GJS / GNOME Shell"/>
+  <img src="https://img.shields.io/badge/SQLite-003B57?logo=sqlite&logoColor=white" alt="SQLite"/>
+  <img src="https://img.shields.io/badge/Sass-CC6699?logo=sass&logoColor=white" alt="Sass"/>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg" alt="License: GPL-3.0-or-later"/></a>
+</p>
 
-[![License: GPL-3.0-or-later](https://img.shields.io/badge/License-GPL--3.0--or--later-blue.svg)](LICENSE)
-
-A fork of [Copyous by boerdereinar](https://github.com/boerdereinar/copyous), maintained by **BigCommunity** for integration with [Big Gnome Center](https://github.com/big-comm/big-gnome-center).
+**Big Clipboard** is a fork of [Copyous by boerdereinar](https://github.com/boerdereinar/copyous), maintained by **BigCommunity** for integration with [Big Gnome Center](https://github.com/big-comm/big-gnome-center).
 
 This repository contains the extension source, BigCommunity modifications and distribution packaging. The original authors retain credit for Copyous; the changes below focus on large clipboard histories, GNOME compatibility and layout switching.
 
-![Screenshot](resources/images/screenshot.png)
+Horizontal history on GNOME 50.4, with colored notes, code, files and images:
+
+![Big Clipboard in English on G-Unity, GNOME 50.4](resources/images/big-clipboard-gnome50.png)
+
+Vertical history on GNOME 51.0, with file previews and subject labels:
+
+![Big Clipboard vertical history in English on GNOME 51.0](resources/images/big-clipboard-gnome51.png)
+
+Markdown editing with formatting tools, subject labels and a preview:
+
+![Big Clipboard Markdown editor and preview in English](resources/images/big-clipboard-notes.png)
 
 ## BigCommunity changes
 
 | Area | Changes in this fork |
 | --- | --- |
+| Notes and subjects | Edit text with Markdown tools and an on-demand preview. Assign multiple subject labels alongside color tags; search subjects with `#name`. |
+| Appearance | Opaque colored cards with contrasting text that follow the desktop light/dark preference, sidebar preferences and optional GNOME 51 background blur. |
 | Opening large histories | Prepare the first **12 cards** instead of creating a card for every saved entry. Load additional pages while scrolling. |
 | Search and navigation | Search the full history without creating every card. The End key loads remaining matches in small batches. Closing returns to the first page. |
 | Image previews | Load nearby previews on demand. Read image metadata asynchronously and cancel pending work when cards are destroyed. |
 | Long text and code | Limit rendered previews to 4096 characters. Search and clipboard copying retain the full content. |
 | Extension lifecycle | Disconnect card callbacks and guard asynchronous work across disable/enable cycles. Handle search resets during closing without leaving an incomplete first page. |
 | GNOME compatibility | Adapt shader effects, input handling and button masks for GNOME 50 and 51. |
-| Big Gnome Center integration | Preserve the extension UUID, settings schema, clipboard database format and D-Bus API. Validate opening after transitions through all six BGC layouts. |
+| Big Gnome Center integration | Migrate the extension UUID while preserving settings, clipboard data and the D-Bus API. Validate opening after transitions through all six BGC layouts. |
 | Packaging and checks | Keep source and PKGBUILD together under BigCommunity. Run type checks and focused regression tests in CI and package checks. |
 
-The extension keeps the UUID `copyous@boerdereinar.dev` so existing settings and integrations continue to work. The upstream extension and this fork therefore occupy the same extension slot.
+The package replaces `gnome-shell-extension-copyous`. The extension UUID is `big-clipboard@communitybig.org`. The package migrates activation before GNOME Shell starts; log out and back in after upgrading. Legacy storage paths, settings and the D-Bus API remain compatible, preserving history, images and custom actions. Updated Big Gnome Center layouts use the new UUID and migrate saved profiles. See [upgrade notes](docs/UPGRADE.md).
 
 ## Validation and performance
 
@@ -32,6 +53,24 @@ With 1000 mixed entries, the first painted frame took about **142 ms on GNOME 50
 Paging limits initial card creation. Entry metadata still loads into memory at startup, and scrolling through the entire history can create more cards. GNOME 48/49 remain declared upstream targets but were not tested in this VM round.
 
 See the [performance report](docs/PERFORMANCE.md) for measurements, test coverage and remaining limitations.
+
+## Notes and organization
+
+Choose the **Edit** pencil in the card footer on a text card to use bold, italic, bullet and numbered lists, quotes, inline code or links. **Ctrl+B** and **Ctrl+I** format the selection. Switch between **Edit** and **Preview**, or use **Side by side** on larger displays; saving and copying retain the Markdown source. Code cards keep their language selector and plain code editor.
+
+The preview supports these tools, headings and fenced code blocks. It treats HTML as text, never fetches remote content and never executes links. Only the first 20,000 characters are rendered in the preview; the complete note remains stored and copied.
+
+Choose the subject icon above a card's action buttons, including on images and files, or edit subjects with a note. Once subjects are assigned, use **+** beside their labels to add more. Add names with Enter or commas, for example `Work, Research`. Reuse suggested subjects and remove a label with its × button. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.
+
+Subject labels follow the same retention and deletion protection settings as color tags. SQLite receives an additive, transactional schema update; JSON gains an optional field. Existing text, images, pins, colors, metadata and storage locations remain intact. As with color tags, explicit **clear all** removes labeled items too.
+
+## Cards and files
+
+The compact horizontal panel and vertical view share quick type filters and a pinned filter. Counts use history metadata; only the first 12 matching cards are initially created. Cards default to 250 × 210 pixels. Subject labels sit above the footer; the footer contains color, edit/open and delete controls. Pinning stays in the header, separate from deletion. The three-dot menu contains additional actions. Clicking the content keeps the existing copy/paste behavior; footer buttons do not copy the card.
+
+Copy PDFs, documents, archives, folders or multiple files in the file manager, then select their card and paste into a destination folder. File cards show the name, a MIME-type icon and asynchronously loaded metadata. File groups show up to 12 rows with icons and a remaining count. File history stores references, not backup copies: moving or deleting an original can make its entry unavailable. Reusing a cut entry copies the original instead of repeating a destructive move.
+
+Preferences retain the 830 × 610 default size, searchable sidebar and native shortcut labels. Appearance controls are grouped separately from behavior, shortcuts, actions and storage.
 
 ## Features inherited from Copyous
 
@@ -45,7 +84,7 @@ See the [performance report](docs/PERFORMANCE.md) for measurements, test coverag
 
 ### BigCommunity package
 
-The distribution package is `gnome-shell-extension-copyous`. Its [PKGBUILD](pkgbuild/PKGBUILD) uses the source in this repository, with GNOME Shell 48 or newer, Libgda 6 and GSound as runtime dependencies.
+The distribution package is `gnome-shell-extension-big-clipboard`. Highlight.js 11.11.1 and all 192 language modules are included with verified checksums and the upstream license. No runtime download is needed; 36 common languages load by default, and extra languages can be enabled in preferences. Its [PKGBUILD](pkgbuild/PKGBUILD) uses the source in this repository, with GNOME Shell 48 or newer, Libgda 6 and GSound as runtime dependencies.
 
 To build the package with Arch packaging tools:
 
@@ -54,25 +93,25 @@ cd pkgbuild
 makepkg -s
 ```
 
-The PKGBUILD explicitly fetches **`main`**. Changes must be published to that branch before a remote package build includes them; building the PKGBUILD from another branch does not change its source branch.
+The standalone PKGBUILD defaults to **`main`**. BigCommunity testing builds use **`dev-talesam`**, selected by the build pipeline. Check the source revision in the build log; changing the local branch alone does not change the standalone PKGBUILD source.
 
 ### Build this fork from source
 
 Install Node.js, pnpm, Make, jq, gettext, zip and the runtime dependencies above. The PKGBUILD lists the distribution build dependencies.
 
 ```sh
-git clone --recurse-submodules https://github.com/big-comm/gnome-shell-extension-copyous.git
-cd gnome-shell-extension-copyous
+git clone --recurse-submodules https://github.com/big-comm/gnome-shell-extension-big-clipboard.git
+cd gnome-shell-extension-big-clipboard
 pnpm install --frozen-lockfile --ignore-scripts
 pnpm exec tsc --noEmit
 pnpm test
 make RELEASE=1 install
 ```
 
-Log out and back in after replacing an installed extension so GNOME Shell loads the updated JavaScript. Then enable Copyous:
+Log out and back in after replacing an installed extension so GNOME Shell loads the updated JavaScript. Then enable Big Clipboard:
 
 ```sh
-gnome-extensions enable copyous@boerdereinar.dev
+gnome-extensions enable big-clipboard@communitybig.org
 ```
 
 The [upstream GNOME Extensions listing](https://extensions.gnome.org/extension/8834/copyous/) and [upstream releases](https://github.com/boerdereinar/copyous/releases) distribute the original project, not this BigCommunity fork.
@@ -81,7 +120,7 @@ The [upstream GNOME Extensions listing](https://extensions.gnome.org/extension/8
 
 You can open the extension settings either through the panel indicator, [Extension Manager](https://flathub.org/en/apps/com.mattjakeman.ExtensionManager) or by running the following command:
 ```shell
-gnome-extensions prefs copyous@boerdereinar.dev
+gnome-extensions prefs big-clipboard@communitybig.org
 ```
 
 ## Shortcuts
@@ -131,7 +170,7 @@ gdbus call --session \
 
 ## Contributing
 
-Report issues with this fork in the [BigCommunity repository](https://github.com/big-comm/gnome-shell-extension-copyous/issues). Include the GNOME version, extension revision, active BGC layout and reproduction steps.
+Report issues with this fork in the [BigCommunity repository](https://github.com/big-comm/gnome-shell-extension-big-clipboard/issues). Include the GNOME version, extension revision, active BGC layout and reproduction steps.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and [tests/vm/README.md](tests/vm/README.md) for the optional VM fixture.
 

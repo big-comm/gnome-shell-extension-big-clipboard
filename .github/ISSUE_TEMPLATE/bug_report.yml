@@ -30,7 +30,7 @@ body:
       description: |
         You can find the extension version by running:
         ```shell
-        gnome-extensions info copyous@boerdereinar.dev
+        gnome-extensions info big-clipboard@communitybig.org
         ```
       placeholder: i.e. 1.0.0
     validations:

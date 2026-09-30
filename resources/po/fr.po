@@ -1,16 +1,16 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR Copyous
-# This file is distributed under the same license as the Copyous package.
+# This file is distributed under the same license as the Big Clipboard package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Copyous\n"
+"Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-28 03:53+0000\n"
-"PO-Revision-Date: 2025-12-06 04:59+0100\n"
-"Last-Translator: Axel Haustant <noirbizarre@gmail.com>\n"
+"POT-Creation-Date: 2026-09-30 12:24-0300\n"
+"PO-Revision-Date: 2026-09-28 18:45-0300\n"
+"Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src/lib/common/actions.ts:182
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -68,22 +68,22 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "Code QR"
 
-#: src/lib/database/entryTracker.ts:133 src/lib/database/entryTracker.ts:148
+#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:149
 msgid "Failed to load Gda"
 msgstr "Échec du chargement de Gda"
 
-#: src/lib/database/entryTracker.ts:134 src/lib/database/entryTracker.ts:148
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:135 src/lib/database/entryTracker.ts:149
+#: src/lib/database/entryTracker.ts:165
 msgid "Clipboard history will be disabled"
 msgstr "L'historique du presse-papiers sera désactivé"
 
-#: src/lib/database/entryTracker.ts:135
+#: src/lib/database/entryTracker.ts:136
 msgid "Disable Warning"
 msgstr "Désactiver l'avertissement"
 
-#: src/lib/database/entryTracker.ts:164
+#: src/lib/database/entryTracker.ts:165
 msgid "Failed to load JSON"
-msgstr ""
+msgstr "Échec du chargement du fichier JSON"
 
 #: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
 msgid "Copied Text"
@@ -123,11 +123,11 @@ msgstr "Couleur copiée"
 
 #: src/lib/preferences/actions/actionDefaults.ts:72
 #: src/lib/preferences/general/feedbackSettings.ts:157
-#: src/lib/preferences/general/feedbackSettings.ts:259
-#: src/lib/preferences/general/feedbackSettings.ts:308
+#: src/lib/preferences/general/feedbackSettings.ts:260
+#: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:225
-#: src/lib/ui/components/editDialog.ts:252
+#: src/lib/ui/components/editDialog.ts:240
+#: src/lib/ui/components/editDialog.ts:267
 msgid "None"
 msgstr "Aucun"
 
@@ -141,14 +141,14 @@ msgstr "Actions par défaut"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/items/textItem.ts:24
+#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:24
 msgid "Text"
 msgstr "Texte"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Code"
 
@@ -163,14 +163,15 @@ msgstr "Image"
 #: src/lib/preferences/actions/actionDefaults.ts:144
 #: src/lib/preferences/actions/actionDialog.ts:178
 #: src/lib/preferences/actions/actionDialog.ts:373
-#: src/lib/ui/items/fileItem.ts:52
+#: src/lib/ui/items/fileItem.ts:61
 msgid "File"
 msgstr "Fichier"
 
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/items/filesItem.ts:139
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Fichiers"
 
@@ -178,7 +179,7 @@ msgstr "Fichiers"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Lien"
 
@@ -192,11 +193,12 @@ msgstr "Caractère"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Couleur"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
+#: src/lib/ui/components/typeFilters.ts:29
 msgid "All"
 msgstr "Tout"
 
@@ -214,10 +216,10 @@ msgstr "Sélectionnez les types autorisés"
 #: src/lib/preferences/actions/actionsPage.ts:21
 #: src/lib/preferences/actions/actionsPage.ts:34
 #: src/lib/preferences/customization/items/exclusions.ts:90
-#: src/lib/preferences/dependencies/dependencies.ts:224
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:315 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -334,6 +336,7 @@ msgstr "Oklab"
 #: src/lib/preferences/actions/actionsGroup.ts:550
 #: src/lib/preferences/customization/items/exclusions.ts:92
 #: src/lib/preferences/general/appExclusionSettings.ts:173
+#: src/lib/ui/components/subjectsDialog.ts:35
 msgid "Add"
 msgstr "Ajouter"
 
@@ -348,7 +351,8 @@ msgid "Edit Action"
 msgstr "Modifier l'action"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -360,7 +364,8 @@ msgstr "Ajouter un sous-menu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/clipboardItemMenu.ts:93
+#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Modifier"
 
@@ -371,6 +376,7 @@ msgstr "Modifier le sous-menu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -1050,7 +1056,7 @@ msgid "Choose between pre-defined profiles"
 msgstr "Choisir parmi les profils prédéfinis"
 
 #: src/lib/preferences/customization/profiles.ts:217
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Default"
 msgstr "Par défaut"
 
@@ -1059,89 +1065,101 @@ msgid "Compact"
 msgstr "Compact"
 
 #: src/lib/preferences/customization/profiles.ts:229
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Custom"
 msgstr "Personnalisé"
 
-#: src/lib/preferences/customization/themeCustomization.ts:69
-#: src/lib/preferences/customization/themeCustomization.ts:73
+#: src/lib/preferences/customization/themeCustomization.ts:71
+#: src/lib/preferences/customization/themeCustomization.ts:75
 msgid "Theme"
 msgstr "Theme"
 
-#: src/lib/preferences/customization/themeCustomization.ts:74
+#: src/lib/preferences/customization/themeCustomization.ts:76
 msgid "Set the preferred theme"
 msgstr "Definir le thème préféré"
 
-#: src/lib/preferences/customization/themeCustomization.ts:75
+#: src/lib/preferences/customization/themeCustomization.ts:77
 msgid "Yaru"
-msgstr ""
+msgstr "Yaru"
 
-#: src/lib/preferences/customization/themeCustomization.ts:89
-#: src/lib/preferences/customization/themeCustomization.ts:96
+#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:98
 msgid "Color Scheme"
 msgstr "Schéma de couleurs"
 
-#: src/lib/preferences/customization/themeCustomization.ts:90
-#: src/lib/preferences/customization/themeCustomization.ts:97
+#: src/lib/preferences/customization/themeCustomization.ts:92
+#: src/lib/preferences/customization/themeCustomization.ts:99
 msgid "Set the color scheme of the theme"
-msgstr ""
+msgstr "Définir le jeu de couleurs du thème"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Dark"
 msgstr "Sombre"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "High Contrast"
-msgstr ""
+msgstr "Contraste élevé"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
-#: src/lib/preferences/customization/themeCustomization.ts:98
+#: src/lib/preferences/customization/themeCustomization.ts:93
+#: src/lib/preferences/customization/themeCustomization.ts:100
 msgid "Light"
 msgstr "Lumineux"
 
-#: src/lib/preferences/customization/themeCustomization.ts:91
+#: src/lib/preferences/customization/themeCustomization.ts:93
 msgid "System"
 msgstr "Système"
 
-#: src/lib/preferences/customization/themeCustomization.ts:104
+#: src/lib/preferences/customization/themeCustomization.ts:106
 msgid "Background Color"
 msgstr "Couleur de fond"
 
-#: src/lib/preferences/customization/themeCustomization.ts:105
+#: src/lib/preferences/customization/themeCustomization.ts:107
 msgid "Set the background color of the clipboard dialog"
 msgstr "Définit la couleur de fond de la boîte de dialogue du presse-papiers"
 
-#: src/lib/preferences/customization/themeCustomization.ts:111
+#: src/lib/preferences/customization/themeCustomization.ts:113
 msgid "Text Color"
 msgstr "Couleur du texte"
 
-#: src/lib/preferences/customization/themeCustomization.ts:112
+#: src/lib/preferences/customization/themeCustomization.ts:114
 msgid "Set the text color of the clipboard dialog"
 msgstr "Définit la couleur du texte de la boîte de dialogue du presse-papiers"
 
-#: src/lib/preferences/customization/themeCustomization.ts:118
+#: src/lib/preferences/customization/themeCustomization.ts:120
 msgid "Item Color"
 msgstr "Couleur de l'élément"
 
-#: src/lib/preferences/customization/themeCustomization.ts:119
+#: src/lib/preferences/customization/themeCustomization.ts:121
 msgid "Set the background color of clipboard items"
 msgstr "Définit la couleur de fond des éléments du presse-papiers"
 
-#: src/lib/preferences/customization/themeCustomization.ts:125
+#: src/lib/preferences/customization/themeCustomization.ts:127
 msgid "Search Color"
 msgstr "Couleur de la recherche"
 
-#: src/lib/preferences/customization/themeCustomization.ts:126
+#: src/lib/preferences/customization/themeCustomization.ts:128
 msgid "Set the background color of the search bar"
 msgstr "Définit la couleur de fond de la barre de recherche"
 
-#: src/lib/preferences/dependencies/dependencies.ts:153
-#: src/lib/preferences/dependencies/dependencies.ts:440
+#: src/lib/preferences/customization/themeCustomization.ts:134
+msgid "Blur Background"
+msgstr "Flouter l’arrière-plan"
+
+#: src/lib/preferences/customization/themeCustomization.ts:135
+msgid ""
+"Blur only the panel background on GNOME 51 with Frosted Glass active. Cards "
+"stay opaque."
+msgstr ""
+"Flouter uniquement l’arrière-plan du panneau sous GNOME 51 lorsque Frosted "
+"Glass est actif. Les cartes restent opaques."
+
+#: src/lib/preferences/dependencies/dependencies.ts:143
+#: src/lib/preferences/dependencies/dependencies.ts:219
 msgid "Libgda Not Installed"
 msgstr "Libgda non installé"
 
-#: src/lib/preferences/dependencies/dependencies.ts:155
+#: src/lib/preferences/dependencies/dependencies.ts:145
 msgid ""
 "Libgda is required to store clipboard history between sessions. Install "
 "either libgda 5.0 or 6.0 with SQLite support to use this feature. After "
@@ -1152,50 +1170,16 @@ msgstr ""
 "cette fonctionnalité. Après l'installation de libgda, vous devrez vous "
 "déconnecter ou redémarrer votre système."
 
-#: src/lib/preferences/dependencies/dependencies.ts:159
+#: src/lib/preferences/dependencies/dependencies.ts:149
 msgid "Install Libgda"
 msgstr "Installer Libgda"
 
-#: src/lib/preferences/dependencies/dependencies.ts:172
-#: src/lib/preferences/dependencies/dependencies.ts:442
-msgid "Highlight.js Not Installed"
-msgstr "Highlight.js non installé"
-
-#: src/lib/preferences/dependencies/dependencies.ts:173
-msgid "Highlight.js is required to display syntax highlighted code."
-msgstr ""
-"Highlight.js est nécessaire pour afficher le code avec coloration syntaxique."
-
-#: src/lib/preferences/dependencies/dependencies.ts:177
-msgid "Manual Installation"
-msgstr "Installation manuelle"
-
-#: src/lib/preferences/dependencies/dependencies.ts:191
-msgid ""
-"You can manually install highlight.js by downloading highlight.min.js from "
-"\"Url\" to \"Install Location\"."
-msgstr ""
-"Vous pouvez installer manuellement highlight.js en téléchargeant highlight."
-"min.js de \"Url\" vers \"Emplacement d'installation\"."
-
-#: src/lib/preferences/dependencies/dependencies.ts:208
-msgid "Url"
-msgstr "URL"
-
-#: src/lib/preferences/dependencies/dependencies.ts:217
-msgid "Install Location"
-msgstr "Emplacement d'installation"
-
-#: src/lib/preferences/dependencies/dependencies.ts:226
-msgid "Install"
-msgstr "Installer"
-
-#: src/lib/preferences/dependencies/dependencies.ts:355
-#: src/lib/preferences/dependencies/dependencies.ts:441
+#: src/lib/preferences/dependencies/dependencies.ts:182
+#: src/lib/preferences/dependencies/dependencies.ts:220
 msgid "GSound Not Installed"
 msgstr "GSound non installé"
 
-#: src/lib/preferences/dependencies/dependencies.ts:357
+#: src/lib/preferences/dependencies/dependencies.ts:184
 msgid ""
 "GSound is required to play sound effects. Install GSound to use this "
 "feature. After installing GSound you will need to log out or restart your "
@@ -1205,63 +1189,60 @@ msgstr ""
 "utiliser cette fonctionnalité. Après l'installation de GSound, vous devrez "
 "vous déconnecter ou redémarrer votre système."
 
-#: src/lib/preferences/dependencies/dependencies.ts:360
+#: src/lib/preferences/dependencies/dependencies.ts:187
 msgid "Install GSound"
 msgstr "Installer GSound"
 
-#: src/lib/preferences/dependencies/dependencies.ts:373
-msgid "Starting Highlight.js Download"
-msgstr "Début du téléchargement de Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:195
+#: src/lib/preferences/dependencies/dependencies.ts:221
+msgid "Syntax highlighting unavailable"
+msgstr "Coloration syntaxique indisponible"
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Error Installing Highlight.js"
-msgstr "Erreur lors de l'installation de Highlight.js"
+#: src/lib/preferences/dependencies/dependencies.ts:196
+msgid ""
+"Reinstall the Big Clipboard package to restore the bundled code highlighting "
+"files."
+msgstr ""
+"Réinstallez le paquet Big Clipboard pour restaurer les fichiers de "
+"coloration de code intégrés."
 
-#: src/lib/preferences/dependencies/dependencies.ts:393
-msgid "Successfully Installed Highlight.js"
-msgstr "Highlight.js installé avec succès"
+#: src/lib/preferences/dependencies/dependencies.ts:198
+#: src/lib/ui/components/qrCodeDialog.ts:146
+msgid "Close"
+msgstr "Fermer"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:240
-#, javascript-format
-msgid "Successfully Installed %s"
-msgstr "%s installé avec succès"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:22
+msgid "Syntax highlighting"
+msgstr "Coloration syntaxique"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:241
-#, javascript-format
-msgid "Error Installing %s"
-msgstr "Erreur lors de l'installation de %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:24
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:43
+msgid "Code languages"
+msgstr "Langages de code"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:261
-#, javascript-format
-msgid "Successfully Uninstalled %s"
-msgstr "%s désinstallé avec succès"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:25
+msgid "Included with Big Clipboard. No download required."
+msgstr "Inclus avec Big Clipboard. Aucun téléchargement requis."
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:262
-#, javascript-format
-msgid "Error Uninstalling %s"
-msgstr "Erreur lors de la désinstallation de %s"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:51
+msgid ""
+"Common languages are always available. Enable additional languages for code "
+"detection and highlighting."
+msgstr ""
+"Les langages courants sont toujours disponibles. Activez des langages "
+"supplémentaires pour la détection et la coloration du code."
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:288
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:382
-msgid "Manage Highlight.js"
-msgstr "Gérer Highlight.js"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:300
-msgid "Languages"
-msgstr "Langues"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:321
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:55
 #: src/lib/preferences/shortcuts/searchShortcuts.ts:49
+#: src/lib/preferences/sidebarPreferences.ts:17
+#: src/lib/preferences/sidebarPreferences.ts:148
+#: src/lib/preferences/sidebarPreferences.ts:149
 msgid "Search"
 msgstr "Recherche"
 
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:375
-msgid "Dependencies"
-msgstr "Dépendances"
-
-#: src/lib/preferences/dependencies/dependenciesSettings.ts:383
-msgid "Manage the Highlight.js installation"
-msgstr "Gérer l'installation de Highlight.js"
+#: src/lib/preferences/dependencies/dependenciesSettings.ts:73
+msgid "Always available"
+msgstr "Toujours disponible"
 
 #: src/lib/preferences/general/appExclusionSettings.ts:40
 msgid "Search apps"
@@ -1305,7 +1286,7 @@ msgid "Manage apps that will be excluded from clipboard history"
 msgstr ""
 "Gérer les applications qui seront exclues de l'historique du presse-papiers"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
 msgid "Behavior"
 msgstr "Comportement"
 
@@ -1379,47 +1360,47 @@ msgstr ""
 "sélectionnés dans l'historique du presse-papiers"
 
 #: src/lib/preferences/general/feedbackSettings.ts:131
-#: src/lib/preferences/general/feedbackSettings.ts:251
+#: src/lib/preferences/general/feedbackSettings.ts:252
 msgid "Sound"
 msgstr "Son"
 
 #: src/lib/preferences/general/feedbackSettings.ts:162
-#: src/lib/preferences/general/feedbackSettings.ts:310
+#: src/lib/preferences/general/feedbackSettings.ts:311
 msgid "Click"
 msgstr "Clic"
 
 #: src/lib/preferences/general/feedbackSettings.ts:163
-#: src/lib/preferences/general/feedbackSettings.ts:312
+#: src/lib/preferences/general/feedbackSettings.ts:313
 msgid "Hum"
 msgstr "Bourdonnement"
 
 #: src/lib/preferences/general/feedbackSettings.ts:164
-#: src/lib/preferences/general/feedbackSettings.ts:314
+#: src/lib/preferences/general/feedbackSettings.ts:315
 msgid "String"
 msgstr "Corde"
 
 #: src/lib/preferences/general/feedbackSettings.ts:165
-#: src/lib/preferences/general/feedbackSettings.ts:316
+#: src/lib/preferences/general/feedbackSettings.ts:317
 msgid "Swing"
 msgstr "Balançoire"
 
 #: src/lib/preferences/general/feedbackSettings.ts:166
-#: src/lib/preferences/general/feedbackSettings.ts:318
+#: src/lib/preferences/general/feedbackSettings.ts:319
 msgid "Message"
 msgstr "Message"
 
 #: src/lib/preferences/general/feedbackSettings.ts:167
-#: src/lib/preferences/general/feedbackSettings.ts:320
+#: src/lib/preferences/general/feedbackSettings.ts:321
 msgid "Message New Instant"
 msgstr "Message Nouveau Instantané"
 
 #: src/lib/preferences/general/feedbackSettings.ts:168
-#: src/lib/preferences/general/feedbackSettings.ts:322
+#: src/lib/preferences/general/feedbackSettings.ts:323
 msgid "Bell"
 msgstr "Cloche"
 
 #: src/lib/preferences/general/feedbackSettings.ts:169
-#: src/lib/preferences/general/feedbackSettings.ts:324
+#: src/lib/preferences/general/feedbackSettings.ts:325
 msgid "Dialog Warning"
 msgstr "Avertissement de boîte de dialogue"
 
@@ -1429,129 +1410,123 @@ msgstr "Commentaires"
 
 #: src/lib/preferences/general/feedbackSettings.ts:227
 msgid "Indicator Display"
-msgstr ""
+msgstr "Affichage de l'indicateur"
 
 #: src/lib/preferences/general/feedbackSettings.ts:228
 msgid "Choose how the clipboard indicator appears in the top panel"
 msgstr ""
+"Choisissez la façon dont l'indicateur du presse-papiers apparaît dans le "
+"panneau supérieur"
 
 #: src/lib/preferences/general/feedbackSettings.ts:231
 msgid "Icon Only"
-msgstr ""
+msgstr "Icône uniquement"
 
 #: src/lib/preferences/general/feedbackSettings.ts:232
 msgid "Clipboard Content Only"
-msgstr ""
+msgstr "Contenu du presse-papiers uniquement"
 
 #: src/lib/preferences/general/feedbackSettings.ts:233
 msgid "Icon and Clipboard Content"
-msgstr ""
+msgstr "Icône et contenu du presse-papiers"
 
-#: src/lib/preferences/general/feedbackSettings.ts:239
+#: src/lib/preferences/general/feedbackSettings.ts:240
 msgid "Wiggle Indicator"
 msgstr "Agiter l'indicateur"
 
-#: src/lib/preferences/general/feedbackSettings.ts:240
+#: src/lib/preferences/general/feedbackSettings.ts:241
 msgid "Wiggle the indicator when a clipboard item is copied"
 msgstr "Agite l'indicateur lorsqu'un élément du presse-papiers est copié"
 
-#: src/lib/preferences/general/feedbackSettings.ts:245
+#: src/lib/preferences/general/feedbackSettings.ts:246
 msgid "Send Notification"
 msgstr "Envoyer une notification"
 
-#: src/lib/preferences/general/feedbackSettings.ts:246
+#: src/lib/preferences/general/feedbackSettings.ts:247
 msgid "Send a notification when a clipboard item is copied"
 msgstr ""
 "Envoie une notification lorsqu'un élément est copié dans le presse-papiers"
 
-#: src/lib/preferences/general/feedbackSettings.ts:252
+#: src/lib/preferences/general/feedbackSettings.ts:253
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Son à jouer lorsqu'un élément du presse-papiers est copié"
 
-#: src/lib/preferences/general/historySettings.ts:64
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
 msgid "History"
 msgstr "Historique"
 
-#: src/lib/preferences/general/historySettings.ts:70
+#: src/lib/preferences/general/historySettings.ts:71
 msgid "Memory"
-msgstr ""
-
-#: src/lib/preferences/general/historySettings.ts:71
-msgid "(recommended)"
-msgstr ""
-
-#: src/lib/preferences/general/historySettings.ts:71
-msgid "SQLite"
-msgstr ""
+msgstr "Mémoire"
 
 #: src/lib/preferences/general/historySettings.ts:72
-msgid "JSON"
-msgstr ""
+msgid "(recommended)"
+msgstr "(recommandé)"
 
-#: src/lib/preferences/general/historySettings.ts:99
-msgid "Database"
-msgstr ""
+#: src/lib/preferences/general/historySettings.ts:72
+msgid "SQLite"
+msgstr "SQLite"
+
+#: src/lib/preferences/general/historySettings.ts:73
+msgid "JSON"
+msgstr "JSON"
 
 #: src/lib/preferences/general/historySettings.ts:100
+msgid "Database"
+msgstr "Base de données"
+
+#: src/lib/preferences/general/historySettings.ts:101
 msgid "Select which database type to use for storing your clipboard"
 msgstr ""
+"Sélectionnez le type de base de données à utiliser pour stocker votre presse-"
+"papiers"
 
-#: src/lib/preferences/general/historySettings.ts:125
+#: src/lib/preferences/general/historySettings.ts:126
 msgid "Database Location"
 msgstr "Emplacement de la base de données"
 
-#: src/lib/preferences/general/historySettings.ts:133
-msgid "Clipboard History"
-msgstr "Historique du presse-papiers"
+#: src/lib/preferences/general/historySettings.ts:134
+msgid "Keep History"
+msgstr "Conserver l’historique"
 
 #: src/lib/preferences/general/historySettings.ts:135
-msgid ""
-"Choose what to do with your clipboard history when you restart, log out, or "
-"shut down your system"
+msgid "Choose what to keep after logout or restart."
 msgstr ""
-"Choisissez ce qu'il advient de votre historique du presse-papiers lorsque "
-"vous redémarrez, vous déconnectez ou éteignez votre système"
+"Choisissez les éléments à conserver après une déconnexion ou un redémarrage."
 
-#: src/lib/preferences/general/historySettings.ts:137
-#: src/lib/ui/clipboardDialog.ts:135 src/lib/ui/clipboardDialog.ts:240
+#: src/lib/preferences/general/historySettings.ts:136
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Effacer"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep All"
 msgstr "Tout conserver"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned"
 msgstr "Conserver les éléments épinglés"
 
-#: src/lib/preferences/general/historySettings.ts:137
+#: src/lib/preferences/general/historySettings.ts:136
 msgid "Keep Pinned/Tagged"
 msgstr "Conserver les éléments épinglés/marqués"
 
 #: src/lib/preferences/general/historySettings.ts:143
-msgid "History Length"
-msgstr "Longueur de l'historique"
+msgid "History Size"
+msgstr "Taille de l’historique"
 
 #: src/lib/preferences/general/historySettings.ts:144
-msgid "Select how many items to keep in the clipboard history"
-msgstr ""
-"Sélectionnez le nombre d'éléments à conserver dans l'historique du presse-"
-"papiers"
+msgid "Maximum number of saved items."
+msgstr "Nombre maximal d’éléments enregistrés."
 
 #: src/lib/preferences/general/historySettings.ts:150
-msgid "History Time Limit"
-msgstr "Limite de temps de l'historique"
+msgid "Expiration"
+msgstr "Expiration"
 
-#: src/lib/preferences/general/historySettings.ts:152
-msgid ""
-"Select how many minutes to keep items in the clipboard history. Set to 0 to "
-"disable the time limit"
-msgstr ""
-"Sélectionnez combien de minutes les éléments doivent être conservés dans "
-"l'historique du presse-papiers. Réglez sur 0 pour désactiver la limite de "
-"temps"
+#: src/lib/preferences/general/historySettings.ts:151
+msgid "Minutes before items expire. Set to 0 to keep them."
+msgstr "Délai d’expiration en minutes. Indiquez 0 pour conserver les éléments."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"
@@ -1579,15 +1554,15 @@ msgstr "Basculer le mode Incognito"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:27
 msgid "Open Clipboard Dialog Behavior"
-msgstr ""
+msgstr "Comportement de la boîte de dialogue du presse-papiers"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Open / Select Next Item"
-msgstr ""
+msgstr "Ouvrir / sélectionner l'élément suivant"
 
 #: src/lib/preferences/shortcuts/dialogShortcuts.ts:28
 msgid "Toggle Dialog"
-msgstr ""
+msgstr "Basculer la boîte de dialogue"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:20
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
@@ -1613,7 +1588,7 @@ msgstr "Supporté uniquement pour les éléments de texte et de code"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:31
 msgid "Edit Title"
-msgstr ""
+msgstr "Modifier le titre"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:34
 msgid "Open Menu"
@@ -1625,15 +1600,15 @@ msgstr "Action du clic du milieu"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:67
 msgid "Swap Copy Shortcut"
-msgstr ""
+msgstr "Inverser le raccourci de copie"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Swap copy and paste shortcuts"
-msgstr ""
+msgstr "Inverser les raccourcis de copie et de collage"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:72
 msgid "Paste Item"
-msgstr ""
+msgstr "Coller l'élément"
 
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:74
 msgid "Copy Item"
@@ -1741,6 +1716,18 @@ msgstr "Désactiver le raccourci"
 msgid "Disabled"
 msgstr "Désactivé"
 
+#: src/lib/preferences/sidebarPreferences.ts:33
+msgid "No Results Found"
+msgstr "Aucun résultat trouvé"
+
+#: src/lib/ui/components/cardSubjects.ts:29
+#: src/lib/ui/components/cardSubjects.ts:32
+#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/subjectsDialog.ts:30
+#: src/lib/ui/components/subjectsDialog.ts:142
+msgid "Subjects"
+msgstr "Sujets"
+
 #: src/lib/ui/components/contentInfo.ts:35
 #, javascript-format
 msgid "%dh"
@@ -1785,13 +1772,78 @@ msgstr "Fichier manquant"
 msgid "Error"
 msgstr "Erreur"
 
-#: src/lib/ui/components/editDialog.ts:277
+#: src/lib/ui/components/editDialog.ts:302
 msgid "Edit Clipboard Item"
 msgstr "Modifier l'élément du presse-papiers"
 
-#: src/lib/ui/components/qrCodeDialog.ts:146
-msgid "Close"
-msgstr "Fermer"
+#: src/lib/ui/components/editDialog.ts:366
+msgid "Preview shortened. The full text is preserved."
+msgstr "Aperçu abrégé. Le texte intégral est conservé."
+
+#: src/lib/ui/components/editDialog.ts:420
+msgid "Preview"
+msgstr "Aperçu"
+
+#: src/lib/ui/components/editDialog.ts:436
+msgid "Side by side"
+msgstr "Côte à côte"
+
+#: src/lib/ui/components/editDialog.ts:452
+#: src/lib/ui/components/editDialog.ts:477
+msgid "Markdown formatting"
+msgstr "Mise en forme Markdown"
+
+#: src/lib/ui/components/editDialog.ts:459
+msgid "Bold (Ctrl+B)"
+msgstr "Gras (Ctrl+B)"
+
+#: src/lib/ui/components/editDialog.ts:460
+msgid "Italic (Ctrl+I)"
+msgstr "Italique (Ctrl+I)"
+
+#: src/lib/ui/components/editDialog.ts:461
+msgid "Bullet list"
+msgstr "Liste à puces"
+
+#: src/lib/ui/components/editDialog.ts:462
+msgid "Numbered list"
+msgstr "Liste numérotée"
+
+#: src/lib/ui/components/editDialog.ts:463
+msgid "Quote"
+msgstr "Citation"
+
+#: src/lib/ui/components/editDialog.ts:464
+msgid "Inline code"
+msgstr "Code en ligne"
+
+#: src/lib/ui/components/subjectsDialog.ts:29
+msgid "Add a subject"
+msgstr "Ajouter un sujet"
+
+#: src/lib/ui/components/subjectsDialog.ts:94
+#, javascript-format
+msgid "Remove subject: %s"
+msgstr "Retirer le sujet : %s"
+
+#: src/lib/ui/components/subjectsDialog.ts:143
+msgid ""
+"Add subjects with Enter or commas. Search with # followed by a subject name."
+msgstr ""
+"Ajoutez des sujets avec Entrée ou des virgules. Recherchez avec # suivi du "
+"nom d’un sujet."
+
+#: src/lib/ui/components/typeFilters.ts:32
+msgid "Images"
+msgstr "Images"
+
+#: src/lib/ui/components/typeFilters.ts:34
+msgid "Links"
+msgstr "Liens"
+
+#: src/lib/ui/components/typeFilters.ts:55
+msgid "Pinned"
+msgstr "Épinglés"
 
 #: src/lib/ui/indicator.ts:38
 msgid "Clear Clipboard History?"
@@ -1828,14 +1880,18 @@ msgstr[1] "%d Fichiers"
 msgid "Char"
 msgstr "Car"
 
-#: src/lib/ui/items/filesItem.ts:119
+#: src/lib/ui/items/fileItem.ts:127
+msgid "Folder"
+msgstr "Dossier"
+
+#: src/lib/ui/items/filesItem.ts:117
 #, javascript-format
 msgid "%d more file"
 msgid_plural "%d more files"
 msgstr[0] "%d fichier supplémentaire"
 msgstr[1] "%d fichiers supplémentaires"
 
-#: src/lib/ui/items/filesItem.ts:120
+#: src/lib/ui/items/filesItem.ts:118
 #, javascript-format
 msgid "%d file"
 msgid_plural "%d files"
@@ -1858,57 +1914,85 @@ msgstr "Le presse-papiers est vide"
 msgid "No Items Found"
 msgstr "Aucun élément trouvé"
 
-#: src/lib/ui/searchEntry.ts:155
+#: src/lib/ui/searchEntry.ts:161
 msgid "__All"
 msgstr "__Tout"
 
-#: src/lib/ui/searchEntry.ts:159
+#: src/lib/ui/searchEntry.ts:165
 msgid "__Text"
 msgstr "__Texte"
 
-#: src/lib/ui/searchEntry.ts:160
+#: src/lib/ui/searchEntry.ts:166
 msgid "__Code"
 msgstr "__Code"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:167
 msgid "__Image"
 msgstr "__Image"
 
-#: src/lib/ui/searchEntry.ts:162
+#: src/lib/ui/searchEntry.ts:168
 msgid "__File"
 msgstr "__Fichier"
 
-#: src/lib/ui/searchEntry.ts:163
+#: src/lib/ui/searchEntry.ts:169
 msgid "File__s"
 msgstr "Fichier__s"
 
-#: src/lib/ui/searchEntry.ts:164
+#: src/lib/ui/searchEntry.ts:170
 msgid "__Link"
 msgstr "__Lien"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:171
 msgid "C__haracter"
 msgstr "C__aractère"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:172
 msgid "Colo__r"
 msgstr "Couleu__r"
 
-#: src/lib/ui/searchEntry.ts:278
+#: src/lib/ui/searchEntry.ts:284
 msgid "Type to search"
 msgstr "Tapez pour rechercher"
 
-#: src/prefs.ts:75
-msgid "General"
-msgstr "Général"
+#: src/prefs.ts:54
+msgid "Choose what to keep and for how long."
+msgstr "Choisissez les éléments à conserver et leur durée de conservation."
 
-#: src/prefs.ts:95
-msgid "Customization"
-msgstr "Personnalisation"
+#: src/prefs.ts:60
+msgid "Control copying, pasting and feedback."
+msgstr "Gérez la copie, le collage et les retours."
 
-#: src/prefs.ts:112
+#: src/prefs.ts:65
+msgid "Advanced"
+msgstr "Avancé"
+
+#: src/prefs.ts:66
+msgid "Manage storage and code languages."
+msgstr "Gérez le stockage et les langages de code."
+
+#: src/prefs.ts:69
+msgid "Storage"
+msgstr "Stockage"
+
+#: src/prefs.ts:74
+msgid "Panel Indicator"
+msgstr "Indicateur du panneau"
+
+#: src/prefs.ts:88
+msgid "Appearance"
+msgstr "Apparence"
+
+#: src/prefs.ts:89
+msgid "Customize the panel, cards and colors."
+msgstr "Personnalisez le panneau, les cartes et les couleurs."
+
+#: src/prefs.ts:108
 msgid "Shortcuts"
 msgstr "Raccourcis"
+
+#: src/prefs.ts:109
+msgid "Access your clipboard with the keyboard."
+msgstr "Accédez au presse-papiers avec le clavier."
 
 #~ msgid ""
 #~ "Automatically paste clipboard items when selected from clipboard history"
@@ -1916,11 +2000,92 @@ msgstr "Raccourcis"
 #~ "Colle automatiquement les éléments du presse-papiers lorsqu'ils sont "
 #~ "sélectionnés dans l'historique du presse-papiers"
 
+#~ msgid ""
+#~ "Choose what to do with your clipboard history when you restart, log out, "
+#~ "or shut down your system"
+#~ msgstr ""
+#~ "Choisissez ce qu'il advient de votre historique du presse-papiers lorsque "
+#~ "vous redémarrez, vous déconnectez ou éteignez votre système"
+
+#~ msgid "Clipboard History"
+#~ msgstr "Historique du presse-papiers"
+
+#~ msgid "Customization"
+#~ msgstr "Personnalisation"
+
+#~ msgid "Dependencies"
+#~ msgstr "Dépendances"
+
+#, javascript-format
+#~ msgid "Error Installing %s"
+#~ msgstr "Erreur lors de l'installation de %s"
+
+#~ msgid "Error Installing Highlight.js"
+#~ msgstr "Erreur lors de l'installation de Highlight.js"
+
+#, javascript-format
+#~ msgid "Error Uninstalling %s"
+#~ msgstr "Erreur lors de la désinstallation de %s"
+
 #~ msgid "Failed to load database"
 #~ msgstr "Échec du chargement de la base de données"
 
+#~ msgid "General"
+#~ msgstr "Général"
+
+#~ msgid "Highlight.js Not Installed"
+#~ msgstr "Highlight.js non installé"
+
+#~ msgid "Highlight.js is required to display syntax highlighted code."
+#~ msgstr ""
+#~ "Highlight.js est nécessaire pour afficher le code avec coloration "
+#~ "syntaxique."
+
+#~ msgid "History Length"
+#~ msgstr "Longueur de l'historique"
+
+#~ msgid "History Time Limit"
+#~ msgstr "Limite de temps de l'historique"
+
+#~ msgid "Install"
+#~ msgstr "Installer"
+
+#~ msgid "Install Location"
+#~ msgstr "Emplacement d'installation"
+
+#~ msgid "Languages"
+#~ msgstr "Langues"
+
+#~ msgid "Manage Highlight.js"
+#~ msgstr "Gérer Highlight.js"
+
+#~ msgid "Manage the Highlight.js installation"
+#~ msgstr "Gérer l'installation de Highlight.js"
+
+#~ msgid "Manual Installation"
+#~ msgstr "Installation manuelle"
+
 #~ msgid "Paste on Copy"
 #~ msgstr "Coller à la copie"
+
+#~ msgid "Select how many items to keep in the clipboard history"
+#~ msgstr ""
+#~ "Sélectionnez le nombre d'éléments à conserver dans l'historique du presse-"
+#~ "papiers"
+
+#~ msgid ""
+#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
+#~ "to disable the time limit"
+#~ msgstr ""
+#~ "Sélectionnez combien de minutes les éléments doivent être conservés dans "
+#~ "l'historique du presse-papiers. Réglez sur 0 pour désactiver la limite de "
+#~ "temps"
+
+#~ msgid ""
+#~ "Separate subjects with commas. Search with # followed by a subject name."
+#~ msgstr ""
+#~ "Séparez les sujets par des virgules. Recherchez avec # suivi du nom d’un "
+#~ "sujet."
 
 #~ msgid "Set the color scheme of the custom theme"
 #~ msgstr "Définit le schéma de couleurs du thème personnalisé"
@@ -1937,8 +2102,38 @@ msgstr "Raccourcis"
 #~ msgid "Show the current clipboard content in the indicator"
 #~ msgstr "Affiche le contenu actuel du presse-papier dans l'indicateur"
 
+#~ msgid "Starting Highlight.js Download"
+#~ msgstr "Début du téléchargement de Highlight.js"
+
 #~ msgid "Store clipboard history in memory instead of on disk"
 #~ msgstr "Stocke l'historique du presse-papiers en mémoire au lieu du disque"
 
+#~ msgid "Subjects, separated by commas"
+#~ msgstr "Sujets, séparés par des virgules"
+
+#~ msgid "Subjects…"
+#~ msgstr "Sujets…"
+
+#, javascript-format
+#~ msgid "Successfully Installed %s"
+#~ msgstr "%s installé avec succès"
+
+#~ msgid "Successfully Installed Highlight.js"
+#~ msgstr "Highlight.js installé avec succès"
+
+#, javascript-format
+#~ msgid "Successfully Uninstalled %s"
+#~ msgstr "%s désinstallé avec succès"
+
+#~ msgid "Url"
+#~ msgstr "URL"
+
 #~ msgid "Use In-Memory Database"
 #~ msgstr "Utiliser une base de données en mémoire"
+
+#~ msgid ""
+#~ "You can manually install highlight.js by downloading highlight.min.js "
+#~ "from \"Url\" to \"Install Location\"."
+#~ msgstr ""
+#~ "Vous pouvez installer manuellement highlight.js en téléchargeant "
+#~ "highlight.min.js de \"Url\" vers \"Emplacement d'installation\"."

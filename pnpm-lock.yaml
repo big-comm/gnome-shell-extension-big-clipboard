@@ -32,6 +32,9 @@ importers:
       '@girs/soup-3.0':
         specifier: 3.6.5-4.0.0-beta.38
         version: 3.6.5-4.0.0-beta.38
+      '@highlightjs/cdn-assets':
+        specifier: 11.11.1
+        version: 11.11.1
       '@stylistic/eslint-plugin':
         specifier: 5.5.0
         version: 5.5.0(eslint@9.39.1)
@@ -469,6 +472,10 @@ packages:
 
   '@girs/xlib-2.0@2.0.0-4.0.0-beta.38':
     resolution: {integrity: sha512-PK3s6NowmlY65E/Y9BqwR1lVKsZSWQJm/za1I47SvL1IVWcEHYWRZdDtYZjfmbUlUqqKkfoMt+bUCmhmQk/eYQ==}
+
+  '@highlightjs/cdn-assets@11.11.1':
+    resolution: {integrity: sha512-VEPdHzwelZ12hEX18BHduqxMZGolcUsrbeokHYxOUIm8X2+M7nx5QPtPeQgRxR9XjhdLv4/7DD5BWOlSrJ3k7Q==}
+    engines: {node: '>=12.0.0'}
 
   '@humanfs/core@0.19.1':
     resolution: {integrity: sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==}
@@ -2029,6 +2036,8 @@ snapshots:
     dependencies:
       '@girs/gjs': 4.0.0-beta.38
       '@girs/gobject-2.0': 2.86.0-4.0.0-beta.38
+
+  '@highlightjs/cdn-assets@11.11.1': {}
 
   '@humanfs/core@0.19.1': {}
 

@@ -1,24 +1,14 @@
 import Adw from 'gi://Adw';
-import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
-import Soup from 'gi://Soup?version=3.0';
 
 import { ExtensionPreferences, gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import Preferences from '../../../prefs.js';
-import {
-	HljsSha512,
-	HljsUrls,
-	UserAgent,
-	getDataPath,
-	getHljsLanguageUrls,
-	getHljsPath,
-} from '../../common/constants.js';
+import { getHljsPath } from '../../common/constants.js';
 import { registerClass } from '../../common/gjs.js';
 import { Icon } from '../../common/icons.js';
-import { CopyousSettings } from '../../common/settings.js';
 
 export async function checkGda(prefs: ExtensionPreferences): Promise<boolean> {
 	try {
@@ -165,172 +155,11 @@ export class GdaDialog extends GuideDialog {
 	}
 }
 
-@registerClass()
-class HljsDialog extends Adw.AlertDialog {
-	constructor(prefs: ExtensionPreferences) {
-		super({
-			heading: _('Highlight.js Not Installed'),
-			body: _('Highlight.js is required to display syntax highlighted code.'),
-		});
-
-		const expander = new Gtk.Expander({
-			label: _('Manual Installation'),
-		});
-		this.extra_child = expander;
-
-		const box = new Gtk.Box({
-			orientation: Gtk.Orientation.VERTICAL,
-			margin_top: 8,
-			spacing: 12,
-		});
-		expander.child = box;
-
-		box.append(
-			new Gtk.Label({
-				label: _(
-					'You can manually install highlight.js by downloading highlight.min.js from "Url" to "Install Location".',
-				),
-				wrap: true,
-				halign: Gtk.Align.FILL,
-				xalign: 0,
-			}),
-		);
-
-		const list = new Gtk.ListBox({
-			css_classes: ['boxed-list'],
-			selection_mode: Gtk.SelectionMode.NONE,
-		});
-		box.append(list);
-
-		list.append(
-			new Adw.ActionRow({
-				css_classes: ['property'],
-				title: _('Url'),
-				subtitle: HljsUrls[0]!,
-				subtitle_selectable: true,
-				activatable: false,
-			}),
-		);
-		list.append(
-			new Adw.ActionRow({
-				css_classes: ['property'],
-				title: _('Install Location'),
-				subtitle: getDataPath(prefs).get_path() ?? '',
-				subtitle_selectable: true,
-				activatable: false,
-			}),
-		);
-
-		this.add_response('cancel', _('Cancel'));
-		this.set_close_response('cancel');
-		this.add_response('install', _('Install'));
-		this.set_response_appearance('install', Adw.ResponseAppearance.SUGGESTED);
-	}
-}
-
-Gio._promisify(Gio.File.prototype, 'replace_contents_async');
-Gio._promisify(Soup.Session.prototype, 'send_and_read_async');
-
-async function downloadHljsModule(
-	prefs: ExtensionPreferences,
-	url: string,
-	hash: string,
-	path: Gio.File,
-	cancellable: Gio.Cancellable,
-): Promise<boolean> {
-	try {
-		if (path.query_exists(null)) {
-			prefs.getLogger().error(`Highlight.js module ${path.get_path()} already installed`);
-			return false;
-		}
-
-		// Check if URL is valid
-		const uri = GLib.uri_parse(url, GLib.UriFlags.NONE);
-
-		// Download page
-		const session = new Soup.Session({ user_agent: UserAgent, idle_timeout: 5 });
-		const message = Soup.Message.new_from_uri('GET', uri);
-
-		// Send request
-		const response = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, cancellable);
-		if (response == null) return false;
-
-		const data = response.get_data();
-		if (data == null) return false;
-
-		// Check integrity
-		const sha512 = GLib.compute_checksum_for_bytes(GLib.ChecksumType.SHA512, data);
-		if (sha512 !== hash) {
-			prefs
-				.getLogger()
-				.error(
-					`Highlight.js module ${path.get_path()} integrity check failed\nExpected: ${hash}\nActual: ${sha512}`,
-				);
-			return false;
-		}
-
-		// Write to file
-		const parent = path.get_parent()!;
-		if (!parent.query_exists(cancellable)) parent.make_directory_with_parents(cancellable);
-
-		await path.replace_contents_async(data, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, cancellable);
-		return true;
-	} catch (error) {
-		prefs.getLogger().error(error);
-		return false;
-	}
-}
-
-async function downloadHljs(prefs: ExtensionPreferences, cancellable: Gio.Cancellable): Promise<boolean> {
-	const path = getHljsPath(prefs);
-	let prefUrl = null;
-	for (const url of HljsUrls) {
-		if (prefUrl) prefs.getLogger().warn(`Failed to download highlight.js from '${prefUrl}'. Trying next cdn`);
-		prefUrl = url;
-
-		// eslint-disable-next-line no-await-in-loop
-		if (await downloadHljsModule(prefs, url, HljsSha512, path, cancellable)) {
-			return true;
-		}
-	}
-
-	prefs.getLogger().error(`Failed to download highlight.js from '${prefUrl}'`);
-	return false;
-}
-
-export async function downloadHljsLanguage(
-	prefs: ExtensionPreferences,
-	language: string,
-	hash: string,
-	path: Gio.File,
-	cancellable: Gio.Cancellable,
-) {
-	let prefUrl = null;
-	for (const url of getHljsLanguageUrls(language)) {
-		if (prefUrl)
-			prefs
-				.getLogger()
-				.warn(`Failed to download highlight.js language '${language}' from '${prefUrl}'. Trying next cdn`);
-		prefUrl = url;
-
-		// eslint-disable-next-line no-await-in-loop
-		if (await downloadHljsModule(prefs, url, hash, path, cancellable)) {
-			return true;
-		}
-	}
-
-	prefs.getLogger().error(`Failed to download highlight.js language '${language}' from '${prefUrl}'`);
-	return false;
-}
-
 @registerClass({
 	Properties: {
 		libgda: GObject.ParamSpec.boolean('libgda', null, null, GObject.ParamFlags.READABLE, false),
 		gsound: GObject.ParamSpec.boolean('gsound', null, null, GObject.ParamFlags.READABLE, false),
 		hljs: GObject.ParamSpec.boolean('hljs', null, null, GObject.ParamFlags.READABLE, false),
-	},
-	Signals: {
-		'hljs-installed': {},
 	},
 })
 export class DependenciesWarningButton extends Gtk.MenuButton {
@@ -340,8 +169,6 @@ export class DependenciesWarningButton extends Gtk.MenuButton {
 
 	private readonly _menu: Gio.Menu;
 	private _items: string[] = ['libgda', 'gsound', 'hljs'];
-
-	private readonly _cancellable: Gio.Cancellable = new Gio.Cancellable();
 
 	constructor(prefs: Preferences, window: Adw.PreferencesWindow) {
 		super({
@@ -364,60 +191,12 @@ export class DependenciesWarningButton extends Gtk.MenuButton {
 			'typelib-1_0-GSound-1_0',
 		);
 
-		const hljsDialog = new HljsDialog(prefs);
-		hljsDialog.connect('response', async (_dialog, response) => {
-			if (response === 'install') {
-				hljsAction.enabled = false;
-
-				// Show start download toast
-				const toast = new Adw.Toast({ title: _('Starting Highlight.js Download') });
-				window.add_toast(toast);
-
-				// Show spinner
-				const spinner = new Gtk.Image();
-				spinner.paintable = new Adw.SpinnerPaintable({ widget: spinner });
-				this.child = spinner;
-				this.remove_css_class('warning');
-
-				// Start download
-				const success = await downloadHljs(prefs, this._cancellable);
-
-				// Hide spinner
-				this.set_child(null);
-				this.add_css_class('warning');
-
-				// Show end download toast
-				toast.dismiss();
-				window.add_toast(
-					new Adw.Toast({
-						title: success ? _('Successfully Installed Highlight.js') : _('Error Installing Highlight.js'),
-					}),
-				);
-
-				if (success) {
-					this._hljs = await checkHighlightJS(prefs);
-					if (this._hljs) {
-						this.deleteItem('hljs');
-
-						// Re-enable hljs dialog for if hljs was uninstalled for some reason
-						const settings: CopyousSettings = prefs.getSettings();
-						settings.set_boolean('disable-hljs-dialog', false);
-					}
-					this.notify('hljs');
-					this.emit('hljs-installed');
-				} else {
-					// Re-enable action in menu if download failed
-					hljsAction.enabled = true;
-				}
-			} else if (response === 'cancel') {
-				// Disable hljs dialog from showing up since hljs is not installed
-				const settings: CopyousSettings = prefs.getSettings();
-				settings.set_boolean('disable-hljs-dialog', true);
-			}
+		const hljsDialog = new Adw.AlertDialog({
+			heading: _('Syntax highlighting unavailable'),
+			body: _('Reinstall the Big Clipboard package to restore the bundled code highlighting files.'),
 		});
-
-		// Cancel operations on destroy
-		this.connect('destroy', () => this._cancellable.cancel());
+		hljsDialog.add_response('close', _('Close'));
+		hljsDialog.set_close_response('close');
 
 		// Menu
 		const actionGroup = new Gio.SimpleActionGroup();
@@ -439,7 +218,7 @@ export class DependenciesWarningButton extends Gtk.MenuButton {
 		this._menu = new Gio.Menu();
 		this._menu.append(_('Libgda Not Installed'), 'dependencies.libgda');
 		this._menu.append(_('GSound Not Installed'), 'dependencies.gsound');
-		this._menu.append(_('Highlight.js Not Installed'), 'dependencies.hljs');
+		this._menu.append(_('Syntax highlighting unavailable'), 'dependencies.hljs');
 		this.menu_model = this._menu;
 
 		// Checks
@@ -464,12 +243,6 @@ export class DependenciesWarningButton extends Gtk.MenuButton {
 				this._hljs = hljs;
 				if (hljs) {
 					this.deleteItem('hljs');
-				} else {
-					// Open dialog for the first time if hljs is not installed
-					const settings: CopyousSettings = prefs.getSettings();
-					if (!settings.get_boolean('disable-hljs-dialog')) {
-						hljsDialog.present(window);
-					}
 				}
 
 				this.notify('hljs');

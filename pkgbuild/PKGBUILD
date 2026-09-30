@@ -1,16 +1,17 @@
 # Maintainer: Tales A. Mendonça <talesam@gmail.com>
 
-pkgname=gnome-shell-extension-copyous
-pkgdesc="Modern clipboard manager extension for GNOME Shell (full rewrite of Pano)"
+pkgname=gnome-shell-extension-big-clipboard
+pkgdesc="Big Clipboard: clipboard history for GNOME Shell, maintained by BigCommunity"
 pkgver=$(date +%y.%m.%d)
 pkgrel=$(date +%H%M)
 epoch=1
 arch=('any')
-license=('GPL-3.0-or-later')
-url="https://github.com/big-comm/gnome-shell-extension-copyous"
+license=('GPL-3.0-or-later' 'BSD-3-Clause')
+url="https://github.com/big-comm/gnome-shell-extension-big-clipboard"
 depends=('gnome-shell>=48'
          'libgda6'
-         'gsound')
+         'gsound'
+         'python-gobject')
 makedepends=('git'
              'jq'
              'gettext'
@@ -23,7 +24,9 @@ makedepends=('git'
              'glib2'
              'make')
 optdepends=('wl-clipboard: Wayland clipboard support')
-provides=("$pkgname")
+provides=("gnome-shell-extension-copyous=${epoch}:${pkgver}-${pkgrel}")
+conflicts=('gnome-shell-extension-copyous')
+replaces=('gnome-shell-extension-copyous')
 # Name the branch instead of relying on whatever makepkg resolves as the
 # remote default: a package built from the wrong revision still builds and
 # still installs, so the ref this compiles from belongs in the file.
@@ -51,12 +54,14 @@ check() {
   cd "${srcdir}/copyous"
   pnpm exec tsc --noEmit
   pnpm test
+  python -m unittest discover -s tests -p 'test_uuid_migration.py'
+  make check-pot check-po
 }
 
 package() {
   cd "${srcdir}/copyous"
 
-  local uuid="copyous@boerdereinar.dev"
+  local uuid="big-clipboard@communitybig.org"
   local schema="org.gnome.shell.extensions.copyous.gschema.xml"
   local destdir="${pkgdir}/usr/share/gnome-shell/extensions/${uuid}"
 
@@ -70,6 +75,11 @@ package() {
     glib-compile-schemas "${destdir}/schemas/"
   fi
 
+  install -Dm644 scripts/migrate-uuid.py "${pkgdir}/usr/share/big-clipboard/migrate-uuid.py"
+  install -Dm644 pkgbuild/60-big-clipboard-migration.conf \
+    "${pkgdir}/usr/lib/systemd/user/org.gnome.Shell@.service.d/60-big-clipboard-migration.conf"
+
   # Install license
+  install -Dm644 dist/highlight-LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/Highlight.js-LICENSE"
   install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }

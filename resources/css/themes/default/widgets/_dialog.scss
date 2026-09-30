@@ -5,6 +5,10 @@
 	box-shadow: 0 2px 4px 0 $shadow_color;
 	padding: 0;
 
+	&.blur-background {
+		background-color: if($variant == 'light', rgba(245, 245, 248, 0.65), rgba(32, 32, 36, 0.5));
+	}
+
 	// Header
 	.dialog-header {
 		.dialog-header-box {
@@ -118,6 +122,10 @@
 
 	// Vertical layout
 	&.vertical {
+		.clipboard-type-filters {
+			padding-bottom: $base_padding * 2.5;
+		}
+
 		.clipboard-item-list {
 			margin: 0 $base_padding * 2.5;
 
@@ -168,5 +176,24 @@
 				background-color: mix($fg_color, $bg_color, 40%);
 			}
 		}
+	}
+}
+
+.clipboard-type-filters {
+	padding: 8px 12px 0;
+	.button {
+		@extend %button;
+		padding: 5px 9px;
+		border-radius: 999px;
+	}
+	.button:checked {
+		background-color: -st-accent-color;
+		color: -st-accent-fg-color;
+	}
+	.filter-content {
+		spacing: 5px; // NOSONAR: GNOME StBoxLayout spacing property.
+	}
+	.filter-count {
+		font-size: 0.85em;
 	}
 }

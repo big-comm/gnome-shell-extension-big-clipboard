@@ -27,7 +27,12 @@ import { ClipboardItem } from './clipboardItem.js';
 
 export function formatFile(file: Gio.File): string {
 	const relative = Gio.File.new_for_path(GLib.get_home_dir()).get_relative_path(file);
-	return relative !== null ? `~/${relative}` : file.get_path()!;
+	return relative !== null ? `~/${relative}` : file.get_parse_name();
+}
+
+export function fileIcon(file: Gio.File): Gio.Icon {
+	const [type] = Gio.content_type_guess(file.get_basename(), null);
+	return Gio.content_type_get_icon(type);
 }
 
 @registerClass()
@@ -40,6 +45,10 @@ export class FileItem extends ClipboardItem {
 	private _filePreviewExclusionRegex: RegExp | null = null;
 
 	private readonly _file: St.Label;
+	private readonly _fileIcon: St.Icon;
+	private readonly _fileName: St.Label;
+	private readonly _fileSize: St.Label;
+	private _identityLoaded = false;
 	private _fileType?: FileType;
 	private _thumbnail?: Gio.File | null;
 	private _filePreview?: ContentPreview | null;
@@ -54,6 +63,22 @@ export class FileItem extends ClipboardItem {
 		this.fileItemSettings = this.ext.settings.get_child('file-item');
 
 		this.add_style_class_name('file-item');
+		const file = Gio.File.new_for_uri(entry.content);
+		const identity = new St.BoxLayout({ style_class: 'file-identity', x_expand: true });
+		this._fileIcon = new St.Icon({ gicon: fileIcon(file), icon_size: 40 });
+		identity.add_child(this._fileIcon);
+		const labels = new St.BoxLayout({ orientation: Clutter.Orientation.VERTICAL, x_expand: true });
+		this._fileName = new St.Label({
+			text: file.get_basename() ?? file.get_parse_name(),
+			style_class: 'file-name',
+			x_expand: true,
+		});
+		this._fileName.clutter_text.ellipsize = Pango.EllipsizeMode.MIDDLE;
+		this._fileSize = new St.Label({ style_class: 'file-size', visible: false });
+		labels.add_child(this._fileName);
+		labels.add_child(this._fileSize);
+		identity.add_child(labels);
+		this._content.add_child(identity);
 
 		this._file = new St.Label({
 			style_class: 'file-item-file',
@@ -61,12 +86,14 @@ export class FileItem extends ClipboardItem {
 			y_align: Clutter.ActorAlign.START,
 			y_expand: true,
 		});
-		this._file.clutter_text.line_wrap = true;
+		this._file.clutter_text.line_wrap = false;
 		this._file.clutter_text.ellipsize = Pango.EllipsizeMode.MIDDLE;
 		this._content.add_child(this._file);
 
 		// Bind properties
 		this.fileItemSettings.connectObject('changed', this.updateFilePreview.bind(this), this);
+		this.ext.settings.connectObject('changed::item-height', this.configureVisibility.bind(this), this);
+		this.configureVisibility();
 		const logger = this.ext.logger;
 		this._previewIdleId = GLib.idle_add(GLib.PRIORITY_LOW, () => {
 			this._previewIdleId = 0;
@@ -81,6 +108,31 @@ export class FileItem extends ClipboardItem {
 	}
 
 	private async updateFilePreview() {
+		if (!this._identityLoaded) {
+			this._identityLoaded = true;
+			const file = Gio.File.new_for_uri(this.entry.content);
+			file.query_info_async(
+				'standard::display-name,standard::icon,standard::size,standard::type',
+				Gio.FileQueryInfoFlags.NONE,
+				GLib.PRIORITY_LOW,
+				this._cancellable,
+				(_file, result) => {
+					if (this._cancellable.is_cancelled()) return;
+					try {
+						const info = file.query_info_finish(result);
+						this._fileName.text = info.get_display_name();
+						this._fileIcon.gicon = info.get_icon() ?? this._fileIcon.gicon;
+						this._fileSize.text =
+							info.get_file_type() === Gio.FileType.DIRECTORY
+								? _('Folder')
+								: GLib.format_size(info.get_size());
+						this._fileSize.show();
+					} catch {
+						/* Keep name and MIME icon for offline or missing files. */
+					}
+				},
+			);
+		}
 		this._filePreviewVisibility = this.fileItemSettings.get_enum('file-preview-visibility');
 		this._filePreviewTypes = this.fileItemSettings.get_flags('file-preview-types');
 		this._filePreviewExclusionPatterns = this.fileItemSettings.get_strv('file-preview-exclusion-patterns');
@@ -189,6 +241,8 @@ export class FileItem extends ClipboardItem {
 	}
 
 	private configureVisibility() {
+		// Compact cards prioritize the icon and filename.
+		this._file.visible = this.ext.settings.get_int('item-height') >= 220;
 		// File preview
 		const showFilePreview = this.showFilePreview();
 		if (this._filePreview && showFilePreview) {
@@ -198,7 +252,7 @@ export class FileItem extends ClipboardItem {
 			this._filePreview.visible = true;
 		} else {
 			this._file.y_expand = true;
-			this._file.clutter_text.line_wrap = true;
+			this._file.clutter_text.line_wrap = false;
 			this._file.clutter_text.ellipsize = Pango.EllipsizeMode.MIDDLE;
 			if (this._filePreview) {
 				this._filePreview.visible = false;
@@ -208,6 +262,7 @@ export class FileItem extends ClipboardItem {
 		// File info
 		if (this._fileInfo != null) {
 			if (
+				this._fileType !== FileType.Unknown &&
 				this._filePreviewVisibility !== FilePreviewVisibility.Hidden &&
 				this._filePreviewVisibility !== FilePreviewVisibility.FilePreviewOnly
 			) {

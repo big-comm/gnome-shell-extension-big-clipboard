@@ -21,7 +21,7 @@ runs:
 
     - name: Install Dependencies
       shell: bash
-      run: pnpm install --ignore-scripts
+      run: pnpm install --frozen-lockfile --ignore-scripts
 
     - name: Install Gnome Extensions Tool Dependencies
       if: inputs.install-gnome-extensions-tool == 'true'

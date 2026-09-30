@@ -1,9 +1,11 @@
 import Adw from 'gi://Adw';
 import GObject from 'gi://GObject';
 import Gdk from 'gi://Gdk';
+import Gio from 'gi://Gio';
 import Gtk from 'gi://Gtk';
 
 import { gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
+import { PACKAGE_VERSION } from 'resource:///org/gnome/Shell/Extensions/js/misc/config.js';
 
 import Preferences from '../../../prefs.js';
 import { DefaultColors } from '../../common/constants.js';
@@ -128,9 +130,22 @@ export class ThemeCustomization extends Adw.PreferencesGroup {
 		});
 		this.add(searchBgColor);
 
+		const blurBackground = new Adw.SwitchRow({
+			title: _('Blur Background'),
+			subtitle: _('Blur only the panel background on GNOME 51 with Frosted Glass active. Cards stay opaque.'),
+			sensitive: Number.parseInt(PACKAGE_VERSION) >= 51,
+		});
+		this.add(blurBackground);
+
 		// Bind properties
 		const settings = (prefs.getSettings() as CopyousSettings).get_child('theme');
 
+		settings.bind(
+			'blur-background',
+			blurBackground,
+			'active',
+			Gio.SettingsBindFlags.DEFAULT | Gio.SettingsBindFlags.NO_SENSITIVITY,
+		);
 		bind_enum(settings, 'theme', theme, 'selected');
 		bind_enum(settings, 'color-scheme', colorScheme, 'selected');
 		bind_enum(settings, 'custom-color-scheme', customColorScheme, 'selected');

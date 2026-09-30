@@ -59,6 +59,7 @@ export class HistorySettings extends Adw.PreferencesGroup {
 	constructor(
 		private prefs: Preferences,
 		private window: Adw.PreferencesWindow,
+		databaseGroup: Adw.PreferencesGroup,
 	) {
 		super({
 			title: _('History'),
@@ -103,7 +104,7 @@ export class HistorySettings extends Adw.PreferencesGroup {
 			model,
 			sensitive: false,
 		});
-		this.add(this._databaseBackend);
+		databaseGroup.add(this._databaseBackend);
 
 		const separator = new Gtk.Separator({
 			orientation: Gtk.Orientation.VERTICAL,
@@ -127,30 +128,27 @@ export class HistorySettings extends Adw.PreferencesGroup {
 			sensitive: false,
 		});
 		this._databaseLocation.connect('activated', () => this.openDatabaseLocation(window));
-		this.add(this._databaseLocation);
+		databaseGroup.add(this._databaseLocation);
 
 		this._clipboardHistory = new Adw.ComboRow({
-			title: _('Clipboard History'),
-			subtitle: _(
-				'Choose what to do with your clipboard history when you restart, log out, or shut down your system',
-			),
+			title: _('Keep History'),
+			tooltip_text: _('Choose what to keep after logout or restart.'),
 			model: Gtk.StringList.new([_('Clear'), _('Keep Pinned/Tagged'), _('Keep All'), _('Keep Pinned')]),
 			sensitive: false,
+			use_subtitle: true,
 		});
 		this.add(this._clipboardHistory);
 
 		const historyLength = new Adw.SpinRow({
-			title: _('History Length'),
-			subtitle: _('Select how many items to keep in the clipboard history'),
+			title: _('History Size'),
+			subtitle: _('Maximum number of saved items.'),
 			adjustment: new Gtk.Adjustment({ lower: 10, upper: 500, step_increment: 1, page_increment: 5, value: 50 }),
 		});
 		this.add(historyLength);
 
 		const timeLimit = new Adw.SpinRow({
-			title: _('History Time Limit'),
-			subtitle: _(
-				'Select how many minutes to keep items in the clipboard history. Set to 0 to disable the time limit',
-			),
+			title: _('Expiration'),
+			subtitle: _('Minutes before items expire. Set to 0 to keep them.'),
 			adjustment: new Gtk.Adjustment({ lower: 0, upper: 1440, step_increment: 5, page_increment: 15, value: 0 }),
 		});
 		this.add(timeLimit);

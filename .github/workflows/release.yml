@@ -1,7 +1,7 @@
 name: Release CI
 
 env:
-  UUID: copyous@boerdereinar.dev
+  UUID: big-clipboard@communitybig.org
 
 on:
   push:

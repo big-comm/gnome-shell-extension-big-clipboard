@@ -11,23 +11,14 @@ import { Icon } from '../../common/icons.js';
 import { ClipboardEntry } from '../../database/database.js';
 import { ContentPreview } from '../components/contentPreview.js';
 import { ClipboardItem } from './clipboardItem.js';
-import { formatFile } from './fileItem.js';
+import { fileIcon, formatFile } from './fileItem.js';
 
-export function commonDirectory(files: Gio.File[]): Gio.File {
-	return files
-		.map((f) => f.get_parent())
-		.filter((f) => f !== null)
-		.reduce((common, file) => {
-			if (common.equal(file)) {
-				return common;
-			}
-
-			while (!file.has_prefix(common)) {
-				common = common.get_parent()!;
-			}
-
-			return common;
-		});
+export function commonDirectory(files: Gio.File[]): Gio.File | null {
+	let common = files[0]?.get_parent() ?? null;
+	for (const file of files) {
+		while (common && !file.equal(common) && !file.has_prefix(common)) common = common.get_parent();
+	}
+	return common;
 }
 
 @registerClass()
@@ -36,7 +27,10 @@ export class FilesPreview extends ContentPreview {
 	private readonly _border: St.Widget;
 	private readonly _moreFiles: St.Label;
 
-	constructor(files: string[]) {
+	constructor(
+		files: string[],
+		private total = files.length,
+	) {
 		super();
 
 		this.add_style_class_name('files-preview');
@@ -51,12 +45,16 @@ export class FilesPreview extends ContentPreview {
 		this.add_child(this._files);
 
 		for (const file of files) {
+			const row = new St.BoxLayout({ style_class: 'file-identity' });
+			row.add_child(new St.Icon({ gicon: fileIcon(Gio.File.new_for_uri(file)), icon_size: 20 }));
 			const label = new St.Label({
 				style_class: 'files-preview-item',
-				text: file.trim(),
+				text: Gio.File.new_for_uri(file).get_basename() ?? file,
+				x_expand: true,
 			});
 			label.clutter_text.ellipsize = Pango.EllipsizeMode.MIDDLE;
-			this._files.add_child(label);
+			row.add_child(label);
+			this._files.add_child(row);
 		}
 
 		this._border = new St.Widget({
@@ -89,7 +87,7 @@ export class FilesPreview extends ContentPreview {
 		const maxHeight = box.get_height();
 
 		this._border.visible = true;
-		if (nat - lastChildNat * 0.5 < maxHeight) {
+		if (this.total === this._files.get_n_children() && nat - lastChildNat * 0.5 < maxHeight) {
 			for (const file of this._files.get_children()) file.visible = true;
 			this._moreFiles.visible = false;
 
@@ -114,7 +112,7 @@ export class FilesPreview extends ContentPreview {
 			}
 
 			// More files label
-			const n = this._files.get_n_children() - count;
+			const n = this.total - count;
 			this._moreFiles.text = count
 				? ngettext('%d more file', '%d more files', n).format(n)
 				: ngettext('%d file', '%d files', n).format(n);
@@ -142,22 +140,22 @@ export class FilesItem extends ClipboardItem {
 
 		const files: Gio.File[] = entry.content
 			.split('\n')
-			.map((f: string) => Gio.File.new_for_uri(f))
-			.filter((f) => f.get_path() !== null);
+			.filter(Boolean)
+			.map((f: string) => Gio.File.new_for_uri(f));
 		const common = commonDirectory(files);
 
-		const filePath = new St.Label({
-			style_class: 'files-item-path',
-			text: formatFile(common),
-		});
-		filePath.clutter_text.ellipsize = Pango.EllipsizeMode.START;
-		this._content.add_child(filePath);
+		const filePath = common ? formatFile(common) : _('Files');
+		this.accessible_name = `${_('Files')}: ${filePath}`;
 
-		const relativeFiles = files.map((f) => common.get_relative_path(f)).filter((f) => f !== null);
-		this._content.add_child(new FilesPreview(relativeFiles));
+		this._content.add_child(
+			new FilesPreview(
+				files.slice(0, 12).map((file) => file.get_uri()),
+				files.length,
+			),
+		);
 
-		this._files = files.map((f) => f.get_path()?.toLowerCase() ?? '');
-		if (filePath.text.startsWith('~')) {
+		this._files = files.map((f) => f.get_parse_name().toLowerCase());
+		if (filePath.startsWith('~')) {
 			this._formattedFiles = files.map((f) => formatFile(f).toLowerCase());
 		}
 	}

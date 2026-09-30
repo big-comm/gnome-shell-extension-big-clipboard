@@ -1,6 +1,9 @@
 // Edit dialog
 .clipboard-item-edit-dialog {
 	width: 35em;
+	.button {
+		@extend %button;
+	}
 
 	.modal-dialog-content-box {
 		margin: $base_padding * 0.5 $base_padding * 1.5 $base_padding;
@@ -43,6 +46,33 @@
 		}
 	}
 
+	.markdown-toolbar,
+	.markdown-tabs {
+		spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
+	}
+	.markdown-toolbar .button {
+		padding: 5px 8px;
+		min-width: 16px;
+	}
+	.markdown-bold {
+		font-weight: bold;
+	}
+	.markdown-italic {
+		font-style: italic;
+	}
+	.markdown-hint {
+		font-size: 0.85em;
+	}
+	.markdown-preview {
+		height: 13em;
+		padding: $base_padding;
+		border: 1px solid $card_shadow_border_color;
+		border-radius: $alert_radius;
+		background-color: $card_bg_color;
+	}
+	.markdown-preview-text {
+		padding-right: $base_padding;
+	}
 	.modal-dialog-top-button-box {
 		padding: 0;
 	}
@@ -58,5 +88,53 @@
 
 	StScrollBar {
 		padding: $base_padding 0;
+	}
+}
+
+.clipboard-item-subjects {
+	spacing: 4px; // NOSONAR: GNOME StBoxLayout spacing property.
+	padding: 0;
+	.clipboard-subject {
+		font-size: 0.85em;
+		padding: 3px 8px;
+		max-width: 6em;
+		border-radius: 999px;
+		border: 1px solid transparentize($fg_color, 0.65);
+		background-color: transparentize($fg_color, 0.92);
+	}
+}
+
+.clipboard-item-edit-dialog {
+	.markdown-body {
+		spacing: 12px; // NOSONAR: GNOME StBoxLayout spacing property.
+	}
+	.markdown-split & {
+		width: 62em;
+	}
+	.markdown-toolbar .button {
+		padding: 7px 13px;
+	}
+	.markdown-tabs .button:checked,
+	.modal-dialog-button.suggested-action {
+		background-color: -st-accent-color;
+		color: -st-accent-fg-color;
+	}
+	.subject-editor {
+		spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
+	}
+	.subject-input-row {
+		spacing: 6px; // NOSONAR: GNOME StBoxLayout spacing property.
+	}
+	.subject-chips-scroll {
+		max-height: 5em;
+	}
+	.subject-chip,
+	.subject-suggestion {
+		padding: 4px 9px;
+		border-radius: 999px;
+		max-width: 16em;
+	}
+	.subject-chip {
+		border: 1px solid -st-accent-color;
 	}
 }

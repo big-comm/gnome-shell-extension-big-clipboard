@@ -2,8 +2,6 @@ import GObject from 'gi://GObject';
 import Gio from 'gi://Gio';
 import St from 'gi://St';
 
-import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-
 import CopyousExtension from '../../extension.js';
 import { DefaultColors, getDataPath } from '../common/constants.js';
 import { enumParamSpec, registerClass } from '../common/gjs.js';
@@ -26,8 +24,8 @@ export class ThemeManager extends GObject.Object {
 	private readonly _resource: Gio.Resource;
 	private readonly _themeSettings: ThemeSettings;
 	private readonly _settings: St.Settings;
+	private readonly _interfaceSettings: Gio.Settings;
 	private readonly _contrastChangedId: number;
-	private readonly _colorSchemeChangedId: number;
 
 	private _stylesheet: Gio.File | null = null;
 	private _colorScheme: CustomColorScheme = CustomColorScheme.Dark;
@@ -44,7 +42,8 @@ export class ThemeManager extends GObject.Object {
 		this._settings = St.Settings.get();
 
 		this._contrastChangedId = this._settings.connect('notify::high-contrast', this.updateTheme.bind(this));
-		this._colorSchemeChangedId = this._settings.connect('notify::color-scheme', this.updateTheme.bind(this));
+		this._interfaceSettings = new Gio.Settings({ schema_id: 'org.gnome.desktop.interface' });
+		this._interfaceSettings.connectObject('changed::color-scheme', this.updateTheme.bind(this), this);
 
 		this.updateTheme().catch(() => {});
 	}
@@ -70,7 +69,7 @@ export class ThemeManager extends GObject.Object {
 		Gio.resources_unregister(this._resource);
 		this._themeSettings.disconnectObject(this);
 		this._settings.disconnect(this._contrastChangedId);
-		this._settings.disconnect(this._colorSchemeChangedId);
+		this._interfaceSettings.disconnectObject(this);
 	}
 
 	private async updateTheme() {
@@ -85,9 +84,9 @@ export class ThemeManager extends GObject.Object {
 			if (colorScheme === ColorScheme.System) {
 				return this._settings.high_contrast
 					? CustomColorScheme.HighContrast
-					: Main.getStyleVariant() === 'light'
-						? CustomColorScheme.Light
-						: CustomColorScheme.Dark;
+					: this._interfaceSettings.get_string('color-scheme') === 'prefer-dark'
+						? CustomColorScheme.Dark
+						: CustomColorScheme.Light;
 			} else {
 				return (colorScheme - 1) as CustomColorScheme;
 			}

@@ -5,6 +5,7 @@ import Gio from 'gi://Gio';
 import type CopyousExtension from '../../extension.js';
 import { ItemType, getDefaultDatabaseFile } from '../common/constants.js';
 import { ClipboardHistory, DatabaseBackend } from '../common/settings.js';
+import { normalizeSubjects } from '../common/subjects.js';
 import { getLinkImagePath } from '../misc/link.js';
 import { ClipboardEntry, Database, Metadata } from './database.js';
 import { GdaDatabase } from './gda.js';
@@ -232,7 +233,7 @@ export class ClipboardEntryTracker {
 		const protectTagged = this.shouldProtectTagged();
 
 		for (const entry of this._entries.values()) {
-			if (entry.pinned || (protectTagged && entry.tag)) continue;
+			if (entry.pinned || (protectTagged && (entry.tag || entry.subjects))) continue;
 			if (entry.datetime.compare(olderThan) < 0) return true;
 		}
 
@@ -263,6 +264,7 @@ export class ClipboardEntryTracker {
 					// Update the date of the other entry
 					const conflicted = this._entries.get(id);
 					if (conflicted) {
+						conflicted.subjects = normalizeSubjects(`${conflicted.subjects}, ${entry.subjects}`);
 						conflicted.datetime = entry.datetime;
 					}
 				}
@@ -271,6 +273,7 @@ export class ClipboardEntryTracker {
 			entry.connect('notify::tag', () => this._database?.updateProperty(entry, 'tag'));
 			entry.connect('notify::datetime', () => this._database?.updateProperty(entry, 'datetime'));
 			entry.connect('notify::metadata', () => this._database?.updateProperty(entry, 'metadata'));
+			entry.connect('notify::subjects', () => this._database?.updateProperty(entry, 'subjects'));
 			entry.connect('notify::title', () => this._database?.updateProperty(entry, 'title'));
 			entry.connect('delete', () => this.delete(entry));
 			this._entries?.set(entry.id, entry);

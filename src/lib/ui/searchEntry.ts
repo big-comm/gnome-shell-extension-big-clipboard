@@ -12,6 +12,7 @@ import type CopyousExtension from '../../extension.js';
 import { ItemType, ItemTypes, Tag, Tags } from '../common/constants.js';
 import { enumParamSpec, registerClass } from '../common/gjs.js';
 import { Icon, loadIcon } from '../common/icons.js';
+import { subjectNames } from '../common/subjects.js';
 import { ClipboardEntry } from '../database/database.js';
 import { ButtonMask } from '../misc/compatibility.js';
 import { TagsItem } from './components/tagsItem.js';
@@ -71,7 +72,7 @@ export class SearchQuery extends GObject.Object {
 	}
 
 	public matchesType(type: ItemType): boolean {
-		return this.type === null || this.type === type;
+		return this.type === null || this.type === type || (this.type === ItemType.File && type === ItemType.Files);
 	}
 
 	public matchesProperties(pinned: boolean, tag: Tag | null, type: ItemType): boolean {
@@ -91,7 +92,12 @@ export class SearchQuery extends GObject.Object {
 		if (this.change === SearchChange.MoreStrict && !state) return false;
 
 		if (!this.matchesProperties(entry.pinned, entry.tag, entry.type)) return false;
-		if (this.matchesQuery(...text)) return true;
+		if (this.excludeTagged && entry.subjects) return false;
+		if (this.query.startsWith('#')) {
+			const subject = this.query.slice(1).trim();
+			return subjectNames(entry.subjects || '').some((name) => localeContains(name, subject));
+		}
+		if (this.matchesQuery(entry.subjects || '', ...text)) return true;
 		return entry.title ? this.matchesQuery(entry.title) : false;
 	}
 
