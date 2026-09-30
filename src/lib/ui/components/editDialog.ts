@@ -368,8 +368,8 @@ export class EditDialog extends ModalDialog.ModalDialog {
 			});
 			content.add_child(this._previewNotice);
 			this._entry.clutter_text.connect('key-press-event', (_actor, event: Clutter.Event) => {
-				if (!event.has_control_modifier() || (event.get_state() & Clutter.ModifierType.MOD1_MASK) !== 0)
-					return Clutter.EVENT_PROPAGATE;
+				const altPressed = event.get_state() & Clutter.ModifierType.MOD1_MASK;
+				if (!event.has_control_modifier() || altPressed !== 0) return Clutter.EVENT_PROPAGATE;
 				const key = event.get_key_symbol();
 				if (key === Clutter.KEY_b || key === Clutter.KEY_B) {
 					this.applyFormat('bold');

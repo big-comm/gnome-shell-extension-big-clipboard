@@ -107,7 +107,11 @@ export class ClipboardItem extends St.Button {
 		updateSubjects();
 		const addAction = (label: string, actionIcon: Icon, action: () => void) => {
 			const button = new St.Button({
-				child: new St.Icon({ gicon: loadIcon(ext, actionIcon), icon_size: 16 }),
+				child: new St.Icon({
+					gicon: loadIcon(ext, actionIcon),
+					icon_size: 16,
+					style_class: 'clipboard-item-action-icon',
+				}),
 				style_class: 'clipboard-item-action',
 				can_focus: true,
 				accessible_name: label,
