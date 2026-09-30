@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 12:24-0300\n"
+"POT-Creation-Date: 2026-09-30 17:39+0000\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Poedit 3.8\n"
 
-#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:133
 msgid "Open"
 msgstr "Ouvrir"
 
@@ -193,7 +193,7 @@ msgstr "Caractère"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:125 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Couleur"
 
@@ -365,7 +365,7 @@ msgstr "Ajouter un sous-menu"
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
 #: src/lib/ui/components/editDialog.ts:413
-#: src/lib/ui/items/clipboardItem.ts:127
+#: src/lib/ui/items/clipboardItem.ts:131
 msgid "Edit"
 msgstr "Modifier"
 
@@ -376,7 +376,7 @@ msgstr "Modifier le sous-menu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
-#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
+#: src/lib/ui/items/clipboardItem.ts:150 src/lib/ui/items/clipboardItem.ts:153
 msgid "Delete"
 msgstr "Supprimer"
 
