@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="resources/images/icon.svg" height="48" alt=""/><br/>
+  <img src="resources/images/big-clipboard-icon.png" width="96" height="96" alt="Big Clipboard logo"/><br/>
   Big Clipboard
 </h1>
 <p align="center">Clipboard history for GNOME, maintained by BigCommunity.</p>
