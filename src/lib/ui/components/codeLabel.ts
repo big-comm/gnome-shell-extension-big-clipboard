@@ -5,6 +5,7 @@ import Pango from 'gi://Pango';
 import St from 'gi://St';
 
 import type CopyousExtension from '../../../extension.js';
+import { detectCodeLanguage } from '../../common/codeDetection.js';
 import { registerClass } from '../../common/gjs.js';
 import { CustomColorScheme } from '../../common/settings.js';
 import { Language } from '../../database/database.js';
@@ -365,14 +366,14 @@ export class CodeLabel extends St.Label {
 		// Trim indentation before highlighting to prevent empty lines
 		let text = normalizeIndentation(trim(this._code.slice(0, 4096)), this.tabWidth);
 		if (this.syntaxHighlighting && this.ext.hljs != null) {
-			const language =
-				this.language && this.ext.hljs.getLanguage(this.language.id) != null ? this.language.id : null;
+			const detected = this.language ?? detectCodeLanguage(text, this.ext.hljs);
+			const language = detected && this.ext.hljs.getLanguage(detected.id) != null ? detected.id : null;
 
 			const result = language ? this.ext.hljs.highlight(text, { language }) : this.ext.hljs.highlightAuto(text);
 			text = applyTheme(this.ext.themeManager?.colorScheme, result.value);
 
 			// Store language
-			if (!language && result.language) {
+			if (!this.language && result.language) {
 				const id = result.language;
 				const name = this.ext.hljs.getLanguage(id)?.name ?? id;
 

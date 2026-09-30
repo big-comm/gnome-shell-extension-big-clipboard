@@ -90,7 +90,7 @@ function inline(text: string, depth = 0): string {
 	if (depth > 3) return escape(text);
 	let out = '';
 	for (let i = 0; i < text.length; ) {
-		if (text[i] === '\\' && i + 1 < text.length) {
+		if (text[i] === '\\' && /[\\`*{}[\]()#+.!_>~-]/.test(text[i + 1] ?? '')) {
 			out += escape(text[i + 1]!);
 			i += 2;
 			continue;
