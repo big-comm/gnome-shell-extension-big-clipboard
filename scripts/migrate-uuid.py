@@ -14,6 +14,10 @@ def migrate_lists(enabled, disabled):
     """Keep explicit disablement, ordering, unrelated entries and empty lists."""
     def convert(values):
         return list(dict.fromkeys(UUID if value == LEGACY_UUID else value for value in values))
+    # A removed Copyous can leave a stale disabled UUID behind.
+    # The replacement's explicit state takes precedence over that old entry.
+    if UUID in enabled and UUID not in disabled:
+        disabled = [value for value in disabled if value != LEGACY_UUID]
     disabled_out = convert(disabled)
     enabled_out = convert(enabled)
     # GNOME gives disabled-extensions precedence over enabled-extensions.
