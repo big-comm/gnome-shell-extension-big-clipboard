@@ -129,9 +129,9 @@ export class ClipboardManager extends GObject.Object {
 
 		// File
 		if (content.type === ContentType.File) {
-			const s = `${FileOperation.Copy}\n${content.paths.join('\n')}`;
-			const bytes = Utf8Encoder.encode(s);
-			this.clipboard.set_content(St.ClipboardType.CLIPBOARD, MimeTypes.File[0], bytes);
+			// URI lists are recognized by GTK file lists and file managers.
+			const bytes = Utf8Encoder.encode(`${content.paths.join('\r\n')}\r\n`);
+			this.clipboard.set_content(St.ClipboardType.CLIPBOARD, 'text/uri-list', bytes);
 			return;
 		}
 	}
