@@ -15,7 +15,7 @@
 
 This repository contains the extension source, BigCommunity modifications and distribution packaging. The original authors retain credit for Copyous; the changes below focus on large clipboard histories, GNOME compatibility and layout switching.
 
-Watch the English walkthrough recorded on **GNOME 51 with Frosted Glass blur**: copy text to create a card, edit Markdown notes, add subjects and colors, pin favorites, browse code/images/PDF files, search by subject, and switch between light and dark themes.
+Watch the English walkthrough recorded on **GNOME 51 with Frosted Glass blur**: copy text to create a card, edit Markdown notes, add subjects and colors, pin favorites, browse code/images/PDF files with larger previews and compact card footers, search by subject, and switch between light and dark themes.
 
 ![Big Clipboard walkthrough in English: capture, editing, subjects, files and light/dark themes](resources/images/big-clipboard-demo.gif)
 
@@ -71,13 +71,13 @@ Text cards render Markdown formatting directly; copying and editing retain the o
 
 The preview supports these tools, headings and fenced code blocks. It treats HTML as text, never fetches remote content and never executes links. Only the first 20,000 characters are rendered in the preview; the complete note remains stored and copied.
 
-Choose the subject icon above a card's action buttons, including on images and files, or edit subjects with a note. Once subjects are assigned, use **+** beside their labels to add more. Add names with Enter or commas, for example `Work, Research`. Reuse suggested subjects and remove a label with its × button. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.
+Choose the subject icon in a card's footer, including on images and files, or edit subjects with a note. Once subjects are assigned, use **+** beside their labels to add more. Add names with Enter or commas, for example `Work, Research`. Reuse suggested subjects and remove a label with its × button. Search for `#Work` to match subject names, or use ordinary search to match subjects and content together. Existing color and pinned filters can be combined with subject searches. Remove names from the field to unassign them.
 
 Subject labels follow the same retention and deletion protection settings as color tags. SQLite receives an additive, transactional schema update; JSON gains an optional field. Existing text, images, pins, colors, metadata and storage locations remain intact. As with color tags, explicit **clear all** removes labeled items too.
 
 ## Cards and files
 
-The compact horizontal panel and vertical view share quick type filters and a pinned filter. Counts use history metadata; only the first 12 matching cards are initially created. Cards default to 250 × 210 pixels. Subject labels sit above the footer; the footer contains color, edit/open and delete controls. Pinning stays in the header, separate from deletion. The three-dot menu contains additional actions. Clicking the content keeps the existing copy/paste behavior; footer buttons do not copy the card.
+The compact horizontal panel and vertical view share quick type filters and a pinned filter. Counts use history metadata; only the first 12 matching cards are initially created. Cards default to 250 × 210 pixels. Subject labels and their add button share a single footer row with color, edit/open and delete controls, leaving more room for previews. Long subject lists collapse into a count without displacing the actions. Pinning stays in the header, separate from deletion. The three-dot menu contains additional actions. Clicking the content keeps the existing copy/paste behavior; footer buttons do not copy the card.
 
 Copy PDFs, documents, archives, folders or multiple files in the file manager, then select their card and paste into a destination folder. File cards show the name, a MIME-type icon and asynchronously loaded metadata. File groups show up to 12 rows with icons and a remaining count. File history stores references, not backup copies: moving or deleting an original can make its entry unavailable. Reusing a cut entry copies the original instead of repeating a destructive move.
 

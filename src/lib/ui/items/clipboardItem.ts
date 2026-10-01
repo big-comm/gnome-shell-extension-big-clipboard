@@ -50,7 +50,6 @@ export class ClipboardItem extends St.Button {
 	private readonly _box: St.Widget;
 	private readonly _footer: St.BoxLayout;
 	private readonly _subjects: CardSubjects;
-	private readonly _subjectRow: St.BoxLayout;
 	private readonly _header: ClipboardItemHeader;
 	protected _content: St.BoxLayout;
 
@@ -94,10 +93,7 @@ export class ClipboardItem extends St.Button {
 		this._box.add_child(this._content);
 		this._footer = new St.BoxLayout({ style_class: 'clipboard-item-actions' });
 		this._subjects = new CardSubjects(ext, () => this.editSubjects());
-		this._subjectRow = new St.BoxLayout({ style_class: 'clipboard-subject-row' });
-		this._subjectRow.add_child(this._subjects);
-		this._box.add_child(this._subjectRow);
-		this._footer.add_child(new St.Widget({ x_expand: true }));
+		this._footer.add_child(this._subjects);
 		const updateSubjects = () => {
 			const names = subjectNames(entry.subjects);
 			this._subjects.names = names;
@@ -300,7 +296,6 @@ export class ClipboardItem extends St.Button {
 		if (this._headerShown === show) return;
 		this._headerShown = show;
 		this._footer.visible = show;
-		this._subjectRow.visible = show;
 
 		if (show) {
 			this.remove_style_class_name('no-header');

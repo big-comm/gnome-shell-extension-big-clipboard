@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 23:17+0000\n"
+"POT-Creation-Date: 2026-09-30 22:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:133
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Öffnen"
 
@@ -193,7 +193,7 @@ msgstr "Zeichen"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/clipboardItem.ts:125 src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Farbe"
 
@@ -365,7 +365,7 @@ msgstr "Untermenü hinzufügen"
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
 #: src/lib/ui/components/editDialog.ts:413
-#: src/lib/ui/items/clipboardItem.ts:131
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -376,7 +376,7 @@ msgstr "Untermenü bearbeiten"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
-#: src/lib/ui/items/clipboardItem.ts:150 src/lib/ui/items/clipboardItem.ts:153
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Löschen"
 
@@ -1985,146 +1985,3 @@ msgstr "Tastenkürzel"
 #: src/prefs.ts:109
 msgid "Access your clipboard with the keyboard."
 msgstr "Mit der Tastatur auf die Zwischenablage zugreifen."
-
-#~ msgid ""
-#~ "Automatically paste clipboard items when selected from clipboard history"
-#~ msgstr ""
-#~ "Elemente aus der Zwischenablage automatisch einfügen, wenn sie aus dem "
-#~ "Zwischenablageverlauf ausgewählt werden"
-
-#~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, "
-#~ "or shut down your system"
-#~ msgstr ""
-#~ "Wählen Sie aus, was mit Ihrem Zwischenablageverlauf geschehen soll, wenn "
-#~ "Sie Ihr System neu starten, sich abmelden oder herunterfahren"
-
-#~ msgid "Clipboard History"
-#~ msgstr "Zwischenablage-Verlauf"
-
-#~ msgid "Customization"
-#~ msgstr "Anpassung"
-
-#~ msgid "Dependencies"
-#~ msgstr "Abhängigkeiten"
-
-#, javascript-format
-#~ msgid "Error Installing %s"
-#~ msgstr "Fehler beim Installieren von %s"
-
-#~ msgid "Error Installing Highlight.js"
-#~ msgstr "Fehler bei der Installation von Highlight.js"
-
-#, javascript-format
-#~ msgid "Error Uninstalling %s"
-#~ msgstr "Fehler beim Deinstallieren von %s"
-
-#~ msgid "Failed to load database"
-#~ msgstr "Datenbank konnte nicht geladen werden"
-
-#~ msgid "General"
-#~ msgstr "Allgemein"
-
-#~ msgid "Highlight.js Not Installed"
-#~ msgstr "Highlight.js nicht installiert"
-
-#~ msgid "Highlight.js is required to display syntax highlighted code."
-#~ msgstr ""
-#~ "Highlight.js ist erforderlich, um syntaxhervorgehobenen Code anzuzeigen."
-
-#~ msgid "History Length"
-#~ msgstr "Länge des Verlaufs"
-
-#~ msgid "History Time Limit"
-#~ msgstr "Verlauf Zeitlimit"
-
-#~ msgid "Install"
-#~ msgstr "Installieren"
-
-#~ msgid "Install Location"
-#~ msgstr "Installationsort"
-
-#~ msgid "Languages"
-#~ msgstr "Sprachen"
-
-#~ msgid "Manage Highlight.js"
-#~ msgstr "Highlight.js verwalten"
-
-#~ msgid "Manage the Highlight.js installation"
-#~ msgstr "Verwalten Sie die Installation von Highlight.js"
-
-#~ msgid "Manual Installation"
-#~ msgstr "Manuelle Installation"
-
-#~ msgid "Paste on Copy"
-#~ msgstr "Einfügen beim Kopieren"
-
-#~ msgid "Select how many items to keep in the clipboard history"
-#~ msgstr ""
-#~ "Wählen Sie aus, wie viele Elemente im Verlauf der Zwischenablage "
-#~ "gespeichert werden sollen"
-
-#~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
-#~ "to disable the time limit"
-#~ msgstr ""
-#~ "Wählen Sie aus, wie viele Minuten Elemente im Zwischenablageverlauf "
-#~ "gespeichert werden sollen. Setzen Sie den Wert auf 0, um die zeitliche "
-#~ "Begrenzung zu deaktivieren"
-
-#~ msgid ""
-#~ "Separate subjects with commas. Search with # followed by a subject name."
-#~ msgstr ""
-#~ "Themen durch Kommas trennen. Mit # gefolgt von einem Themennamen suchen."
-
-#~ msgid "Set the color scheme of the custom theme"
-#~ msgstr "Legen Sie das Farbschema des benutzerdefinierten Designs fest"
-
-#~ msgid "Show Clipboard Content in Indicator"
-#~ msgstr "Inhalt der Zwischenablage in Indikator anzeigen"
-
-#~ msgid "Show Indicator"
-#~ msgstr "Indikator anzeigen"
-
-#~ msgid "Show an indicator on the top panel"
-#~ msgstr "Zeige einen Indikator auf dem oberen Bedienfeld an"
-
-#~ msgid "Show the current clipboard content in the indicator"
-#~ msgstr "Zeige den aktuellen Inhalt der Zwischenablage im Indikator an"
-
-#~ msgid "Starting Highlight.js Download"
-#~ msgstr "Starte herunterladen von Highlight.js"
-
-#~ msgid "Store clipboard history in memory instead of on disk"
-#~ msgstr ""
-#~ "Zwischenablage-Verlauf im Speicher statt auf der Festplatte speichern"
-
-#~ msgid "Subjects, separated by commas"
-#~ msgstr "Themen, durch Kommas getrennt"
-
-#~ msgid "Subjects…"
-#~ msgstr "Themen…"
-
-#, javascript-format
-#~ msgid "Successfully Installed %s"
-#~ msgstr "%s wurde erfolgreich installiert"
-
-#~ msgid "Successfully Installed Highlight.js"
-#~ msgstr "Highlight.js erfolgreich installiert"
-
-#, javascript-format
-#~ msgid "Successfully Uninstalled %s"
-#~ msgstr "%s wurde erfolgreich deinstalliert"
-
-#~ msgid "Url"
-#~ msgstr "Url"
-
-#~ msgid "Use In-Memory Database"
-#~ msgstr "In-Memory-Datenbank verwenden"
-
-#~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
-#~ msgstr ""
-#~ "Sie können highlight.js manuell installieren, indem Sie highlight.min.js "
-#~ "von „Url“ nach „Installationsort“ herunterladen."

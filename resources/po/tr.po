@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 23:17+0000\n"
+"POT-Creation-Date: 2026-09-30 22:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:133
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Aç"
 
@@ -193,7 +193,7 @@ msgstr "Karakter"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/clipboardItem.ts:125 src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Renk"
 
@@ -364,7 +364,7 @@ msgstr "Alt Menü Ekle"
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
 #: src/lib/ui/components/editDialog.ts:413
-#: src/lib/ui/items/clipboardItem.ts:131
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -375,7 +375,7 @@ msgstr "Alt Menüyü Düzenle"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
-#: src/lib/ui/items/clipboardItem.ts:150 src/lib/ui/items/clipboardItem.ts:153
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Sil"
 
@@ -1967,141 +1967,3 @@ msgstr "Kısayollar"
 #: src/prefs.ts:109
 msgid "Access your clipboard with the keyboard."
 msgstr "Panoya klavyeyle erişin."
-
-#~ msgid ""
-#~ "Automatically paste clipboard items when selected from clipboard history"
-#~ msgstr "Pano geçmişinden bir öğe seçildiğinde otomatik olarak yapıştır"
-
-#~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, "
-#~ "or shut down your system"
-#~ msgstr ""
-#~ "Sistemi yeniden başlattığında, oturumu kapattığında veya cihazı "
-#~ "kapattığında pano geçmişine ne yapılacağını seç"
-
-#~ msgid "Clipboard History"
-#~ msgstr "Pano Geçmişi"
-
-#~ msgid "Customization"
-#~ msgstr "Özelleştirme"
-
-#~ msgid "Dependencies"
-#~ msgstr "Bağımlılıklar"
-
-#, javascript-format
-#~ msgid "Error Installing %s"
-#~ msgstr "%s Kurulurken Hata Oluştu"
-
-#~ msgid "Error Installing Highlight.js"
-#~ msgstr "Highlight.js Kurulurken Hata Oluştu"
-
-#, javascript-format
-#~ msgid "Error Uninstalling %s"
-#~ msgstr "%s Kaldırılırken Hata Oluştu"
-
-#~ msgid "Failed to load database"
-#~ msgstr "Veritabanı yüklenemedi"
-
-#~ msgid "General"
-#~ msgstr "Genel"
-
-#~ msgid "Highlight.js Not Installed"
-#~ msgstr "Highlight.js Kurulu Değil"
-
-#~ msgid "Highlight.js is required to display syntax highlighted code."
-#~ msgstr ""
-#~ "Sözdizimi vurgulu kodları görüntülemek için Highlight.js gereklidir."
-
-#~ msgid "History Length"
-#~ msgstr "Geçmiş Uzunluğu"
-
-#~ msgid "History Time Limit"
-#~ msgstr "Geçmiş Zaman Sınırı"
-
-#~ msgid "Install"
-#~ msgstr "Kur"
-
-#~ msgid "Install Location"
-#~ msgstr "Kurulum Konumu"
-
-#~ msgid "Languages"
-#~ msgstr "Diller"
-
-#~ msgid "Manage Highlight.js"
-#~ msgstr "Highlight.js'yi Yönet"
-
-#~ msgid "Manage the Highlight.js installation"
-#~ msgstr "Highlight.js kurulumunu yönet"
-
-#~ msgid "Manual Installation"
-#~ msgstr "Elle Kurulum"
-
-#~ msgid "Paste on Copy"
-#~ msgstr "Kopyalamada Yapıştır"
-
-#~ msgid "Select how many items to keep in the clipboard history"
-#~ msgstr "Pano geçmişinde kaç öğe tutulacağını seç"
-
-#~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
-#~ "to disable the time limit"
-#~ msgstr ""
-#~ "Pano geçmişinde öğelerin kaç dakika tutulacağını seç. Zaman sınırını "
-#~ "devre dışı bırakmak için 0 olarak ayarla"
-
-#~ msgid ""
-#~ "Separate subjects with commas. Search with # followed by a subject name."
-#~ msgstr ""
-#~ "Konuları virgülle ayırın. Aramak için # işaretinden sonra konu adını "
-#~ "yazın."
-
-#~ msgid "Set the color scheme of the custom theme"
-#~ msgstr "Özel temanın renk şemasını ayarla"
-
-#~ msgid "Show Clipboard Content in Indicator"
-#~ msgstr "Göstergede Pano İçeriğini Göster"
-
-#~ msgid "Show Indicator"
-#~ msgstr "Göstergeyi Göster"
-
-#~ msgid "Show an indicator on the top panel"
-#~ msgstr "Üst panelde bir gösterge göster"
-
-#~ msgid "Show the current clipboard content in the indicator"
-#~ msgstr "Göstergede mevcut pano içeriğini göster"
-
-#~ msgid "Starting Highlight.js Download"
-#~ msgstr "Highlight.js İndirmesi Başlatılıyor"
-
-#~ msgid "Store clipboard history in memory instead of on disk"
-#~ msgstr "Pano geçmişini disk yerine bellekte sakla"
-
-#~ msgid "Subjects, separated by commas"
-#~ msgstr "Virgülle ayrılmış konular"
-
-#~ msgid "Subjects…"
-#~ msgstr "Konular…"
-
-#, javascript-format
-#~ msgid "Successfully Installed %s"
-#~ msgstr "%s Başarıyla Kuruldu"
-
-#~ msgid "Successfully Installed Highlight.js"
-#~ msgstr "Highlight.js Başarıyla Kuruldu"
-
-#, javascript-format
-#~ msgid "Successfully Uninstalled %s"
-#~ msgstr "%s Başarıyla Kaldırıldı"
-
-#~ msgid "Url"
-#~ msgstr "Adres"
-
-#~ msgid "Use In-Memory Database"
-#~ msgstr "Bellek İçi Veritabanı Kullan"
-
-#~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
-#~ msgstr ""
-#~ "Highlight.js'yi \"Adres\" üzerinden \"Kurulum Konumu\"na indirerek elle "
-#~ "kurabilirsin."

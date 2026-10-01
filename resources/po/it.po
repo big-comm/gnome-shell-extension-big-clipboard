@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 23:17+0000\n"
+"POT-Creation-Date: 2026-09-30 22:24-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Italiano\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Gtranslator 49.0\n"
 
-#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:133
+#: src/lib/common/actions.ts:182 src/lib/ui/items/clipboardItem.ts:129
 msgid "Open"
 msgstr "Apri"
 
@@ -191,7 +191,7 @@ msgstr "Carattere"
 #: src/lib/preferences/actions/actionDialog.ts:182
 #: src/lib/preferences/actions/actionDialog.ts:257
 #: src/lib/preferences/actions/actionDialog.ts:385
-#: src/lib/ui/items/clipboardItem.ts:125 src/lib/ui/items/colorItem.ts:71
+#: src/lib/ui/items/clipboardItem.ts:121 src/lib/ui/items/colorItem.ts:71
 msgid "Color"
 msgstr "Colore"
 
@@ -363,7 +363,7 @@ msgstr "Aggiungi sottomenu"
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
 #: src/lib/ui/components/editDialog.ts:413
-#: src/lib/ui/items/clipboardItem.ts:131
+#: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Modifica"
 
@@ -374,7 +374,7 @@ msgstr "Modifica sottomenu"
 #: src/lib/preferences/actions/actionsGroup.ts:34
 #: src/lib/preferences/actions/actionsGroup.ts:126
 #: src/lib/preferences/actions/actionsGroup.ts:424
-#: src/lib/ui/items/clipboardItem.ts:150 src/lib/ui/items/clipboardItem.ts:153
+#: src/lib/ui/items/clipboardItem.ts:146 src/lib/ui/items/clipboardItem.ts:149
 msgid "Delete"
 msgstr "Elimina"
 
@@ -1978,146 +1978,3 @@ msgstr "Scorciatoie"
 #: src/prefs.ts:109
 msgid "Access your clipboard with the keyboard."
 msgstr "Accedi agli appunti con la tastiera."
-
-#~ msgid ""
-#~ "Automatically paste clipboard items when selected from clipboard history"
-#~ msgstr ""
-#~ "Incolla automaticamente gli elementi degli appunti quando vengono "
-#~ "selezionati dalla cronologia degli appunti"
-
-#~ msgid ""
-#~ "Choose what to do with your clipboard history when you restart, log out, "
-#~ "or shut down your system"
-#~ msgstr ""
-#~ "Scegliere cosa fare con la cronologia degli appunti al riavvio, "
-#~ "disconnessione o spegnimento del sistema"
-
-#~ msgid "Clipboard History"
-#~ msgstr "Cronologia degli appunti"
-
-#~ msgid "Customization"
-#~ msgstr "Personalizzazione"
-
-#~ msgid "Dependencies"
-#~ msgstr "Dipendenze"
-
-#, javascript-format
-#~ msgid "Error Installing %s"
-#~ msgstr "Errore durante l'installazione di %s"
-
-#~ msgid "Error Installing Highlight.js"
-#~ msgstr "Errore durante l'installazione di Highlight.js"
-
-#, javascript-format
-#~ msgid "Error Uninstalling %s"
-#~ msgstr "Errore durante la disinstallazione di %s"
-
-#~ msgid "Failed to load database"
-#~ msgstr "Impossibile caricare il database"
-
-#~ msgid "General"
-#~ msgstr "Generale"
-
-#~ msgid "Highlight.js Not Installed"
-#~ msgstr "Highlight.js non installato"
-
-#~ msgid "Highlight.js is required to display syntax highlighted code."
-#~ msgstr ""
-#~ "Highlight.js è necessario per visualizzare il codice con evidenziazione "
-#~ "della sintassi."
-
-#~ msgid "History Length"
-#~ msgstr "Lunghezza della cronologia"
-
-#~ msgid "History Time Limit"
-#~ msgstr "Limite di tempo della cronologia"
-
-#~ msgid "Install"
-#~ msgstr "Installa"
-
-#~ msgid "Install Location"
-#~ msgstr "Posizione di installazione"
-
-#~ msgid "Languages"
-#~ msgstr "Lingue"
-
-#~ msgid "Manage Highlight.js"
-#~ msgstr "Gestisci Highlight.js"
-
-#~ msgid "Manage the Highlight.js installation"
-#~ msgstr "Gestisci l'installazione di Highlight.js"
-
-#~ msgid "Manual Installation"
-#~ msgstr "Installazione manuale"
-
-#~ msgid "Paste on Copy"
-#~ msgstr "Incolla alla copia"
-
-#~ msgid "Select how many items to keep in the clipboard history"
-#~ msgstr ""
-#~ "Selezionare il numero di elementi da conservare nella cronologia degli "
-#~ "appunti"
-
-#~ msgid ""
-#~ "Select how many minutes to keep items in the clipboard history. Set to 0 "
-#~ "to disable the time limit"
-#~ msgstr ""
-#~ "Selezionare per quanti minuti mantenere gli elementi nella cronologia "
-#~ "degli appunti. Impostare su 0 per disattivare il limite di tempo"
-
-#~ msgid ""
-#~ "Separate subjects with commas. Search with # followed by a subject name."
-#~ msgstr ""
-#~ "Separa gli argomenti con virgole. Cerca con # seguito dal nome di un "
-#~ "argomento."
-
-#~ msgid "Set the color scheme of the custom theme"
-#~ msgstr "Imposta lo schema di colori del tema personalizzato"
-
-#~ msgid "Show Clipboard Content in Indicator"
-#~ msgstr "Mostra il contenuto degli appunti nell'indicatore"
-
-#~ msgid "Show Indicator"
-#~ msgstr "Mostra indicatore"
-
-#~ msgid "Show an indicator on the top panel"
-#~ msgstr "Mostra un indicatore sul pannello superiore"
-
-#~ msgid "Show the current clipboard content in the indicator"
-#~ msgstr "Mostra il contenuto attuale degli appunti nell'indicatore"
-
-#~ msgid "Starting Highlight.js Download"
-#~ msgstr "Avvio del download di Highlight.js"
-
-#~ msgid "Store clipboard history in memory instead of on disk"
-#~ msgstr "Archivia la cronologia degli appunti in memoria anziché su disco"
-
-#~ msgid "Subjects, separated by commas"
-#~ msgstr "Argomenti, separati da virgole"
-
-#~ msgid "Subjects…"
-#~ msgstr "Argomenti…"
-
-#, javascript-format
-#~ msgid "Successfully Installed %s"
-#~ msgstr "%s installato con successo"
-
-#~ msgid "Successfully Installed Highlight.js"
-#~ msgstr "Highlight.js installato con successo"
-
-#, javascript-format
-#~ msgid "Successfully Uninstalled %s"
-#~ msgstr "%s disinstallato con successo"
-
-#~ msgid "Url"
-#~ msgstr "URL"
-
-#~ msgid "Use In-Memory Database"
-#~ msgstr "Usa un database in memoria"
-
-#~ msgid ""
-#~ "You can manually install highlight.js by downloading highlight.min.js "
-#~ "from \"Url\" to \"Install Location\"."
-#~ msgstr ""
-#~ "Puoi installare manualmente highlight.js scaricando highlight.min.js da "
-#~ "\"Url\" a \"Percorso di installazione\"."
