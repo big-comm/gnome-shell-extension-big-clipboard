@@ -35,7 +35,9 @@ class MigrationTests(unittest.TestCase):
             ([], [m.LEGACY_UUID], ([], [m.UUID])),
             ([m.LEGACY_UUID], [m.LEGACY_UUID], ([], [m.UUID])),
             ([m.LEGACY_UUID, m.UUID], [], ([m.UUID], [])),
-            ([m.UUID], [m.LEGACY_UUID], ([], [m.UUID])),
+            ([m.UUID], [m.LEGACY_UUID], ([m.UUID], [])),
+            ([m.LEGACY_UUID, m.UUID], [m.LEGACY_UUID], ([m.UUID], [])),
+            ([m.UUID], [m.LEGACY_UUID, m.UUID], ([], [m.UUID])),
             ([m.LEGACY_UUID], [m.UUID], ([], [m.UUID])),
             (['other'], ['disabled'], (['other'], ['disabled'])),
             ([], [], ([], [])),
@@ -55,6 +57,17 @@ class MigrationTests(unittest.TestCase):
             self.assertEqual(settings.applied, 1)
             self.assertEqual((state/'activation-before.json').read_bytes(), backup)
             self.assertEqual((state/'activation-before.json').stat().st_mode & 0o777, 0o600)
+
+    def test_current_activation_survives_removed_copyous(self):
+        with tempfile.TemporaryDirectory() as temp:
+            state = Path(temp) / 'migration'
+            settings = Settings([m.UUID], [m.LEGACY_UUID])
+            self.assertTrue(m.migrate(settings, state))
+            self.assertEqual(settings.values, dict(zip(m.KEYS, [[m.UUID], []])))
+            self.assertFalse(m.migrate(settings, state))
+            self.assertEqual(settings.applied, 1)
+            original = (state / 'activation-before.json').read_text()
+            self.assertIn(m.LEGACY_UUID, original)
 
     def test_never_enables_clean_install(self):
         with tempfile.TemporaryDirectory() as temp:
