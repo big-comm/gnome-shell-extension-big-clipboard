@@ -59,35 +59,3 @@ jobs:
         with:
           path: dist/${{ env.UUID }}.zip
           archive: false
-
-  localization:
-    if: github.event_name == 'push'
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Install Gettext
-        run: |
-          sudo apt update
-          sudo apt install -y gettext
-
-      - name: Check Update
-        run: make check-pot && make check-po && echo "PO_CHANGED=false" >> $GITHUB_ENV || echo "PO_CHANGED=true" >> $GITHUB_ENV
-
-      - name: Update POT
-        if: env.PO_CHANGED == 'true'
-        run: make pot -B
-
-      - name: Update PO
-        if: env.PO_CHANGED == 'true'
-        run: make po -B
-
-      - uses: stefanzweifel/git-auto-commit-action@v7
-        if: env.PO_CHANGED == 'true'
-        with:
-          commit_message: 'Update localization'
-          file_pattern: 'resources/po'
