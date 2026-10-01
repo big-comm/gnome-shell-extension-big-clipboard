@@ -6,4 +6,4 @@ enter-keyboard-shortcut taken from https://gitlab.gnome.org/GNOME/gnome-control-
 
 `big-clipboard-icon.png`: Big Clipboard artwork generated with OpenAI ImageGen and selected by BigCommunity, 2026-09-30. Transparent PNG.
 
-`big-clipboard-demo.gif`: English GNOME 51 VM recording with Frosted Glass blur, 2026-09-30. Synthetic text, image and PDF fixtures in an isolated demo database; no personal clipboard content. English captions added with FFmpeg.
+`big-clipboard-demo.gif`: English GNOME 51 VM recording with Frosted Glass blur, 2026-09-30. Updated compact card footers and larger file previews. Synthetic text, image and PDF fixtures in an isolated demo database; no personal clipboard content. English captions added with FFmpeg.
