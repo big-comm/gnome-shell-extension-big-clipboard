@@ -1,6 +1,7 @@
 {
-	"name": "copyous",
-	"author": "boerdereinar",
+	"name": "big-clipboard",
+	"author": "BigCommunity",
+	"contributors": ["boerdereinar and Copyous contributors"],
 	"license": "GPL-3.0-or-later",
 	"type": "module",
 	"private": true,

@@ -36,7 +36,7 @@ endif
 .PHONY: lint
 .PHONY: pot po check-pot check-po
 .PHONY: build install uninstall
-.PHONY: launch launch-profile launch-settings
+.PHONY: launch launch-settings
 
 # Default target
 all: $(DIST_ZIP)

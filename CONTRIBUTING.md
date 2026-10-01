@@ -2,7 +2,9 @@
 ## Pull Requests
 - Name pull requests using the imperative mood (i.e. "Add feature", or "Fix bug").
 - Each pull request should focus on a single, clear change.
-- All pull requests are squashed and merged, so ensure your pull request accurately summarizes the change.
+- Keep pull request titles and descriptions in English.
+- BigCommunity development uses `dev-talesam`; releases are integrated into `main` through pull requests.
+- Preserve upstream attribution and the legacy storage, settings and D-Bus identifiers documented in `docs/UPGRADE.md`.
 
 ## Code Style
 This project uses [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) for linting and formatting.
@@ -11,6 +13,20 @@ You can lint and format your code by running:
 ```shell
 make lint-fix
 ```
+
+## Validation
+
+Before opening a pull request, run:
+```shell
+pnpm install --frozen-lockfile --ignore-scripts
+pnpm exec tsc --noEmit
+pnpm test
+python3 -m unittest discover -s tests -p 'test_uuid_migration.py'
+make lint check-pot check-po
+RELEASE=1 make build
+```
+
+When translatable strings or their source locations change, run `make pot -B` and `make po`, review the changes, and commit the catalogs with the code. CI validates catalogs; it does not commit to `main`.
 
 ## Development
 ### Configuration
