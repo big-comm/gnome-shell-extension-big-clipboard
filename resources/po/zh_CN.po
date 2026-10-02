@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 22:24-0300\n"
+"POT-Creation-Date: 2026-10-02 14:37-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -140,14 +140,14 @@ msgstr "默认动作"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "文本"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "代码"
 
@@ -169,7 +169,7 @@ msgstr "文件"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "多文件"
@@ -197,7 +197,7 @@ msgid "Color"
 msgstr "颜色"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:29
+#: src/lib/ui/components/typeFilters.ts:31
 msgid "All"
 msgstr "所有"
 
@@ -497,8 +497,8 @@ msgstr "中间"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:57
 #: src/lib/preferences/customization/dialogCustomization.ts:66
-#: src/lib/preferences/customization/dialogCustomization.ts:188
-#: src/lib/preferences/customization/dialogCustomization.ts:192
+#: src/lib/preferences/customization/dialogCustomization.ts:195
+#: src/lib/preferences/customization/dialogCustomization.ts:199
 msgid "Fill"
 msgstr "填充"
 
@@ -566,26 +566,36 @@ msgid "Automatically hide the search bar when not focused"
 msgstr "在未聚焦时自动隐藏搜索栏"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:121
+msgid "Compact Filters"
+msgstr "紧凑筛选器"
+
+#: src/lib/preferences/customization/dialogCustomization.ts:122
+msgid ""
+"Show icons and counts instead of filter names. Hover over an icon to see its"
+" name."
+msgstr "显示图标和数量，而不显示筛选器名称。将鼠标悬停在图标上可查看其名称。"
+
+#: src/lib/preferences/customization/dialogCustomization.ts:127
 msgid "Show Scrollbar"
 msgstr "显示滚动条"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:122
+#: src/lib/preferences/customization/dialogCustomization.ts:128
 msgid "Show a scrollbar when items overflow"
 msgstr "内容溢出时显示滚动条"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:206
+#: src/lib/preferences/customization/dialogCustomization.ts:213
 msgid "Width"
 msgstr "宽度"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:207
+#: src/lib/preferences/customization/dialogCustomization.ts:214
 msgid "Change the width of the clipboard dialog"
 msgstr "更改剪贴板对话框的宽度"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:209
+#: src/lib/preferences/customization/dialogCustomization.ts:216
 msgid "Height"
 msgstr "高度"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:210
+#: src/lib/preferences/customization/dialogCustomization.ts:217
 msgid "Change the height of the clipboard dialog"
 msgstr "更改剪贴板对话框的高度"
 
@@ -1252,59 +1262,69 @@ msgid "Behavior"
 msgstr "行为"
 
 #: src/lib/preferences/general/behaviorSettings.ts:18
+msgid "Paste Directly on Selection"
+msgstr "选择后直接粘贴"
+
+#: src/lib/preferences/general/behaviorSettings.ts:20
+msgid ""
+"Paste into the active application when selecting a card. When disabled, only"
+" copy to the clipboard."
+msgstr "选择卡片时粘贴到当前应用。关闭后，仅复制到剪贴板。"
+
+#: src/lib/preferences/general/behaviorSettings.ts:26
 msgid "Remember Search Query"
 msgstr "记住搜索查询"
 
-#: src/lib/preferences/general/behaviorSettings.ts:19
+#: src/lib/preferences/general/behaviorSettings.ts:27
 msgid ""
 "Remember the search query when closing and reopening the clipboard dialog"
 msgstr "关闭并重新打开剪贴板对话框时记住搜索查询"
 
-#: src/lib/preferences/general/behaviorSettings.ts:24
+#: src/lib/preferences/general/behaviorSettings.ts:32
 msgid "Exclude Pinned Items from Main View"
 msgstr "从主视图中排除已固定项"
 
-#: src/lib/preferences/general/behaviorSettings.ts:25
+#: src/lib/preferences/general/behaviorSettings.ts:33
 msgid "Pinned items appear only when searching for pinned items"
 msgstr "已固定项仅在搜索已固定项时出现"
 
-#: src/lib/preferences/general/behaviorSettings.ts:30
+#: src/lib/preferences/general/behaviorSettings.ts:38
 msgid "Exclude Tagged Items from Main View"
 msgstr "从主视图中排除已标记项"
 
-#: src/lib/preferences/general/behaviorSettings.ts:31
+#: src/lib/preferences/general/behaviorSettings.ts:39
 msgid "Tagged items appear only when searching for tagged items"
 msgstr "已标记项仅在搜索已标记项时出现"
 
-#: src/lib/preferences/general/behaviorSettings.ts:36
+#: src/lib/preferences/general/behaviorSettings.ts:44
 msgid "Protect Pinned Items"
 msgstr "保护已固定项"
 
-#: src/lib/preferences/general/behaviorSettings.ts:37
+#: src/lib/preferences/general/behaviorSettings.ts:45
 msgid "Prevents pinned clipboard items from being deleted"
 msgstr "防止已固定的剪贴板项目被删除"
 
-#: src/lib/preferences/general/behaviorSettings.ts:42
+#: src/lib/preferences/general/behaviorSettings.ts:50
 msgid "Protect Tagged Items"
 msgstr "保护已标记项"
 
-#: src/lib/preferences/general/behaviorSettings.ts:43
+#: src/lib/preferences/general/behaviorSettings.ts:51
 msgid "Prevents tagged clipboard items from being deleted"
 msgstr "防止带标签的剪贴板项目被删除"
 
-#: src/lib/preferences/general/behaviorSettings.ts:48
+#: src/lib/preferences/general/behaviorSettings.ts:56
 msgid "Sync Primary Clipboard"
 msgstr "同步主剪贴板"
 
-#: src/lib/preferences/general/behaviorSettings.ts:49
+#: src/lib/preferences/general/behaviorSettings.ts:57
 msgid "Also copy clipboard items to the primary clipboard"
 msgstr "同时将剪贴板项目复制到主剪贴板"
 
-#: src/lib/preferences/general/behaviorSettings.ts:54
+#: src/lib/preferences/general/behaviorSettings.ts:62
 msgid "Update Date on Copy"
 msgstr "复制时更新日期"
 
-#: src/lib/preferences/general/behaviorSettings.ts:55
+#: src/lib/preferences/general/behaviorSettings.ts:63
 msgid ""
 "Update the copied date of clipboard items when selected from clipboard "
 "history"
@@ -1543,23 +1563,15 @@ msgstr "打开菜单"
 msgid "Middle Click Action"
 msgstr "中键单击操作"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:67
-msgid "Swap Copy Shortcut"
-msgstr "交换复制快捷键"
-
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:68
-msgid "Swap copy and paste shortcuts"
-msgstr "交换复制和粘贴快捷键"
-
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:72
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:66
 msgid "Paste Item"
 msgstr "粘贴项目"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:74
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Copy Item"
 msgstr "复制项目"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:76
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:70
 msgid "Activate Default Action"
 msgstr "激活默认操作"
 
@@ -1771,15 +1783,17 @@ msgid ""
 "Add subjects with Enter or commas. Search with # followed by a subject name."
 msgstr "使用回车或逗号添加主题。输入 # 加主题名称进行搜索。"
 
-#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:34
 msgid "Images"
 msgstr "图像"
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Links"
 msgstr "链接"
 
-#: src/lib/ui/components/typeFilters.ts:55
+#: src/lib/ui/components/typeFilters.ts:67
+#: src/lib/ui/components/typeFilters.ts:79
+#: src/lib/ui/components/typeFilters.ts:84
 msgid "Pinned"
 msgstr "已固定"
 
@@ -1928,3 +1942,9 @@ msgstr "快捷键"
 #: src/prefs.ts:109
 msgid "Access your clipboard with the keyboard."
 msgstr "使用键盘访问剪贴板。"
+
+#~ msgid "Swap Copy Shortcut"
+#~ msgstr "交换复制快捷键"
+
+#~ msgid "Swap copy and paste shortcuts"
+#~ msgstr "交换复制和粘贴快捷键"

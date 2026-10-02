@@ -192,6 +192,10 @@
 			<default>false</default>
 			<summary>Automatically hide the search bar when not focused</summary>
 		</key>
+		<key name="compact-type-filters" type="b">
+			<default>false</default>
+			<summary>Show type filters as icons and counts</summary>
+		</key>
 		<key name="show-scrollbar" type="b">
 			<default>true</default>
 			<summary>Show a scrollbar when items overflow</summary>

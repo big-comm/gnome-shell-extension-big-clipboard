@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 22:24-0300\n"
+"POT-Creation-Date: 2026-10-02 14:37-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -141,14 +141,14 @@ msgstr "Varsayılan Eylemler"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "Metin"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Kod"
 
@@ -170,7 +170,7 @@ msgstr "Dosya"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Dosyalar"
@@ -198,7 +198,7 @@ msgid "Color"
 msgstr "Renk"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:29
+#: src/lib/ui/components/typeFilters.ts:31
 msgid "All"
 msgstr "Hepsi"
 
@@ -505,8 +505,8 @@ msgstr "Orta"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:57
 #: src/lib/preferences/customization/dialogCustomization.ts:66
-#: src/lib/preferences/customization/dialogCustomization.ts:188
-#: src/lib/preferences/customization/dialogCustomization.ts:192
+#: src/lib/preferences/customization/dialogCustomization.ts:195
+#: src/lib/preferences/customization/dialogCustomization.ts:199
 msgid "Fill"
 msgstr "Doldur"
 
@@ -574,26 +574,38 @@ msgid "Automatically hide the search bar when not focused"
 msgstr "Odaklanılmadığında arama çubuğunu otomatik olarak gizle"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:121
+msgid "Compact Filters"
+msgstr "Kompakt Filtreler"
+
+#: src/lib/preferences/customization/dialogCustomization.ts:122
+msgid ""
+"Show icons and counts instead of filter names. Hover over an icon to see its"
+" name."
+msgstr ""
+"Filtre adları yerine simgeleri ve sayıları göster. Adını görmek için imleci "
+"bir simgenin üzerine getir."
+
+#: src/lib/preferences/customization/dialogCustomization.ts:127
 msgid "Show Scrollbar"
 msgstr "Kaydırma Çubuğunu Göster"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:122
+#: src/lib/preferences/customization/dialogCustomization.ts:128
 msgid "Show a scrollbar when items overflow"
 msgstr "Öğeler taştığında kaydırma çubuğu göster"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:206
+#: src/lib/preferences/customization/dialogCustomization.ts:213
 msgid "Width"
 msgstr "Genişlik"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:207
+#: src/lib/preferences/customization/dialogCustomization.ts:214
 msgid "Change the width of the clipboard dialog"
 msgstr "Pano iletişim kutusunun genişliğini değiştir"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:209
+#: src/lib/preferences/customization/dialogCustomization.ts:216
 msgid "Height"
 msgstr "Yükseklik"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:210
+#: src/lib/preferences/customization/dialogCustomization.ts:217
 msgid "Change the height of the clipboard dialog"
 msgstr "Pano iletişim kutusunun yüksekliğini değiştir"
 
@@ -1277,60 +1289,72 @@ msgid "Behavior"
 msgstr "Davranış"
 
 #: src/lib/preferences/general/behaviorSettings.ts:18
+msgid "Paste Directly on Selection"
+msgstr "Seçildiğinde Doğrudan Yapıştır"
+
+#: src/lib/preferences/general/behaviorSettings.ts:20
+msgid ""
+"Paste into the active application when selecting a card. When disabled, only"
+" copy to the clipboard."
+msgstr ""
+"Bir kart seçildiğinde etkin uygulamaya yapıştır. Devre dışı bırakıldığında "
+"yalnızca panoya kopyala."
+
+#: src/lib/preferences/general/behaviorSettings.ts:26
 msgid "Remember Search Query"
 msgstr "Arama Sorgusunu Hatırla"
 
-#: src/lib/preferences/general/behaviorSettings.ts:19
+#: src/lib/preferences/general/behaviorSettings.ts:27
 msgid ""
 "Remember the search query when closing and reopening the clipboard dialog"
 msgstr ""
 "Pano iletişim kutusunu kapatıp yeniden açtığında arama sorgusunu hatırla"
 
-#: src/lib/preferences/general/behaviorSettings.ts:24
+#: src/lib/preferences/general/behaviorSettings.ts:32
 msgid "Exclude Pinned Items from Main View"
 msgstr "İğnelenmiş Öğeleri Ana Görünümden Hariç Tut"
 
-#: src/lib/preferences/general/behaviorSettings.ts:25
+#: src/lib/preferences/general/behaviorSettings.ts:33
 msgid "Pinned items appear only when searching for pinned items"
 msgstr "İğnelenmiş öğeler yalnızca iğnelenmiş öğeler arandığında görünür"
 
-#: src/lib/preferences/general/behaviorSettings.ts:30
+#: src/lib/preferences/general/behaviorSettings.ts:38
 msgid "Exclude Tagged Items from Main View"
 msgstr "Etiketlenmiş Öğeleri Ana Görünümden Hariç Tut"
 
-#: src/lib/preferences/general/behaviorSettings.ts:31
+#: src/lib/preferences/general/behaviorSettings.ts:39
 msgid "Tagged items appear only when searching for tagged items"
 msgstr "Etiketlenmiş öğeler yalnızca etiketlenmiş öğeler arandığında görünür"
 
-#: src/lib/preferences/general/behaviorSettings.ts:36
+#: src/lib/preferences/general/behaviorSettings.ts:44
 msgid "Protect Pinned Items"
 msgstr "İğnelenmiş Öğeleri Koru"
 
-#: src/lib/preferences/general/behaviorSettings.ts:37
+#: src/lib/preferences/general/behaviorSettings.ts:45
 msgid "Prevents pinned clipboard items from being deleted"
 msgstr "İğnelenmiş pano öğelerinin silinmesini önler"
 
-#: src/lib/preferences/general/behaviorSettings.ts:42
+#: src/lib/preferences/general/behaviorSettings.ts:50
 msgid "Protect Tagged Items"
 msgstr "Etiketlenmiş Öğeleri Koru"
 
-#: src/lib/preferences/general/behaviorSettings.ts:43
+#: src/lib/preferences/general/behaviorSettings.ts:51
 msgid "Prevents tagged clipboard items from being deleted"
 msgstr "Etiketlenmiş pano öğelerinin silinmesini önler"
 
-#: src/lib/preferences/general/behaviorSettings.ts:48
+#: src/lib/preferences/general/behaviorSettings.ts:56
 msgid "Sync Primary Clipboard"
 msgstr "Birincil Panoyu Senkronize Et"
 
-#: src/lib/preferences/general/behaviorSettings.ts:49
+#: src/lib/preferences/general/behaviorSettings.ts:57
 msgid "Also copy clipboard items to the primary clipboard"
 msgstr "Pano öğelerini aynı zamanda birincil panoya da kopyala"
 
-#: src/lib/preferences/general/behaviorSettings.ts:54
+#: src/lib/preferences/general/behaviorSettings.ts:62
 msgid "Update Date on Copy"
 msgstr "Kopyalamada Tarihi Güncelle"
 
-#: src/lib/preferences/general/behaviorSettings.ts:55
+#: src/lib/preferences/general/behaviorSettings.ts:63
 msgid ""
 "Update the copied date of clipboard items when selected from clipboard "
 "history"
@@ -1572,23 +1596,15 @@ msgstr "Menüyü Aç"
 msgid "Middle Click Action"
 msgstr "Orta Tıklama Eylemi"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:67
-msgid "Swap Copy Shortcut"
-msgstr "Kopyalama Kısayolunu Değiştir"
-
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:68
-msgid "Swap copy and paste shortcuts"
-msgstr "Kopyalama ve yapıştırma kısayollarını değiştir"
-
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:72
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:66
 msgid "Paste Item"
 msgstr "Öğeyi Yapıştır"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:74
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Copy Item"
 msgstr "Öğeyi Kopyala"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:76
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:70
 msgid "Activate Default Action"
 msgstr "Varsayılan Eylemi Etkinleştir"
 
@@ -1807,15 +1823,17 @@ msgstr ""
 "Enter tuşuyla veya virgülle konu ekleyin. Aramak için # işaretinden sonra "
 "konu adını yazın."
 
-#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:34
 msgid "Images"
 msgstr "Görseller"
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: src/lib/ui/components/typeFilters.ts:55
+#: src/lib/ui/components/typeFilters.ts:67
+#: src/lib/ui/components/typeFilters.ts:79
+#: src/lib/ui/components/typeFilters.ts:84
 msgid "Pinned"
 msgstr "Sabitlenenler"
 
@@ -1967,3 +1985,9 @@ msgstr "Kısayollar"
 #: src/prefs.ts:109
 msgid "Access your clipboard with the keyboard."
 msgstr "Panoya klavyeyle erişin."
+
+#~ msgid "Swap Copy Shortcut"
+#~ msgstr "Kopyalama Kısayolunu Değiştir"
+
+#~ msgid "Swap copy and paste shortcuts"
+#~ msgstr "Kopyalama ve yapıştırma kısayollarını değiştir"

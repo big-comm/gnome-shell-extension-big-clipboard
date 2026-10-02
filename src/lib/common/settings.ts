@@ -47,6 +47,7 @@ export const Settings = {
 
 	AutoHideSearch: 'auto-hide-search',
 	ShowScrollbar: 'show-scrollbar',
+	CompactTypeFilters: 'compact-type-filters',
 
 	ItemWidth: 'item-width',
 	ItemHeight: 'item-height',
@@ -180,6 +181,7 @@ export const SettingsTypes = {
 
 	[Settings.AutoHideSearch]: 'boolean',
 	[Settings.ShowScrollbar]: 'boolean',
+	[Settings.CompactTypeFilters]: 'boolean',
 
 	[Settings.ItemWidth]: 'int',
 	[Settings.ItemHeight]: 'int',

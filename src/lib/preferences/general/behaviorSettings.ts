@@ -14,6 +14,14 @@ export class BehaviorSettings extends Adw.PreferencesGroup {
 			title: _('Behavior'),
 		});
 
+		const pasteOnSelect = new Adw.SwitchRow({
+			title: _('Paste Directly on Selection'),
+			subtitle: _(
+				'Paste into the active application when selecting a card. When disabled, only copy to the clipboard.',
+			),
+		});
+		this.add(pasteOnSelect);
+
 		const rememberSearch = new Adw.SwitchRow({
 			title: _('Remember Search Query'),
 			subtitle: _('Remember the search query when closing and reopening the clipboard dialog'),
@@ -58,6 +66,8 @@ export class BehaviorSettings extends Adw.PreferencesGroup {
 
 		// Bind properties
 		const settings: CopyousSettings = prefs.getSettings();
+		// Reuse the existing activation preference and preserve saved choices.
+		settings.bind('swap-copy-shortcut', pasteOnSelect, 'active', Gio.SettingsBindFlags.INVERT_BOOLEAN);
 		settings.bind('remember-search', rememberSearch, 'active', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('exclude-pinned', excludePinned, 'active', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('exclude-tagged', excludeTagged, 'active', Gio.SettingsBindFlags.DEFAULT);

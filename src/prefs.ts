@@ -113,7 +113,7 @@ export default class Preferences extends ExtensionPreferences {
 
 		shortcuts.add(new DialogShortcuts(this));
 		shortcuts.add(new ItemShortcuts(this));
-		shortcuts.add(new ItemActivationShortcuts(this));
+		shortcuts.add(new ItemActivationShortcuts(this, window));
 		shortcuts.add(new PopupMenuShortcuts());
 		shortcuts.add(new NavigationShortcuts());
 		shortcuts.add(new SearchShortcuts());

@@ -55,6 +55,29 @@ async function check(window, prefs) {
 		assert(stack.visible_child.name === name, `section ${name} opens`);
 		assert(title.title === stack.visible_child.title, `section ${name} title follows selection`);
 	}
+	select(2);
+	const pasteOnSelect = row('Paste Directly on Selection');
+	const swapBefore = settings.get_boolean('swap-copy-shortcut');
+	assert(pasteOnSelect instanceof Adw.SwitchRow, 'paste selection switch is in Behavior');
+	assert(pasteOnSelect.active === !swapBefore, 'paste selection preserves existing preference');
+	for (const active of [false, true]) {
+		pasteOnSelect.active = active;
+		assert(settings.get_boolean('swap-copy-shortcut') === !active, 'paste selection writes inverted preference');
+		select(3);
+		assert(!row('Swap Copy Shortcut'), 'activation preference is not duplicated');
+		assert(row('Paste Item').shortcuts[0] === (active ? 'Return space' : '<Shift>Return space'), 'paste shortcut tracks selection behavior');
+		assert(row('Copy Item').shortcuts[0] === (active ? '<Shift>Return space' : 'Return space'), 'copy shortcut tracks selection behavior');
+		select(2);
+	}
+	settings.set_boolean('swap-copy-shortcut', swapBefore);
+	assert(pasteOnSelect.active === !swapBefore, 'paste switch tracks external changes');
+	select(1);
+	const compact = row('Compact Filters');
+	const compactBefore = settings.get_boolean('compact-type-filters');
+	compact.active = !compactBefore;
+	assert(settings.get_boolean('compact-type-filters') === !compactBefore, 'compact filters writes preference');
+	settings.set_boolean('compact-type-filters', compactBefore);
+	assert(compact.active === compactBefore, 'compact filters tracks external changes');
 	select(0);
 	assert(!row('Database'), 'database controls moved out of History');
 	const size = row('History Size');

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 22:24-0300\n"
+"POT-Creation-Date: 2026-10-02 14:37-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -141,14 +141,14 @@ msgstr "Actions par défaut"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:30 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "Texte"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:31 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Code"
 
@@ -170,7 +170,7 @@ msgstr "Fichier"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Fichiers"
@@ -198,7 +198,7 @@ msgid "Color"
 msgstr "Couleur"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:29
+#: src/lib/ui/components/typeFilters.ts:31
 msgid "All"
 msgstr "Tout"
 
@@ -510,8 +510,8 @@ msgstr "Centre"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:57
 #: src/lib/preferences/customization/dialogCustomization.ts:66
-#: src/lib/preferences/customization/dialogCustomization.ts:188
-#: src/lib/preferences/customization/dialogCustomization.ts:192
+#: src/lib/preferences/customization/dialogCustomization.ts:195
+#: src/lib/preferences/customization/dialogCustomization.ts:199
 msgid "Fill"
 msgstr "Remplir"
 
@@ -585,26 +585,38 @@ msgstr ""
 "sélectionnée"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:121
+msgid "Compact Filters"
+msgstr "Filtres compacts"
+
+#: src/lib/preferences/customization/dialogCustomization.ts:122
+msgid ""
+"Show icons and counts instead of filter names. Hover over an icon to see its"
+" name."
+msgstr ""
+"Afficher des icônes et des compteurs à la place des noms des filtres. "
+"Survoler une icône pour afficher son nom."
+
+#: src/lib/preferences/customization/dialogCustomization.ts:127
 msgid "Show Scrollbar"
 msgstr "Afficher la barre de défilement"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:122
+#: src/lib/preferences/customization/dialogCustomization.ts:128
 msgid "Show a scrollbar when items overflow"
 msgstr "Affiche une barre de défilement lorsque les éléments débordent"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:206
+#: src/lib/preferences/customization/dialogCustomization.ts:213
 msgid "Width"
 msgstr "Largeur"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:207
+#: src/lib/preferences/customization/dialogCustomization.ts:214
 msgid "Change the width of the clipboard dialog"
 msgstr "Modifie la largeur de la boîte de dialogue du presse-papiers"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:209
+#: src/lib/preferences/customization/dialogCustomization.ts:216
 msgid "Height"
 msgstr "Hauteur"
 
-#: src/lib/preferences/customization/dialogCustomization.ts:210
+#: src/lib/preferences/customization/dialogCustomization.ts:217
 msgid "Change the height of the clipboard dialog"
 msgstr "Modifie la hauteur de la boîte de dialogue du presse-papiers"
 
@@ -1291,67 +1303,79 @@ msgid "Behavior"
 msgstr "Comportement"
 
 #: src/lib/preferences/general/behaviorSettings.ts:18
+msgid "Paste Directly on Selection"
+msgstr "Coller directement à la sélection"
+
+#: src/lib/preferences/general/behaviorSettings.ts:20
+msgid ""
+"Paste into the active application when selecting a card. When disabled, only"
+" copy to the clipboard."
+msgstr ""
+"Coller dans l’application active lors de la sélection d’une carte. Si "
+"désactivé, copier uniquement dans le presse-papiers."
+
+#: src/lib/preferences/general/behaviorSettings.ts:26
 msgid "Remember Search Query"
 msgstr "Se souvenir de la requête de recherche"
 
-#: src/lib/preferences/general/behaviorSettings.ts:19
+#: src/lib/preferences/general/behaviorSettings.ts:27
 msgid ""
 "Remember the search query when closing and reopening the clipboard dialog"
 msgstr ""
 "Se souvient de la requête de recherche lors de la fermeture et de la "
 "réouverture de la boîte de dialogue du presse-papiers"
 
-#: src/lib/preferences/general/behaviorSettings.ts:24
+#: src/lib/preferences/general/behaviorSettings.ts:32
 msgid "Exclude Pinned Items from Main View"
 msgstr "Exclure les éléments épinglés de la vue principale"
 
-#: src/lib/preferences/general/behaviorSettings.ts:25
+#: src/lib/preferences/general/behaviorSettings.ts:33
 msgid "Pinned items appear only when searching for pinned items"
 msgstr ""
 "Les éléments épinglés apparaissent uniquement lors de la recherche "
 "d'éléments épinglés"
 
-#: src/lib/preferences/general/behaviorSettings.ts:30
+#: src/lib/preferences/general/behaviorSettings.ts:38
 msgid "Exclude Tagged Items from Main View"
 msgstr "Exclure les éléments marqués de la vue principale"
 
-#: src/lib/preferences/general/behaviorSettings.ts:31
+#: src/lib/preferences/general/behaviorSettings.ts:39
 msgid "Tagged items appear only when searching for tagged items"
 msgstr ""
 "Les éléments marqués apparaissent uniquement lors de la recherche d'éléments "
 "marqués"
 
-#: src/lib/preferences/general/behaviorSettings.ts:36
+#: src/lib/preferences/general/behaviorSettings.ts:44
 msgid "Protect Pinned Items"
 msgstr "Protéger les éléments épinglés"
 
-#: src/lib/preferences/general/behaviorSettings.ts:37
+#: src/lib/preferences/general/behaviorSettings.ts:45
 msgid "Prevents pinned clipboard items from being deleted"
 msgstr "Empêche la suppression des éléments épinglés du presse-papiers"
 
-#: src/lib/preferences/general/behaviorSettings.ts:42
+#: src/lib/preferences/general/behaviorSettings.ts:50
 msgid "Protect Tagged Items"
 msgstr "Protéger les éléments marqués"
 
-#: src/lib/preferences/general/behaviorSettings.ts:43
+#: src/lib/preferences/general/behaviorSettings.ts:51
 msgid "Prevents tagged clipboard items from being deleted"
 msgstr "Empêche la suppression des éléments marqués du presse-papiers"
 
-#: src/lib/preferences/general/behaviorSettings.ts:48
+#: src/lib/preferences/general/behaviorSettings.ts:56
 msgid "Sync Primary Clipboard"
 msgstr "Synchroniser le presse-papiers primaire"
 
-#: src/lib/preferences/general/behaviorSettings.ts:49
+#: src/lib/preferences/general/behaviorSettings.ts:57
 msgid "Also copy clipboard items to the primary clipboard"
 msgstr ""
 "Copie également les éléments du presse-papiers vers le presse-papiers "
 "primaire"
 
-#: src/lib/preferences/general/behaviorSettings.ts:54
+#: src/lib/preferences/general/behaviorSettings.ts:62
 msgid "Update Date on Copy"
 msgstr "Mettre à jour la date à la copie"
 
-#: src/lib/preferences/general/behaviorSettings.ts:55
+#: src/lib/preferences/general/behaviorSettings.ts:63
 msgid ""
 "Update the copied date of clipboard items when selected from clipboard "
 "history"
@@ -1598,23 +1622,15 @@ msgstr "Ouvrir le menu"
 msgid "Middle Click Action"
 msgstr "Action du clic du milieu"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:67
-msgid "Swap Copy Shortcut"
-msgstr "Inverser le raccourci de copie"
-
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:68
-msgid "Swap copy and paste shortcuts"
-msgstr "Inverser les raccourcis de copie et de collage"
-
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:72
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:66
 msgid "Paste Item"
 msgstr "Coller l'élément"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:74
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:68
 msgid "Copy Item"
 msgstr "Copier l'élément"
 
-#: src/lib/preferences/shortcuts/itemShortcuts.ts:76
+#: src/lib/preferences/shortcuts/itemShortcuts.ts:70
 msgid "Activate Default Action"
 msgstr "Activer l'action par défaut"
 
@@ -1833,15 +1849,17 @@ msgstr ""
 "Ajoutez des sujets avec Entrée ou des virgules. Recherchez avec # suivi du "
 "nom d’un sujet."
 
-#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:34
 msgid "Images"
 msgstr "Images"
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Links"
 msgstr "Liens"
 
-#: src/lib/ui/components/typeFilters.ts:55
+#: src/lib/ui/components/typeFilters.ts:67
+#: src/lib/ui/components/typeFilters.ts:79
+#: src/lib/ui/components/typeFilters.ts:84
 msgid "Pinned"
 msgstr "Épinglés"
 
@@ -1993,3 +2011,9 @@ msgstr "Raccourcis"
 #: src/prefs.ts:109
 msgid "Access your clipboard with the keyboard."
 msgstr "Accédez au presse-papiers avec le clavier."
+
+#~ msgid "Swap Copy Shortcut"
+#~ msgstr "Inverser le raccourci de copie"
+
+#~ msgid "Swap copy and paste shortcuts"
+#~ msgstr "Inverser les raccourcis de copie et de collage"

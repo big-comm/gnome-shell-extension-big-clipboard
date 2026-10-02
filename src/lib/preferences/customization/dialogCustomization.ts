@@ -117,6 +117,12 @@ export class DialogCustomization extends Adw.PreferencesGroup {
 		});
 		this.add(autoHideSearch);
 
+		const compactFilters = new Adw.SwitchRow({
+			title: _('Compact Filters'),
+			subtitle: _('Show icons and counts instead of filter names. Hover over an icon to see its name.'),
+		});
+		this.add(compactFilters);
+
 		const showScrollbar = new Adw.SwitchRow({
 			title: _('Show Scrollbar'),
 			subtitle: _('Show a scrollbar when items overflow'),
@@ -136,6 +142,7 @@ export class DialogCustomization extends Adw.PreferencesGroup {
 		settings.bind('clipboard-margin-bottom', bottomMargin, 'value', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('clipboard-margin-left', leftMargin, 'value', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('auto-hide-search', autoHideSearch, 'active', Gio.SettingsBindFlags.DEFAULT);
+		settings.bind('compact-type-filters', compactFilters, 'active', Gio.SettingsBindFlags.DEFAULT);
 		settings.bind('show-scrollbar', showScrollbar, 'active', Gio.SettingsBindFlags.DEFAULT);
 
 		makeResettable(
