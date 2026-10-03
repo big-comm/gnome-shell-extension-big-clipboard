@@ -84,6 +84,7 @@ export class ClipboardManager extends GObject.Object {
 	private pasteSignalId: number = -1;
 
 	private prevClipboard: [ContentType, string] | null = null;
+	private privacyGeneration = 0;
 
 	constructor(
 		private ext: CopyousExtension,
@@ -96,10 +97,20 @@ export class ClipboardManager extends GObject.Object {
 		this.keyboard = new Keyboard();
 
 		this.signalId = this.selection.connect('owner-changed', this.ownerChanged.bind(this));
+		this.ext.settings.connectObject(
+			'changed::incognito',
+			() => {
+				this.privacyGeneration++;
+				this.prevClipboard = null;
+			},
+			this,
+		);
 	}
 
 	public destroy() {
 		this.keyboard.destroy();
+		this.ext.settings.disconnectObject(this);
+		this.privacyGeneration++;
 
 		if (this.signalId >= 0) this.selection.disconnect(this.signalId);
 		if (this.pasteSignalId >= 0) GLib.source_remove(this.pasteSignalId);
@@ -248,8 +259,10 @@ export class ClipboardManager extends GObject.Object {
 			if (selectionType !== Meta.SelectionType.SELECTION_CLIPBOARD) return;
 
 			const mimeTypes = selectionSource.get_mimetypes();
+			if (!this.shouldSave(mimeTypes)) return;
+			const generation = this.privacyGeneration;
 			const content = await this.getContent(selectionSource, mimeTypes);
-			if (!content) return;
+			if (!content || generation !== this.privacyGeneration) return;
 
 			const checksum = contentChecksum(content);
 			if (!checksum) return;
@@ -270,13 +283,8 @@ export class ClipboardManager extends GObject.Object {
 
 			this.prevClipboard = [content.type, checksum];
 
-			// Check if history should be saved after setting the previous clipboard item.
-			// This ensures that content copied in incognito mode is not saved to history
-			// after copying an item after exiting incognito mode.
-			if (!this.shouldSave(mimeTypes)) return;
-
 			const res = await this.convertContent(content);
-			if (!res) return;
+			if (!res || generation !== this.privacyGeneration) return;
 
 			const [type, text, metadata] = res;
 			const entry = await this.tracker.insert(type, text, metadata);

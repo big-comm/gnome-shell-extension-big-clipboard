@@ -1,0 +1,6 @@
+{
+	"uuid": "clipboard-search-test@local.test",
+	"name": "Clipboard search test",
+	"description": "Temporary compact search validation",
+	"shell-version": ["50", "51"]
+}

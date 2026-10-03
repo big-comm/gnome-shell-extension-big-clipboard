@@ -73,8 +73,14 @@
 	.markdown-preview-text {
 		padding-right: $base_padding;
 	}
-	.modal-dialog-top-button-box {
-		padding: 0;
+	.subject-header {
+		spacing: 12px; // NOSONAR: GNOME StBoxLayout spacing property.
+		.language-button {
+			min-width: 7em;
+			max-width: 14em;
+			padding: 5px 10px;
+			margin: 0;
+		}
 	}
 }
 

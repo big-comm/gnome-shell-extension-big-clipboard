@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 14:37-0300\n"
+"POT-Creation-Date: 2026-10-03 00:05-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Russian\n"
@@ -128,8 +128,8 @@ msgstr "Скопирован цвет"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:240
-#: src/lib/ui/components/editDialog.ts:267
+#: src/lib/ui/components/editDialog.ts:251
+#: src/lib/ui/components/editDialog.ts:278
 msgid "None"
 msgstr "Нет"
 
@@ -143,14 +143,14 @@ msgstr "Действия по умолчанию"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:47 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "Текст"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:48 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Код"
 
@@ -172,7 +172,7 @@ msgstr "Файл"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:50 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Файлы"
@@ -181,7 +181,7 @@ msgstr "Файлы"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:471 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Ссылка"
 
@@ -200,7 +200,7 @@ msgid "Color"
 msgstr "Цвет"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:31
+#: src/lib/ui/components/typeFilters.ts:46
 msgid "All"
 msgstr "Все"
 
@@ -220,7 +220,7 @@ msgstr "Выберите, какие типы разрешены"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/editDialog.ts:398
 #: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Отмена"
@@ -353,7 +353,7 @@ msgid "Edit Action"
 msgstr "Изменить действие"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/editDialog.ts:404
 #: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Сохранить"
@@ -366,7 +366,7 @@ msgstr "Добавить подменю"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/components/editDialog.ts:419
 #: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Изменить"
@@ -581,11 +581,11 @@ msgstr "Компактные фильтры"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:122
 msgid ""
-"Show icons and counts instead of filter names. Hover over an icon to see its"
-" name."
+"Show icons and counts instead of filter names. Hover over an icon to see its "
+"name."
 msgstr ""
-"Показывать значки и счётчики вместо названий фильтров. Наведите указатель на"
-" значок, чтобы увидеть его название."
+"Показывать значки и счётчики вместо названий фильтров. Наведите указатель на "
+"значок, чтобы увидеть его название."
 
 #: src/lib/preferences/customization/dialogCustomization.ts:127
 msgid "Show Scrollbar"
@@ -1231,6 +1231,8 @@ msgstr ""
 #: src/lib/preferences/sidebarPreferences.ts:17
 #: src/lib/preferences/sidebarPreferences.ts:148
 #: src/lib/preferences/sidebarPreferences.ts:149
+#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Search"
 msgstr "Поиск"
 
@@ -1279,7 +1281,7 @@ msgstr "Управление исключениями приложений"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Управлять приложениями, исключёнными из истории буфера обмена"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:65
 msgid "Behavior"
 msgstr "Поведение"
 
@@ -1289,8 +1291,8 @@ msgstr "Вставлять сразу при выборе"
 
 #: src/lib/preferences/general/behaviorSettings.ts:20
 msgid ""
-"Paste into the active application when selecting a card. When disabled, only"
-" copy to the clipboard."
+"Paste into the active application when selecting a card. When disabled, only "
+"copy to the clipboard."
 msgstr ""
 "Вставлять в активное приложение при выборе карточки. Если отключено, только "
 "копировать в буфер обмена."
@@ -1446,7 +1448,7 @@ msgstr "Отправлять уведомление при копировани�
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Звук при копировании элемента буфера обмена"
 
-#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:59
 msgid "History"
 msgstr "История"
 
@@ -1487,7 +1489,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "Выберите, что сохранять после выхода из системы или перезагрузки."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Очистить"
@@ -1705,7 +1707,7 @@ msgstr "Ничего не найдено"
 
 #: src/lib/ui/components/cardSubjects.ts:29
 #: src/lib/ui/components/cardSubjects.ts:32
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:319
 #: src/lib/ui/components/subjectsDialog.ts:30
 #: src/lib/ui/components/subjectsDialog.ts:142
 msgid "Subjects"
@@ -1758,48 +1760,48 @@ msgstr "Файл отсутствует"
 msgid "Error"
 msgstr "Ошибка"
 
-#: src/lib/ui/components/editDialog.ts:302
+#: src/lib/ui/components/editDialog.ts:313
 msgid "Edit Clipboard Item"
 msgstr "Редактировать элемент буфера обмена"
 
-#: src/lib/ui/components/editDialog.ts:366
+#: src/lib/ui/components/editDialog.ts:372
 msgid "Preview shortened. The full text is preserved."
 msgstr "Предпросмотр сокращён. Полный текст сохранён."
 
-#: src/lib/ui/components/editDialog.ts:420
+#: src/lib/ui/components/editDialog.ts:426
 msgid "Preview"
 msgstr "Предпросмотр"
 
-#: src/lib/ui/components/editDialog.ts:436
+#: src/lib/ui/components/editDialog.ts:442
 msgid "Side by side"
 msgstr "Рядом"
 
-#: src/lib/ui/components/editDialog.ts:452
-#: src/lib/ui/components/editDialog.ts:477
+#: src/lib/ui/components/editDialog.ts:458
+#: src/lib/ui/components/editDialog.ts:483
 msgid "Markdown formatting"
 msgstr "Форматирование Markdown"
 
-#: src/lib/ui/components/editDialog.ts:459
+#: src/lib/ui/components/editDialog.ts:465
 msgid "Bold (Ctrl+B)"
 msgstr "Жирный (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:460
+#: src/lib/ui/components/editDialog.ts:466
 msgid "Italic (Ctrl+I)"
 msgstr "Курсив (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:461
+#: src/lib/ui/components/editDialog.ts:467
 msgid "Bullet list"
 msgstr "Маркированный список"
 
-#: src/lib/ui/components/editDialog.ts:462
+#: src/lib/ui/components/editDialog.ts:468
 msgid "Numbered list"
 msgstr "Нумерованный список"
 
-#: src/lib/ui/components/editDialog.ts:463
+#: src/lib/ui/components/editDialog.ts:469
 msgid "Quote"
 msgstr "Цитата"
 
-#: src/lib/ui/components/editDialog.ts:464
+#: src/lib/ui/components/editDialog.ts:470
 msgid "Inline code"
 msgstr "Строчный код"
 
@@ -1819,17 +1821,17 @@ msgstr ""
 "Добавляйте темы клавишей Enter или через запятую. Для поиска введите # и "
 "название темы."
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:49
 msgid "Images"
 msgstr "Изображения"
 
-#: src/lib/ui/components/typeFilters.ts:36
+#: src/lib/ui/components/typeFilters.ts:51
 msgid "Links"
 msgstr "Ссылки"
 
-#: src/lib/ui/components/typeFilters.ts:67
-#: src/lib/ui/components/typeFilters.ts:79
-#: src/lib/ui/components/typeFilters.ts:84
+#: src/lib/ui/components/typeFilters.ts:82
+#: src/lib/ui/components/typeFilters.ts:94
+#: src/lib/ui/components/typeFilters.ts:99
 msgid "Pinned"
 msgstr "Закреплённые"
 
@@ -1945,43 +1947,43 @@ msgstr "Цв__ет"
 msgid "Type to search"
 msgstr "Введите текст для поиска"
 
-#: src/prefs.ts:54
+#: src/prefs.ts:60
 msgid "Choose what to keep and for how long."
 msgstr "Выберите, что и как долго хранить."
 
-#: src/prefs.ts:60
+#: src/prefs.ts:66
 msgid "Control copying, pasting and feedback."
 msgstr "Настройте копирование, вставку и отклик."
 
-#: src/prefs.ts:65
+#: src/prefs.ts:71
 msgid "Advanced"
 msgstr "Дополнительно"
 
-#: src/prefs.ts:66
+#: src/prefs.ts:72
 msgid "Manage storage and code languages."
 msgstr "Управляйте хранилищем и языками кода."
 
-#: src/prefs.ts:69
+#: src/prefs.ts:75
 msgid "Storage"
 msgstr "Хранилище"
 
-#: src/prefs.ts:74
+#: src/prefs.ts:80
 msgid "Panel Indicator"
 msgstr "Индикатор панели"
 
-#: src/prefs.ts:88
+#: src/prefs.ts:94
 msgid "Appearance"
 msgstr "Внешний вид"
 
-#: src/prefs.ts:89
+#: src/prefs.ts:95
 msgid "Customize the panel, cards and colors."
 msgstr "Настройте панель, карточки и цвета."
 
-#: src/prefs.ts:108
+#: src/prefs.ts:114
 msgid "Shortcuts"
 msgstr "Сочетания клавиш"
 
-#: src/prefs.ts:109
+#: src/prefs.ts:115
 msgid "Access your clipboard with the keyboard."
 msgstr "Работайте с буфером обмена с помощью клавиатуры."
 

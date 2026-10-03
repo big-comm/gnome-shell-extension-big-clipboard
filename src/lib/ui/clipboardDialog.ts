@@ -142,13 +142,9 @@ class ClipboardDialogHeader extends St.Widget {
 		this._headerBox.addSuffix(this._clearButton);
 
 		// Bind properties
-		this.ext.settings.connectObject(
-			'changed::auto-hide-search',
-			() => this.updateHeader(!this.ext.settings.get_boolean('auto-hide-search'), false),
-			this,
-		);
+		this.ext.settings.connectObject('changed::auto-hide-search', () => this.resetSearchVisibility(), this);
 
-		this.updateHeader(!this.ext.settings.get_boolean('auto-hide-search'), false);
+		this.resetSearchVisibility();
 	}
 
 	override destroy() {
@@ -166,10 +162,21 @@ class ClipboardDialogHeader extends St.Widget {
 		this._clearButton.visible = show;
 	}
 
+	private get collapseSearch() {
+		return (
+			this.ext.settings.get_enum('clipboard-orientation') === Clutter.Orientation.VERTICAL ||
+			this.ext.settings.get_boolean('auto-hide-search')
+		);
+	}
+
+	private resetSearchVisibility() {
+		this.updateHeader(!this.collapseSearch, false);
+	}
+
 	updateHeader(show: boolean, animate: boolean = true) {
 		if (this.searchEntry.text.length > 0) show = true;
 
-		this._headerLayout.enableCollapse = this.ext.settings.get_boolean('auto-hide-search');
+		this._headerLayout.enableCollapse = this.collapseSearch;
 
 		this._headerVisible = !this._headerVisible || show;
 		this.notify('header-visible');
@@ -203,7 +210,7 @@ class ClipboardDialogHeader extends St.Widget {
 	override vfunc_map() {
 		super.vfunc_map();
 
-		this.updateHeader(!this.ext.settings.get_boolean('auto-hide-search'), false);
+		this.resetSearchVisibility();
 	}
 }
 
@@ -348,6 +355,10 @@ export class ClipboardDialog extends St.Widget {
 		});
 
 		this._filters = new TypeFilters(ext, this._header.searchEntry);
+		this._filters.connect('search-requested', () => {
+			this._header.updateHeader(true, false);
+			this._header.searchEntry.grab_key_focus();
+		});
 		this._dialog.add_child(this._filters);
 
 		// Scrollbox
@@ -932,6 +943,7 @@ export class ClipboardDialog extends St.Widget {
 
 	private shouldTriggerSearch(keysym: number) {
 		if (keysym === Clutter.KEY_Multi_key) return true;
+		if (keysym >= Clutter.KEY_dead_grave && keysym <= Clutter.KEY_dead_currency) return true;
 		if (keysym === Clutter.KEY_BackSpace) return true;
 
 		const unicode = Clutter.keysym_to_unicode(keysym);
@@ -962,14 +974,22 @@ export class ClipboardDialog extends St.Widget {
 
 		// Search on ctrl+f
 		if (event.has_control_modifier() && key === Clutter.KEY_f) {
+			this._header.updateHeader(true, false);
 			this._header.searchEntry.grab_key_focus();
 			return Clutter.EVENT_STOP;
 		}
 
 		// Trigger search
-		if (!event.has_control_modifier() && this.shouldTriggerSearch(key)) {
+		if (
+			!event.has_control_modifier() &&
+			this.shouldTriggerSearch(key) &&
+			global.stage.key_focus !== this._header.searchEntry.clutter_text
+		) {
+			this._header.updateHeader(true, false);
 			this._header.searchEntry.clutter_text.grab_key_focus();
-			return this._header.searchEntry.clutter_text.event(event, false);
+			// Requeue after focus changes so the input method processes the first key normally.
+			event.put();
+			return Clutter.EVENT_STOP;
 		}
 
 		// Toggle pinned search: alt

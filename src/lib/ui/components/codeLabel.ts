@@ -269,6 +269,7 @@ export class CodeLabel extends St.Label {
 		props: Partial<St.Label.ConstructorProps & CodeLabelConstructorProps>,
 	) {
 		super({ ...props, min_height: 0, clip_to_allocation: true });
+		this.add_style_class_name('code-surface');
 		this.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
 		this.clutter_text.ellipsize = Pango.EllipsizeMode.END;
 
@@ -370,7 +371,7 @@ export class CodeLabel extends St.Label {
 			const language = detected && this.ext.hljs.getLanguage(detected.id) != null ? detected.id : null;
 
 			const result = language ? this.ext.hljs.highlight(text, { language }) : this.ext.hljs.highlightAuto(text);
-			text = applyTheme(this.ext.themeManager?.colorScheme, result.value);
+			text = applyTheme(CustomColorScheme.Dark, result.value);
 
 			// Store language
 			if (!this.language && result.language) {
@@ -394,11 +395,11 @@ export class CodeLabel extends St.Label {
 		this.clutter_text.line_wrap = lines.length === 1;
 
 		if (this.showLineNumbers && lines.length > 1) {
-			// Add line numbers
-			const color =
-				this.ext.themeManager?.colorScheme === CustomColorScheme.Light ? Colors.dark_7 : Colors.light_1;
-			const span = `<span color="${color}" alpha="50%">`;
-			text = lines.map((l, i) => `${span}${i.toString().padEnd(2, ' ')}</span> ${l}`).join('\n');
+			const width = String(lines.length).length;
+			const span = `<span color="${Colors.light_6}" background="${Colors.dark_4}">`;
+			text = lines
+				.map((line, i) => `${span} ${(i + 1).toString().padStart(width, ' ')} </span> ${line}`)
+				.join('\n');
 		}
 
 		// Add blank line to fix the first span not being styled

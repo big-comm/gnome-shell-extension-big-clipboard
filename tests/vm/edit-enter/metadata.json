@@ -1,0 +1,6 @@
+{
+	"uuid": "clipboard-enter-test@local.test",
+	"name": "Clipboard editor Enter test",
+	"description": "Temporary multiline input validation",
+	"shell-version": ["50", "51"]
+}

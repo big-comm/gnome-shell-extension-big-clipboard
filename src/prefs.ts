@@ -35,12 +35,18 @@ import {
 	SearchShortcuts,
 } from './lib/preferences/shortcuts/searchShortcuts.js';
 import { SidebarPreferences } from './lib/preferences/sidebarPreferences.js';
+import { configureWindowIdentity } from './lib/preferences/windowIdentity.js';
 
 export default class Preferences extends ExtensionPreferences {
 	override async fillPreferencesWindow(window: Adw.PreferencesWindow) {
 		window.default_width = 830;
 		window.default_height = 610;
 		window.search_enabled = false;
+		try {
+			await configureWindowIdentity(window, this.path, this.uuid);
+		} catch (error) {
+			console.warn('Big Clipboard preferences icon:', error);
+		}
 
 		migrateSettings(this.getSettings());
 

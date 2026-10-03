@@ -13,12 +13,12 @@ import { WrapLayout } from '../layout.js';
 import type { SearchEntry } from '../searchEntry.js';
 import { actionHint } from './actionHint.js';
 
-@registerClass()
+@registerClass({ Signals: { 'search-requested': {} } })
 export class TypeFilters extends St.Widget {
 	private readonly _buttons: { type: ItemType | null; button: St.Button; count: St.Label }[] = [];
 
 	constructor(
-		ext: CopyousExtension,
+		private ext: CopyousExtension,
 		private search: SearchEntry,
 	) {
 		super({
@@ -27,6 +27,21 @@ export class TypeFilters extends St.Widget {
 			request_mode: Clutter.RequestMode.HEIGHT_FOR_WIDTH,
 			layout_manager: new WrapLayout(),
 		});
+		const searchButton = new St.Button({
+			child: new St.Icon({ gicon: loadIcon(ext, Icon.Search), icon_size: 14 }),
+			accessible_name: _('Search'),
+			style_class: 'button',
+			can_focus: true,
+		});
+		actionHint(searchButton, _('Search'));
+		const updateSearchButton = () => {
+			searchButton.visible = ext.settings.get_enum('clipboard-orientation') === Clutter.Orientation.VERTICAL;
+		};
+		ext.settings.connectObject('changed::clipboard-orientation', updateSearchButton, this);
+		updateSearchButton();
+		searchButton.connect('clicked', () => this.emit('search-requested'));
+		this.add_child(searchButton);
+
 		const types: [ItemType | null, string, Icon][] = [
 			[null, _('All'), Icon.Clipboard],
 			[ItemType.Text, _('Text'), Icon.Text],
@@ -104,6 +119,7 @@ export class TypeFilters extends St.Widget {
 	}
 
 	override destroy() {
+		this.ext.settings.disconnectObject(this);
 		this.search.disconnectObject(this);
 		super.destroy();
 	}

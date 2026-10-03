@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 14:37-0300\n"
+"POT-Creation-Date: 2026-10-03 00:05-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -126,8 +126,8 @@ msgstr "Renk Kopyalandı"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:240
-#: src/lib/ui/components/editDialog.ts:267
+#: src/lib/ui/components/editDialog.ts:251
+#: src/lib/ui/components/editDialog.ts:278
 msgid "None"
 msgstr "Hiçbiri"
 
@@ -141,14 +141,14 @@ msgstr "Varsayılan Eylemler"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:47 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "Metin"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:48 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Kod"
 
@@ -170,7 +170,7 @@ msgstr "Dosya"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:50 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Dosyalar"
@@ -179,7 +179,7 @@ msgstr "Dosyalar"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:471 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Bağlantı"
 
@@ -198,7 +198,7 @@ msgid "Color"
 msgstr "Renk"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:31
+#: src/lib/ui/components/typeFilters.ts:46
 msgid "All"
 msgstr "Hepsi"
 
@@ -218,7 +218,7 @@ msgstr "Hangi türlere izin verileceğini seç"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/editDialog.ts:398
 #: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "İptal"
@@ -350,7 +350,7 @@ msgid "Edit Action"
 msgstr "Eylemi Düzenle"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/editDialog.ts:404
 #: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Kaydet"
@@ -363,7 +363,7 @@ msgstr "Alt Menü Ekle"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/components/editDialog.ts:419
 #: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Düzenle"
@@ -579,8 +579,8 @@ msgstr "Kompakt Filtreler"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:122
 msgid ""
-"Show icons and counts instead of filter names. Hover over an icon to see its"
-" name."
+"Show icons and counts instead of filter names. Hover over an icon to see its "
+"name."
 msgstr ""
 "Filtre adları yerine simgeleri ve sayıları göster. Adını görmek için imleci "
 "bir simgenin üzerine getir."
@@ -1236,6 +1236,8 @@ msgstr ""
 #: src/lib/preferences/sidebarPreferences.ts:17
 #: src/lib/preferences/sidebarPreferences.ts:148
 #: src/lib/preferences/sidebarPreferences.ts:149
+#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Search"
 msgstr "Ara"
 
@@ -1284,7 +1286,7 @@ msgstr "Uygulama Hariç Tutmalarını Yönet"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "Pano geçmişinden hariç tutulacak uygulamaları yönetin"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:65
 msgid "Behavior"
 msgstr "Davranış"
 
@@ -1294,8 +1296,8 @@ msgstr "Seçildiğinde Doğrudan Yapıştır"
 
 #: src/lib/preferences/general/behaviorSettings.ts:20
 msgid ""
-"Paste into the active application when selecting a card. When disabled, only"
-" copy to the clipboard."
+"Paste into the active application when selecting a card. When disabled, only "
+"copy to the clipboard."
 msgstr ""
 "Bir kart seçildiğinde etkin uygulamaya yapıştır. Devre dışı bırakıldığında "
 "yalnızca panoya kopyala."
@@ -1449,7 +1451,7 @@ msgstr "Bir pano öğesi kopyalandığında bildirim gönder"
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Bir pano öğesi kopyalandığında çalınacak ses"
 
-#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:59
 msgid "History"
 msgstr "Geçmiş"
 
@@ -1492,7 +1494,7 @@ msgstr ""
 "seçin."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Temizle"
@@ -1712,7 +1714,7 @@ msgstr "Sonuç Bulunamadı"
 
 #: src/lib/ui/components/cardSubjects.ts:29
 #: src/lib/ui/components/cardSubjects.ts:32
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:319
 #: src/lib/ui/components/subjectsDialog.ts:30
 #: src/lib/ui/components/subjectsDialog.ts:142
 msgid "Subjects"
@@ -1762,48 +1764,48 @@ msgstr "Eksik Dosya"
 msgid "Error"
 msgstr "Hata"
 
-#: src/lib/ui/components/editDialog.ts:302
+#: src/lib/ui/components/editDialog.ts:313
 msgid "Edit Clipboard Item"
 msgstr "Pano Öğesini Düzenle"
 
-#: src/lib/ui/components/editDialog.ts:366
+#: src/lib/ui/components/editDialog.ts:372
 msgid "Preview shortened. The full text is preserved."
 msgstr "Önizleme kısaltıldı. Tam metin korunur."
 
-#: src/lib/ui/components/editDialog.ts:420
+#: src/lib/ui/components/editDialog.ts:426
 msgid "Preview"
 msgstr "Önizleme"
 
-#: src/lib/ui/components/editDialog.ts:436
+#: src/lib/ui/components/editDialog.ts:442
 msgid "Side by side"
 msgstr "Yan yana"
 
-#: src/lib/ui/components/editDialog.ts:452
-#: src/lib/ui/components/editDialog.ts:477
+#: src/lib/ui/components/editDialog.ts:458
+#: src/lib/ui/components/editDialog.ts:483
 msgid "Markdown formatting"
 msgstr "Markdown biçimlendirmesi"
 
-#: src/lib/ui/components/editDialog.ts:459
+#: src/lib/ui/components/editDialog.ts:465
 msgid "Bold (Ctrl+B)"
 msgstr "Kalın (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:460
+#: src/lib/ui/components/editDialog.ts:466
 msgid "Italic (Ctrl+I)"
 msgstr "İtalik (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:461
+#: src/lib/ui/components/editDialog.ts:467
 msgid "Bullet list"
 msgstr "Madde işaretli liste"
 
-#: src/lib/ui/components/editDialog.ts:462
+#: src/lib/ui/components/editDialog.ts:468
 msgid "Numbered list"
 msgstr "Numaralı liste"
 
-#: src/lib/ui/components/editDialog.ts:463
+#: src/lib/ui/components/editDialog.ts:469
 msgid "Quote"
 msgstr "Alıntı"
 
-#: src/lib/ui/components/editDialog.ts:464
+#: src/lib/ui/components/editDialog.ts:470
 msgid "Inline code"
 msgstr "Satır içi kod"
 
@@ -1823,17 +1825,17 @@ msgstr ""
 "Enter tuşuyla veya virgülle konu ekleyin. Aramak için # işaretinden sonra "
 "konu adını yazın."
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:49
 msgid "Images"
 msgstr "Görseller"
 
-#: src/lib/ui/components/typeFilters.ts:36
+#: src/lib/ui/components/typeFilters.ts:51
 msgid "Links"
 msgstr "Bağlantılar"
 
-#: src/lib/ui/components/typeFilters.ts:67
-#: src/lib/ui/components/typeFilters.ts:79
-#: src/lib/ui/components/typeFilters.ts:84
+#: src/lib/ui/components/typeFilters.ts:82
+#: src/lib/ui/components/typeFilters.ts:94
+#: src/lib/ui/components/typeFilters.ts:99
 msgid "Pinned"
 msgstr "Sabitlenenler"
 
@@ -1946,43 +1948,43 @@ msgstr "Re__nk"
 msgid "Type to search"
 msgstr "Aramak için yaz"
 
-#: src/prefs.ts:54
+#: src/prefs.ts:60
 msgid "Choose what to keep and for how long."
 msgstr "Nelerin ne kadar süre saklanacağını seçin."
 
-#: src/prefs.ts:60
+#: src/prefs.ts:66
 msgid "Control copying, pasting and feedback."
 msgstr "Kopyalama, yapıştırma ve geri bildirimi yönetin."
 
-#: src/prefs.ts:65
+#: src/prefs.ts:71
 msgid "Advanced"
 msgstr "Gelişmiş"
 
-#: src/prefs.ts:66
+#: src/prefs.ts:72
 msgid "Manage storage and code languages."
 msgstr "Depolamayı ve kod dillerini yönetin."
 
-#: src/prefs.ts:69
+#: src/prefs.ts:75
 msgid "Storage"
 msgstr "Depolama"
 
-#: src/prefs.ts:74
+#: src/prefs.ts:80
 msgid "Panel Indicator"
 msgstr "Panel Göstergesi"
 
-#: src/prefs.ts:88
+#: src/prefs.ts:94
 msgid "Appearance"
 msgstr "Görünüm"
 
-#: src/prefs.ts:89
+#: src/prefs.ts:95
 msgid "Customize the panel, cards and colors."
 msgstr "Paneli, kartları ve renkleri özelleştirin."
 
-#: src/prefs.ts:108
+#: src/prefs.ts:114
 msgid "Shortcuts"
 msgstr "Kısayollar"
 
-#: src/prefs.ts:109
+#: src/prefs.ts:115
 msgid "Access your clipboard with the keyboard."
 msgstr "Panoya klavyeyle erişin."
 

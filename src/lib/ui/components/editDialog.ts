@@ -129,8 +129,19 @@ export class MultilineEntry extends St.Entry {
 
 		// St.Entry's single-line navigation does not handle document boundaries.
 		text.connect('key-press-event', (_actor, event: Clutter.Event) => {
-			if (!event.has_control_modifier()) return Clutter.EVENT_PROPAGATE;
 			const key = event.get_key_symbol();
+			// Clutter's activation binding consumes Enter even in multiline mode.
+			if (
+				(key === Clutter.KEY_Return || key === Clutter.KEY_KP_Enter) &&
+				!event.has_control_modifier() &&
+				!(event.get_state() & Clutter.ModifierType.MOD1_MASK) &&
+				!text.has_preedit()
+			) {
+				text.delete_selection();
+				text.insert_text('\n', text.cursor_position);
+				return Clutter.EVENT_STOP;
+			}
+			if (!event.has_control_modifier()) return Clutter.EVENT_PROPAGATE;
 			if (key !== Clutter.KEY_Home && key !== Clutter.KEY_End) return Clutter.EVENT_PROPAGATE;
 			const position = key === Clutter.KEY_Home ? 0 : -1;
 			const anchor = event.has_shift_modifier() ? text.selection_bound : position;
@@ -303,23 +314,18 @@ export class EditDialog extends ModalDialog.ModalDialog {
 		});
 		this.contentLayout.add_child(content);
 
+		const subjectsHeader = new St.BoxLayout({ style_class: 'subject-header', x_expand: true });
+		subjectsHeader.add_child(
+			new St.Label({ text: _('Subjects'), x_expand: true, y_align: Clutter.ActorAlign.CENTER }),
+		);
 		if (entry.type === ItemType.Code) {
-			const box = new St.Widget({
-				style_class: 'modal-dialog-button-box modal-dialog-top-button-box',
-				x_expand: true,
-				layout_manager: new Clutter.BoxLayout({
-					spacing: 12,
-					homogeneous: true,
-				}),
-			});
-			content.add_child(box);
-
 			const metadata = { language: null, ...entry.metadata } as CodeMetadata;
 			this._languageButton = new LanguageButton(ext, metadata.language);
-			box.add_child(this._languageButton);
+			this._languageButton.x_expand = false;
+			subjectsHeader.add_child(this._languageButton);
 		}
+		content.add_child(subjectsHeader);
 
-		content.add_child(new St.Label({ text: _('Subjects') }));
 		const subjects = subjectInput(entry.subjects, ext.subjectSuggestions());
 		content.add_child(subjects);
 		if (entry.type === ItemType.Text) this.addMarkdownTools(content);

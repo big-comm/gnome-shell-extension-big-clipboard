@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 14:37-0300\n"
+"POT-Creation-Date: 2026-10-03 00:05-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -126,8 +126,8 @@ msgstr "Couleur copiée"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:240
-#: src/lib/ui/components/editDialog.ts:267
+#: src/lib/ui/components/editDialog.ts:251
+#: src/lib/ui/components/editDialog.ts:278
 msgid "None"
 msgstr "Aucun"
 
@@ -141,14 +141,14 @@ msgstr "Actions par défaut"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:47 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "Texte"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:48 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "Code"
 
@@ -170,7 +170,7 @@ msgstr "Fichier"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:50 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "Fichiers"
@@ -179,7 +179,7 @@ msgstr "Fichiers"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:471 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "Lien"
 
@@ -198,7 +198,7 @@ msgid "Color"
 msgstr "Couleur"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:31
+#: src/lib/ui/components/typeFilters.ts:46
 msgid "All"
 msgstr "Tout"
 
@@ -218,7 +218,7 @@ msgstr "Sélectionnez les types autorisés"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/editDialog.ts:398
 #: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "Annuler"
@@ -351,7 +351,7 @@ msgid "Edit Action"
 msgstr "Modifier l'action"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/editDialog.ts:404
 #: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "Enregistrer"
@@ -364,7 +364,7 @@ msgstr "Ajouter un sous-menu"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/components/editDialog.ts:419
 #: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "Modifier"
@@ -590,8 +590,8 @@ msgstr "Filtres compacts"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:122
 msgid ""
-"Show icons and counts instead of filter names. Hover over an icon to see its"
-" name."
+"Show icons and counts instead of filter names. Hover over an icon to see its "
+"name."
 msgstr ""
 "Afficher des icônes et des compteurs à la place des noms des filtres. "
 "Survoler une icône pour afficher son nom."
@@ -1249,6 +1249,8 @@ msgstr ""
 #: src/lib/preferences/sidebarPreferences.ts:17
 #: src/lib/preferences/sidebarPreferences.ts:148
 #: src/lib/preferences/sidebarPreferences.ts:149
+#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Search"
 msgstr "Recherche"
 
@@ -1298,7 +1300,7 @@ msgid "Manage apps that will be excluded from clipboard history"
 msgstr ""
 "Gérer les applications qui seront exclues de l'historique du presse-papiers"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:65
 msgid "Behavior"
 msgstr "Comportement"
 
@@ -1308,8 +1310,8 @@ msgstr "Coller directement à la sélection"
 
 #: src/lib/preferences/general/behaviorSettings.ts:20
 msgid ""
-"Paste into the active application when selecting a card. When disabled, only"
-" copy to the clipboard."
+"Paste into the active application when selecting a card. When disabled, only "
+"copy to the clipboard."
 msgstr ""
 "Coller dans l’application active lors de la sélection d’une carte. Si "
 "désactivé, copier uniquement dans le presse-papiers."
@@ -1475,7 +1477,7 @@ msgstr ""
 msgid "Sound to play when a clipboard item is copied"
 msgstr "Son à jouer lorsqu'un élément du presse-papiers est copié"
 
-#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:59
 msgid "History"
 msgstr "Historique"
 
@@ -1519,7 +1521,7 @@ msgstr ""
 "Choisissez les éléments à conserver après une déconnexion ou un redémarrage."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Effacer"
@@ -1738,7 +1740,7 @@ msgstr "Aucun résultat trouvé"
 
 #: src/lib/ui/components/cardSubjects.ts:29
 #: src/lib/ui/components/cardSubjects.ts:32
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:319
 #: src/lib/ui/components/subjectsDialog.ts:30
 #: src/lib/ui/components/subjectsDialog.ts:142
 msgid "Subjects"
@@ -1788,48 +1790,48 @@ msgstr "Fichier manquant"
 msgid "Error"
 msgstr "Erreur"
 
-#: src/lib/ui/components/editDialog.ts:302
+#: src/lib/ui/components/editDialog.ts:313
 msgid "Edit Clipboard Item"
 msgstr "Modifier l'élément du presse-papiers"
 
-#: src/lib/ui/components/editDialog.ts:366
+#: src/lib/ui/components/editDialog.ts:372
 msgid "Preview shortened. The full text is preserved."
 msgstr "Aperçu abrégé. Le texte intégral est conservé."
 
-#: src/lib/ui/components/editDialog.ts:420
+#: src/lib/ui/components/editDialog.ts:426
 msgid "Preview"
 msgstr "Aperçu"
 
-#: src/lib/ui/components/editDialog.ts:436
+#: src/lib/ui/components/editDialog.ts:442
 msgid "Side by side"
 msgstr "Côte à côte"
 
-#: src/lib/ui/components/editDialog.ts:452
-#: src/lib/ui/components/editDialog.ts:477
+#: src/lib/ui/components/editDialog.ts:458
+#: src/lib/ui/components/editDialog.ts:483
 msgid "Markdown formatting"
 msgstr "Mise en forme Markdown"
 
-#: src/lib/ui/components/editDialog.ts:459
+#: src/lib/ui/components/editDialog.ts:465
 msgid "Bold (Ctrl+B)"
 msgstr "Gras (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:460
+#: src/lib/ui/components/editDialog.ts:466
 msgid "Italic (Ctrl+I)"
 msgstr "Italique (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:461
+#: src/lib/ui/components/editDialog.ts:467
 msgid "Bullet list"
 msgstr "Liste à puces"
 
-#: src/lib/ui/components/editDialog.ts:462
+#: src/lib/ui/components/editDialog.ts:468
 msgid "Numbered list"
 msgstr "Liste numérotée"
 
-#: src/lib/ui/components/editDialog.ts:463
+#: src/lib/ui/components/editDialog.ts:469
 msgid "Quote"
 msgstr "Citation"
 
-#: src/lib/ui/components/editDialog.ts:464
+#: src/lib/ui/components/editDialog.ts:470
 msgid "Inline code"
 msgstr "Code en ligne"
 
@@ -1849,17 +1851,17 @@ msgstr ""
 "Ajoutez des sujets avec Entrée ou des virgules. Recherchez avec # suivi du "
 "nom d’un sujet."
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:49
 msgid "Images"
 msgstr "Images"
 
-#: src/lib/ui/components/typeFilters.ts:36
+#: src/lib/ui/components/typeFilters.ts:51
 msgid "Links"
 msgstr "Liens"
 
-#: src/lib/ui/components/typeFilters.ts:67
-#: src/lib/ui/components/typeFilters.ts:79
-#: src/lib/ui/components/typeFilters.ts:84
+#: src/lib/ui/components/typeFilters.ts:82
+#: src/lib/ui/components/typeFilters.ts:94
+#: src/lib/ui/components/typeFilters.ts:99
 msgid "Pinned"
 msgstr "Épinglés"
 
@@ -1972,43 +1974,43 @@ msgstr "Couleu__r"
 msgid "Type to search"
 msgstr "Tapez pour rechercher"
 
-#: src/prefs.ts:54
+#: src/prefs.ts:60
 msgid "Choose what to keep and for how long."
 msgstr "Choisissez les éléments à conserver et leur durée de conservation."
 
-#: src/prefs.ts:60
+#: src/prefs.ts:66
 msgid "Control copying, pasting and feedback."
 msgstr "Gérez la copie, le collage et les retours."
 
-#: src/prefs.ts:65
+#: src/prefs.ts:71
 msgid "Advanced"
 msgstr "Avancé"
 
-#: src/prefs.ts:66
+#: src/prefs.ts:72
 msgid "Manage storage and code languages."
 msgstr "Gérez le stockage et les langages de code."
 
-#: src/prefs.ts:69
+#: src/prefs.ts:75
 msgid "Storage"
 msgstr "Stockage"
 
-#: src/prefs.ts:74
+#: src/prefs.ts:80
 msgid "Panel Indicator"
 msgstr "Indicateur du panneau"
 
-#: src/prefs.ts:88
+#: src/prefs.ts:94
 msgid "Appearance"
 msgstr "Apparence"
 
-#: src/prefs.ts:89
+#: src/prefs.ts:95
 msgid "Customize the panel, cards and colors."
 msgstr "Personnalisez le panneau, les cartes et les couleurs."
 
-#: src/prefs.ts:108
+#: src/prefs.ts:114
 msgid "Shortcuts"
 msgstr "Raccourcis"
 
-#: src/prefs.ts:109
+#: src/prefs.ts:115
 msgid "Access your clipboard with the keyboard."
 msgstr "Accédez au presse-papiers avec le clavier."
 

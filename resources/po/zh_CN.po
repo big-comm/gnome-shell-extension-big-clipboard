@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-02 14:37-0300\n"
+"POT-Creation-Date: 2026-10-03 00:05-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -125,8 +125,8 @@ msgstr "已复制颜色"
 #: src/lib/preferences/general/feedbackSettings.ts:260
 #: src/lib/preferences/general/feedbackSettings.ts:309
 #: src/lib/preferences/shortcuts/itemShortcuts.ts:39
-#: src/lib/ui/components/editDialog.ts:240
-#: src/lib/ui/components/editDialog.ts:267
+#: src/lib/ui/components/editDialog.ts:251
+#: src/lib/ui/components/editDialog.ts:278
 msgid "None"
 msgstr "无"
 
@@ -140,14 +140,14 @@ msgstr "默认动作"
 #: src/lib/preferences/actions/actionDialog.ts:175
 #: src/lib/preferences/actions/actionDialog.ts:364
 #: src/lib/preferences/customization/items/fileItemCustomization.ts:69
-#: src/lib/ui/components/typeFilters.ts:32 src/lib/ui/items/textItem.ts:30
+#: src/lib/ui/components/typeFilters.ts:47 src/lib/ui/items/textItem.ts:30
 msgid "Text"
 msgstr "文本"
 
 #: src/lib/preferences/actions/actionDefaults.ts:136
 #: src/lib/preferences/actions/actionDialog.ts:176
 #: src/lib/preferences/actions/actionDialog.ts:367
-#: src/lib/ui/components/typeFilters.ts:33 src/lib/ui/items/codeItem.ts:23
+#: src/lib/ui/components/typeFilters.ts:48 src/lib/ui/items/codeItem.ts:23
 msgid "Code"
 msgstr "代码"
 
@@ -169,7 +169,7 @@ msgstr "文件"
 #: src/lib/preferences/actions/actionDefaults.ts:148
 #: src/lib/preferences/actions/actionDialog.ts:179
 #: src/lib/preferences/actions/actionDialog.ts:376
-#: src/lib/ui/components/typeFilters.ts:35 src/lib/ui/items/filesItem.ts:137
+#: src/lib/ui/components/typeFilters.ts:50 src/lib/ui/items/filesItem.ts:137
 #: src/lib/ui/items/filesItem.ts:147 src/lib/ui/items/filesItem.ts:148
 msgid "Files"
 msgstr "多文件"
@@ -178,7 +178,7 @@ msgstr "多文件"
 #: src/lib/preferences/actions/actionDialog.ts:180
 #: src/lib/preferences/actions/actionDialog.ts:379
 #: src/lib/preferences/customization/items/linkItemCustomization.ts:45
-#: src/lib/ui/components/editDialog.ts:465 src/lib/ui/items/linkItem.ts:307
+#: src/lib/ui/components/editDialog.ts:471 src/lib/ui/items/linkItem.ts:307
 msgid "Link"
 msgstr "链接"
 
@@ -197,7 +197,7 @@ msgid "Color"
 msgstr "颜色"
 
 #: src/lib/preferences/actions/actionDialog.ts:38
-#: src/lib/ui/components/typeFilters.ts:31
+#: src/lib/ui/components/typeFilters.ts:46
 msgid "All"
 msgstr "所有"
 
@@ -217,7 +217,7 @@ msgstr "选择哪些类型被允许"
 #: src/lib/preferences/customization/items/exclusions.ts:90
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
-#: src/lib/ui/components/editDialog.ts:392
+#: src/lib/ui/components/editDialog.ts:398
 #: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
 msgid "Cancel"
 msgstr "取消"
@@ -347,7 +347,7 @@ msgid "Edit Action"
 msgstr "编辑动作"
 
 #: src/lib/preferences/actions/actionDialog.ts:662
-#: src/lib/ui/components/editDialog.ts:398
+#: src/lib/ui/components/editDialog.ts:404
 #: src/lib/ui/components/subjectsDialog.ts:151
 msgid "Save"
 msgstr "保存"
@@ -360,7 +360,7 @@ msgstr "添加子菜单"
 #: src/lib/preferences/actions/actionSubMenuDialog.ts:80
 #: src/lib/preferences/actions/actionsGroup.ts:125
 #: src/lib/preferences/actions/actionsGroup.ts:423
-#: src/lib/ui/components/editDialog.ts:413
+#: src/lib/ui/components/editDialog.ts:419
 #: src/lib/ui/items/clipboardItem.ts:127
 msgid "Edit"
 msgstr "编辑"
@@ -571,8 +571,8 @@ msgstr "紧凑筛选器"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:122
 msgid ""
-"Show icons and counts instead of filter names. Hover over an icon to see its"
-" name."
+"Show icons and counts instead of filter names. Hover over an icon to see its "
+"name."
 msgstr "显示图标和数量，而不显示筛选器名称。将鼠标悬停在图标上可查看其名称。"
 
 #: src/lib/preferences/customization/dialogCustomization.ts:127
@@ -1209,6 +1209,8 @@ msgstr "常用语言始终可用。启用其他语言以支持代码检测和高
 #: src/lib/preferences/sidebarPreferences.ts:17
 #: src/lib/preferences/sidebarPreferences.ts:148
 #: src/lib/preferences/sidebarPreferences.ts:149
+#: src/lib/ui/components/typeFilters.ts:32
+#: src/lib/ui/components/typeFilters.ts:36
 msgid "Search"
 msgstr "搜索"
 
@@ -1257,7 +1259,7 @@ msgstr "管理排除的应用"
 msgid "Manage apps that will be excluded from clipboard history"
 msgstr "管理将被排除，不记录剪贴板历史的应用"
 
-#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:59
+#: src/lib/preferences/general/behaviorSettings.ts:14 src/prefs.ts:65
 msgid "Behavior"
 msgstr "行为"
 
@@ -1267,8 +1269,8 @@ msgstr "选择后直接粘贴"
 
 #: src/lib/preferences/general/behaviorSettings.ts:20
 msgid ""
-"Paste into the active application when selecting a card. When disabled, only"
-" copy to the clipboard."
+"Paste into the active application when selecting a card. When disabled, only "
+"copy to the clipboard."
 msgstr "选择卡片时粘贴到当前应用。关闭后，仅复制到剪贴板。"
 
 #: src/lib/preferences/general/behaviorSettings.ts:26
@@ -1419,7 +1421,7 @@ msgstr "复制剪贴板项时发送通知"
 msgid "Sound to play when a clipboard item is copied"
 msgstr "复制剪贴板项时播放的声音"
 
-#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:53
+#: src/lib/preferences/general/historySettings.ts:65 src/prefs.ts:59
 msgid "History"
 msgstr "历史"
 
@@ -1460,7 +1462,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "选择注销或重启后要保留的内容。"
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:243
+#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "清除"
@@ -1677,7 +1679,7 @@ msgstr "未找到结果"
 
 #: src/lib/ui/components/cardSubjects.ts:29
 #: src/lib/ui/components/cardSubjects.ts:32
-#: src/lib/ui/components/editDialog.ts:322
+#: src/lib/ui/components/editDialog.ts:319
 #: src/lib/ui/components/subjectsDialog.ts:30
 #: src/lib/ui/components/subjectsDialog.ts:142
 msgid "Subjects"
@@ -1724,48 +1726,48 @@ msgstr "文件丢失"
 msgid "Error"
 msgstr "错误"
 
-#: src/lib/ui/components/editDialog.ts:302
+#: src/lib/ui/components/editDialog.ts:313
 msgid "Edit Clipboard Item"
 msgstr "编辑剪贴板项目"
 
-#: src/lib/ui/components/editDialog.ts:366
+#: src/lib/ui/components/editDialog.ts:372
 msgid "Preview shortened. The full text is preserved."
 msgstr "预览已缩短，完整文本仍会保留。"
 
-#: src/lib/ui/components/editDialog.ts:420
+#: src/lib/ui/components/editDialog.ts:426
 msgid "Preview"
 msgstr "预览"
 
-#: src/lib/ui/components/editDialog.ts:436
+#: src/lib/ui/components/editDialog.ts:442
 msgid "Side by side"
 msgstr "并排显示"
 
-#: src/lib/ui/components/editDialog.ts:452
-#: src/lib/ui/components/editDialog.ts:477
+#: src/lib/ui/components/editDialog.ts:458
+#: src/lib/ui/components/editDialog.ts:483
 msgid "Markdown formatting"
 msgstr "Markdown 格式"
 
-#: src/lib/ui/components/editDialog.ts:459
+#: src/lib/ui/components/editDialog.ts:465
 msgid "Bold (Ctrl+B)"
 msgstr "粗体 (Ctrl+B)"
 
-#: src/lib/ui/components/editDialog.ts:460
+#: src/lib/ui/components/editDialog.ts:466
 msgid "Italic (Ctrl+I)"
 msgstr "斜体 (Ctrl+I)"
 
-#: src/lib/ui/components/editDialog.ts:461
+#: src/lib/ui/components/editDialog.ts:467
 msgid "Bullet list"
 msgstr "无序列表"
 
-#: src/lib/ui/components/editDialog.ts:462
+#: src/lib/ui/components/editDialog.ts:468
 msgid "Numbered list"
 msgstr "有序列表"
 
-#: src/lib/ui/components/editDialog.ts:463
+#: src/lib/ui/components/editDialog.ts:469
 msgid "Quote"
 msgstr "引用"
 
-#: src/lib/ui/components/editDialog.ts:464
+#: src/lib/ui/components/editDialog.ts:470
 msgid "Inline code"
 msgstr "行内代码"
 
@@ -1783,17 +1785,17 @@ msgid ""
 "Add subjects with Enter or commas. Search with # followed by a subject name."
 msgstr "使用回车或逗号添加主题。输入 # 加主题名称进行搜索。"
 
-#: src/lib/ui/components/typeFilters.ts:34
+#: src/lib/ui/components/typeFilters.ts:49
 msgid "Images"
 msgstr "图像"
 
-#: src/lib/ui/components/typeFilters.ts:36
+#: src/lib/ui/components/typeFilters.ts:51
 msgid "Links"
 msgstr "链接"
 
-#: src/lib/ui/components/typeFilters.ts:67
-#: src/lib/ui/components/typeFilters.ts:79
-#: src/lib/ui/components/typeFilters.ts:84
+#: src/lib/ui/components/typeFilters.ts:82
+#: src/lib/ui/components/typeFilters.ts:94
+#: src/lib/ui/components/typeFilters.ts:99
 msgid "Pinned"
 msgstr "已固定"
 
@@ -1903,43 +1905,43 @@ msgstr "颜色(_R)"
 msgid "Type to search"
 msgstr "输入以搜索"
 
-#: src/prefs.ts:54
+#: src/prefs.ts:60
 msgid "Choose what to keep and for how long."
 msgstr "选择保留的内容及保留时长。"
 
-#: src/prefs.ts:60
+#: src/prefs.ts:66
 msgid "Control copying, pasting and feedback."
 msgstr "设置复制、粘贴和反馈。"
 
-#: src/prefs.ts:65
+#: src/prefs.ts:71
 msgid "Advanced"
 msgstr "高级"
 
-#: src/prefs.ts:66
+#: src/prefs.ts:72
 msgid "Manage storage and code languages."
 msgstr "管理存储和代码语言。"
 
-#: src/prefs.ts:69
+#: src/prefs.ts:75
 msgid "Storage"
 msgstr "存储"
 
-#: src/prefs.ts:74
+#: src/prefs.ts:80
 msgid "Panel Indicator"
 msgstr "面板指示器"
 
-#: src/prefs.ts:88
+#: src/prefs.ts:94
 msgid "Appearance"
 msgstr "外观"
 
-#: src/prefs.ts:89
+#: src/prefs.ts:95
 msgid "Customize the panel, cards and colors."
 msgstr "自定义面板、卡片和颜色。"
 
-#: src/prefs.ts:108
+#: src/prefs.ts:114
 msgid "Shortcuts"
 msgstr "快捷键"
 
-#: src/prefs.ts:109
+#: src/prefs.ts:115
 msgid "Access your clipboard with the keyboard."
 msgstr "使用键盘访问剪贴板。"
 

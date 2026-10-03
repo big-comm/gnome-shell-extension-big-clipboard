@@ -323,3 +323,11 @@
 .clipboard-item.link-item .clipboard-item-header-icon {
 	background-color: #166876;
 }
+
+// Keep code readable independently of card colors and desktop theme.
+.code-surface {
+	background-color: #1d1d20;
+	color: #eeeeec;
+	border-radius: 6px;
+	padding: 4px 2px;
+}
