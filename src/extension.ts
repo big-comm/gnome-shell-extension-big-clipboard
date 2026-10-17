@@ -485,67 +485,92 @@ export default class CopyousExtension extends Extension {
 		this._enabled = false;
 		this._lifecycleSerial++;
 		this._entryTrackerInitSerial++;
-		this.cancelPreWarm();
+
+		// Each step runs on its own, so a failing destroy() cannot skip the cleanup after it.
+		const logError = this.logger?.error.bind(this.logger);
+		const step = (cleanup: () => void) => {
+			try {
+				cleanup();
+			} catch (error) {
+				logError?.(error);
+			}
+		};
+
+		step(() => this.cancelPreWarm());
 
 		// Cancel deferred enable if it has not run yet
-		if (this._enableDeferredId) {
-			GLib.source_remove(this._enableDeferredId);
+		step(() => {
+			if (this._enableDeferredId) GLib.source_remove(this._enableDeferredId);
 			this._enableDeferredId = 0;
-		}
+		});
 
 		// UI
-		this.clipboardDialog?.disconnectObject(this);
-		this.clipboardDialog?.destroy();
-		this.indicator?.disconnectObject(this);
-		this.indicator?.destroy();
+		step(() => {
+			this.clipboardDialog?.disconnectObject(this);
+			this.clipboardDialog?.destroy();
+		});
 		this.clipboardDialog = undefined;
+		step(() => {
+			this.indicator?.disconnectObject(this);
+			this.indicator?.destroy();
+		});
 		this.indicator = undefined;
 
 		// Highlight.js
 		this.hljs = undefined;
-		this.hljsMonitor?.disconnectObject(this);
-		this.hljsMonitor?.cancel();
+		step(() => {
+			this.hljsMonitor?.disconnectObject(this);
+			this.hljsMonitor?.cancel();
+		});
 		this.hljsMonitor = undefined;
 		this.hljsLanguages = undefined;
 		this.hljsCallbacks = undefined;
 
 		// Theme
-		this.themeManager?.destroy();
+		step(() => this.themeManager?.destroy());
 		this.themeManager = undefined;
 
 		// DBus
-		this.dbus?.disconnectObject(this);
-		this.dbus?.destroy();
+		step(() => {
+			this.dbus?.disconnectObject(this);
+			this.dbus?.destroy();
+		});
 		this.dbus = undefined;
 
 		// Feedback
 		this.notificationManager = undefined;
-		this.soundManager?.destroy();
+		step(() => this.soundManager?.destroy());
 		this.soundManager = undefined;
 
 		// Shortcuts
-		this.shortcutsManager?.disconnectObject(this);
-		this.shortcutsManager?.destroy();
+		step(() => {
+			this.shortcutsManager?.disconnectObject(this);
+			this.shortcutsManager?.destroy();
+		});
 		this.shortcutsManager = undefined;
 
 		// Database
-		const logError = this.logger?.error.bind(this.logger);
-		this.entryTracker?.destroy().catch((error) => logError?.(error));
+		step(() => this.entryTracker?.destroy().catch((error) => logError?.(error)));
 		this.entryTracker = undefined;
 
-		if (this.historyTimeoutId >= 0) GLib.source_remove(this.historyTimeoutId);
+		step(() => {
+			if (this.historyTimeoutId >= 0) GLib.source_remove(this.historyTimeoutId);
+		});
 		this.historyTimeoutId = -1;
 
 		// Clipboard Manager
-		this.clipboardManager?.disconnectObject(this);
-		this.clipboardManager?.destroy();
+		step(() => {
+			this.clipboardManager?.disconnectObject(this);
+			this.clipboardManager?.destroy();
+		});
 		this.clipboardManager = undefined;
 
 		// Globals
-		this.settings?.disconnectObject(this);
+		step(() => this.settings?.disconnectObject(this));
 		this.settings = undefined!;
 		this.logger = undefined!;
 	}
+
 
 	/* DEBUG-ONLY */
 	override getSettings(schema?: string): Gio.Settings & CopyousSettings {

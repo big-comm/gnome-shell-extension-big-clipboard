@@ -126,6 +126,12 @@ export default class Audit extends Extension {
 				invocation.return_value(new GLib.Variant('(s)', [JSON.stringify(result)]));
 				return;
 			}
+			if (action === 'tray') {
+				// Notification sources left behind by previous enable/disable cycles.
+				result.sources = Main.messageTray.getSources().filter((source) => source.title === 'Big Clipboard').length;
+				invocation.return_value(new GLib.Variant('(s)', [JSON.stringify(result)]));
+				return;
+			}
 			const ext = this.ext(),
 				d = ext.clipboardDialog;
 			const items = d._scrollView._scrollContainer.get_children().filter((a) => a.entry);
