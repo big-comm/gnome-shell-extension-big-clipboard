@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-03 00:11-0300\n"
+"POT-Creation-Date: 2026-10-17 00:58-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1485,6 +1485,14 @@ msgstr ""
 
 #: src/lib/preferences/general/historySettings.ts:151
 msgid "Minutes before items expire. Set to 0 to keep them."
+msgstr ""
+
+#: src/lib/preferences/general/historySettings.ts:157
+msgid "Maximum Item Size"
+msgstr ""
+
+#: src/lib/preferences/general/historySettings.ts:158
+msgid "Larger copies, in megabytes, are not saved."
 msgstr ""
 
 #: src/lib/preferences/general/locationsGroup.ts:13

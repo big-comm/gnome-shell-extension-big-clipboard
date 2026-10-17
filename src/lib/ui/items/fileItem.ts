@@ -148,7 +148,9 @@ export class FileItem extends ClipboardItem {
 		}
 
 		await this.configureFilePreview();
+		if (this._cancellable.is_cancelled()) return;
 		await this.configureFileInfo();
+		if (this._cancellable.is_cancelled()) return;
 		this.configureVisibility();
 	}
 

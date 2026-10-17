@@ -1,8 +1,11 @@
 import type { HLJSApi } from 'highlight.js';
 
+// highlightAuto tries every language synchronously in the Shell, so it only sees the start of the text.
+const MaxSampleLength = 2000;
+
 /** Prefer explicit interpreters over statistical detection, including incomplete snippets. */
 export function detectCodeLanguage(text: string, hljs?: HLJSApi | null) {
-	const sample = text.trim().slice(0, 10000);
+	const sample = text.trim().slice(0, MaxSampleLength);
 	const interpreter = /^#![^\n]*?\b(bash|sh|zsh|ksh|dash|python[\d.]*|node|nodejs|ruby|perl|php)(?=\s|$)/.exec(
 		sample,
 	)?.[1];
@@ -25,9 +28,10 @@ export function detectCodeLanguage(text: string, hljs?: HLJSApi | null) {
 	)
 		return { id: 'bash', name: 'Bash' };
 	if (!hljs || !sample) return null;
-	// Keywords in ordinary prose (for example "interface" and "package") are not code.
+	// Keywords in ordinary prose (for example "interface" and "package") are not code, and neither are
+	// currency ("R$ 10"), semicolons inside sentences or remarks in parentheses.
 	const hasSyntax =
-		/[{};=$]|\b\w+\s*\([^)]*\)|(?:^|\n)\s*(?:def |class |import |from |SELECT |INSERT |UPDATE |DELETE |#include|<\/?[a-zA-Z])/.test(
+		/[{}]|;[ \t]*$|\$[{(A-Za-z_]|\b\w+\s*[-+*/%|&]?=\s*[\w"'[(-]|\b[A-Za-z_]\w*\([^)]*\)|^\s*(?:def |class |import |from |SELECT |INSERT |UPDATE |DELETE |#include|<\/?[a-zA-Z])/m.test(
 			sample,
 		);
 	if (!hasSyntax) return null;

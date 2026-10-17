@@ -8,12 +8,59 @@ import type CopyousExtension from '../../extension.js';
 import { UserAgent, getCachePath } from '../common/constants.js';
 import { LinkMetadata } from '../database/database.js';
 
-import OutputStreamSpliceFlags = Gio.OutputStreamSpliceFlags;
-
 Gio._promisify(Soup.Session.prototype, 'send_async');
-Gio._promisify(Gio.File.prototype, 'replace_async');
 Gio._promisify(Gio.File.prototype, 'replace_contents_async');
-Gio._promisify(Gio.OutputStream.prototype, 'splice_async');
+Gio._promisify(Gio.InputStream.prototype, 'read_bytes_async');
+
+// Metadata lives in <head>, so the start of the page is enough.
+const MaxPageSize = 1024 * 1024;
+const MaxImageSize = 10 * 1024 * 1024;
+const RequestTimeout = 10;
+
+function createSession(): Soup.Session {
+	return new Soup.Session({ user_agent: UserAgent, idle_timeout: 5, timeout: RequestTimeout });
+}
+
+/**
+ * Reads up to maxBytes from a stream
+ * @returns The data read and whether the stream had more data
+ */
+async function readLimited(
+	stream: Gio.InputStream,
+	maxBytes: number,
+	cancellable: Gio.Cancellable,
+): Promise<[Uint8Array, boolean]> {
+	const chunks: Uint8Array[] = [];
+	let size = 0;
+	let truncated = false;
+	try {
+		while (size <= maxBytes) {
+			// Chunks of a stream can only be read one after another
+			// eslint-disable-next-line no-await-in-loop
+			const chunk = (await stream.read_bytes_async(64 * 1024, GLib.PRIORITY_DEFAULT, cancellable)).toArray();
+			if (chunk.length === 0) break;
+			chunks.push(chunk);
+			size += chunk.length;
+		}
+		truncated = size > maxBytes;
+	} finally {
+		try {
+			stream.close(null);
+		} catch {
+			// Ignore
+		}
+	}
+
+	const bytes = new Uint8Array(Math.min(size, maxBytes));
+	let offset = 0;
+	for (const chunk of chunks) {
+		if (offset >= bytes.length) break;
+		const part = chunk.subarray(0, bytes.length - offset);
+		bytes.set(part, offset);
+		offset += part.length;
+	}
+	return [bytes, truncated];
+}
 
 export async function tryGetMetadata(
 	ext: CopyousExtension,
@@ -28,7 +75,7 @@ export async function tryGetMetadata(
 		const uri = GLib.uri_parse(url, GLib.UriFlags.NONE);
 
 		// Create request
-		session = new Soup.Session({ user_agent: UserAgent, idle_timeout: 5 });
+		session = createSession();
 		const message = Soup.Message.new_from_uri('GET', uri);
 		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 		message.request_headers.append('Accept', 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8');
@@ -46,18 +93,14 @@ export async function tryGetMetadata(
 
 			// Write to cache
 			if (!imagePath.query_exists(cancellable)) {
-				const out = await imagePath.replace_async(
+				const [data, truncated] = await readLimited(response, MaxImageSize, cancellable);
+				if (truncated) return empty;
+				await imagePath.replace_contents_async(
+					data,
 					null,
 					false,
 					Gio.FileCreateFlags.REPLACE_DESTINATION,
-					GLib.PRIORITY_DEFAULT,
-					null,
-				);
-				await out.splice_async(
-					response,
-					Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-					GLib.PRIORITY_DEFAULT,
-					null,
+					cancellable,
 				);
 			}
 
@@ -67,17 +110,7 @@ export async function tryGetMetadata(
 		// Download page
 		if (!contentType || !Gio.content_type_is_a(contentType, 'text/html')) return empty;
 
-		const out = Gio.MemoryOutputStream.new_resizable();
-		await out.splice_async(
-			response,
-			OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-			GLib.PRIORITY_DEFAULT,
-			cancellable,
-		);
-
-		const bytes = out.steal_as_bytes();
-		const data = bytes.get_data();
-		if (data == null) return empty;
+		const [data] = await readLimited(response, MaxPageSize, cancellable);
 
 		// Extract metadata
 		const text = new TextDecoder().decode(data);
@@ -158,7 +191,7 @@ function decodeHtml(html: string): string {
 }
 
 export function getLinkImagePath(ext: Extension, url: string): Gio.File | null {
-	const checksum = GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, url, url.length);
+	const checksum = GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, url, -1);
 	if (checksum == null) return null;
 
 	const cacheDir = getCachePath(ext);
@@ -183,7 +216,7 @@ export async function tryGetLinkImage(
 		if (imagePath.query_exists(cancellable)) return imagePath;
 
 		// Otherwise download image
-		session = new Soup.Session({ user_agent: UserAgent, idle_timeout: 5 });
+		session = createSession();
 		const message = Soup.Message.new_from_uri('GET', uri);
 		// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
 		message.request_headers.append(
@@ -192,15 +225,15 @@ export async function tryGetLinkImage(
 		);
 
 		// Send request
-		const response = await session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, cancellable);
+		const response = await session.send_async(message, GLib.PRIORITY_DEFAULT, cancellable);
 		if (response == null) return null;
-
-		const data = response.get_data();
-		if (data == null) return null;
 
 		// Check if the response is an image
 		const [contentType] = message.response_headers.get_content_type();
 		if (contentType == null || !contentType.startsWith('image/')) return null;
+
+		const [data, truncated] = await readLimited(response, MaxImageSize, cancellable);
+		if (truncated) return null;
 
 		// Write to cache
 		await imagePath.replace_contents_async(data, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, cancellable);

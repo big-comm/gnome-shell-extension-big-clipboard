@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-03 00:05-0300\n"
+"POT-Creation-Date: 2026-10-17 00:56-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -1532,6 +1532,14 @@ msgstr "Wygasanie"
 #: src/lib/preferences/general/historySettings.ts:151
 msgid "Minutes before items expire. Set to 0 to keep them."
 msgstr "Liczba minut do wygaśnięcia elementów. Ustaw 0, aby je zachować."
+
+#: src/lib/preferences/general/historySettings.ts:157
+msgid "Maximum Item Size"
+msgstr "Maksymalny rozmiar elementu"
+
+#: src/lib/preferences/general/historySettings.ts:158
+msgid "Larger copies, in megabytes, are not saved."
+msgstr "Większe kopie (w megabajtach) nie są zapisywane."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"

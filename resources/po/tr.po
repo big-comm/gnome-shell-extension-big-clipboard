@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-03 00:05-0300\n"
+"POT-Creation-Date: 2026-10-17 00:56-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -1527,6 +1527,14 @@ msgstr "Saklama Süresi"
 msgid "Minutes before items expire. Set to 0 to keep them."
 msgstr ""
 "Öğelerin saklanacağı dakika sayısı. Süresiz saklamak için 0 olarak ayarlayın."
+
+#: src/lib/preferences/general/historySettings.ts:157
+msgid "Maximum Item Size"
+msgstr "En Büyük Öğe Boyutu"
+
+#: src/lib/preferences/general/historySettings.ts:158
+msgid "Larger copies, in megabytes, are not saved."
+msgstr "Megabayt cinsinden daha büyük kopyalar kaydedilmez."
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"

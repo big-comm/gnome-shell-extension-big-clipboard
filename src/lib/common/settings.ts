@@ -13,6 +13,7 @@ export const Settings = {
 	ClipboardHistory: 'clipboard-history',
 	HistoryLength: 'history-length',
 	HistoryTime: 'history-time',
+	MaxItemSize: 'max-item-size',
 
 	RememberSearch: 'remember-search',
 	ExcludePinned: 'exclude-pinned',
@@ -147,6 +148,7 @@ export const SettingsTypes = {
 	[Settings.ClipboardHistory]: 'enum',
 	[Settings.HistoryLength]: 'int',
 	[Settings.HistoryTime]: 'int',
+	[Settings.MaxItemSize]: 'int',
 
 	[Settings.RememberSearch]: 'boolean',
 	[Settings.ExcludePinned]: 'boolean',

@@ -23,5 +23,16 @@ for (const text of [
 ]) assert.equal(detect(text, hljs), null, 'ordinary notes must not become Kotlin code');
 let sample;
 detect('x='.repeat(50000), {highlightAuto(text) {sample = text; return {relevance: 0};}});
-assert.equal(sample.length, 10000, 'bounded detection');
-console.log('Code detection: shebang priority, incomplete shell, startup fallback, JavaScript, prose and bounded input passed');
+assert.equal(sample.length, 2000, 'bounded detection');
+const untouched = {highlightAuto() {throw new Error('prose must not reach highlightAuto');}};
+for (const prose of [
+    'Paguei R$ 10,00 no almoço e R$ 25 no jantar.',
+    'Comprei pão; depois passei na farmácia.',
+    'O GNOME (versão 50) já está disponível.',
+    'Reunião às 14h — trazer o relatório.',
+]) assert.equal(detect(prose, untouched), null, prose);
+let calls = 0;
+const counting = {highlightAuto() {calls++; return {relevance: 0};}};
+for (const code of ['total = price * 2', 'cd $HOME/src', 'print(value)', 'int x;', 'body { color: red }']) detect(code, counting);
+assert.equal(calls, 5, 'code-like snippets still reach statistical detection');
+console.log('Code detection: shebang priority, incomplete shell, startup fallback, JavaScript, prose, currency and bounded input passed');

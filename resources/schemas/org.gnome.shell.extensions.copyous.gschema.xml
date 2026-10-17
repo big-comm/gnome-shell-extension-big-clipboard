@@ -48,6 +48,11 @@
 			<range min="0" max="1440" />
 			<summary>Number of minutes to keep unpinned items in the clipboard history. Set to 0 to disable the time limit</summary>
 		</key>
+		<key name="max-item-size" type="i">
+			<default>50</default>
+			<range min="1" max="500"/>
+			<summary>Maximum size in megabytes of a copied item. Larger items are not saved in the clipboard history</summary>
+		</key>
 
 		<!-- Behavior -->
 		<key name="remember-search" type="b">

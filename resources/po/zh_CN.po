@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-03 00:05-0300\n"
+"POT-Creation-Date: 2026-10-17 00:56-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -1494,6 +1494,14 @@ msgstr "过期时间"
 #: src/lib/preferences/general/historySettings.ts:151
 msgid "Minutes before items expire. Set to 0 to keep them."
 msgstr "条目过期前的分钟数。设为 0 可永久保留。"
+
+#: src/lib/preferences/general/historySettings.ts:157
+msgid "Maximum Item Size"
+msgstr "最大项目大小"
+
+#: src/lib/preferences/general/historySettings.ts:158
+msgid "Larger copies, in megabytes, are not saved."
+msgstr "超过此大小（以 MB 为单位）的复制内容不会被保存。"
 
 #: src/lib/preferences/general/locationsGroup.ts:13
 msgid "Locations"

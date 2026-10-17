@@ -17,7 +17,7 @@ import { Keyboard } from './keyboard.js';
 
 Gio._promisify(Gio.File.prototype, 'load_contents_async');
 Gio._promisify(Gio.File.prototype, 'replace_contents_async');
-Gio._promisify(Gio.MemoryOutputStream.prototype, 'splice_async');
+Gio._promisify(Gio.InputStream.prototype, 'read_bytes_async');
 Gio._promisify(Meta.SelectionSource.prototype, 'read_async');
 
 const Utf8Decoder = new TextDecoder();
@@ -44,17 +44,59 @@ type ClipboardContent =
 	| { type: (typeof ContentType)['Image']; mimetype: string; data: Uint8Array; checksum: string }
 	| { type: (typeof ContentType)['File']; paths: string[]; operation: FileOperation };
 
+const ReadChunkSize = 256 * 1024;
+
+function tryDecodeURI(uri: string): string {
+	try {
+		return decodeURI(uri);
+	} catch {
+		return uri;
+	}
+}
+
+// The length argument counts UTF-8 bytes, so -1 is used to hash the whole string.
 function contentChecksum(content: ClipboardContent): string | null {
 	switch (content.type) {
 		case ContentType.Text:
-			return GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, content.text, content.text.length);
+			return GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, content.text, -1);
 		case ContentType.Image:
 			return content.checksum;
 		case ContentType.File: {
-			const s = content.paths.map((f) => decodeURI(f).substring('file://'.length)).join('\n');
-			return GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, s, s.length);
+			const s = content.paths.map((f) => tryDecodeURI(f).substring('file://'.length)).join('\n');
+			return GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, s, -1);
 		}
 	}
+}
+
+/** Reads a stream, or returns null as soon as it grows beyond maxBytes. */
+async function readBounded(stream: Gio.InputStream, maxBytes: number): Promise<Uint8Array | null> {
+	const chunks: Uint8Array[] = [];
+	let size = 0;
+	try {
+		for (;;) {
+			// Chunks of a stream can only be read one after another
+			// eslint-disable-next-line no-await-in-loop
+			const chunk = (await stream.read_bytes_async(ReadChunkSize, GLib.PRIORITY_DEFAULT, null)).toArray();
+			if (chunk.length === 0) break;
+			size += chunk.length;
+			if (size > maxBytes) return null;
+			chunks.push(chunk);
+		}
+	} finally {
+		try {
+			stream.close(null);
+		} catch {
+			// Ignore
+		}
+	}
+
+	const bytes = new Uint8Array(size);
+	let offset = 0;
+	for (const chunk of chunks) {
+		bytes.set(chunk, offset);
+		offset += chunk.length;
+	}
+	return bytes;
 }
 
 function hasMoreGraphemes(text: string, max: number): boolean {
@@ -300,23 +342,21 @@ export class ClipboardManager extends GObject.Object {
 		selectionSource: Meta.SelectionSource,
 		mimeTypes: readonly string[],
 	): Promise<ClipboardContent | null> {
-		async function getBytes(mimeType: string): Promise<Uint8Array<ArrayBufferLike>> {
+		const maxMegabytes = this.ext.settings.get_int('max-item-size');
+		const logger = this.ext.logger;
+
+		async function getBytes(mimeType: string): Promise<Uint8Array | null> {
 			const source = await selectionSource.read_async(mimeType, null);
-			const out = Gio.MemoryOutputStream.new_resizable();
-			await out.splice_async(
-				source,
-				Gio.OutputStreamSpliceFlags.CLOSE_SOURCE | Gio.OutputStreamSpliceFlags.CLOSE_TARGET,
-				GLib.PRIORITY_DEFAULT,
-				null,
-			);
-			return out.steal_as_bytes().toArray();
+			const bytes = await readBounded(source, maxMegabytes * 1024 * 1024);
+			if (bytes === null) logger.log(`Ignored ${mimeType} clipboard content larger than ${maxMegabytes} MB`);
+			return bytes;
 		}
 
 		// Image
 		const imageMimeType = MimeTypes.Image.find((value) => mimeTypes.includes(value));
 		if (imageMimeType) {
 			const bytes = await getBytes(imageMimeType);
-			if (bytes.length > 0) {
+			if (bytes && bytes.length > 0) {
 				const checksum = GLib.compute_checksum_for_bytes(GLib.ChecksumType.MD5, bytes);
 				if (!checksum) return null;
 				return { type: ContentType.Image, mimetype: imageMimeType, data: bytes, checksum };
@@ -329,6 +369,7 @@ export class ClipboardManager extends GObject.Object {
 		const fileMimeType = MimeTypes.File.find((value) => mimeTypes.includes(value));
 		if (fileMimeType) {
 			const bytes = await getBytes(fileMimeType);
+			if (!bytes) return null;
 			const text = Utf8Decoder.decode(bytes).trim();
 			if (text) {
 				const files = text
@@ -350,6 +391,7 @@ export class ClipboardManager extends GObject.Object {
 		const textMimeType = MimeTypes.Text.find((value) => mimeTypes.includes(value));
 		if (textMimeType) {
 			const bytes = await getBytes(textMimeType);
+			if (!bytes) return null;
 			const text = Utf8Decoder.decode(bytes);
 			if (text && text.trim()) {
 				return { type: ContentType.Text, text };

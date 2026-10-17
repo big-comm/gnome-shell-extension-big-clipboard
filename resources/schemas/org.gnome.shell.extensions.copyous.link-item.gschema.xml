@@ -3,7 +3,7 @@
 <schemalist>
 	<schema id="org.gnome.shell.extensions.copyous.link-item" path="/org/gnome/shell/extensions/copyous/link-item/">
 		<key name="show-link-preview" type="b">
-			<default>true</default>
+			<default>false</default>
 			<summary>Show a preview of the link</summary>
 		</key>
 		<key name="show-link-preview-image" type="b">
