@@ -35,11 +35,15 @@ interface JsonDatabaseModel {
 export class JsonDatabase extends MemoryDatabase {
 	private _saveTimeoutId: number = -1;
 
+	// Kept from construction: ext.logger is cleared on disable() before the final save settles.
+	private readonly logger: CopyousExtension['logger'];
+
 	constructor(
-		private ext: CopyousExtension,
+		ext: CopyousExtension,
 		private file: Gio.File,
 	) {
 		super();
+		this.logger = ext.logger;
 	}
 
 	public override async init(): Promise<void> {
@@ -153,7 +157,7 @@ export class JsonDatabase extends MemoryDatabase {
 			const bytes = new TextEncoder().encode(JSON.stringify(database));
 			await this.file.replace_contents_async(bytes, null, false, Gio.FileCreateFlags.REPLACE_DESTINATION, null);
 		} catch (error) {
-			this.ext.logger.error('Failed to save JSON database', error);
+			this.logger.error('Failed to save JSON database', error);
 		}
 	}
 }

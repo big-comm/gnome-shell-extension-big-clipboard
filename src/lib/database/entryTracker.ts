@@ -12,12 +12,21 @@ import { GdaDatabase } from './gda.js';
 import { JsonDatabase } from './json.js';
 import { MemoryDatabase } from './memory.js';
 
+/** Thrown when a newer init() or destroy() makes a pending init() obsolete. */
+class Superseded extends Error {}
+
 export class ClipboardEntryTracker {
 	private _database: Database | undefined;
 	private _entries: Map<number, ClipboardEntry> = new Map();
 	private _fromDefault: boolean = false;
+	private _generation: number = 0;
 
-	constructor(private ext: CopyousExtension) {}
+	// Kept from construction: ext.logger is cleared on disable() while database work may still be settling.
+	private readonly logger: CopyousExtension['logger'];
+
+	constructor(private ext: CopyousExtension) {
+		this.logger = ext.logger;
+	}
 
 	get shouldInit(): boolean {
 		if (this._fromDefault) {
@@ -33,6 +42,17 @@ export class ClipboardEntryTracker {
 			// Reinitializing the backend must never apply the history cleanup policy.
 			await this.destroy();
 		}
+
+		const generation = ++this._generation;
+		try {
+			return await this.initDatabase(generation);
+		} catch (e) {
+			if (e instanceof Superseded) return [];
+			throw e;
+		}
+	}
+
+	private async initDatabase(generation: number): Promise<ClipboardEntry[]> {
 
 		const backend: DatabaseBackend = this.ext.settings.get_enum('database-backend');
 		const file = this.getFile();
@@ -52,49 +72,68 @@ export class ClipboardEntryTracker {
 		if (backend === DatabaseBackend.Default) {
 			this._fromDefault = true;
 			if (this.ext.settings.get_boolean('in-memory-database')) {
-				this.ext.logger.log('Set default database backend to in-memory');
+				this.logger.log('Set default database backend to in-memory');
 				entries = await this.initMemory();
 			} else if (dbFile.query_exists(null)) {
-				entries = await this.initSqlite(dbFile, true);
+				entries = await this.initSqlite(dbFile, true, generation);
 				this.ext.settings.set_enum('database-backend', DatabaseBackend.Sqlite);
-				this.ext.logger.log('Set default database backend to SQLite');
+				this.logger.log('Set default database backend to SQLite');
 			} else if (jsonFile.query_exists(null)) {
-				entries = await this.initJson(jsonFile);
+				entries = await this.initJson(jsonFile, generation);
 				this.ext.settings.set_enum('database-backend', DatabaseBackend.Json);
-				this.ext.logger.log('Set default database backend to JSON');
+				this.logger.log('Set default database backend to JSON');
 			} else {
-				entries = await this.initSqlite(dbFile, false);
+				entries = await this.initSqlite(dbFile, false, generation);
 				if (entries !== null) {
 					this.ext.settings.set_enum('database-backend', DatabaseBackend.Sqlite);
-					this.ext.logger.log('Set default database backend to SQLite');
+					this.logger.log('Set default database backend to SQLite');
 				} else {
-					entries = await this.initJson(jsonFile);
+					entries = await this.initJson(jsonFile, generation);
 					if (entries !== null) {
 						this.ext.settings.set_enum('database-backend', DatabaseBackend.Json);
-						this.ext.logger.log('Set default database backend to JSON');
+						this.logger.log('Set default database backend to JSON');
 					} else {
 						entries = await this.initMemory();
 						this.ext.settings.set_enum('database-backend', DatabaseBackend.Memory);
-						this.ext.logger.log('Set default database backend to in-memory');
+						this.logger.log('Set default database backend to in-memory');
 					}
 				}
 			}
 		} else if (backend === DatabaseBackend.Sqlite) {
-			entries = await this.initSqlite(dbFile, true);
+			entries = await this.initSqlite(dbFile, true, generation);
 		} else if (backend === DatabaseBackend.Json) {
-			entries = await this.initJson(jsonFile);
+			entries = await this.initJson(jsonFile, generation);
 		}
 
 		// Fallback to in-memory
 		entries ??= await this.initMemory();
+		this.checkGeneration(generation);
 
 		// Track all entries
 		this.track(entries);
 
 		// Delete oldest entries
 		await this.deleteOldest();
+		this.checkGeneration(generation);
 
 		return [...this._entries.values()];
+	}
+
+	private checkGeneration(generation: number) {
+		if (generation !== this._generation) throw new Superseded();
+	}
+
+	/** Keeps a database opened by init() only if no newer init() or destroy() happened meanwhile. */
+	private async adopt(database: Database, generation: number): Promise<ClipboardEntry[]> {
+		await database.init();
+		const entries = await database.entries();
+		if (generation !== this._generation) {
+			await database.close();
+			throw new Superseded();
+		}
+
+		this._database = database;
+		return entries;
 	}
 
 	private getFile(): Gio.File {
@@ -102,7 +141,7 @@ export class ClipboardEntryTracker {
 		const environment = GLib.get_environ();
 		const debugPath = GLib.environ_getenv(environment, 'DEBUG_COPYOUS_DBPATH');
 		if (debugPath) {
-			this.ext.logger.log('Using debug database');
+			this.logger.log('Using debug database');
 			return Gio.File.new_for_path(debugPath);
 		}
 
@@ -111,7 +150,11 @@ export class ClipboardEntryTracker {
 		return location ? Gio.File.new_for_path(location) : getDefaultDatabaseFile(this.ext, DatabaseBackend.Default);
 	}
 
-	private async initSqlite(file: Gio.File | null, showError: boolean): Promise<ClipboardEntry[] | null> {
+	private async initSqlite(
+		file: Gio.File | null,
+		showError: boolean,
+		generation: number,
+	): Promise<ClipboardEntry[] | null> {
 		try {
 			// Check if DEBUG_COPYOUS_GDA_VERSION is set
 			const environment = GLib.get_environ();
@@ -120,14 +163,16 @@ export class ClipboardEntryTracker {
 				imports.package.require({ Gda: gdaVersion });
 			}
 		} catch (err) {
-			this.ext.logger.warn(err);
+			this.logger.warn(err);
 		}
 
 		let gda: typeof Gda;
 		try {
 			gda = (await import('gi://Gda')).default;
-		} catch {
-			this.ext.logger.error(`Failed to load Gda`);
+			this.checkGeneration(generation);
+		} catch (e) {
+			if (e instanceof Superseded) throw e;
+			this.logger.error(`Failed to load Gda`);
 
 			if (showError && !this.ext.settings.get_boolean('disable-gda-warning')) {
 				this.ext.notificationManager?.warning(
@@ -140,28 +185,26 @@ export class ClipboardEntryTracker {
 		}
 
 		try {
-			this.ext.logger.log(`Using ${file === null ? 'in-memory ' : ''}Gda ${gda.__version__} database`);
-			this._database = new GdaDatabase(this.ext, gda, file);
-			await this._database.init();
-			return await this._database.entries();
+			this.logger.log(`Using ${file === null ? 'in-memory ' : ''}Gda ${gda.__version__} database`);
+			return await this.adopt(new GdaDatabase(this.ext, gda, file), generation);
 		} catch (e) {
-			this.ext.logger.error('Failed to load Gda');
+			if (e instanceof Superseded) throw e;
+			this.logger.error('Failed to load Gda');
 			this.ext.notificationManager?.warning(_('Failed to load Gda'), _('Clipboard history will be disabled'));
 
 			return null;
 		}
 	}
 
-	private async initJson(file: Gio.File | null): Promise<ClipboardEntry[] | null> {
+	private async initJson(file: Gio.File | null, generation: number): Promise<ClipboardEntry[] | null> {
 		if (file === null) return await this.initMemory();
 
 		try {
-			this.ext.logger.log('Using JSON database');
-			this._database = new JsonDatabase(this.ext, file);
-			await this._database.init();
-			return await this._database.entries();
+			this.logger.log('Using JSON database');
+			return await this.adopt(new JsonDatabase(this.ext, file), generation);
 		} catch (e) {
-			this.ext.logger.error('Failed to initialize JSON database', e);
+			if (e instanceof Superseded) throw e;
+			this.logger.error('Failed to initialize JSON database', e);
 			this.ext.notificationManager?.warning(_('Failed to load JSON'), _('Clipboard history will be disabled'));
 
 			return null;
@@ -169,7 +212,7 @@ export class ClipboardEntryTracker {
 	}
 
 	private async initMemory(): Promise<ClipboardEntry[]> {
-		this.ext.logger.log('Using in-memory database');
+		this.logger.log('Using in-memory database');
 
 		this._database = new MemoryDatabase();
 		await this._database.init();
@@ -185,6 +228,7 @@ export class ClipboardEntryTracker {
 	}
 
 	public async destroy() {
+		this._generation++;
 		await this._database?.close();
 		this._database = undefined;
 		this._entries.clear();
@@ -289,7 +333,7 @@ export class ClipboardEntryTracker {
 					file.delete(null);
 				}
 			} catch {
-				this.ext.logger.error('Failed to delete image', entry.content);
+				this.logger.error('Failed to delete image', entry.content);
 			}
 		} else if (entry.type === ItemType.Link && entry.metadata) {
 			// Delete thumbnail image
@@ -301,7 +345,7 @@ export class ClipboardEntryTracker {
 						file.delete(null);
 					}
 				} catch {
-					this.ext.logger.error('Failed to delete thumbnail image', metadata.image);
+					this.logger.error('Failed to delete thumbnail image', metadata.image);
 				}
 			}
 		}

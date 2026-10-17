@@ -236,11 +236,15 @@ export class GdaDatabase implements Database {
 	private readonly _connection: Gda.Connection;
 	private readonly _cancellable: Gio.Cancellable = new Gio.Cancellable();
 
+	// Kept from construction: ext.logger is cleared on disable() while queries may still be settling.
+	private readonly logger: CopyousExtension['logger'];
+
 	constructor(
-		private ext: CopyousExtension,
+		ext: CopyousExtension,
 		gda: typeof Gda,
 		file: Gio.File | null,
 	) {
+		this.logger = ext.logger;
 		this._Gda = gda;
 
 		let cncString: string;
@@ -262,7 +266,7 @@ export class GdaDatabase implements Database {
 
 	public async init(): Promise<void> {
 		await open_async(this._connection);
-		this.ext.logger.info('Opened database connection');
+		this.logger.info('Opened database connection');
 
 		// Version table
 		const [versionTableStmt] = this._connection.parse_sql_string(`
@@ -373,7 +377,7 @@ export class GdaDatabase implements Database {
 					this._cancellable,
 				);
 
-				this.ext.logger.log(`Migrated database version from ${version} to ${DATABASE_VERSION}.`);
+				this.logger.log(`Migrated database version from ${version} to ${DATABASE_VERSION}.`);
 			}
 			this._connection.commit_transaction(null);
 		} catch (error) {
@@ -425,7 +429,7 @@ export class GdaDatabase implements Database {
 
 			return deleted;
 		} catch (e) {
-			this.ext.logger.error('Failed to clear clipboard', e);
+			this.logger.error('Failed to clear clipboard', e);
 		}
 
 		return [];
@@ -495,7 +499,7 @@ export class GdaDatabase implements Database {
 							metadataObj = json as Metadata;
 						}
 					} catch {
-						this.ext.logger.error('Failed to parse metadata');
+						this.logger.error('Failed to parse metadata');
 					}
 				}
 
@@ -506,7 +510,7 @@ export class GdaDatabase implements Database {
 
 			return entries;
 		} catch (e) {
-			this.ext.logger.error('Failed to get clipboard entries', e);
+			this.logger.error('Failed to get clipboard entries', e);
 		}
 
 		return [];
@@ -553,7 +557,7 @@ export class GdaDatabase implements Database {
 
 			return null;
 		} catch (e) {
-			this.ext.logger.error('Failed to select conflicting entry', e);
+			this.logger.error('Failed to select conflicting entry', e);
 		}
 
 		return null;
@@ -593,7 +597,7 @@ export class GdaDatabase implements Database {
 
 			return new ClipboardEntry(id, type, content, false, null, datetime, metadata);
 		} catch (e) {
-			this.ext.logger.error('Failed to insert entry', e);
+			this.logger.error('Failed to insert entry', e);
 		}
 
 		return null;
@@ -642,7 +646,7 @@ export class GdaDatabase implements Database {
 			const id = await this.selectConflict(entry);
 			return id ?? -1;
 		} catch (e) {
-			this.ext.logger.error(`Failed to update property "${property}" for entry ${entry.id}`, e);
+			this.logger.error(`Failed to update property "${property}" for entry ${entry.id}`, e);
 		}
 
 		return -1;
@@ -674,7 +678,7 @@ export class GdaDatabase implements Database {
 
 			return result > 0;
 		} catch (e) {
-			this.ext.logger.error(`Failed to delete entry ${entry.id}`, e);
+			this.logger.error(`Failed to delete entry ${entry.id}`, e);
 		}
 
 		return false;
@@ -744,7 +748,7 @@ export class GdaDatabase implements Database {
 
 			return deleted;
 		} catch (e) {
-			this.ext.logger.error('Failed to delete oldest entries', e);
+			this.logger.error('Failed to delete oldest entries', e);
 		}
 
 		return [];
