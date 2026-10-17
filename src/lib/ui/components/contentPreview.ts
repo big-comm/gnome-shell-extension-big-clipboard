@@ -309,6 +309,18 @@ async function createTextPreview(ext: CopyousExtension, file: Gio.File): Promise
 }
 
 /**
+ * Queries file info without blocking the Shell, e.g. on a stale network mount
+ * @returns The info or null if the file does not exist or cannot be queried, like query_exists()
+ */
+async function tryQueryInfo(file: Gio.File, attributes: string): Promise<Gio.FileInfo | null> {
+	try {
+		return await file.query_info_async(attributes, Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_DEFAULT, null);
+	} catch {
+		return null;
+	}
+}
+
+/**
  * Gets the thumbnail for a file
  * @param file The file to get the thumbnail for
  * @returns The thumbnail or null if no thumbnail was found
@@ -327,19 +339,18 @@ async function tryGetThumbnail(file: Gio.File): Promise<Gio.File | null> {
 			GLib.PRIORITY_DEFAULT,
 			null,
 		);
+		const candidates: Gio.File[] = [];
 		for await (const f of enumerator) {
 			if (f.get_file_type() !== Gio.FileType.DIRECTORY) continue;
-
-			const thumbnailFile = thumbnailDir.get_child(f.get_name()).get_child(`${md5}.png`);
-			if (thumbnailFile.query_exists(null)) {
-				return thumbnailFile;
-			}
+			candidates.push(thumbnailDir.get_child(f.get_name()).get_child(`${md5}.png`));
 		}
+
+		// Checked together, but the first directory in enumeration order still wins.
+		const found = await Promise.all(candidates.map((candidate) => tryQueryInfo(candidate, 'standard::type')));
+		return candidates[found.findIndex((info) => info !== null)] ?? null;
 	} catch {
 		return null;
 	}
-
-	return null;
 }
 
 /**
@@ -347,13 +358,7 @@ async function tryGetThumbnail(file: Gio.File): Promise<Gio.File | null> {
  * @param file The file to guess the content type of
  * @returns The content type or null if no content type was found
  */
-async function getContentType(file: Gio.File): Promise<string | null> {
-	const info = await file.query_info_async(
-		'standard::content-type',
-		Gio.FileQueryInfoFlags.NONE,
-		GLib.PRIORITY_DEFAULT,
-		null,
-	);
+async function getContentType(file: Gio.File, info: Gio.FileInfo): Promise<string | null> {
 	const contentType = info.get_content_type();
 	if (contentType !== null) {
 		return contentType;
@@ -376,9 +381,10 @@ async function getContentType(file: Gio.File): Promise<string | null> {
  * @returns The file type and a Gio.File if a thumbnail was found for the file
  */
 export async function getFileType(file: Gio.File): Promise<[FileType, Gio.File | null]> {
-	if (!file.query_exists(null)) return [FileType.Unknown, null];
+	const info = await tryQueryInfo(file, 'standard::type,standard::content-type');
+	if (info === null) return [FileType.Unknown, null];
 
-	const fileType = file.query_file_type(Gio.FileQueryInfoFlags.NONE, null);
+	const fileType = info.get_file_type();
 	if (fileType === Gio.FileType.DIRECTORY) return [FileType.Directory, null];
 
 	if (fileType !== Gio.FileType.REGULAR) return [FileType.Unknown, null];
@@ -387,7 +393,7 @@ export async function getFileType(file: Gio.File): Promise<[FileType, Gio.File |
 	const thumbnail = await tryGetThumbnail(file);
 
 	// Then check if the file has any of the allowed types
-	const contentType = await getContentType(file);
+	const contentType = await getContentType(file, info);
 	if (!contentType) return [FileType.Unknown, thumbnail];
 
 	// Check image before text since svg is also classified as text/plain
@@ -416,7 +422,7 @@ export async function tryCreateFilePreview(
 	const allowedTypes = ext.settings.get_child('file-item').get_flags('file-preview-types');
 
 	try {
-		if (!file.query_exists(null)) return null;
+		if ((await tryQueryInfo(file, 'standard::type')) === null) return null;
 
 		switch (fileType) {
 			case FileType.Text:

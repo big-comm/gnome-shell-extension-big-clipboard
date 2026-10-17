@@ -45,6 +45,8 @@ const preview = compile(
 	{
 		FileType: { Text: 0, Image: 1 },
 		FilePreviewType: { Text: 1, Image: 2, Thumbnail: 4 },
+		// Existence is checked asynchronously; a missing file has no info.
+		tryQueryInfo: async (file) => (file.exists ? {} : null),
 		ThumbnailPreview: class {
 			constructor(_ext, file) {
 				this.file = file;
@@ -60,9 +62,10 @@ const ext = {
 		},
 	},
 };
-const pdf = { query_exists: () => true };
+const pdf = { exists: true };
 assert.equal((await preview(ext, pdf, 99, thumbnail)).file, thumbnail);
 assert.equal(await preview(ext, pdf, 99, null), null, 'PDF without thumbnail keeps file identity');
+assert.equal(await preview(ext, { exists: false }, 99, thumbnail), null, 'missing file has no preview');
 console.log(
 	'File clipboard: standard URI lists, encoded names, multiple files, text/image regression and PDF thumbnail passed',
 );

@@ -159,6 +159,18 @@ export default class Audit extends Extension {
 				}
 			} else if (action === 'visible') {
 				result.visible = items.filter((a) => a.visible).slice(0, 4).map((a) => a.entry.content.slice(0, 40));
+			} else if (action === 'files') {
+				// What file cards resolved: type, preview and info widgets.
+				result.files = items
+					.filter((a) => a.entry.type === 'File')
+					.slice(0, 6)
+					.map((a) => ({
+						file: a.entry.content.split('/').pop(),
+						type: a._fileType,
+						preview: a._filePreview?.constructor.name ?? null,
+						info: a._fileInfo?.constructor.name ?? null,
+						infoText: a._fileInfo?.get_children?.().map((c) => c.text ?? '').join(' ').trim().slice(0, 40) ?? null,
+					}));
 			} else if (action === 'mark') {
 				// Tag the rendered actors; a list rebuild replaces them with unmarked ones.
 				for (const a of items) a._auditMark = true;

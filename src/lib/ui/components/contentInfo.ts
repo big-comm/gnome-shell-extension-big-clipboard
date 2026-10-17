@@ -272,9 +272,24 @@ export async function tryCreateDirectoryFileInfo(ext: Extension, file: Gio.File)
 	}
 }
 
-export function tryCreateImageInfo(file: Gio.File, size: number): ImageInfo | null {
+export async function tryCreateImageInfo(
+	file: Gio.File,
+	size: number,
+	cancellable: Gio.Cancellable,
+): Promise<ImageInfo | null> {
 	try {
-		const [, width, height] = GdkPixbuf.Pixbuf.get_file_info(file.get_path()!);
+		// Reading the header synchronously would block the Shell on slow storage.
+		const [, width, height] = await new Promise<[GdkPixbuf.PixbufFormat | null, number, number]>(
+			(resolve, reject) => {
+				GdkPixbuf.Pixbuf.get_file_info_async(file.get_path()!, cancellable, (_source, result) => {
+					try {
+						resolve(GdkPixbuf.Pixbuf.get_file_info_finish(result));
+					} catch (error) {
+						reject(error as Error);
+					}
+				});
+			},
+		);
 		return new ImageInfo(size, width, height);
 	} catch {
 		return null;
@@ -341,16 +356,18 @@ export async function createFileInfo(
 	imageDimensions?: ImageDimensions | null,
 ): Promise<FileInfo> {
 	try {
-		if (!file.query_exists(null)) {
+		let info: Gio.FileInfo;
+		try {
+			info = await file.query_info_async(
+				Gio.FILE_ATTRIBUTE_STANDARD_SIZE,
+				Gio.FileQueryInfoFlags.NONE,
+				GLib.PRIORITY_DEFAULT,
+				null,
+			);
+		} catch {
+			// Same as query_exists(): a file that cannot be queried is missing.
 			return new MissingFileInfo(ext);
 		}
-
-		const info = await file.query_info_async(
-			Gio.FILE_ATTRIBUTE_STANDARD_SIZE,
-			Gio.FileQueryInfoFlags.NONE,
-			GLib.PRIORITY_DEFAULT,
-			null,
-		);
 		const size = info.get_size();
 
 		let fileInfo: FileInfo | null = null;
@@ -361,7 +378,7 @@ export async function createFileInfo(
 			case FileType.Image:
 				fileInfo = imageDimensions
 					? new ImageInfo(size, imageDimensions.width, imageDimensions.height)
-					: tryCreateImageInfo(file, size);
+					: await tryCreateImageInfo(file, size, cancellable);
 				break;
 			case FileType.Audio:
 			case FileType.Video:
