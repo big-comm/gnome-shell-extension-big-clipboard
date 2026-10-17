@@ -247,13 +247,14 @@ export class ClipboardEntryTracker {
 		metadata: Metadata | null = null,
 	): Promise<ClipboardEntry | null> {
 		const id = await this._database?.selectConflict({ type, content });
-		if (id) {
+		// Ids start at 0 in the memory and JSON backends.
+		if (id != null) {
 			// Check if the entry is already tracked
 			const trackedEntry = this._entries.get(id);
-			if (trackedEntry) {
-				trackedEntry.datetime = GLib.DateTime.new_now_utc();
-				return null;
-			}
+			if (trackedEntry) trackedEntry.datetime = GLib.DateTime.new_now_utc();
+
+			// An untracked copy is already stored; inserting it again only fails on the unique constraint.
+			return null;
 		}
 
 		const entry = await this._database?.insert(type, content, metadata);
