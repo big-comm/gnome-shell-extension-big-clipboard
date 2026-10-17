@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:43-0300\n"
+"POT-Creation-Date: 2026-10-17 20:53-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -68,20 +68,20 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "二维码"
 
-#: src/lib/database/entryTracker.ts:179 src/lib/database/entryTracker.ts:193
+#: src/lib/database/entryTracker.ts:184 src/lib/database/entryTracker.ts:198
 msgid "Failed to load Gda"
 msgstr "加载 Gda 失败"
 
-#: src/lib/database/entryTracker.ts:180 src/lib/database/entryTracker.ts:193
-#: src/lib/database/entryTracker.ts:208
+#: src/lib/database/entryTracker.ts:185 src/lib/database/entryTracker.ts:198
+#: src/lib/database/entryTracker.ts:213
 msgid "Clipboard history will be disabled"
 msgstr "剪贴板历史将被禁用"
 
-#: src/lib/database/entryTracker.ts:181
+#: src/lib/database/entryTracker.ts:186
 msgid "Disable Warning"
 msgstr "禁用警告"
 
-#: src/lib/database/entryTracker.ts:208
+#: src/lib/database/entryTracker.ts:213
 msgid "Failed to load JSON"
 msgstr "加载 JSON 失败"
 

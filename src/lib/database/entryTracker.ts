@@ -70,31 +70,30 @@ export class ClipboardEntryTracker {
 		// 6. fallback to in-memory
 		let entries: ClipboardEntry[] | null = null;
 		if (backend === DatabaseBackend.Default) {
-			this._fromDefault = true;
 			if (this.ext.settings.get_boolean('in-memory-database')) {
 				this.logger.log('Set default database backend to in-memory');
 				entries = await this.initMemory();
 			} else if (dbFile.query_exists(null)) {
 				entries = await this.initSqlite(dbFile, true, generation);
-				this.ext.settings.set_enum('database-backend', DatabaseBackend.Sqlite);
+				this.setDefaultBackend(DatabaseBackend.Sqlite);
 				this.logger.log('Set default database backend to SQLite');
 			} else if (jsonFile.query_exists(null)) {
 				entries = await this.initJson(jsonFile, generation);
-				this.ext.settings.set_enum('database-backend', DatabaseBackend.Json);
+				this.setDefaultBackend(DatabaseBackend.Json);
 				this.logger.log('Set default database backend to JSON');
 			} else {
 				entries = await this.initSqlite(dbFile, false, generation);
 				if (entries !== null) {
-					this.ext.settings.set_enum('database-backend', DatabaseBackend.Sqlite);
+					this.setDefaultBackend(DatabaseBackend.Sqlite);
 					this.logger.log('Set default database backend to SQLite');
 				} else {
 					entries = await this.initJson(jsonFile, generation);
 					if (entries !== null) {
-						this.ext.settings.set_enum('database-backend', DatabaseBackend.Json);
+						this.setDefaultBackend(DatabaseBackend.Json);
 						this.logger.log('Set default database backend to JSON');
 					} else {
 						entries = await this.initMemory();
-						this.ext.settings.set_enum('database-backend', DatabaseBackend.Memory);
+						this.setDefaultBackend(DatabaseBackend.Memory);
 						this.logger.log('Set default database backend to in-memory');
 					}
 				}
@@ -117,6 +116,12 @@ export class ClipboardEntryTracker {
 		this.checkGeneration(generation);
 
 		return [...this._entries.values()];
+	}
+
+	/** Records the backend picked for "default"; the resulting settings change must not reinitialize. */
+	private setDefaultBackend(backend: DatabaseBackend) {
+		this._fromDefault = true;
+		this.ext.settings.set_enum('database-backend', backend);
 	}
 
 	private checkGeneration(generation: number) {
