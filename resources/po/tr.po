@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:33-0300\n"
+"POT-Creation-Date: 2026-10-17 20:43-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -85,39 +85,39 @@ msgstr "Uyarıyı Devre Dışı Bırak"
 msgid "Failed to load JSON"
 msgstr "JSON yüklenemedi"
 
-#: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
+#: src/lib/misc/notifications.ts:69 src/lib/misc/notifications.ts:131
 msgid "Copied Text"
 msgstr "Metin Kopyalandı"
 
-#: src/lib/misc/notifications.ts:109 src/lib/misc/notifications.ts:134
+#: src/lib/misc/notifications.ts:115 src/lib/misc/notifications.ts:140
 msgid "Copied Image"
 msgstr "Resim Kopyalandı"
 
-#: src/lib/misc/notifications.ts:110 src/lib/misc/notifications.ts:140
+#: src/lib/misc/notifications.ts:116 src/lib/misc/notifications.ts:146
 #, javascript-format
 msgid "Size: %d×%d px"
 msgstr "Boyut: %d×%d px"
 
-#: src/lib/misc/notifications.ts:129
+#: src/lib/misc/notifications.ts:135
 msgid "Copied Code"
 msgstr "Kod Kopyalandı"
 
-#: src/lib/misc/notifications.ts:153
+#: src/lib/misc/notifications.ts:159
 #, javascript-format
 msgid "Copied %d File"
 msgid_plural "Copied %d Files"
 msgstr[0] "%d Dosya Kopyalandı"
 msgstr[1] "%d Dosya Kopyalandı"
 
-#: src/lib/misc/notifications.ts:159
+#: src/lib/misc/notifications.ts:165
 msgid "Copied Link"
 msgstr "Bağlantı Kopyalandı"
 
-#: src/lib/misc/notifications.ts:163
+#: src/lib/misc/notifications.ts:169
 msgid "Copied Character"
 msgstr "Karakter Kopyalandı"
 
-#: src/lib/misc/notifications.ts:167
+#: src/lib/misc/notifications.ts:173
 msgid "Copied Color"
 msgstr "Renk Kopyalandı"
 

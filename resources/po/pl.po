@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:33-0300\n"
+"POT-Creation-Date: 2026-10-17 20:43-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -86,24 +86,24 @@ msgstr "Wyłącz ostrzeżenie"
 msgid "Failed to load JSON"
 msgstr "Błąd podczas ładowania pliku JSON"
 
-#: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
+#: src/lib/misc/notifications.ts:69 src/lib/misc/notifications.ts:131
 msgid "Copied Text"
 msgstr "Skopiowano tekst"
 
-#: src/lib/misc/notifications.ts:109 src/lib/misc/notifications.ts:134
+#: src/lib/misc/notifications.ts:115 src/lib/misc/notifications.ts:140
 msgid "Copied Image"
 msgstr "Skopiowano obraz"
 
-#: src/lib/misc/notifications.ts:110 src/lib/misc/notifications.ts:140
+#: src/lib/misc/notifications.ts:116 src/lib/misc/notifications.ts:146
 #, javascript-format
 msgid "Size: %d×%d px"
 msgstr "Rozmiar: %d×%d px"
 
-#: src/lib/misc/notifications.ts:129
+#: src/lib/misc/notifications.ts:135
 msgid "Copied Code"
 msgstr "Skopiowano kod"
 
-#: src/lib/misc/notifications.ts:153
+#: src/lib/misc/notifications.ts:159
 #, javascript-format
 msgid "Copied %d File"
 msgid_plural "Copied %d Files"
@@ -111,15 +111,15 @@ msgstr[0] "Skopiowany %d plik"
 msgstr[1] "Skopiowano %d pliki"
 msgstr[2] "Skopiowany %d plików"
 
-#: src/lib/misc/notifications.ts:159
+#: src/lib/misc/notifications.ts:165
 msgid "Copied Link"
 msgstr "Skopiowany odnośnik"
 
-#: src/lib/misc/notifications.ts:163
+#: src/lib/misc/notifications.ts:169
 msgid "Copied Character"
 msgstr "Skopiowany znak"
 
-#: src/lib/misc/notifications.ts:167
+#: src/lib/misc/notifications.ts:173
 msgid "Copied Color"
 msgstr "Skopiowany kolor"
 

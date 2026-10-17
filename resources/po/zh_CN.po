@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:33-0300\n"
+"POT-Creation-Date: 2026-10-17 20:43-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -85,38 +85,38 @@ msgstr "禁用警告"
 msgid "Failed to load JSON"
 msgstr "加载 JSON 失败"
 
-#: src/lib/misc/notifications.ts:63 src/lib/misc/notifications.ts:125
+#: src/lib/misc/notifications.ts:69 src/lib/misc/notifications.ts:131
 msgid "Copied Text"
 msgstr "已复制文本"
 
-#: src/lib/misc/notifications.ts:109 src/lib/misc/notifications.ts:134
+#: src/lib/misc/notifications.ts:115 src/lib/misc/notifications.ts:140
 msgid "Copied Image"
 msgstr "已复制图片"
 
-#: src/lib/misc/notifications.ts:110 src/lib/misc/notifications.ts:140
+#: src/lib/misc/notifications.ts:116 src/lib/misc/notifications.ts:146
 #, javascript-format
 msgid "Size: %d×%d px"
 msgstr "尺寸: %d×%d 像素"
 
-#: src/lib/misc/notifications.ts:129
+#: src/lib/misc/notifications.ts:135
 msgid "Copied Code"
 msgstr "已复制​​代码"
 
-#: src/lib/misc/notifications.ts:153
+#: src/lib/misc/notifications.ts:159
 #, javascript-format
 msgid "Copied %d File"
 msgid_plural "Copied %d Files"
 msgstr[0] "已复制 %d 个文件"
 
-#: src/lib/misc/notifications.ts:159
+#: src/lib/misc/notifications.ts:165
 msgid "Copied Link"
 msgstr "已复制链接"
 
-#: src/lib/misc/notifications.ts:163
+#: src/lib/misc/notifications.ts:169
 msgid "Copied Character"
 msgstr "已复制字符"
 
-#: src/lib/misc/notifications.ts:167
+#: src/lib/misc/notifications.ts:173
 msgid "Copied Color"
 msgstr "已复制颜色"
 
