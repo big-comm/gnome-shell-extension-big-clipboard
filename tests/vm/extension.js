@@ -171,6 +171,8 @@ export default class Audit extends Extension {
 						info: a._fileInfo?.constructor.name ?? null,
 						infoText: a._fileInfo?.get_children?.().map((c) => c.text ?? '').join(' ').trim().slice(0, 40) ?? null,
 					}));
+			} else if (action === 'history-timer') {
+				result.id = ext.historyTimeoutId;
 			} else if (action === 'mark') {
 				// Tag the rendered actors; a list rebuild replaces them with unmarked ones.
 				for (const a of items) a._auditMark = true;

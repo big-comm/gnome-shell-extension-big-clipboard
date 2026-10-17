@@ -137,6 +137,7 @@ export default class CopyousExtension extends Extension {
 	private _enableDeferredId: number = 0;
 	private _preWarmIdleId: number = 0;
 	private _entryTrackerInitSerial: number = 0;
+	private _historyTimeoutCall: number = 0;
 	private _enabled: boolean = false;
 	private _lifecycleSerial = 0;
 
@@ -460,13 +461,16 @@ export default class CopyousExtension extends Extension {
 
 	private async initHistoryTimeout() {
 		const serial = this._lifecycleSerial;
+		// Only the latest call may start the timer, even if an earlier one is still awaiting deleteOldest().
+		const call = ++this._historyTimeoutCall;
 		if (this.historyTimeoutId >= 0) GLib.source_remove(this.historyTimeoutId);
+		this.historyTimeoutId = -1;
 
 		const historyTime = this.settings?.get_int('history-time');
 		if (historyTime === undefined || historyTime === 0) return;
 
 		await this.entryTracker?.deleteOldest();
-		if (!this._enabled || serial !== this._lifecycleSerial) return;
+		if (!this._enabled || serial !== this._lifecycleSerial || call !== this._historyTimeoutCall) return;
 		this.historyTimeoutId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 60, () => {
 			// Do not update the history if the dialog is open
 			this.updateHistory = this.clipboardDialog?.opened ?? false;
