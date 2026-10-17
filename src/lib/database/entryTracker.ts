@@ -130,8 +130,15 @@ export class ClipboardEntryTracker {
 
 	/** Keeps a database opened by init() only if no newer init() or destroy() happened meanwhile. */
 	private async adopt(database: Database, generation: number): Promise<ClipboardEntry[]> {
-		await database.init();
-		const entries = await database.entries();
+		let entries: ClipboardEntry[];
+		try {
+			await database.init();
+			entries = await database.entries();
+		} catch (e) {
+			// A failed open falls back to another backend; do not leave this connection holding the file.
+			await database.close().catch(() => {});
+			throw e;
+		}
 		if (generation !== this._generation) {
 			await database.close();
 			throw new Superseded();

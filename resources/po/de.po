@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:53-0300\n"
+"POT-Creation-Date: 2026-10-17 20:56-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -68,20 +68,20 @@ msgstr "Oklch"
 msgid "QR Code"
 msgstr "QR Code"
 
-#: src/lib/database/entryTracker.ts:184 src/lib/database/entryTracker.ts:198
+#: src/lib/database/entryTracker.ts:191 src/lib/database/entryTracker.ts:205
 msgid "Failed to load Gda"
 msgstr "Gda konnte nicht geladen werden"
 
-#: src/lib/database/entryTracker.ts:185 src/lib/database/entryTracker.ts:198
-#: src/lib/database/entryTracker.ts:213
+#: src/lib/database/entryTracker.ts:192 src/lib/database/entryTracker.ts:205
+#: src/lib/database/entryTracker.ts:220
 msgid "Clipboard history will be disabled"
 msgstr "Der Verlauf der Zwischenablage wird deaktiviert"
 
-#: src/lib/database/entryTracker.ts:186
+#: src/lib/database/entryTracker.ts:193
 msgid "Disable Warning"
 msgstr "Warnung deaktivieren"
 
-#: src/lib/database/entryTracker.ts:213
+#: src/lib/database/entryTracker.ts:220
 msgid "Failed to load JSON"
 msgstr "JSON konnte nicht geladen werden"
 
