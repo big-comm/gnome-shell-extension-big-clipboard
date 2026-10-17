@@ -29,6 +29,8 @@ export class ThemeManager extends GObject.Object {
 
 	private _stylesheet: Gio.File | null = null;
 	private _colorScheme: CustomColorScheme = CustomColorScheme.Dark;
+	private _destroyed = false;
+	private _updateSerial = 0;
 
 	constructor(private ext: CopyousExtension) {
 		super();
@@ -64,15 +66,26 @@ export class ThemeManager extends GObject.Object {
 	}
 
 	destroy() {
-		if (this._stylesheet) this.theme.unload_stylesheet(this._stylesheet);
-		this._stylesheet = null;
-		Gio.resources_unregister(this._resource);
+		// Disconnect first: unloading the stylesheet runs other extensions' theme handlers, and a failure
+		// there must not leave ours connected to a disabled extension.
+		this._destroyed = true;
 		this._themeSettings.disconnectObject(this);
 		this._settings.disconnect(this._contrastChangedId);
 		this._interfaceSettings.disconnectObject(this);
+
+		try {
+			if (this._stylesheet) this.theme.unload_stylesheet(this._stylesheet);
+		} finally {
+			this._stylesheet = null;
+			Gio.resources_unregister(this._resource);
+		}
 	}
 
 	private async updateTheme() {
+		if (this._destroyed) return;
+		// Only the latest update may load a stylesheet, and never after destroy().
+		const serial = ++this._updateSerial;
+		const current = () => !this._destroyed && serial === this._updateSerial;
 		let theme = this._themeSettings.get_enum('theme');
 
 		this.colorScheme = (() => {
@@ -101,6 +114,7 @@ export class ThemeManager extends GObject.Object {
 				const uri = `resource:///org/gnome/shell/extensions/copyous/css/template-${colorScheme}.css`;
 				const template = Gio.File.new_for_uri(uri);
 				const [contents] = await template.load_contents_async(null);
+				if (!current()) return;
 				const text = new TextDecoder().decode(contents);
 
 				// Fill template
@@ -126,6 +140,7 @@ export class ThemeManager extends GObject.Object {
 					Gio.FileCreateFlags.REPLACE_DESTINATION,
 					null,
 				);
+				if (!current()) return;
 
 				// Load theme
 				if (this._stylesheet) this.theme.unload_stylesheet(this._stylesheet);
@@ -133,6 +148,7 @@ export class ThemeManager extends GObject.Object {
 				this._stylesheet = stylesheet;
 				return;
 			} catch (err) {
+				if (!current()) return;
 				theme = Theme.Default;
 				this.ext.logger.error(err);
 			}

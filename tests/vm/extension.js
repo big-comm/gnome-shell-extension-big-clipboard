@@ -115,10 +115,20 @@ export default class Audit extends Extension {
 	}
 	async ActionAsync([action], invocation) {
 		try {
+			let result = { action };
+			if (action === 'stylesheets') {
+				// Works while Big Clipboard is disabled: leftovers after disable() show up here.
+				const theme = St.ThemeContext.get_for_stage(global.stage).get_theme();
+				result.loaded = theme
+					.get_custom_stylesheets()
+					.map((f) => f.get_uri())
+					.filter((uri) => uri.includes('copyous') || uri.includes('custom-theme.css'));
+				invocation.return_value(new GLib.Variant('(s)', [JSON.stringify(result)]));
+				return;
+			}
 			const ext = this.ext(),
 				d = ext.clipboardDialog;
 			const items = d._scrollView._scrollContainer.get_children().filter((a) => a.entry);
-			let result = { action };
 			if (action === 'pin') {
 				items[1].entry.pinned = !items[1].entry.pinned;
 				result.id = items[1].entry.id;
