@@ -643,7 +643,11 @@ export class ClipboardDialog extends St.Widget {
 	private trackEntry(entry: ClipboardEntry): void {
 		if (this._entries.has(entry.id)) return;
 		this._entries.set(entry.id, entry);
-		const changed = entry.connect('notify', () => this.scheduleRefresh());
+		// Rendered items keep their own order and search state up to date, so only a type change (filter
+		// counts) or a change to an entry outside the rendered page rebuilds the list.
+		const changed = entry.connect('notify', (_entry, pspec: GObject.ParamSpec) => {
+			if (pspec.name === 'type' || !this._scrollView.containsEntry(entry)) this.scheduleRefresh();
+		});
 		const deleted = entry.connect('delete', () => {
 			this._entries.delete(entry.id);
 			for (const id of this._entrySignals.get(entry) ?? []) entry.disconnect(id);

@@ -141,6 +141,21 @@ export default class Audit extends Extension {
 					result.matches = text === e.content;
 					result.length = text?.length;
 				}
+			} else if (action === 'mark') {
+				// Tag the rendered actors; a list rebuild replaces them with unmarked ones.
+				for (const a of items) a._auditMark = true;
+				result.marked = items.length;
+			} else if (action === 'marked') {
+				result.items = items.length;
+				result.marked = items.filter((a) => a._auditMark).length;
+			} else if (action === 'touch') {
+				// Property changes that rendered items handle themselves.
+				const e = items[1].entry;
+				e.title = `${e.title} touched`;
+				e.metadata = { ...(e.metadata ?? {}), audit: Date.now() };
+				e.pinned = !e.pinned;
+				e.pinned = !e.pinned;
+				result.id = e.id;
 			} else if (action === 'horizontal' || action === 'vertical')
 				ext.settings.set_enum('clipboard-orientation', action === 'horizontal' ? 0 : 1);
 			else if (action === 'light' || action === 'dark') {

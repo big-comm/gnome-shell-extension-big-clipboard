@@ -6,6 +6,7 @@ import St from 'gi://St';
 import type CopyousExtension from '../../extension.js';
 import { enumParamSpec, registerClass } from '../common/gjs.js';
 import { get_first_visible_child, get_last_visible_child } from '../misc/actor.js';
+import { ClipboardEntry } from '../database/database.js';
 import { ClipboardScrollContainer } from './clipboardScrollContainer.js';
 import { ClipboardItem } from './items/clipboardItem.js';
 import { SearchQuery } from './searchEntry.js';
@@ -117,6 +118,10 @@ export class ClipboardScrollView extends St.ScrollView {
 
 	public clearItems() {
 		this._scrollContainer.clearItems();
+	}
+
+	public containsEntry(entry: ClipboardEntry): boolean {
+		return this._scrollContainer.containsEntry(entry);
 	}
 
 	public selectItem(index: number): boolean {

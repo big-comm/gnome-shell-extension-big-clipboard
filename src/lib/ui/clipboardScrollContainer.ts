@@ -9,6 +9,7 @@ import {
 	get_next_visible_sibling,
 	get_previous_visible_sibling,
 } from '../misc/actor.js';
+import { ClipboardEntry } from '../database/database.js';
 import { ClipboardItem } from './items/clipboardItem.js';
 import { State, StatusItem } from './items/statusItem.js';
 import { SearchChange, SearchQuery } from './searchEntry.js';
@@ -172,6 +173,7 @@ export class ClipboardScrollContainer extends St.BoxLayout {
 		item.entry.connectObject('notify::type', () => this.updateSearch(item), item);
 		item.entry.connectObject('notify::metadata', () => this.updateSearch(item), item);
 		item.entry.connectObject('notify::title', () => this.updateSearch(item), item);
+		item.entry.connectObject('notify::subjects', () => this.updateSearch(item), item);
 	}
 
 	private insertOrMoveItem(item: ClipboardItem, search: boolean = true): void {
@@ -197,6 +199,10 @@ export class ClipboardScrollContainer extends St.BoxLayout {
 		} else {
 			this.updateVisible();
 		}
+	}
+
+	public containsEntry(entry: ClipboardEntry): boolean {
+		return this.get_children().some((c) => c instanceof ClipboardItem && c.entry === entry);
 	}
 
 	public clearItems(): void {
