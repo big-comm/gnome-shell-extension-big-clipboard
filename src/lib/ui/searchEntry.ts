@@ -20,14 +20,34 @@ import { TagsItem } from './components/tagsItem.js';
 // Reused across calls: constructing Intl.Collator is non-trivial, and a single
 // search batch invokes localeContains once per item per text field.
 const SearchCollator = new Intl.Collator(undefined, { sensitivity: 'base' });
+const NonAscii = /[\u0080-\uffff]/;
 
-function localeContains(text: string, query: string): boolean {
+/** Case and accent insensitive form: "Ação" -> "acao". */
+function fold(text: string): string {
+	if (!NonAscii.test(text)) return text.toLowerCase();
+	return text.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase();
+}
+
+function collatorContains(text: string, query: string): boolean {
 	const queryLen = query.length;
 	const limit = text.length - queryLen;
 	for (let offset = 0; offset <= limit; offset++) {
 		if (SearchCollator.compare(text.substring(offset, offset + queryLen), query) === 0) return true;
 	}
 	return false;
+}
+
+/**
+ * Collator substring search (base letters, any case or accent). Comparing every offset with the
+ * collator is slow on long entries, so folded text is searched first; when both sides fold to plain
+ * ASCII a miss there is final, and anything else keeps the collator's answer.
+ */
+function localeContains(text: string, query: string): boolean {
+	const foldedText = fold(text);
+	const foldedQuery = fold(query);
+	if (foldedText.includes(foldedQuery)) return true;
+	if (!NonAscii.test(foldedText) && !NonAscii.test(foldedQuery)) return false;
+	return collatorContains(text, query);
 }
 
 export const SearchChange = {

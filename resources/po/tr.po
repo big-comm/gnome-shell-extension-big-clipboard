@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:09-0300\n"
+"POT-Creation-Date: 2026-10-17 20:33-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Turkish\n"
@@ -1494,7 +1494,7 @@ msgstr ""
 "seçin."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
+#: src/lib/ui/clipboardDialog.ts:139 src/lib/ui/clipboardDialog.ts:251
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Temizle"
@@ -1916,43 +1916,43 @@ msgstr "Pano Boş"
 msgid "No Items Found"
 msgstr "Öğe Bulunamadı"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:181
 msgid "__All"
 msgstr "__Hepsi"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:185
 msgid "__Text"
 msgstr "__Metin"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:186
 msgid "__Code"
 msgstr "__Kod"
 
-#: src/lib/ui/searchEntry.ts:167
+#: src/lib/ui/searchEntry.ts:187
 msgid "__Image"
 msgstr "__Resim"
 
-#: src/lib/ui/searchEntry.ts:168
+#: src/lib/ui/searchEntry.ts:188
 msgid "__File"
 msgstr "__Dosya"
 
-#: src/lib/ui/searchEntry.ts:169
+#: src/lib/ui/searchEntry.ts:189
 msgid "File__s"
 msgstr "Dosy__alar"
 
-#: src/lib/ui/searchEntry.ts:170
+#: src/lib/ui/searchEntry.ts:190
 msgid "__Link"
 msgstr "__Bağlantı"
 
-#: src/lib/ui/searchEntry.ts:171
+#: src/lib/ui/searchEntry.ts:191
 msgid "C__haracter"
 msgstr "K__arakter"
 
-#: src/lib/ui/searchEntry.ts:172
+#: src/lib/ui/searchEntry.ts:192
 msgid "Colo__r"
 msgstr "Re__nk"
 
-#: src/lib/ui/searchEntry.ts:284
+#: src/lib/ui/searchEntry.ts:304
 msgid "Type to search"
 msgstr "Aramak için yaz"
 

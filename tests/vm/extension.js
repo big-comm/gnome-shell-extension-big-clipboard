@@ -157,6 +157,8 @@ export default class Audit extends Extension {
 					result.matches = text === e.content;
 					result.length = text?.length;
 				}
+			} else if (action === 'visible') {
+				result.visible = items.filter((a) => a.visible).slice(0, 4).map((a) => a.entry.content.slice(0, 40));
 			} else if (action === 'mark') {
 				// Tag the rendered actors; a list rebuild replaces them with unmarked ones.
 				for (const a of items) a._auditMark = true;

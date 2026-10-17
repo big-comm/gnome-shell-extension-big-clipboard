@@ -43,6 +43,7 @@ import { SearchChange, SearchEntry, SearchQuery } from './searchEntry.js';
 const ANIMATION_TIME = 100;
 const INITIAL_LOAD_ITEMS = 12;
 const LOAD_BATCH_ITEMS = 12;
+const SEARCH_DELAY_MS = 80;
 
 @registerClass()
 class IncognitoButton extends St.Button {
@@ -283,6 +284,8 @@ export class ClipboardDialog extends St.Widget {
 	private _pageTarget = INITIAL_LOAD_ITEMS;
 	private _loadToEnd = false;
 	private _refreshIdleId = 0;
+	private _searchTimeoutId = 0;
+	private _pendingQuery: SearchQuery | null = null;
 	private _query: SearchQuery | null = null;
 	private readonly _filters: TypeFilters;
 
@@ -342,9 +345,13 @@ export class ClipboardDialog extends St.Widget {
 		this._header.connect('open-settings', this.openSettings.bind(this));
 		this._header.connect('clear-history', this.confirmClearHistory.bind(this));
 		this._header.searchEntry.connect('search', (_, query: SearchQuery) => {
-			if (query.change !== SearchChange.Same) this.searchEntries(query);
+			if (query.change !== SearchChange.Same) this.queueSearch(query);
 		});
-		this._header.searchEntry.connect('activate', () => this._scrollView.activateFirst());
+		this._header.searchEntry.connect('activate', () => {
+			// Enter right after typing must act on the results of what was typed.
+			if (this._pendingQuery) this.searchEntries(this._pendingQuery);
+			this._scrollView.activateFirst();
+		});
 
 		this._header.connect('notify::header-visible', () => {
 			if (this._header.headerVisible) {
@@ -675,7 +682,26 @@ export class ClipboardDialog extends St.Widget {
 		return subjectNames([...this._entries.values()].map((entry) => entry.subjects).join(','));
 	}
 
+	/** Typing rebuilds the list once the user pauses, not on every keystroke. */
+	private queueSearch(query: SearchQuery): void {
+		this._pendingQuery = query;
+		if (this._searchTimeoutId) GLib.source_remove(this._searchTimeoutId);
+		this._searchTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, SEARCH_DELAY_MS, () => {
+			this._searchTimeoutId = 0;
+			if (this._pendingQuery) this.searchEntries(this._pendingQuery);
+			return GLib.SOURCE_REMOVE;
+		});
+	}
+
+	private cancelPendingSearch(): void {
+		if (this._searchTimeoutId) GLib.source_remove(this._searchTimeoutId);
+		this._searchTimeoutId = 0;
+		this._pendingQuery = null;
+	}
+
 	private searchEntries(query: SearchQuery): void {
+		// Any rebuild uses the latest query, so a queued one is no longer needed.
+		this.cancelPendingSearch();
 		this._clipboardItemMenu?.close(BoxPointer.PopupAnimation.NONE);
 		this.cancelPendingLoad();
 		this._query = query.withChange(SearchChange.Different);
@@ -849,6 +875,7 @@ export class ClipboardDialog extends St.Widget {
 
 	public clearEntries() {
 		this.cancelPendingLoad();
+		this.cancelPendingSearch();
 		if (this._refreshIdleId) GLib.source_remove(this._refreshIdleId);
 		this._refreshIdleId = 0;
 		for (const [entry, ids] of this._entrySignals) for (const id of ids) entry.disconnect(id);

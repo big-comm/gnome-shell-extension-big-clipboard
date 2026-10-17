@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:09-0300\n"
+"POT-Creation-Date: 2026-10-17 20:33-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -1521,7 +1521,7 @@ msgstr ""
 "Choisissez les éléments à conserver après une déconnexion ou un redémarrage."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
+#: src/lib/ui/clipboardDialog.ts:139 src/lib/ui/clipboardDialog.ts:251
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Effacer"
@@ -1942,43 +1942,43 @@ msgstr "Le presse-papiers est vide"
 msgid "No Items Found"
 msgstr "Aucun élément trouvé"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:181
 msgid "__All"
 msgstr "__Tout"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:185
 msgid "__Text"
 msgstr "__Texte"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:186
 msgid "__Code"
 msgstr "__Code"
 
-#: src/lib/ui/searchEntry.ts:167
+#: src/lib/ui/searchEntry.ts:187
 msgid "__Image"
 msgstr "__Image"
 
-#: src/lib/ui/searchEntry.ts:168
+#: src/lib/ui/searchEntry.ts:188
 msgid "__File"
 msgstr "__Fichier"
 
-#: src/lib/ui/searchEntry.ts:169
+#: src/lib/ui/searchEntry.ts:189
 msgid "File__s"
 msgstr "Fichier__s"
 
-#: src/lib/ui/searchEntry.ts:170
+#: src/lib/ui/searchEntry.ts:190
 msgid "__Link"
 msgstr "__Lien"
 
-#: src/lib/ui/searchEntry.ts:171
+#: src/lib/ui/searchEntry.ts:191
 msgid "C__haracter"
 msgstr "C__aractère"
 
-#: src/lib/ui/searchEntry.ts:172
+#: src/lib/ui/searchEntry.ts:192
 msgid "Colo__r"
 msgstr "Couleu__r"
 
-#: src/lib/ui/searchEntry.ts:284
+#: src/lib/ui/searchEntry.ts:304
 msgid "Type to search"
 msgstr "Tapez pour rechercher"
 

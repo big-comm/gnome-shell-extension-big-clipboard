@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 20:09-0300\n"
+"POT-Creation-Date: 2026-10-17 20:33-0300\n"
 "PO-Revision-Date: 2025-12-01 18:02-0300\n"
 "Last-Translator: Murilo Leal <murilormleal@outlook.com>\n"
 "Language-Team: Portuguese (Brazil)\n"
@@ -1498,7 +1498,7 @@ msgid "Choose what to keep after logout or restart."
 msgstr "Escolha o que manter após sair da sessão ou reiniciar."
 
 #: src/lib/preferences/general/historySettings.ts:136
-#: src/lib/ui/clipboardDialog.ts:138 src/lib/ui/clipboardDialog.ts:250
+#: src/lib/ui/clipboardDialog.ts:139 src/lib/ui/clipboardDialog.ts:251
 #: src/lib/ui/indicator.ts:54
 msgid "Clear"
 msgstr "Limpar"
@@ -1917,43 +1917,43 @@ msgstr "Área de Transferência Vazia"
 msgid "No Items Found"
 msgstr "Nenhum item encontrado"
 
-#: src/lib/ui/searchEntry.ts:161
+#: src/lib/ui/searchEntry.ts:181
 msgid "__All"
 msgstr "__Tudo"
 
-#: src/lib/ui/searchEntry.ts:165
+#: src/lib/ui/searchEntry.ts:185
 msgid "__Text"
 msgstr "__Texto"
 
-#: src/lib/ui/searchEntry.ts:166
+#: src/lib/ui/searchEntry.ts:186
 msgid "__Code"
 msgstr "__Código"
 
-#: src/lib/ui/searchEntry.ts:167
+#: src/lib/ui/searchEntry.ts:187
 msgid "__Image"
 msgstr "__Imagem"
 
-#: src/lib/ui/searchEntry.ts:168
+#: src/lib/ui/searchEntry.ts:188
 msgid "__File"
 msgstr "__Arquivo"
 
-#: src/lib/ui/searchEntry.ts:169
+#: src/lib/ui/searchEntry.ts:189
 msgid "File__s"
 msgstr "Arquivos__s"
 
-#: src/lib/ui/searchEntry.ts:170
+#: src/lib/ui/searchEntry.ts:190
 msgid "__Link"
 msgstr "__Link"
 
-#: src/lib/ui/searchEntry.ts:171
+#: src/lib/ui/searchEntry.ts:191
 msgid "C__haracter"
 msgstr "C__ractere"
 
-#: src/lib/ui/searchEntry.ts:172
+#: src/lib/ui/searchEntry.ts:192
 msgid "Colo__r"
 msgstr "Co__r"
 
-#: src/lib/ui/searchEntry.ts:284
+#: src/lib/ui/searchEntry.ts:304
 msgid "Type to search"
 msgstr "Digite para pesquisar"
 
