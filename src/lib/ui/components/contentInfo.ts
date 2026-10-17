@@ -309,34 +309,44 @@ export async function tryCreateMediaFileInfo(
 
 		// https://gitlab.freedesktop.org/gstreamer/gst-plugins-base/-/blob/ce69d1068af058425b083aaa1b8c268b1b2e5ddd/gst-libs/gst/pbutils/gstdiscoverer.c#L340
 		const pipeline = Gst.parse_launch(`uridecodebin uri="${file.get_uri()}"`);
-		pipeline.set_state(Gst.State.PAUSED);
+		let success = false;
+		let duration = -1;
+		try {
+			pipeline.set_state(Gst.State.PAUSED);
 
-		// https://gitlab.freedesktop.org/gstreamer/gst-plugins-base/-/blob/ce69d1068af058425b083aaa1b8c268b1b2e5ddd/gst-libs/gst/pbutils/gstdiscoverer.c#L1417
-		let [success, duration] = pipeline.query_duration(Gst.Format.TIME);
-		if (!success) {
-			pipeline.set_state(Gst.State.PLAYING);
+			// https://gitlab.freedesktop.org/gstreamer/gst-plugins-base/-/blob/ce69d1068af058425b083aaa1b8c268b1b2e5ddd/gst-libs/gst/pbutils/gstdiscoverer.c#L1417
+			[success, duration] = pipeline.query_duration(Gst.Format.TIME);
+			if (!success) {
+				pipeline.set_state(Gst.State.PLAYING);
 
-			await new Promise<void>((resolve) => {
-				let i = 0;
-				const timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 50, () => {
-					[success, duration] = pipeline.query_duration(Gst.Format.TIME);
-					if (success || i >= 5) {
+				let cancellableId = 0;
+				await new Promise<void>((resolve) => {
+					let i = 0;
+					const timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 50, () => {
+						[success, duration] = pipeline.query_duration(Gst.Format.TIME);
+						if (success || i >= 5) {
+							resolve();
+							return GLib.SOURCE_REMOVE;
+						}
+
+						i++;
+						return GLib.SOURCE_CONTINUE;
+					});
+
+					// A cancelled card must still settle, so the pipeline below is stopped.
+					cancellableId = cancellable.connect(() => {
+						GLib.source_remove(timeoutId);
 						resolve();
-						cancellable.disconnect(cancellableId);
-						return GLib.SOURCE_REMOVE;
-					}
-
-					i++;
-					cancellable.disconnect(cancellableId);
-					return GLib.SOURCE_CONTINUE;
+					});
 				});
-
-				const cancellableId = cancellable.connect(() => GLib.source_remove(timeoutId));
-			});
+				cancellable.disconnect(cancellableId);
+			}
+		} finally {
+			// A pipeline left in PLAYING keeps the file and its decoder threads until the Shell exits.
+			pipeline.set_state(Gst.State.NULL);
 		}
 
-		pipeline.set_state(Gst.State.NULL);
-
+		if (cancellable.is_cancelled()) return null;
 		if (success && duration >= 0) {
 			return new MediaInfo(ext, size, duration / Gst.SECOND);
 		} else {
