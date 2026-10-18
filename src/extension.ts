@@ -256,6 +256,10 @@ export default class CopyousExtension extends Extension {
 
 		// Database
 		this.entryTracker = new M.ClipboardEntryTracker(this);
+		// Logging out tears the Shell down without disable(). A database connection still open then is closed
+		// by its finalizer while the JS runtime is destroyed, which crashes libgda, so close it while the
+		// Shell is still running: the stage, and with it uiGroup, is destroyed first.
+		Main.uiGroup.connectObject('destroy', () => this.entryTracker?.destroy().catch(() => {}), this);
 		this.initEntryTracker().catch(error);
 		this.initHistoryTimeout().catch(error);
 
@@ -555,6 +559,7 @@ export default class CopyousExtension extends Extension {
 		this.shortcutsManager = undefined;
 
 		// Database
+		step(() => Main.uiGroup.disconnectObject(this));
 		step(() => this.entryTracker?.destroy().catch((error) => logError?.(error)));
 		this.entryTracker = undefined;
 
