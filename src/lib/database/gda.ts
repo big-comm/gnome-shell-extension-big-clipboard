@@ -132,7 +132,6 @@ function async_statement_execute_select<T>(
 					}
 
 					i++;
-					cancellable.disconnect(cancellableId);
 					return GLib.SOURCE_CONTINUE;
 				} catch (error) {
 					reject(error as Error);
@@ -141,10 +140,19 @@ function async_statement_execute_select<T>(
 				}
 			});
 
-			const cancellableId = cancellable.connect(() => GLib.source_remove(timeoutId));
+			// close() cancels pending queries; they must settle instead of waiting forever.
+			const cancellableId = cancellable.connect(() => {
+				GLib.source_remove(timeoutId);
+				reject(new Error('Database closed'));
+			});
 		} else {
 			// Gda 6
 			GLib.idle_add(GLib.PRIORITY_HIGH, () => {
+				if (cancellable.is_cancelled()) {
+					reject(new Error('Database closed'));
+					return GLib.SOURCE_REMOVE;
+				}
+
 				try {
 					const datamodel = connection.statement_execute_select(statement as Gda6.Statement, null);
 					resolve(datamodel as unknown as DataModel<T>);
@@ -197,7 +205,6 @@ function async_statement_execute_non_select(
 					}
 
 					i++;
-					cancellable.disconnect(cancellableId);
 					return GLib.SOURCE_CONTINUE;
 				} catch (error) {
 					reject(error as Error);
@@ -206,10 +213,19 @@ function async_statement_execute_non_select(
 				}
 			});
 
-			const cancellableId = cancellable.connect(() => GLib.source_remove(timeoutId));
+			// close() cancels pending queries; they must settle instead of waiting forever.
+			const cancellableId = cancellable.connect(() => {
+				GLib.source_remove(timeoutId);
+				reject(new Error('Database closed'));
+			});
 		} else {
 			// Gda 6
 			GLib.idle_add(GLib.PRIORITY_HIGH, () => {
+				if (cancellable.is_cancelled()) {
+					reject(new Error('Database closed'));
+					return GLib.SOURCE_REMOVE;
+				}
+
 				try {
 					const result = connection.statement_execute_non_select(statement as Gda6.Statement, null);
 					resolve(result);
@@ -429,16 +445,22 @@ export class GdaDatabase implements Database {
 
 			return deleted;
 		} catch (e) {
-			this.logger.error('Failed to clear clipboard', e);
+			this.logFailure('Failed to clear clipboard', e);
 		}
 
 		return [];
 	}
 
 	public close(): Promise<void> {
-		this._connection.close();
+		// Cancel first, so queued queries settle instead of running on the closed connection.
 		this._cancellable.cancel();
+		this._connection.close();
 		return Promise.resolve();
+	}
+
+	/** Failures caused by close() are expected while a query is still settling. */
+	private logFailure(message: string, error: unknown) {
+		if (!this._cancellable.is_cancelled()) this.logger.error(message, error);
 	}
 
 	public async entries(): Promise<ClipboardEntry[]> {
@@ -510,7 +532,7 @@ export class GdaDatabase implements Database {
 
 			return entries;
 		} catch (e) {
-			this.logger.error('Failed to get clipboard entries', e);
+			this.logFailure('Failed to get clipboard entries', e);
 		}
 
 		return [];
@@ -557,7 +579,7 @@ export class GdaDatabase implements Database {
 
 			return null;
 		} catch (e) {
-			this.logger.error('Failed to select conflicting entry', e);
+			this.logFailure('Failed to select conflicting entry', e);
 		}
 
 		return null;
@@ -597,7 +619,7 @@ export class GdaDatabase implements Database {
 
 			return new ClipboardEntry(id, type, content, false, null, datetime, metadata);
 		} catch (e) {
-			this.logger.error('Failed to insert entry', e);
+			this.logFailure('Failed to insert entry', e);
 		}
 
 		return null;
@@ -646,7 +668,7 @@ export class GdaDatabase implements Database {
 			const id = await this.selectConflict(entry);
 			return id ?? -1;
 		} catch (e) {
-			this.logger.error(`Failed to update property "${property}" for entry ${entry.id}`, e);
+			this.logFailure(`Failed to update property "${property}" for entry ${entry.id}`, e);
 		}
 
 		return -1;
@@ -678,7 +700,7 @@ export class GdaDatabase implements Database {
 
 			return result > 0;
 		} catch (e) {
-			this.logger.error(`Failed to delete entry ${entry.id}`, e);
+			this.logFailure(`Failed to delete entry ${entry.id}`, e);
 		}
 
 		return false;
@@ -748,7 +770,7 @@ export class GdaDatabase implements Database {
 
 			return deleted;
 		} catch (e) {
-			this.logger.error('Failed to delete oldest entries', e);
+			this.logFailure('Failed to delete oldest entries', e);
 		}
 
 		return [];
