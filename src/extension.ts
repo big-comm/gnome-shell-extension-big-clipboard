@@ -576,7 +576,6 @@ export default class CopyousExtension extends Extension {
 		this.logger = undefined!;
 	}
 
-
 	/* DEBUG-ONLY */
 	override getSettings(schema?: string): Gio.Settings & CopyousSettings {
 		try {

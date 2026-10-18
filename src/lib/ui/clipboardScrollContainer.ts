@@ -3,13 +3,13 @@ import St from 'gi://St';
 
 import type CopyousExtension from '../../extension.js';
 import { registerClass } from '../common/gjs.js';
+import { ClipboardEntry } from '../database/database.js';
 import {
 	get_first_visible_child,
 	get_last_visible_child,
 	get_next_visible_sibling,
 	get_previous_visible_sibling,
 } from '../misc/actor.js';
-import { ClipboardEntry } from '../database/database.js';
 import { ClipboardItem } from './items/clipboardItem.js';
 import { State, StatusItem } from './items/statusItem.js';
 import { SearchChange, SearchQuery } from './searchEntry.js';

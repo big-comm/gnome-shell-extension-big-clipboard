@@ -53,7 +53,6 @@ export class ClipboardEntryTracker {
 	}
 
 	private async initDatabase(generation: number): Promise<ClipboardEntry[]> {
-
 		const backend: DatabaseBackend = this.ext.settings.get_enum('database-backend');
 		const file = this.getFile();
 		const dir = file.get_parent()!;

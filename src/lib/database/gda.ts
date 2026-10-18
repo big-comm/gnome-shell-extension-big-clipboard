@@ -255,11 +255,7 @@ export class GdaDatabase implements Database {
 	// Kept from construction: ext.logger is cleared on disable() while queries may still be settling.
 	private readonly logger: CopyousExtension['logger'];
 
-	constructor(
-		ext: CopyousExtension,
-		gda: typeof Gda,
-		file: Gio.File | null,
-	) {
+	constructor(ext: CopyousExtension, gda: typeof Gda, file: Gio.File | null) {
 		this.logger = ext.logger;
 		this._Gda = gda;
 
