@@ -25,11 +25,25 @@ interface SqlBuilder<T> extends Omit<Gda5.SqlBuilder, 'add_field_value_as_gvalue
 }
 
 interface DataModel<T> extends Omit<Gda5.DataModel, 'create_iter'> {
-	create_iter(): DataModelIter<T>;
+	/** Type-only: the row shape read by read_rows(). */
+	readonly __row?: T;
 }
 
-interface DataModelIter<T> extends Omit<Gda5.DataModelIter, 'get_value_for_field'> {
-	get_value_for_field<K extends Extract<keyof T, string>>(field_name: K): T[K];
+/**
+ * Reads the given fields of every row of a select result.
+ *
+ * A Gda.DataModelIter and its data model keep each other alive, so with an iterator the result is never
+ * finalized and Gda 6 cannot close the SQLite file: every disable()/enable() leaked a connection.
+ */
+function read_rows<T, K extends Extract<keyof T, string>>(model: DataModel<T>, fields: readonly K[]): Pick<T, K>[] {
+	const columns = fields.map((field) => model.get_column_index(field));
+	const rows: Pick<T, K>[] = [];
+	for (let row = 0; row < model.get_n_rows(); row++) {
+		const values = {} as Pick<T, K>;
+		fields.forEach((field, i) => (values[field] = model.get_value_at(columns[i]!, row) as unknown as T[K]));
+		rows.push(values);
+	}
+	return rows;
 }
 
 function new_connection(Gda: typeof Gda5, cncString: string): Gda5.Connection {
@@ -303,11 +317,10 @@ export class GdaDatabase implements Database {
 		);
 
 		let version = 0;
-		if (versionResult.get_n_rows() > 0) {
+		const [versionRow] = read_rows(versionResult, ['version']);
+		if (versionRow) {
 			// Get version
-			const versionIter = versionResult.create_iter();
-			versionIter.move_next();
-			version = versionIter.get_value_for_field('version');
+			version = versionRow.version;
 		} else {
 			// Insert default version
 			const [addVersionStmt] = this._connection.parse_sql_string(
@@ -418,10 +431,7 @@ export class GdaDatabase implements Database {
 			);
 
 			const deleted: number[] = [];
-			const iter = datamodel.create_iter();
-			while (iter.move_next()) {
-				deleted.push(iter.get_value_for_field('id'));
-			}
+			for (const { id } of read_rows(datamodel, ['id'])) deleted.push(id);
 
 			// Only delete if there are entries to delete
 			if (deleted.length > 0) {
@@ -484,17 +494,27 @@ export class GdaDatabase implements Database {
 			);
 
 			const entries: ClipboardEntry[] = [];
-			const iter = dataModel.create_iter();
-			while (iter.move_next()) {
-				const id = iter.get_value_for_field('id');
-				const type = iter.get_value_for_field('type');
-				const content = unescapeContent(iter.get_value_for_field('content'));
-				const pinned = iter.get_value_for_field('pinned');
-				const tag = iter.get_value_for_field('tag');
-				let datetime = iter.get_value_for_field('datetime');
-				const metadata = iter.get_value_for_field('metadata') as string | null;
-				const title = (iter.get_value_for_field('title') as string | null) ?? '';
-				const subjects = (iter.get_value_for_field('subjects') as string | null) ?? '';
+			const rows = read_rows(dataModel, [
+				'id',
+				'type',
+				'content',
+				'pinned',
+				'tag',
+				'datetime',
+				'metadata',
+				'title',
+				'subjects',
+			]);
+			for (const row of rows) {
+				const id = row.id;
+				const type = row.type;
+				const content = unescapeContent(row.content);
+				const pinned = row.pinned;
+				const tag = row.tag;
+				let datetime = row.datetime;
+				const metadata = row.metadata as string | null;
+				const title = (row.title as string | null) ?? '';
+				const subjects = (row.subjects as string | null) ?? '';
 
 				if ('Timestamp' in this._Gda && datetime instanceof this._Gda.Timestamp) {
 					const timezone = GLib.TimeZone.new_offset(datetime.timezone);
@@ -568,12 +588,7 @@ export class GdaDatabase implements Database {
 				stmt,
 				this._cancellable,
 			);
-			const iter = datamodel.create_iter();
-			if (iter.move_next()) {
-				return iter.get_value_for_field('id');
-			}
-
-			return null;
+			return read_rows(datamodel, ['id'])[0]?.id ?? null;
 		} catch (e) {
 			this.logFailure('Failed to select conflicting entry', e);
 		}
@@ -758,10 +773,7 @@ export class GdaDatabase implements Database {
 			// Get ids
 			const deleted: number[] = [];
 			if (rows > 0) {
-				const iter = datamodel.create_iter();
-				while (iter.move_next()) {
-					deleted.push(iter.get_value_for_field('id'));
-				}
+				for (const { id } of read_rows(datamodel, ['id'])) deleted.push(id);
 			}
 
 			return deleted;
