@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 21:05-0300\n"
+"POT-Creation-Date: 2026-11-01 20:40-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: Chinese (China)\n"
@@ -218,7 +218,7 @@ msgstr "选择哪些类型被允许"
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
 #: src/lib/ui/components/editDialog.ts:398
-#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:51
 msgid "Cancel"
 msgstr "取消"
 
@@ -1463,7 +1463,7 @@ msgstr "选择注销或重启后要保留的内容。"
 
 #: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:139 src/lib/ui/clipboardDialog.ts:251
-#: src/lib/ui/indicator.ts:54
+#: src/lib/ui/indicator.ts:58
 msgid "Clear"
 msgstr "清除"
 
@@ -1807,31 +1807,31 @@ msgstr "链接"
 msgid "Pinned"
 msgstr "已固定"
 
-#: src/lib/ui/indicator.ts:38
+#: src/lib/ui/indicator.ts:42
 msgid "Clear Clipboard History?"
 msgstr "要清除剪贴板历史记录吗？"
 
-#: src/lib/ui/indicator.ts:39
+#: src/lib/ui/indicator.ts:43
 msgid "Are you sure you want to clear your clipboard history?"
 msgstr "您确定要清除剪贴板历史记录吗？"
 
-#: src/lib/ui/indicator.ts:43
+#: src/lib/ui/indicator.ts:47
 msgid "Clear Pinned Items"
 msgstr "清除已固定的项目"
 
-#: src/lib/ui/indicator.ts:99
+#: src/lib/ui/indicator.ts:108
 msgid "Incognito Mode"
 msgstr "隐私模式"
 
-#: src/lib/ui/indicator.ts:102
+#: src/lib/ui/indicator.ts:111
 msgid "Clear History"
 msgstr "清理历史"
 
-#: src/lib/ui/indicator.ts:103
+#: src/lib/ui/indicator.ts:112
 msgid "Settings"
 msgstr "设置"
 
-#: src/lib/ui/indicator.ts:196
+#: src/lib/ui/indicator.ts:214
 #, javascript-format
 msgid "%d File"
 msgid_plural "%d Files"
