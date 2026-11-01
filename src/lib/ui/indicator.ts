@@ -1,4 +1,5 @@
 import Clutter from 'gi://Clutter';
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import GdkPixbuf from 'gi://GdkPixbuf';
 import Gio from 'gi://Gio';
@@ -22,6 +23,9 @@ import { Icon, loadIcon } from '../common/icons.js';
 import { ClipboardHistory, IndicatorDisplay } from '../common/settings.js';
 import { ClipboardEntry } from '../database/database.js';
 import { VERSION } from '../misc/compatibility.js';
+
+// The wiggle lasts about 400 ms; after this the icon must be back in place whatever happened to the animation.
+const WIGGLE_SETTLE_MS = 1000;
 
 @registerClass({
 	Signals: {
@@ -79,6 +83,7 @@ export class ClipboardIndicator extends PanelMenu.Button {
 	private readonly _icon: St.Icon;
 	private readonly _incognitoSwitch: PopupMenu.PopupSwitchMenuItem;
 	private _previewWidget?: St.Widget;
+	private _wiggleSettleId = 0;
 
 	constructor(private ext: CopyousExtension) {
 		super(0.5, ext.metadata.name, false);
@@ -95,6 +100,10 @@ export class ClipboardIndicator extends PanelMenu.Button {
 			style_class: 'system-status-icon',
 		});
 		this._box.add_child(this._icon);
+		// An interrupted wiggle can leave the icon translated far off the panel, leaving an empty gap.
+		this._icon.connect('notify::mapped', () => {
+			if (this._icon.mapped && !this._icon.get_transition('translation-x')) this._icon.translation_x = 0;
+		});
 
 		this._incognitoSwitch = new PopupMenu.PopupSwitchMenuItem(_('Incognito Mode'), false);
 		this.menu.addMenuItem(this._incognitoSwitch);
@@ -170,9 +179,18 @@ export class ClipboardIndicator extends PanelMenu.Button {
 	}
 
 	animate() {
-		if (this._icon.visible && this.ext.settings.get_boolean('wiggle-indicator')) {
-			animationUtils.wiggle(this._icon, { offset: 2, duration: 65, wiggleCount: 3 });
-		}
+		// An unmapped icon (locked screen, hidden panel) has no running frame clock: its animation stalls and
+		// resumes with a huge time jump that leaves translation_x millions of pixels away.
+		if (!this._icon.mapped || !this.ext.settings.get_boolean('wiggle-indicator')) return;
+
+		if (this._wiggleSettleId) GLib.source_remove(this._wiggleSettleId);
+		void animationUtils.wiggle(this._icon, { offset: 2, duration: 65, wiggleCount: 3 });
+		this._wiggleSettleId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, WIGGLE_SETTLE_MS, () => {
+			this._wiggleSettleId = 0;
+			this._icon.remove_transition('translation-x');
+			this._icon.translation_x = 0;
+			return GLib.SOURCE_REMOVE;
+		});
 	}
 
 	showEntry(entry: ClipboardEntry) {
@@ -266,6 +284,8 @@ export class ClipboardIndicator extends PanelMenu.Button {
 	}
 
 	override destroy() {
+		if (this._wiggleSettleId) GLib.source_remove(this._wiggleSettleId);
+		this._wiggleSettleId = 0;
 		this.ext.settings.disconnectObject(this);
 
 		super.destroy();

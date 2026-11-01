@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Clipboard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-17 21:05-0300\n"
+"POT-Creation-Date: 2026-11-01 20:40-0300\n"
 "PO-Revision-Date: 2026-09-28 18:45-0300\n"
 "Last-Translator: BigCommunity (Sonnet 5)\n"
 "Language-Team: \n"
@@ -219,7 +219,7 @@ msgstr "Wählen Sie aus, welche Typen zulässig sind"
 #: src/lib/preferences/general/appExclusionSettings.ts:171
 #: src/lib/preferences/shortcuts/shortcutRow.ts:131
 #: src/lib/ui/components/editDialog.ts:398
-#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:47
+#: src/lib/ui/components/subjectsDialog.ts:149 src/lib/ui/indicator.ts:51
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -1516,7 +1516,7 @@ msgstr "Wählen Sie, was nach dem Abmelden oder Neustart erhalten bleibt."
 
 #: src/lib/preferences/general/historySettings.ts:136
 #: src/lib/ui/clipboardDialog.ts:139 src/lib/ui/clipboardDialog.ts:251
-#: src/lib/ui/indicator.ts:54
+#: src/lib/ui/indicator.ts:58
 msgid "Clear"
 msgstr "Leeren"
 
@@ -1865,31 +1865,31 @@ msgstr "Links"
 msgid "Pinned"
 msgstr "Angeheftet"
 
-#: src/lib/ui/indicator.ts:38
+#: src/lib/ui/indicator.ts:42
 msgid "Clear Clipboard History?"
 msgstr "Zwischenablage-Verlauf löschen?"
 
-#: src/lib/ui/indicator.ts:39
+#: src/lib/ui/indicator.ts:43
 msgid "Are you sure you want to clear your clipboard history?"
 msgstr "Möchten Sie wirklich den Verlauf Ihrer Zwischenablage löschen?"
 
-#: src/lib/ui/indicator.ts:43
+#: src/lib/ui/indicator.ts:47
 msgid "Clear Pinned Items"
 msgstr "Fixierte Elemente löschen"
 
-#: src/lib/ui/indicator.ts:99
+#: src/lib/ui/indicator.ts:108
 msgid "Incognito Mode"
 msgstr "Inkognito-Modus"
 
-#: src/lib/ui/indicator.ts:102
+#: src/lib/ui/indicator.ts:111
 msgid "Clear History"
 msgstr "Verlauf löschen"
 
-#: src/lib/ui/indicator.ts:103
+#: src/lib/ui/indicator.ts:112
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: src/lib/ui/indicator.ts:196
+#: src/lib/ui/indicator.ts:214
 #, javascript-format
 msgid "%d File"
 msgid_plural "%d Files"
